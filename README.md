@@ -1,2 +1,1 @@
-# Ai-Initializer-Project
-A repository for AI large-language-model client
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
