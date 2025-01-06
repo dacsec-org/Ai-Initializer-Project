@@ -1,15 +1,17 @@
 package org.dacss.projectinitai.servers;
 
 import com.vaadin.flow.component.notification.Notification;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.*;
 import java.nio.file.*;
 
+@Component
 public class UnixSocketServer {
     private static volatile boolean running = true;
 
-    public static void main(String[] args) {
+    public void startServer() {
         Path socketPath = Paths.get("/tmp/unix_socket");
         try {
             if (Files.exists(socketPath)) {

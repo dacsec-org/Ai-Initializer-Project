@@ -1,13 +1,16 @@
 package org.dacss.projectinitai.clients;
 
 import com.vaadin.flow.component.notification.Notification;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.*;
 import java.nio.file.*;
 
+@Component
 public class UnixSocketClient {
-    public static void main(String[] args) {
+
+    public void connectToServer() {
         Path socketPath = Paths.get("/tmp/unix_socket");
         try (Socket socket = new Socket()) {
             socket.connect(UnixDomainSocketAddress.of(socketPath));

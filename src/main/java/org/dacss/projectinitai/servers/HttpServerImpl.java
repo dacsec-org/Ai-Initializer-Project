@@ -2,10 +2,12 @@ package org.dacss.projectinitai.servers;
 
 import com.vaadin.flow.component.notification.Notification;
 import com.sun.net.httpserver.HttpServer;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+@Component
 public class HttpServerImpl {
 
     private static volatile boolean running = true;
