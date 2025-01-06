@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.utilities;
 
+import lombok.experimental.UtilityClass;
 import org.dacss.projectinitai.views.localllms.LLMS;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@UtilityClass
 public class LLMLinkScraper {
     public static List<LLMS> scrapeLLMLinks(String url) throws IOException {
         List<LLMS> llmLinks = new ArrayList<>();

@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.clients;
 
 import com.vaadin.flow.component.notification.Notification;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -8,8 +9,10 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+@Component
 public class HttpClient {
-    public static void main(String[] args) {
+
+    public void sendRequest() {
         String urlString = "http://localhost:8080/echo";
         try {
             URI uri = new URI(urlString);
