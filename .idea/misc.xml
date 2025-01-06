@@ -15,6 +15,9 @@
     <option name="myRunnerId" value="jacoco" />
     <option name="myTestModulesCoverage" value="true" />
   </component>
+  <component name="Kotlin2JsCompilerArguments">
+    <option name="moduleKind" value="plain" />
+  </component>
   <component name="MaterialThemeProjectNewConfig">
     <option name="metadata">
       <MTProjectMetadataState>

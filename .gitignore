@@ -43,40 +43,6 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-### C++ template
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
@@ -90,53 +56,6 @@ buildNumber.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
-
-### Qt template
-# C++ objects and libs
-*.so.*
-
-# Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
-/.qmake.cache
-/.qmake.stash
-*.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-*.qmlc
-*.jsc
-Makefile*
-*build-*
-*.qm
-*.prl
-
-# Qt unit tests
-target_wrapper.*
-
-# QtCreator
-*.autosave
-
-# QtCreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
-
-# QtCreator CMake
-CMakeLists.txt.user*
-
-# QtCreator 4.8< compilation database
-compile_commands.json
-
-# QtCreator local machine specific files for imported projects
-*creator.user*
-
-*_qmlcache.qrc
 
 ### Kate template
 # Swap Files #
@@ -373,7 +292,6 @@ flycheck_*.el
 # network security
 /network-security.data
 
-
 ### Gradle template
 .gradle
 **/build/
@@ -394,4 +312,20 @@ gradle-app.setting
 ### GPG template
 secring.*
 
+### frontend generated
+/src/main/frontend/generated/
 
+### Vaadin node tasks
+/.vaadin-node-tasks.lock
+
+### package.json generated files
+/package.json
+/package-lock.json
+
+# The following files are generated/updated by Hilla
+node_modules/
+src/main/frontend/generated/
+vite.generated.ts
+
+### password file
+/environments/.env
