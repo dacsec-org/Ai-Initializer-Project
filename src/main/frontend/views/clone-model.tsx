@@ -1,7 +1,7 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import { Button, Notification, TextField } from '@vaadin/react-components';
-import { HelloWorldService } from 'Frontend/generated/endpoints.js';
+import { CloneLocalModelService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
   menu: { order: 9, icon: 'line-awesome/svg/clone-solid.svg' },
@@ -9,24 +9,33 @@ export const config: ViewConfig = {
 };
 
 export default function CloneModelView() {
-  const name = useSignal('');
+  const sourcePath = useSignal('');
+  const snapshotPath = useSignal('');
+
+  const handleClone = async () => {
+    const response = await CloneLocalModelService.cloneModel(sourcePath.value, snapshotPath.value);
+    Notification.show(response);
+  };
 
   return (
     <>
       <section className="flex p-m gap-m items-end">
         <TextField
-          label="Your name"
+          label="Source Path"
+          value={sourcePath.value}
           onValueChanged={(e) => {
-            name.value = e.detail.value;
+            sourcePath.value = e.detail.value;
           }}
         />
-        <Button
-          onClick={async () => {
-            const serverResponse = await HelloWorldService.sayHello(name.value);
-            Notification.show(serverResponse);
+        <TextField
+          label="Snapshot Path"
+          value={snapshotPath.value}
+          onValueChanged={(e) => {
+            snapshotPath.value = e.detail.value;
           }}
-        >
-          Say hello
+        />
+        <Button onClick={handleClone}>
+          Clone Model
         </Button>
       </section>
     </>

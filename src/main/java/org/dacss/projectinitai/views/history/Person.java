@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.views.hystory;
+package org.dacss.projectinitai.views.history;
 
 public class Person {
 

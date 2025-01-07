@@ -29,7 +29,7 @@ import java.util.List;
 
 @PageTitle("Local Llms")
 @Route("local-llms")
-@Menu(order = 10, icon = LineAwesomeIconUrl.TH_SOLID)
+@Menu(order = 11, icon = LineAwesomeIconUrl.TH_SOLID)
 public class LocalLlmsView extends Div {
 
     private Grid<LLMS> grid;

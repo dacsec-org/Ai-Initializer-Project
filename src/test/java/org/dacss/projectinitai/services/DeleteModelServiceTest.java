@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.servers;
+package org.dacss.projectinitai.services;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HttpServerImplTest {
+class DeleteModelServiceTest {
 
     @BeforeEach
     void setUp() {
@@ -17,14 +17,6 @@ class HttpServerImplTest {
     }
 
     @Test
-    void startServer() {
-    }
-
-    @Test
-    void stopServer() {
-    }
-
-    @Test
-    void pingServer() {
+    void deleteModel() {
     }
 }
