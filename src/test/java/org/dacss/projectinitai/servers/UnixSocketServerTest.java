@@ -19,4 +19,8 @@ class UnixSocketServerTest {
     @Test
     void startServer() {
     }
+
+    @Test
+    void pingServer() {
+    }
 }
