@@ -27,7 +27,7 @@ public class ChatView extends Composite<VerticalLayout> {
     private final List<MessageListItem> messages;
 
     @Autowired
-    public ChatView(UniversalChatClient chatClient) {
+    public ChatView(UniversalChatClient<String> chatClient) {
         this.messageList = new MessageList();
         this.messages = new ArrayList<>();
 
