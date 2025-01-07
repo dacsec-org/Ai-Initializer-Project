@@ -7,6 +7,11 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-snapshots" />
+      <option name="name" value="spring-snapshots" />
+      <option name="url" value="https://repo.spring.io/snapshot" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="vaadin-prereleases" />
       <option name="name" value="vaadin-prereleases" />
       <option name="url" value="https://maven.vaadin.com/vaadin-prereleases" />
@@ -35,6 +40,11 @@
       <option name="id" value="universityOfManchester-graal" />
       <option name="name" value="universityOfManchester-graal" />
       <option name="url" value="https://raw.githubusercontent.com/beehive-lab/tornado/maven-tornadovm" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-milestones" />
+      <option name="name" value="spring-milestones" />
+      <option name="url" value="https://repo.spring.io/milestone" />
     </remote-repository>
   </component>
 </project>
