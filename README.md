@@ -4,7 +4,7 @@
 
 Ai-Initializer-Project is a local, customizable, hardware-accelerated, private, secure, universal AI large-language-model client designed for any Linux/UNIX distribution utilizing BTRFS (required for LLM customization) on any device. The default LLM is qwen2.5 0.5b, a lightweight 'general' chat/adviser.
 
-## Setup Instructions
+## Setup Instructions(placeholder, will be updated)
 
 1. Clone the repository:
    ```bash
@@ -52,6 +52,7 @@ Please note: all models except the 3B and 72B are released under the Apache 2.0 
 
 ## AI Options
 
+- Cybersecurity
 - Chat Completion
 - Embedding
 - Text to Image
