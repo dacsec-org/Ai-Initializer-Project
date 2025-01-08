@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.advisers;
+package org.dacss.projectinitai.advisers.contexts;
 
 /**
  * <h1>{@link AIOutputContextualAdviserIface}</h1>

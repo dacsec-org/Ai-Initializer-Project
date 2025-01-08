@@ -1,8 +1,5 @@
-package org.dacss.projectinitai.advisers.components;
+package org.dacss.projectinitai.advisers.contexts;
 
-import org.dacss.projectinitai.advisers.ContextualAdviserIface;
-import org.dacss.projectinitai.advisers.UserInputContextualAdviserIface;
-import org.dacss.projectinitai.advisers.AIOutputContextualAdviserIface;
 import org.springframework.stereotype.Component;
 
 @Component

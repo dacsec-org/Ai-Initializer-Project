@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.advisers;
+package org.dacss.projectinitai.advisers.domains;
 
 /**
  * <h1>{@link DomainSpecificAdviserIface}</h1>
