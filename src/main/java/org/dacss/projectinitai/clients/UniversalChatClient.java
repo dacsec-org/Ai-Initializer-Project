@@ -1,20 +1,22 @@
 package org.dacss.projectinitai.clients;
 
-import org.dacss.projectinitai.advisers.*;
-import org.dacss.projectinitai.advisers.components.*;
+import org.dacss.projectinitai.advisers.contexts.ContextualAdviserComponent;
+import org.dacss.projectinitai.advisers.contexts.ContextualAdviserIface;
+import org.dacss.projectinitai.advisers.domains.DomainSpecificAdviserIface;
+import org.dacss.projectinitai.advisers.processors.post.PostProcessingAdviserIface;
+import org.dacss.projectinitai.advisers.processors.ProcessingAdviserIface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UniversalChatClient<T> {
 
-    private final PreProcessingAdviserIface<T> preProcessingAdviser;
-    private final PostProcessingAdviserIface<T> postProcessingAdviser;
+    private final ProcessingAdviserIface<T> preProcessingAdviser;
     private final DomainSpecificAdviserIface<T> domainSpecificAdviser;
     private final ContextualAdviserIface<T> contextualAdviser;
 
     @Autowired
-    public UniversalChatClient(PreProcessingAdviserIface<T> preProcessingAdviser,
+    public UniversalChatClient(ProcessingAdviserIface<T> preProcessingAdviser,
                                PostProcessingAdviserIface<T> postProcessingAdviser,
                                DomainSpecificAdviserIface<T> domainSpecificAdviser,
                                ContextualAdviserIface<T> contextualAdviser) {

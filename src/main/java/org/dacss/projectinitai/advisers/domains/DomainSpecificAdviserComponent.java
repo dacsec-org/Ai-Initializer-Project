@@ -1,6 +1,5 @@
-package org.dacss.projectinitai.advisers.components;
+package org.dacss.projectinitai.advisers.domains;
 
-import org.dacss.projectinitai.advisers.DomainSpecificAdviserIface;
 import org.springframework.stereotype.Component;
 
 @Component
