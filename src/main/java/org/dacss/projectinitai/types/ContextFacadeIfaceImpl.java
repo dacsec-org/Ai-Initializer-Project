@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * <h1>{@link ContextFacadeIfaceImpl}</h1>
  * @param <T> the type of the context
- * @see {@link ContextFacadeIface}
+ * @see ContextFacadeIface
  */
 @Slf4j
 @Component
@@ -21,7 +21,6 @@ public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
 
     @Override
     public String getSystemInfo() {
-        //todo: refine the messages
         return createMessage(
                 "system"
                 , "manages and monitors the overall health and performance of the local and remote systems");
