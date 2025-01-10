@@ -49,6 +49,7 @@ public class LocalLlmsView extends Div {
         setSizeFull();
         createGrid();
         add(grid);
+        addSourceButtons();
     }
 
     private void createGrid() {
@@ -63,7 +64,7 @@ public class LocalLlmsView extends Div {
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_COLUMN_BORDERS);
         grid.setHeight("100%");
 
-        List<LLMS> LLMS = getLLMs();
+        List<LLMS> LLMS = new ArrayList<>();
         gridListDataView = grid.setItems(LLMS);
     }
 
@@ -151,9 +152,7 @@ public class LocalLlmsView extends Div {
             if (selectedItems.isEmpty()) {
                 Notification.show("No items selected", 3000, Notification.Position.MIDDLE);
             } else {
-                // Implement the download logic here
                 for (LLMS llms : selectedItems) {
-                    // Example: Download logic
                     System.out.println("Downloading: " + llms.getName());
                 }
                 Notification.show("Download started for selected items", 3000, Notification.Position.MIDDLE);
@@ -171,12 +170,28 @@ public class LocalLlmsView extends Div {
         return true;
     }
 
-    private List<LLMS> getLLMs() {
+    private List<LLMS> getLLMs(String url) {
         try {
-            return LLMLinkScraper.scrapeLLMLinks("https://ollama.com/models"); // Replace with actual URL
+            return LLMLinkScraper.scrapeLLMLinks(url);
         } catch (IOException e) {
             Notification.show("Failed to fetch LLM links", 3000, Notification.Position.MIDDLE);
             return new ArrayList<>();
         }
+    }
+
+    private void addSourceButtons() {
+        Button ollamaButton = new Button("Ollama");
+        ollamaButton.addClickListener(event -> {
+            List<LLMS> llms = getLLMs("https://ollama.com/models");
+            gridListDataView = grid.setItems(llms);
+        });
+
+        Button huggingFaceButton = new Button("Hugging Face");
+        huggingFaceButton.addClickListener(event -> {
+            List<LLMS> llms = getLLMs("https://huggingface.co/models");
+            gridListDataView = grid.setItems(llms);
+        });
+
+        add(ollamaButton, huggingFaceButton);
     }
 }

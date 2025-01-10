@@ -1,0 +1,36 @@
+@startuml
+actor User
+participant ContextFacadeIfaceImpl
+participant ContextualAdviserComponent
+
+User -> ContextFacadeIfaceImpl: updateContext(userRequest, aiResponse)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: updateContext(userRequest, aiResponse)
+ContextualAdviserComponent -> ContextualAdviserComponent: update context
+
+User -> ContextFacadeIfaceImpl: processUserInput(userRequest)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: processUserInput(userRequest)
+ContextualAdviserComponent -> ContextualAdviserComponent: process user input
+
+User -> ContextFacadeIfaceImpl: processAIOutput(aiResponse)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: processAIOutput(aiResponse)
+ContextualAdviserComponent -> ContextualAdviserComponent: process AI output
+
+User -> ContextFacadeIfaceImpl: getSystemInfo()
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(NaturalLanguageProcessing)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(SpeechRecognition)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(KnowledgeRepresentationReasoning)
+
+User -> ContextFacadeIfaceImpl: getToolInfo()
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(Generative)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(ReinforcementLearning)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(ComputerVision)
+
+User -> ContextFacadeIfaceImpl: getUserInfo()
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(RecommendationSystems)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(PredictiveAnalytics)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(Robotics)
+
+User -> ContextFacadeIfaceImpl: getDataInfo()
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(Optimization)
+ContextFacadeIfaceImpl -> ContextualAdviserComponent: getContextMessage(Recognition)
+@enduml

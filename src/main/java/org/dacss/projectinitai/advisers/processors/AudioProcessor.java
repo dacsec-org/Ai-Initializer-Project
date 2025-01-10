@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.advisers.processors;
 
 import com.vaadin.flow.component.notification.Notification;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayInputStream;
@@ -8,58 +10,40 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * <h1>{@link AudioProcessor}</h1>
- * Audio Processor for audio data.
- */
-public class AudioProcessor implements ProcessingAdviserIface<byte[]> {
+@Slf4j
+@Component
+public class AudioProcessor implements ByteProcessingAdviserIface {
 
-    /**
-     * {@link #process(byte[])}
-     * @param inputOutput user-input, and ai-output to be processed.
-     */
     @Override
-    public byte[] process(byte[] inputOutput) {
+    public byte[] processBytes(byte[] byteInputOutput) {
         try {
             // Convert byte array to AudioInputStream
             AudioInputStream audioInputStream = new AudioInputStream(
-                    new ByteArrayInputStream(inputOutput),
+                    new ByteArrayInputStream(byteInputOutput),
                     getAudioFormat(),
-                    inputOutput.length / getAudioFormat().getFrameSize()
+                    byteInputOutput.length / getAudioFormat().getFrameSize()
             );
 
             // Convert AudioInputStream back to byte array
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             AudioSystem.write(audioInputStream, AudioFileFormat.Type.WAVE, byteArrayOutputStream);
-            inputOutput = byteArrayOutputStream.toByteArray();
+            return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
+            log.error("Error processing audio data: ", e);
             Notification.show("Error processing audio data: " + e.getMessage());
+            return null;
         }
-        return inputOutput; // Return processed data
     }
 
-    /**
-     * {@link #getAudioFormat()}
-     * @return AudioFormat
-     */
     private AudioFormat getAudioFormat() {
         return new AudioFormat(16000, 16, 1, true, true);
     }
 
-    /**
-     * {@link #getFileInputOutputLocation(String)}
-     * @param filePath the file path to be checked.
-     * @return the file input/output location.
-     */
     public String getFileInputOutputLocation(String filePath) {
         File file = new File(filePath);
         return file.getAbsolutePath();
     }
 
-    /**
-     * {@link #getInputOutputDevice()}
-     * @return the input/output device information.
-     */
     public String getInputOutputDevice() {
         return "Audio input/output device information is not available.";
     }

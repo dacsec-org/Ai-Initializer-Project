@@ -2,26 +2,26 @@ package org.dacss.projectinitai.advisers.processors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link JsonProcessor}</h1>
- * processor to handle JSON.
  */
-public class JsonProcessor implements ProcessingAdviserIface<String> {
+@Slf4j
+@Component
+public class JsonProcessor implements StringProcessingAdviserIface {
 
     private final ObjectWriter objectWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
 
-    /**
-     * {@link #process(String)}
-     * @param inputOutput user-input, and ai-output to be processed.
-     */
     @Override
-    public String process(String inputOutput) {
+    public String processString(String stringInputOutput) {
         try {
-            Object jsonObject = new ObjectMapper().readValue(inputOutput, Object.class);
+            Object jsonObject = new ObjectMapper().readValue(stringInputOutput, Object.class);
             return objectWriter.writeValueAsString(jsonObject);
         } catch (Exception e) {
-            return inputOutput;
+            log.error("Error processing JSON: ", e);
+            return stringInputOutput;
         }
     }
 }

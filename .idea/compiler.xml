@@ -9,11 +9,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ai-iinitializer-project" />
-      </profile>
-      <profile name="Annotation profile for ai-iinitializer-project" enabled="true">
-        <sourceOutputDir name="${project.basedir}/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="${project.basedir}/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="Ai-Initializer-Project" />
       </profile>
     </annotationProcessing>

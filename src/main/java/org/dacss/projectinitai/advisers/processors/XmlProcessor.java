@@ -8,6 +8,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringReader;
 import java.io.StringWriter;
+
+import com.vaadin.flow.component.notification.Notification;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -15,18 +19,16 @@ import org.xml.sax.InputSource;
  * <h1>{@link XmlProcessor}</h1>
  * Processor for XML responses.
  */
-public class XmlProcessor implements ProcessingAdviserIface<String> {
 
-    /**
-     * {@link #process(String)}
-     * @param aiResponse user-input, and ai-output to be processed.
-     * @return formatted XML response.
-     */
+@Slf4j
+@Component
+public class XmlProcessor implements StringProcessingAdviserIface {
+
     @Override
-    public String process(String aiResponse) {
+    public String processString(String stringInputOutput) {
         try {
             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                    .parse(new InputSource(new StringReader(aiResponse)));
+                    .parse(new InputSource(new StringReader(stringInputOutput)));
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
@@ -34,7 +36,9 @@ public class XmlProcessor implements ProcessingAdviserIface<String> {
             transformer.transform(new DOMSource(document), new StreamResult(writer));
             return writer.toString();
         } catch (Exception e) {
-            return aiResponse; // Return original response if parsing fails
+            log.error("Error processing XML: ", e);
+            Notification.show("Error processing XML: " + e.getMessage());
+            return stringInputOutput; // Return original response if parsing fails
         }
     }
 }

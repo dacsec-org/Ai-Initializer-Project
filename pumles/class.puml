@@ -1,0 +1,42 @@
+@startuml
+package org.dacss.projectinitai.advisers.contexts {
+    class ContextualAdviserComponent<T> {
+        - StringBuilder context
+        + T lastUserRequest
+        + T lastAIResponse
+        + T updateContext(T userRequest, T aiResponse)
+        + T processUserInput(T userRequest)
+        + T processAIOutput(T aiResponse)
+        + String getContextMessage(Enum<?> contextType)
+        + String getContext()
+        + void clearContext()
+        + void addCustomContextEntry(String entry)
+    }
+}
+
+package org.dacss.projectinitai.types {
+    interface ContextFacadeIface<T> {
+        + String getSystemInfo()
+        + String getToolInfo()
+        + String getUserInfo()
+        + String getDataInfo()
+        + T updateContext(T userRequest, T aiResponse)
+        + T processUserInput(T userRequest)
+        + T processAIOutput(T aiResponse)
+    }
+
+    class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
+        - ContextualAdviserComponent<T> contextualAdviserComponent
+        + String getSystemInfo()
+        + String getToolInfo()
+        + String getUserInfo()
+        + String getDataInfo()
+        + T updateContext(T userRequest, T aiResponse)
+        + T processUserInput(T userRequest)
+        + T processAIOutput(T aiResponse)
+    }
+}
+
+ContextFacadeIfaceImpl --> ContextualAdviserComponent
+ContextFacadeIface <|.. ContextFacadeIfaceImpl
+@enduml

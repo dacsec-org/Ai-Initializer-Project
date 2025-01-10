@@ -5,11 +5,7 @@ package org.dacss.projectinitai.advisers.processors;
  * Functional Interface for Processing Advisers.
  */
 @FunctionalInterface
-public interface ProcessingAdviserIface<T> {
+public interface ProcessingAdviserIface {
 
-    /**
-     * {@link #process(T)}
-     * @param inputOutput user-input, and ai-output to be processed.
-     */
-    T process(T inputOutput);
+    Object process(Object inputOutput);
 }

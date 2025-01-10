@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.clients;
+package org.dacss.projectinitai.servers.clients;
 
 import com.vaadin.flow.component.notification.Notification;
 import org.springframework.stereotype.Component;

@@ -1,30 +1,22 @@
 package org.dacss.projectinitai.advisers.processors;
 
 import com.vaadin.flow.component.notification.Notification;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
-/**
- * <h1>{@link VideoProcessor}</h1>
- * Processor class for video files.
- */
-public class VideoProcessor implements ProcessingAdviserIface<byte[]> {
+@Slf4j
+@Component
+public class VideoProcessor implements ByteProcessingAdviserIface {
 
-    /**
-     * {@link #process(byte[])}
-     * @param inputOutput user-input, and ai-output to be processed.
-     * @return the processed data.
-     */
     @Override
-    public byte[] process(byte[] inputOutput) {
-        try (InputStream inputStream = new ByteArrayInputStream(inputOutput);
+    public byte[] processBytes(byte[] byteInputOutput) {
+        try (InputStream inputStream = new ByteArrayInputStream(byteInputOutput);
              ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
 
             byte[] buffer = new byte[1024];
@@ -35,25 +27,17 @@ public class VideoProcessor implements ProcessingAdviserIface<byte[]> {
             }
             return outputStream.toByteArray();
         } catch (IOException e) {
+            log.error("Error processing video data: ", e);
             Notification.show("Error processing video data: " + e.getMessage());
             return null;
         }
     }
 
-    /**
-     * {@link #getFileInputOutputLocation(String)}
-     * @param filePath the file path to be checked.
-     * @return the file input/output location.
-     */
     public String getFileInputOutputLocation(String filePath) {
         File file = new File(filePath);
         return file.getAbsolutePath();
     }
 
-    /**
-     * {@link #getInputOutputDevice()}
-     * @return the input/output device information.
-     */
     public String getInputOutputDevice() {
         return "Video input/output device information is not available.";
     }

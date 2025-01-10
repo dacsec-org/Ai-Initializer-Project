@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.advisers.processors;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -8,16 +10,19 @@ import java.util.Base64;
  * <h1>{@link VectorizationProcessor}</h1>
  * Pre-processor to vectorize data.
  */
-public class VectorizationProcessor implements ProcessingAdviserIface<byte[]> {
+@Slf4j
+@Component
+public class VectorizationProcessor implements StringProcessingAdviserIface {
 
     @Override
-    public byte[] process(byte[] inputOutput) {
+    public String processString(String stringInputOutput) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(inputOutput);
-            return Base64.getEncoder().encode(hash);
+            byte[] hash = digest.digest(stringInputOutput.getBytes());
+            return Base64.getEncoder().encodeToString(hash);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 algorithm not found", e);
+            log.error("Error processing string: ", e);
+            return null;
         }
     }
 
