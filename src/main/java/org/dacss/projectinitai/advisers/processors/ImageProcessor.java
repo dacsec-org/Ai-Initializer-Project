@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.advisers.processors;
 
 import com.vaadin.flow.component.notification.Notification;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -11,21 +13,16 @@ import java.io.IOException;
 import java.util.Base64;
 import javax.imageio.ImageIO;
 
-/**
- * <h1>{@link ImageProcessor}</h1>
- * Image Processor Adviser.
- */
-public class ImageProcessor implements ProcessingAdviserIface<String> {
 
-    /**
-     * {@link #process(String)}
-     * @param inputOutput user-input, and ai-output to be processed.
-     */
+@Slf4j
+@Component
+public class ImageProcessor implements StringProcessingAdviserIface {
+
     @Override
-    public String process(String inputOutput) {
+    public String processString(String stringInputOutput) {
         try {
             // Load the image
-            BufferedImage image = ImageIO.read(new File(inputOutput));
+            BufferedImage image = ImageIO.read(new File(stringInputOutput));
             if (image == null) {
                 return "Invalid image file";
             }
@@ -53,23 +50,19 @@ public class ImageProcessor implements ProcessingAdviserIface<String> {
 
             return "Image processed and saved as " + outputFilePath + ". Base64: " + base64Image;
         } catch (IOException e) {
+            log.error("Error processing image", e);
             Notification.show("Error processing image");
             return "Error processing image";
         }
     }
 
-    /**
-     * Converts a BufferedImage to a Base64 string.
-     *
-     * @param image the BufferedImage to be converted
-     * @return the Base64 string representation of the image
-     */
-    private String convertToBase64(BufferedImage image) {
+    protected String convertToBase64(BufferedImage image) {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             ImageIO.write(image, "png", outputStream);
             byte[] imageBytes = outputStream.toByteArray();
             return Base64.getEncoder().encodeToString(imageBytes);
         } catch (IOException e) {
+            log.error("Error converting image to Base64", e);
             Notification.show("Error converting image to Base64");
             return "";
         }

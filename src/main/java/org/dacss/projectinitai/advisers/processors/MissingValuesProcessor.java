@@ -1,17 +1,13 @@
 package org.dacss.projectinitai.advisers.processors;
 
-/**
- * <h1>{@link MissingValuesProcessor}</h1>
- * Processor to handle missing values.
- */
-public class MissingValuesProcessor implements ProcessingAdviserIface<String> {
+import org.springframework.stereotype.Component;
 
-    /**
-     * {@link #process(String)}
-     * @param text user-input, and ai-output to be processed.
-     */
+
+@Component
+public class MissingValuesProcessor implements StringProcessingAdviserIface {
+
     @Override
-    public String process(String text) {
-        return text == null || text.isEmpty() ? "N/A" : text;
+    public String processString(String stringInputOutput) {
+        return stringInputOutput == null || stringInputOutput.isEmpty() ? "N/A" : stringInputOutput;
     }
 }

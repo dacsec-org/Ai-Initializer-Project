@@ -1,80 +1,69 @@
 package org.dacss.projectinitai.types;
 
 import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.advisers.contexts.ContextualAdviserComponent;
+import org.dacss.projectinitai.components.ContextualAdviserComp;
+import org.dacss.projectinitai.generative.Generative;
+import org.dacss.projectinitai.krr.KnowledgeRepresentationReasoning;
+import org.dacss.projectinitai.nlp.NaturalLanguageProcessing;
+import org.dacss.projectinitai.optimization.Optimization;
+import org.dacss.projectinitai.predictive.PredictiveAnalytics;
+import org.dacss.projectinitai.recognition.Recognition;
+import org.dacss.projectinitai.recomondation.RecommendationSystems;
+import org.dacss.projectinitai.reinforcement.ReinforcementLearning;
+import org.dacss.projectinitai.robotics.Robotics;
+import org.dacss.projectinitai.speech.SpeechRecognition;
+import org.dacss.projectinitai.vision.ComputerVision;
 import org.springframework.stereotype.Component;
 
-/**
- * <h1>{@link ContextFacadeIfaceImpl}</h1>
- * @param <T> the type of the context
- * @see ContextFacadeIface
- */
 @Slf4j
 @Component
 public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
 
-    private final ContextualAdviserComponent<T> contextualAdviserComponent;
+    private final ContextualAdviserComp<T> contextualAdviserComp;
 
-    public ContextFacadeIfaceImpl(ContextualAdviserComponent<T> contextualAdviserComponent) {
-        this.contextualAdviserComponent = contextualAdviserComponent;
+    public ContextFacadeIfaceImpl(ContextualAdviserComp<T> contextualAdviserComp) {
+        this.contextualAdviserComp = contextualAdviserComp;
     }
 
     @Override
     public String getSystemInfo() {
-        return createMessage(
-                "system"
-                , "manages and monitors the overall health and performance of the local and remote systems");
+        return contextualAdviserComp.getContextMessage(NaturalLanguageProcessing.TEXT_GENERATION) + "\n" +
+               contextualAdviserComp.getContextMessage(SpeechRecognition.SPEECH_TO_TEXT) + "\n" +
+               contextualAdviserComp.getContextMessage(KnowledgeRepresentationReasoning.KNOWLEDGE_GRAPHS);
     }
 
     @Override
     public String getToolInfo() {
-        return createMessage(
-                "tool"
-                , "provides various utilities and functionalities to assist users in their tasks");
+        return contextualAdviserComp.getContextMessage(Generative.DEEPFAKES) + "\n" +
+               contextualAdviserComp.getContextMessage(ReinforcementLearning.AUTONOMOUS_DRIVING) + "\n" +
+               contextualAdviserComp.getContextMessage(ComputerVision.IMAGE_CLASSIFICATION);
     }
 
     @Override
     public String getUserInfo() {
-        return createMessage(
-                "user interface"
-                , "interacts with the end-users and gathers their input");
+        return contextualAdviserComp.getContextMessage(RecommendationSystems.COLLABORATIVE_FILTERING) + "\n" +
+               contextualAdviserComp.getContextMessage(PredictiveAnalytics.TIME_SERIES_FORECASTING) + "\n" +
+               contextualAdviserComp.getContextMessage(Robotics.MOTION_CONTROL);
     }
 
     @Override
     public String getDataInfo() {
-        return createMessage(
-                "data handler"
-                , "processes and manages the data within the application");
+        return contextualAdviserComp.getContextMessage(Optimization.LINEAR_PROGRAMMING) + "\n" +
+               contextualAdviserComp.getContextMessage(Recognition.FACIAL_RECOGNITION);
     }
 
     @Override
     public T updateContext(T userRequest, T aiResponse) {
-        return contextualAdviserComponent.updateContext(userRequest, aiResponse);
+        return contextualAdviserComp.updateContext(userRequest, aiResponse);
     }
 
     @Override
     public T processUserInput(T userRequest) {
-        return contextualAdviserComponent.processUserInput(userRequest);
+        return contextualAdviserComp.processUserInput(userRequest);
     }
 
     @Override
     public T processAIOutput(T aiResponse) {
-        return contextualAdviserComponent.processAIOutput(aiResponse);
-    }
-
-    /**
-     * {@link #createMessage(String, String)}
-     * @param type message type
-     * @param task message task
-     * @return the message
-     */
-    private String createMessage(String type, String task) {
-        try {
-            log.info("Creating message for {}: {}", type, task);
-            return String.format("The %s %s.", type, task);
-        } catch (Exception e) {
-            log.error("Error creating message: ", e);
-            return null;
-        }
+        return contextualAdviserComp.processAIOutput(aiResponse);
     }
 }

@@ -9,7 +9,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.dacss.projectinitai.clients.UniversalChatClient;
+import org.dacss.projectinitai.advisers.processors.StringProcessingAdviserIface;
+import org.dacss.projectinitai.components.ContextualAdviserComp;
+import org.dacss.projectinitai.components.ProcessorFactoryComp;
+import org.dacss.projectinitai.enums.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
@@ -25,9 +28,13 @@ public class ChatView extends Composite<VerticalLayout> {
 
     private final MessageList messageList;
     private final List<MessageListItem> messages;
+    private final ProcessorFactoryComp processorFactory;
+    private final ContextualAdviserComp<String> contextualAdviser;
 
     @Autowired
-    public ChatView(UniversalChatClient<String> chatClient) {
+    public ChatView(ProcessorFactoryComp processorFactory, ContextualAdviserComp<String> contextualAdviser) {
+        this.processorFactory = processorFactory;
+        this.contextualAdviser = contextualAdviser;
         this.messageList = new MessageList();
         this.messages = new ArrayList<>();
 
@@ -41,7 +48,7 @@ public class ChatView extends Composite<VerticalLayout> {
         MessageInput messageInput = new MessageInput();
         messageInput.addSubmitListener(event -> {
             String userRequest = event.getValue();
-            String aiResponse = chatClient.sendMessage(userRequest);
+            String aiResponse = sendMessage(userRequest);
             addUserMessage(userRequest);
             addAiMessage(aiResponse);
         });
@@ -75,5 +82,20 @@ public class ChatView extends Composite<VerticalLayout> {
         userMessage.setUserColorIndex(1);
         messages.add(userMessage);
         messageList.setItems(messages);
+    }
+
+    private String sendMessage(String message) {
+        StringProcessingAdviserIface preProcessingAdviser =
+                processorFactory.getStringProcessor(MessageType.TEXT);
+        String preProcessedMessage =
+                preProcessingAdviser.processString(message);
+        String postProcessedResponse =
+                preProcessingAdviser.processString(preProcessedMessage);
+        contextualAdviser.updateContext(preProcessedMessage, postProcessedResponse);
+        return postProcessedResponse;
+    }
+
+    public String getContext() {
+        return contextualAdviser.getContext();
     }
 }

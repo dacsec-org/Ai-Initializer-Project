@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.advisers.contexts;
+package org.dacss.projectinitai.components;
 
+import com.vaadin.flow.component.notification.Notification;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.dacss.projectinitai.generative.Generative;
@@ -14,9 +15,13 @@ import org.dacss.projectinitai.speech.SpeechRecognition;
 import org.dacss.projectinitai.vision.ComputerVision;
 import org.springframework.stereotype.Component;
 
+/**
+ * <h1>{@link ContextualAdviserComp}</h1>
+ * @param <T>
+ */
 @Slf4j
 @Component
-public class ContextualAdviserComponent<T> implements ContextualAdviserIface<T>, UserInputContextualAdviserIface<T>, AIOutputContextualAdviserIface<T>, DataHandlerContextualAdviserIface<T> {
+public class ContextualAdviserComp<T> {
 
     private final StringBuilder context = new StringBuilder();
     @Getter
@@ -24,7 +29,6 @@ public class ContextualAdviserComponent<T> implements ContextualAdviserIface<T>,
     @Getter
     private T lastAIResponse;
 
-    @Override
     public T updateContext(T userRequest, T aiResponse) {
         try {
             lastUserRequest = userRequest;
@@ -35,70 +39,60 @@ public class ContextualAdviserComponent<T> implements ContextualAdviserIface<T>,
             return userRequest;
         } catch (Exception e) {
             log.error("Error updating context: ", e);
+            Notification.show("Error updating context: " + e.getMessage());
             return null;
         }
     }
 
-    @Override
     public T processUserInput(T userRequest) {
         try {
             log.info("Processing user input: {}", userRequest);
             return userRequest;
         } catch (Exception e) {
             log.error("Error processing user input: ", e);
+            Notification.show("Error processing user input: " + e.getMessage());
             return null;
         }
     }
 
-    @Override
     public T processAIOutput(T aiResponse) {
         try {
             log.info("Processing AI output: {}", aiResponse);
             return aiResponse;
         } catch (Exception e) {
             log.error("Error processing AI output: ", e);
+            Notification.show("Error processing AI output: " + e.getMessage());
             return null;
         }
     }
 
-    @Override
-    public String getNaturalLanguageProcessingContext(NaturalLanguageProcessing nlp) {
-        return "NLP Context: " + nlp.name();
-    }
-
-    @Override
-    public String getRecommendationSystemsContext(RecommendationSystems recommendationSystems) {
-        return "Recommendation Systems Context: " + recommendationSystems.name();
-    }
-
-    @Override
-    public String getGenerativeContext(Generative generative) {
-        return "Generative Context: " + generative.name();
-    }
-
-    @Override
-    public String getOptimizationContext(Optimization optimization) {
-        return "Optimization Context: " + optimization.name();
-    }
-
-    @Override
-    public String getComputerVisionContext(ComputerVision computerVision) {
-        return "Computer Vision Context: " + computerVision.name();
-    }
-
-    @Override
-    public String getRoboticsContext(Robotics robotics) {
-        return "Robotics Context: " + robotics.name();
-    }
-
-    @Override
-    public String getKnowledgeRepresentationReasoningContext(KnowledgeRepresentationReasoning krr) {
-        return "Knowledge Representation Reasoning Context: " + krr.name();
-    }
-
-    @Override
-    public String getPredictiveAnalyticsContext(PredictiveAnalytics predictiveAnalytics) {
-        return "Predictive Analytics Context: " + predictiveAnalytics.name();
+    public String getContextMessage(Enum<?> contextType) {
+        return switch (contextType) {
+            case NaturalLanguageProcessing naturalLanguageProcessing ->
+                    "NLP Context: " + contextType.name();
+            case RecommendationSystems recommendationSystems ->
+                    "Recommendation Systems Context: " + contextType.name();
+            case Generative generative ->
+                    "Generative Context: " + contextType.name();
+            case Optimization optimization ->
+                    "Optimization Context: " + contextType.name();
+            case ComputerVision computerVision ->
+                    "Computer Vision Context: " + contextType.name();
+            case Robotics robotics ->
+                    "Robotics Context: " + contextType.name();
+            case KnowledgeRepresentationReasoning knowledgeRepresentationReasoning ->
+                    "Knowledge Representation Reasoning Context: " + contextType.name();
+            case PredictiveAnalytics predictiveAnalytics ->
+                    "Predictive Analytics Context: " + contextType.name();
+            case ReinforcementLearning reinforcementLearning ->
+                    "Reinforcement Learning Context: " + contextType.name();
+            case SpeechRecognition speechRecognition ->
+                    "Speech Recognition Context: " + contextType.name();
+            case null, default -> {
+                assert contextType != null;
+                yield "Unknown Context: " + contextType.name();
+            }
+        };
     }
 
     public String getContext() {
@@ -108,10 +102,12 @@ public class ContextualAdviserComponent<T> implements ContextualAdviserIface<T>,
     public void clearContext() {
         context.setLength(0);
         log.info("Context cleared.");
+        Notification.show("Context cleared.");
     }
 
     public void addCustomContextEntry(String entry) {
         context.append(entry).append("\n");
         log.info("Custom context entry added: {}", entry);
+        Notification.show("Custom context entry added: " + entry);
     }
 }

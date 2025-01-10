@@ -1,24 +1,21 @@
 package org.dacss.projectinitai.advisers.processors;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * <h1>{@link EncodingProcessor}</h1>
- * Processor to encode and decode text data.
  */
-public class EncodingProcessor implements ProcessingAdviserIface<String> {
+@Component
+public class EncodingProcessor implements StringProcessingAdviserIface {
 
     private final Map<String, Integer> categoryMap = new HashMap<>();
     private final Map<Integer, String> reverseMap = new HashMap<>();
 
-    /**
-     * {@link #process(String)}
-     * @param text user-input, and ai-output to be processed.
-     * @return the encoded value
-     */
     @Override
-    public String process(String text) {
+    public String processString(String text) {
         if (text == null || text.isEmpty()) {
             return "";
         }

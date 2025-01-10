@@ -1,33 +1,33 @@
 package org.dacss.projectinitai.advisers.processors;
 
+import org.springframework.stereotype.Component;
+
 import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * <h1>{@link TextProcessor}</h1>
- * Text Pre-Processor class to pre-process text data before feeding it to the AI model.
- */
-public class TextProcessor implements ProcessingAdviserIface<String> {
+
+@Component
+public class TextProcessor implements StringProcessingAdviserIface {
 
     private static final Set<String> STOP_WORDS = new HashSet<>(
             Arrays.asList("and", "the", "is", "in", "at", "of", "on", "a", "an"));
 
     @Override
-    public String preProcess(String text) {
-        text = text.toLowerCase(); // Text Normalization
-        text = removePunctuation(text); // Remove punctuation
-        text = removeStopWords(text); // Remove stop words
-        text = normalizeText(text); // Normalize text
-        text = removeNumbers(text); // Remove numbers
-        text = removeWhitespace(text); // Remove extra whitespace
-        text = removeHtmlTags(text); // Remove HTML tags
-        text = removeSpecialCharacters(text); // Remove special characters
-        text = expandContractions(text); // Expand contractions
-        text = removeUrlsAndEmails(text); // Remove URLs and email addresses
-        return text;
+    public String processString(String stringInputOutput) {
+        stringInputOutput = stringInputOutput.toLowerCase(); // Text Normalization
+        stringInputOutput = removePunctuation(stringInputOutput); // Remove punctuation
+        stringInputOutput = removeStopWords(stringInputOutput); // Remove stop words
+        stringInputOutput = normalizeText(stringInputOutput); // Normalize text
+        stringInputOutput = removeNumbers(stringInputOutput); // Remove numbers
+        stringInputOutput = removeWhitespace(stringInputOutput); // Remove extra whitespace
+        stringInputOutput = removeHtmlTags(stringInputOutput); // Remove HTML tags
+        stringInputOutput = removeSpecialCharacters(stringInputOutput); // Remove special characters
+        stringInputOutput = expandContractions(stringInputOutput); // Expand contractions
+        stringInputOutput = removeUrlsAndEmails(stringInputOutput); // Remove URLs and email addresses
+        return stringInputOutput;
     }
 
     private String removePunctuation(String text) {
@@ -71,5 +71,4 @@ public class TextProcessor implements ProcessingAdviserIface<String> {
         return text.replaceAll("https?://\\S+\\s?", "")
                    .replaceAll("\\S+@\\S+\\.\\S+", "");
     }
-
 }

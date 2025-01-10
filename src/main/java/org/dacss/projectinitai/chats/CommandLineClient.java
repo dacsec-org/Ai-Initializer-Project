@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.clients;
+package org.dacss.projectinitai.chats;
 
+import org.dacss.projectinitai.servers.clients.UnixSocketClient;
 import org.dacss.projectinitai.servers.UnixSocketServer;
 
 import org.springframework.beans.factory.annotation.Autowired;

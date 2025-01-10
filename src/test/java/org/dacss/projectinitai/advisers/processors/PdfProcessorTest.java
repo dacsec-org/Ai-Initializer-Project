@@ -1,30 +1,21 @@
 package org.dacss.projectinitai.advisers.processors;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * {@link PdfProcessor}
+ * Methods under test:
+ * <ul>
+ *     <li>{@link #processString()}</li>
+ * </ul>
+ */
 class PdfProcessorTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
-    void process() {
-    }
-
-    @Test
-    void getFileInputOutputLocation() {
-    }
-
-    @Test
-    void getInputOutputDevice() {
+    void processString() {
+        PdfProcessor processor = new PdfProcessor();
+        String input = "PDF content";
+        assertEquals(input, processor.processString(input));
     }
 }
