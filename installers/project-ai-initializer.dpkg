@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Pre-installation script
+preinst() {
+  echo "Running pre-installation tasks..."
+  # Add any pre-installation tasks here
+  # For example, stopping a service
+  systemctl stop project-ai-initializer.service || true
+}
+
+# Post-installation script
+postinst() {
+  echo "Running post-installation tasks..."
+  # Add any post-installation tasks here
+  # For example, starting a service
+  systemctl daemon-reload
+  systemctl enable project-ai-initializer.service
+  systemctl start project-ai-initializer.service
+}
+
+# Pre-removal script
+prerm() {
+  echo "Running pre-removal tasks..."
+  # Add any pre-removal tasks here
+  # For example, stopping a service
+  systemctl stop project-ai-initializer.service || true
+}
+
+# Post-removal script
+postrm() {
+  echo "Running post-removal tasks..."
+  # Add any post-removal tasks here
+  # For example, disabling a service
+  systemctl disable project-ai-initializer.service || true
+}
+
+# Check the action and call the appropriate function
+case "$1" in
+  preinst)
+    preinst
+    ;;
+  postinst)
+    postinst
+    ;;
+  prerm)
+    prerm
+    ;;
+  postrm)
+    postrm
+    ;;
+  *)
+    echo "Unknown action: $1"
+    exit 1
+    ;;
+esac

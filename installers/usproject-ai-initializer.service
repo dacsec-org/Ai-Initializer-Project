@@ -1,0 +1,13 @@
+[Unit]
+Description=Project AI Initializer Service
+After=network.target
+
+[Service]
+Type=simple
+User=${USER}
+ExecStart=/opt/project-ai-initializer/start.sh
+Restart=on-failure
+EnvironmentFile=/etc/project-ai-initializer/project-ai-initializer.conf
+
+[Install]
+WantedBy=multi-user.target
