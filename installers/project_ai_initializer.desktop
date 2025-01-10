@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Project AI Initializer
+Comment=Start Project AI Initializer
+Exec=/opt/project-ai-initializer/start.sh
+Icon=/opt/project-ai-initializer/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
