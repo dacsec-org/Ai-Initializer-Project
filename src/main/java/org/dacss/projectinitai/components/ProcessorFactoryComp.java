@@ -81,4 +81,12 @@ public class ProcessorFactoryComp {
             default -> throw new IllegalArgumentException("Unsupported message type: " + messageType);
         };
     }
+
+    public void integrateWithContextualAdviser(String input) {
+        // Implement integration with ContextualAdviserComp
+    }
+
+    public void integrateWithLLMProcessor(String input) {
+        // Implement integration with LLMProcessorComp
+    }
 }

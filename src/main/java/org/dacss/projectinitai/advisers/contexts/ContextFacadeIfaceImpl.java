@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
+public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T>, AIOutputContextualAdviserIface<T>, ContextualAdviserIface<T>, DataHandlerContextualAdviserIface<T>, UserInputContextualAdviserIface<T> {
 
     private final ContextualAdviserComp<T> CAC;
 
@@ -66,5 +66,50 @@ public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
     @Override
     public T processAIOutput(T aiResponse) {
         return CAC.processAIOutput(aiResponse);
+    }
+
+    @Override
+    public String getGenerativeContext(Generative generative) {
+        return CAC.getContextMessage(generative);
+    }
+
+    @Override
+    public String getOptimizationContext(Optimization optimization) {
+        return CAC.getContextMessage(optimization);
+    }
+
+    @Override
+    public String getComputerVisionContext(ComputerVision computerVision) {
+        return CAC.getContextMessage(computerVision);
+    }
+
+    @Override
+    public String getRoboticsContext(Robotics robotics) {
+        return CAC.getContextMessage(robotics);
+    }
+
+    @Override
+    public String getKnowledgeRepresentationReasoningContext(KnowledgeRepresentationReasoning krr) {
+        return CAC.getContextMessage(krr);
+    }
+
+    @Override
+    public String getPredictiveAnalyticsContext(PredictiveAnalytics predictiveAnalytics) {
+        return CAC.getContextMessage(predictiveAnalytics);
+    }
+
+    @Override
+    public T handleData(T data) {
+        return CAC.updateContext(data, data);
+    }
+
+    @Override
+    public String getNaturalLanguageProcessingContext(NaturalLanguageProcessing nlp) {
+        return CAC.getContextMessage(nlp);
+    }
+
+    @Override
+    public String getRecommendationSystemsContext(RecommendationSystems recommendationSystems) {
+        return CAC.getContextMessage(recommendationSystems);
     }
 }
