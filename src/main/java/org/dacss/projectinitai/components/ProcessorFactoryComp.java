@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-/**
- * <h1>{@link ProcessorFactoryComp}</h1>
- * Factory component for creating processors based on message types.
- */
 @Component
 public class ProcessorFactoryComp {
 

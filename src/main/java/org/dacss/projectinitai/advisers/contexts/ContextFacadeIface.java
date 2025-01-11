@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.types;
+package org.dacss.projectinitai.advisers.contexts;
 
 public interface ContextFacadeIface<T> {
     String getSystemInfo();

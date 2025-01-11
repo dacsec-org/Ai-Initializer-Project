@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * <h1>{@link ProcessAdviserComp}</h1>
- * Component to register all the Processors.
- */
+
 @Slf4j
 @Component
 public class ProcessAdviserComp {
@@ -17,10 +14,6 @@ public class ProcessAdviserComp {
     private final ThreadLocal<Map<Class<?>, Object>> processors =
             ThreadLocal.withInitial(HashMap::new);
 
-    /**
-     * {@link #ProcessAdviserComp()}
-     * constructor to register all the Processors.
-     */
     public ProcessAdviserComp() {
         registerProcessors(
                 new TextProcessor(),
@@ -40,21 +33,12 @@ public class ProcessAdviserComp {
         );
     }
 
-    /**
-     * {@link #registerProcessors(Object[])}
-     * @param preProcessors Processors to be registered.
-     */
     void registerProcessors(Object... preProcessors) {
         for (Object preProcessor : preProcessors) {
             processors.get().put(preProcessor.getClass(), preProcessor);
         }
     }
 
-    /**
-     * {@link #process(Object)}
-     *
-     * @param inputOutput user-input, and ai-output to be processed.
-     */
     public Object process(Object inputOutput) {
         for (Object processor : processors.get().values()) {
             if (processor instanceof StringProcessingAdviserIface && inputOutput instanceof String) {
