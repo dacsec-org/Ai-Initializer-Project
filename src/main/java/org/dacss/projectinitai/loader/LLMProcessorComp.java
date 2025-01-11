@@ -3,10 +3,7 @@ package org.dacss.projectinitai.loader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * <h1>{@link LLMProcessorComp}</h1>
- * The LLMProcessorComp class is responsible for loading the model and processing the input.
- */
+
 @Slf4j
 @Component
 public class LLMProcessorComp {
