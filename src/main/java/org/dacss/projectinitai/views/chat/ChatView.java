@@ -15,6 +15,7 @@ import org.dacss.projectinitai.components.ProcessorFactoryComp;
 import org.dacss.projectinitai.enums.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
+import org.dacss.projectinitai.loader.LLMProcessorComp;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -30,11 +31,13 @@ public class ChatView extends Composite<VerticalLayout> {
     private final List<MessageListItem> messages;
     private final ProcessorFactoryComp processorFactory;
     private final ContextualAdviserComp<String> contextualAdviser;
+    private final LLMProcessorComp llmProcessorComp;
 
     @Autowired
-    public ChatView(ProcessorFactoryComp processorFactory, ContextualAdviserComp<String> contextualAdviser) {
+    public ChatView(ProcessorFactoryComp processorFactory, ContextualAdviserComp<String> contextualAdviser, LLMProcessorComp llmProcessorComp) {
         this.processorFactory = processorFactory;
         this.contextualAdviser = contextualAdviser;
+        this.llmProcessorComp = llmProcessorComp;
         this.messageList = new MessageList();
         this.messages = new ArrayList<>();
 
@@ -92,6 +95,7 @@ public class ChatView extends Composite<VerticalLayout> {
         String postProcessedResponse =
                 preProcessingAdviser.processString(preProcessedMessage);
         contextualAdviser.updateContext(preProcessedMessage, postProcessedResponse);
+        llmProcessorComp.process(postProcessedResponse);
         return postProcessedResponse;
     }
 

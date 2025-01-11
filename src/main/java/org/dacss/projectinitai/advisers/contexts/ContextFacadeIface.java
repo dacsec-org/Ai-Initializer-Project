@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.advisers.contexts;
 
-public interface ContextFacadeIface<T> {
+public interface ContextFacadeIface<T> extends AIOutputContextualAdviserIface<T>, ContextualAdviserIface<T>, DataHandlerContextualAdviserIface<T>, UserInputContextualAdviserIface<T> {
     String getSystemInfo();
     String getToolInfo();
     String getUserInfo();
