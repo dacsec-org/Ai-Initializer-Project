@@ -7,7 +7,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.dacss.projectinitai.components.ContextualAdviserComp;
-import org.dacss.projectinitai.loader.LLMProcessorComp;
+import org.dacss.projectinitai.loaders.LLMProcessorComp;
 import org.dacss.projectinitai.components.ProcessorFactoryComp;
 import org.springframework.beans.factory.annotation.Autowired;
 

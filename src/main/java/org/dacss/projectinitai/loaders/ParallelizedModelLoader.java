@@ -1,9 +1,6 @@
-package org.dacss.projectinitai.loader;
+package org.dacss.projectinitai.loaders;
 
 import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.components.ContextualAdviserComp;
-import org.dacss.projectinitai.components.ProcessorFactoryComp;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.DRMode;
 import uk.ac.manchester.tornado.api.Policy;

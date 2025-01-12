@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.loader;
+package org.dacss.projectinitai.loaders;
 
 import java.io.FileInputStream;
 import java.io.IOException;

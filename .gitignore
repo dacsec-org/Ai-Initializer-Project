@@ -156,9 +156,6 @@ local.properties
 ### Web P
 *.webp
 
-### Portable Network Graphics
-*.png
-
 ### Animated Portable Network Graphics
 *.apng
 
@@ -335,3 +332,6 @@ vite.generated.ts
 
 ### hugging face server return
 /huggingface_server_return.txt
+
+### example file
+/src/main/java/org/dacss/projectinitai/loaders/Examples.java
