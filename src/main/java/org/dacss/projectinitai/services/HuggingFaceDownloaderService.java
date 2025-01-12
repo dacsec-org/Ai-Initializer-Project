@@ -3,7 +3,7 @@ package org.dacss.projectinitai.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.loaders.ChecksumVerifier;
+import org.dacss.projectinitai.checksums.ChecksumVerifier;
 import org.dacss.projectinitai.loaders.ModelDirectoryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

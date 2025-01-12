@@ -10,6 +10,7 @@ import java.util.zip.*;
 
 @Service
 public class ModelDirectoryHandler {
+    //todo: encapsulate, and compartmentalize the class. its performing outside of its scope.
 
     public static byte[] loadModel(String filePath) throws IOException {
         File file = new File(filePath);
