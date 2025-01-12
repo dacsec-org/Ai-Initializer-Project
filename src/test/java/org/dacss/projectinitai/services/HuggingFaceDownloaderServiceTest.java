@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import org.dacss.projectinitai.loader.ChecksumVerifier;
+import org.dacss.projectinitai.loaders.ChecksumVerifier;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

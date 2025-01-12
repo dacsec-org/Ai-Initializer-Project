@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.loader;
+package org.dacss.projectinitai.loaders;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dacss.projectinitai.components.ContextualAdviserComp;

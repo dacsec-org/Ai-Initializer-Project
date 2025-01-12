@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.loader;
+package org.dacss.projectinitai.loaders;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
 
-import static org.dacss.projectinitai.loader.ModelDirectoryHandler.loadModel;
+import static org.dacss.projectinitai.loaders.ModelDirectoryHandler.loadModel;
 
 @Slf4j
 @Component

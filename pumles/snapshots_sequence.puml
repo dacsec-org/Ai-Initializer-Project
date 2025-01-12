@@ -1,0 +1,55 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam sequence {
+    Actor BackgroundColor #A9DCDF
+    Participant BackgroundColor #B4A7D6
+    LifeLineBorderColor #000000
+    LifeLineBackgroundColor #FFFFFF
+    LifeLineBorderThickness 1
+    ArrowColor #000000
+    ArrowThickness 1
+    BoxBackgroundColor #B4A7D6
+    BoxBorderColor #000000
+    BoxBorderThickness 1
+}
+
+actor User
+participant "snapshots-view.tsx" as Frontend
+participant "SnapShotService" as Service
+participant "SnapShotHandler" as Handler
+participant "SnapShotCreator" as Creator
+participant "SnapShotLister" as Lister
+participant "SnapShotDestroyer" as Destroyer
+participant "SnapShotCloner" as Cloner
+participant "SnapShotCommandRunner" as CommandRunner
+
+User -> Frontend: Interact with UI
+Frontend -> Service: handleSnapshotAction(action, source, destination)
+Service -> Handler: createSnapshot(source, destination)
+Handler -> CommandRunner: executeCommand("snapshot", source, destination)
+CommandRunner --> Handler: Command executed
+Handler --> Service: Snapshot created
+Service --> Frontend: Snapshot created
+
+Frontend -> Service: handleSnapshotAction("list", directory, null)
+Service -> Handler: listSnapshots(directory)
+Handler -> Lister: listSnapshots(directory)
+Lister --> Handler: List of snapshots
+Handler --> Service: List of snapshots
+Service --> Frontend: List of snapshots
+
+Frontend -> Service: handleSnapshotAction("delete", snapshotPath, null)
+Service -> Handler: deleteSnapshot(snapshotPath)
+Handler -> CommandRunner: executeCommand("delete", snapshotPath)
+CommandRunner --> Handler: Command executed
+Handler --> Service: Snapshot deleted
+Service --> Frontend: Snapshot deleted
+
+Frontend -> Service: handleSnapshotAction("update", source, destination)
+Service -> Handler: copySnapshot(source, destination)
+Handler -> CommandRunner: executeCommand("copy", source, destination)
+CommandRunner --> Handler: Command executed
+Handler --> Service: Snapshot updated
+Service --> Frontend: Snapshot updated
+
+@enduml

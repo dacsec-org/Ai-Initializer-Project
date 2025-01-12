@@ -15,7 +15,7 @@ import org.dacss.projectinitai.components.ProcessorFactoryComp;
 import org.dacss.projectinitai.enums.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
-import org.dacss.projectinitai.loader.LLMProcessorComp;
+import org.dacss.projectinitai.loaders.LLMProcessorComp;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
