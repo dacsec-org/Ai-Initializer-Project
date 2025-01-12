@@ -34,11 +34,4 @@ public class ChecksumVerifier {
         return sb.toString().equals(expectedChecksum);
     }
 
-    public static byte[] loadModelWithChecksum(String modelPath, String expectedChecksum) throws IOException, NoSuchAlgorithmException {
-        if (verifyChecksum(modelPath, expectedChecksum)) {
-            return ModelDirectoryHandler.loadModel(modelPath);
-        } else {
-            throw new IOException("Checksum verification failed");
-        }
-    }
 }

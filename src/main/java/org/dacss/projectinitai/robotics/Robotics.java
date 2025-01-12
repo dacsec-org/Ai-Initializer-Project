@@ -4,6 +4,8 @@ import lombok.Getter;
 
 /**
  * <h1>{@link Robotics}</h1>
+ * Enum class representing the different types of Robotics techniques.
+ * Each enum constant has a context message that provides a brief description of the purpose of the Robotics technique.
  */
 @Getter
 public enum Robotics {
@@ -17,12 +19,12 @@ public enum Robotics {
 
     public String getContextMessage() {
         return switch (this) {
-            case MOTION_CONTROL -> "Motion Control involves controlling the movement of robots.";
-            case OBJECT_MANIPULATION -> "Object Manipulation involves robots handling objects.";
-            case PATH_PLANNING -> "Path Planning involves determining the optimal path for robots.";
-            case SENSOR_INTEGRATION -> "Sensor Integration involves integrating sensors into robots.";
-            case AUTONOMOUS_NAVIGATION -> "Autonomous Navigation involves robots navigating without human intervention.";
-            case HUMAN_ROBOT_INTERACTION -> "Human-Robot Interaction involves interactions between humans and robots.";
+            case MOTION_CONTROL -> "Your purpose is to control the movement of robots. Use motion control techniques to manage and direct robotic movements.";
+            case OBJECT_MANIPULATION -> "Your purpose is to handle objects with robots. Use object manipulation techniques to grasp, move, and interact with objects.";
+            case PATH_PLANNING -> "Your purpose is to determine the optimal path for robots. Use path planning algorithms to navigate and reach destinations efficiently.";
+            case SENSOR_INTEGRATION -> "Your purpose is to integrate sensors into robots. Use sensor integration methods to enhance robotic perception and interaction.";
+            case AUTONOMOUS_NAVIGATION -> "Your purpose is to navigate robots without human intervention. Use autonomous navigation systems to enable self-directed movement.";
+            case HUMAN_ROBOT_INTERACTION -> "Your purpose is to facilitate interactions between humans and robots. Use human-robot interaction techniques to improve communication and collaboration.";
         };
     }
 }
