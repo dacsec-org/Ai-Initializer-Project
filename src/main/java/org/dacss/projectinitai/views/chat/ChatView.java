@@ -17,11 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import org.dacss.projectinitai.loaders.LLMProcessorComp;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>{@link ChatView}</h1>
+ * Chat client view.
+ */
 @PageTitle("Chat")
 @Route("chat")
 @Menu(order = 8, icon = LineAwesomeIconUrl.ROCKETCHAT)
@@ -51,7 +56,12 @@ public class ChatView extends Composite<VerticalLayout> {
         MessageInput messageInput = new MessageInput();
         messageInput.addSubmitListener(event -> {
             String userRequest = event.getValue();
-            String aiResponse = sendMessage(userRequest);
+            String aiResponse;
+            try {
+                aiResponse = sendMessage(userRequest);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             addUserMessage(userRequest);
             addAiMessage(aiResponse);
         });
@@ -87,7 +97,7 @@ public class ChatView extends Composite<VerticalLayout> {
         messageList.setItems(messages);
     }
 
-    private String sendMessage(String message) {
+    private String sendMessage(String message) throws IOException {
         StringProcessingAdviserIface preProcessingAdviser =
                 processorFactory.getStringProcessor(MessageType.TEXT);
         String preProcessedMessage =

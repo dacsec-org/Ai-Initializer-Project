@@ -1,37 +1,39 @@
 package org.dacss.projectinitai.advisers.processors;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
-/**
- * <h1>{@link VectorizationProcessor}</h1>
- * Pre-processor to vectorize data.
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 @Slf4j
 @Component
-public class VectorizationProcessor implements StringProcessingAdviserIface {
+public class VectorizationProcessor {
 
-    @Override
-    public String processString(String stringInputOutput) {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    public double[] processJson(String jsonString) {
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(stringInputOutput.getBytes());
-            return Base64.getEncoder().encodeToString(hash);
-        } catch (NoSuchAlgorithmException e) {
-            log.error("Error processing string: ", e);
-            return null;
+            JsonNode jsonNode = objectMapper.readTree(jsonString);
+            String concatenatedValues = extractValues(jsonNode);
+
+        } catch (Exception e) {
+            log.error("Error processing JSON string: ", e);
+            return new double[0];
         }
+        return new double[0];
     }
 
-    /**
-     * Converts the byte array to a Base64 encoded string.
-     * @param data the byte array to be converted.
-     * @return the Base64 encoded string.
-     */
-    public String toBase64String(byte[] data) {
-        return Base64.getEncoder().encodeToString(data);
+    private String extractValues(JsonNode jsonNode) {
+        StringBuilder concatenatedValues = new StringBuilder();
+        if (jsonNode.isObject()) {
+            jsonNode.fields().forEachRemaining(field -> concatenatedValues.append(extractValues(field.getValue())));
+        } else if (jsonNode.isArray()) {
+            jsonNode.forEach(node -> concatenatedValues.append(extractValues(node)));
+        } else {
+            concatenatedValues.append(jsonNode.asText());
+        }
+        return concatenatedValues.toString();
     }
 }

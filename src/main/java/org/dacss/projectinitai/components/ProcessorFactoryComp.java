@@ -38,6 +38,7 @@ public class ProcessorFactoryComp {
             @Qualifier("pdfProcessor") StringProcessingAdviserIface pdfProcessor,
             @Qualifier("tokenizationProcessor") StringProcessingAdviserIface tokenizationProcessor,
             @Qualifier("vectorizationProcessor") StringProcessingAdviserIface vectorizationProcessor,
+            //fixme: fix above line
             @Qualifier("videoProcessor") ByteProcessingAdviserIface videoProcessor,
             @Qualifier("audioProcessor") ByteProcessingAdviserIface audioProcessor) {
         this.textProcessor = textProcessor;
