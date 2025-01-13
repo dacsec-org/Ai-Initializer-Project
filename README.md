@@ -50,47 +50,6 @@ distribution.
     docker run -p 8080:8080 aaronms1/ai-initializer-project
     ```
 
-[//]: # (To run the application locally, follow these steps:)
-
-
-[//]: # (1. Clone the repository:)
-
-[//]: # (   ```bash)
-
-[//]: # (   git clone https://github.com/githubnext/workspace-blank.git)
-
-[//]: # (   cd workspace-blank)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (2. Install dependencies using Maven or Gradle:)
-
-[//]: # (   ```bash)
-
-[//]: # (   # For Maven)
-
-[//]: # (   mvn install)
-
-[//]: # (   # For Gradle)
-
-[//]: # (   gradle build)
-
-[//]: # (   ```)
-
-[//]: # (3. Run the application:)
-
-[//]: # (   ```bash)
-
-[//]: # (   # For Maven)
-
-[//]: # (   mvn spring-boot:run)
-
-[//]: # ()
-[//]: # (   # For Gradle)
-
-[//]: # (   gradle bootRun)
-
 ## Usage Guide
 
 Once the application is running, you can access the Vaadin front end in your browser or use your current 
@@ -142,11 +101,11 @@ the following improvements over Qwen2:
 - /usr/share/applications/
    - project-ai-initializer.desktop
 - /home/${USER}.project-ai-initializer/
-   - models/
-      - checksums
+   - models
+   - checksums
 - /home/${USER}/
    - TornadoVM
-- /home/${USER}/project-ai-initializer.cache/
+- /home/${USER}/project-ai-initializer/.cache/
    - *.cache
 - /opt/
    - project-ai-initializer

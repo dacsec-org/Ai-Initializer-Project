@@ -1,7 +1,7 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import { Button, Dialog } from '@vaadin/react-components';
-import { SnapShotService } from '@vaadin/flow-frontend/SnapShotService';
+import { SnapShotService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
   menu: { order: 13, icon: 'line-awesome/svg/snapshot-solid.svg' },

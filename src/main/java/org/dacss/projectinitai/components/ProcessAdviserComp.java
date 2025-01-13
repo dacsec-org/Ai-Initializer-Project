@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.components;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.dacss.projectinitai.advisers.processors.*;
 import org.springframework.stereotype.Component;
@@ -39,7 +40,7 @@ public class ProcessAdviserComp {
         }
     }
 
-    public Object process(Object inputOutput) {
+    public Object process(Object inputOutput) throws JsonProcessingException {
         for (Object processor : processors.get().values()) {
             if (processor instanceof StringProcessingAdviserIface && inputOutput instanceof String) {
                 inputOutput = ((StringProcessingAdviserIface) processor).processString((String) inputOutput);

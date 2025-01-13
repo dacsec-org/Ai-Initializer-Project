@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.loaders;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
@@ -45,5 +46,9 @@ public class DynamicModelLoaderKernel {
         }
 
         return modelData;
+    }
+
+    public byte[] getModel() throws IOException {
+        return loadModelWithKernel("modelPath");
     }
 }

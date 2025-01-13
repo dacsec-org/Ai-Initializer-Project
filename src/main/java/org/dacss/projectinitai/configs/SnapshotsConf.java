@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.configs;
 
 import org.dacss.projectinitai.snapshots.*;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,27 +14,17 @@ public class SnapshotsConf {
     }
 
     @Bean
-    public SnapShotCloner snapShotCloner() {
-        return new SnapShotCloner();
-    }
+    public SnapShotCloner snapShotCloner() { return new SnapShotCloner(); }
 
     @Bean
-    public SnapShotDestroyer snapShotDestroyer() {
-        return new SnapShotDestroyer();
-    }
+    public SnapShotDestroyer snapShotDestroyer() { return new SnapShotDestroyer(); }
 
     @Bean
-    public SnapShotCreator snapShotCreator() {
-        return new SnapShotCreator();
-    }
+    public SnapShotCreator snapShotCreator() { return new SnapShotCreator(); }
 
     @Bean
-    public SnapShotLister snapShotLister() {
-        return new SnapShotLister();
-    }
+    public SnapShotLister snapShotLister() { return new SnapShotLister(); }
 
     @Bean
-    public SnapShotCommandRunner snapShotCommandRunner() {
-        return new SnapShotCommandRunner();
-    }
+    public SnapShotCommandRunner snapShotCommandRunner() { return new SnapShotCommandRunner(); }
 }

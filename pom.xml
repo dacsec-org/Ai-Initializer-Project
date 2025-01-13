@@ -6,8 +6,11 @@
     <groupId>org.dacss.projectinitai</groupId>
     <artifactId>ai-iinitializer-project</artifactId>
     <name>ai-iinitializer-project</name>
+    <modules>
+        <module>tar-mod</module>
+    </modules>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -52,13 +55,6 @@
             </repository>
     </repositories>
     <pluginRepositories>
-<!--        <pluginRepository>-->
-<!--            <id>vaadin-prereleases</id>-->
-<!--            <url>https://maven.vaadin.com/vaadin-prereleases</url>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </pluginRepository>-->
         <pluginRepository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -77,13 +73,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.shell</groupId>-->
-<!--                <artifactId>spring-shell-dependencies</artifactId>-->
-<!--                <version>${spring-shell.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>
@@ -162,6 +151,10 @@
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-tika-document-reader</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
     <build>

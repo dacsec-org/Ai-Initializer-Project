@@ -7,6 +7,8 @@ import org.dacss.projectinitai.enums.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Slf4j
 @Component
 public class LLMProcessorComp {
@@ -25,7 +27,7 @@ public class LLMProcessorComp {
         this.processorFactoryComp = processorFactoryComp;
     }
 
-    public void process(String input) {
+    public void process(String input) throws IOException {
         // Use the loaded model from DynamicModelLoaderKernel to process the input
         byte[] model = dynamicModelLoaderKernel.getModel();
         // Process the input using the model

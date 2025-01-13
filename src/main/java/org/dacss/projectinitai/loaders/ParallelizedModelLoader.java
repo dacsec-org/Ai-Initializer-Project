@@ -8,6 +8,7 @@ import uk.ac.manchester.tornado.api.TaskGraph;
 import uk.ac.manchester.tornado.api.TornadoExecutionPlan;
 import uk.ac.manchester.tornado.api.annotations.Parallel;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
+import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class ParallelizedModelLoader {
     public ParallelizedModelLoader() {
     }
 
-    private byte[] loadModelWithParallelLoop(String modelPath) throws IOException {
+    private byte[] loadModelWithParallelLoop(String modelPath) throws IOException, TornadoExecutionPlanException {
         try {
             byte[] model = ModelDirectoryHandler.loadModel(modelPath);
         } catch (IOException e) {
@@ -36,10 +37,19 @@ public class ParallelizedModelLoader {
                 })
                 .transferToHost(DataTransferMode.EVERY_EXECUTION, modelData);
 
-        TornadoExecutionPlan executionPlan = new TornadoExecutionPlan();
-        executionPlan.getDevice(0).getAvailableProcessors();
-        executionPlan.withDynamicReconfiguration(Policy.PERFORMANCE, DRMode.PARALLEL).execute();
+        try (TornadoExecutionPlan executionPlan = new TornadoExecutionPlan()) {
+            executionPlan.getDevice(0).getAvailableProcessors();
+            executionPlan.withDynamicReconfiguration(Policy.PERFORMANCE, DRMode.PARALLEL).execute();
+        }
 
         return modelData;
+    }
+
+    public void process(String input) {
+        try {
+            loadModelWithParallelLoop("modelPath");
+        } catch (IOException | TornadoExecutionPlanException processExc) {
+            log.error("Error processing input: {}", processExc.getMessage());
+        }
     }
 }
