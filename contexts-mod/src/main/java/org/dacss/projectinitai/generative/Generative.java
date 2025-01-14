@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.generative;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link Generative}</h1>
  * Enum class representing the different types of Generative AI techniques.
