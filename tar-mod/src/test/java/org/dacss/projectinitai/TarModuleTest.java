@@ -1,7 +1,7 @@
 package org.dacss.projectinitai;
 
 import org.dacss.projectinitai.services.TarService;
-import org.dacss.projectinitai.utillities.DestroyTarUtil;
+import org.dacss.projectinitai.utillities.TarDestroyUtil;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -82,7 +82,7 @@ public class TarModuleTest {
     @Test(dependsOnMethods = "testExtractTar")
     public void testVerifyExtraction() {
         File destDirFile = destDir.toFile();
-        assertTrue(DestroyTarUtil.verifyExtraction(destDirFile), "Extraction should be verified");
+        assertTrue(TarDestroyUtil.verifyExtraction(destDirFile), "Extraction should be verified");
         System.out.println("Test 'verifyExtraction()' passed: " + destDir);
     }
 
@@ -112,7 +112,7 @@ public class TarModuleTest {
             .forEach(File::delete);
 
         File destDirFile = destDir.toFile();
-        assertTrue(DestroyTarUtil.verifyExtraction(destDirFile),
+        assertTrue(TarDestroyUtil.verifyExtraction(destDirFile),
                 "Extraction should not be verified");
         System.out.println("Test 'verifyExtractionFails()' passed: " + destDir);
     }

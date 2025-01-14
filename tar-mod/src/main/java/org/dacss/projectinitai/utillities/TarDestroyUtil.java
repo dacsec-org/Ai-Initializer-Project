@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
- * <h1>{@link DestroyTarUtil}</h1>
+ * <h1>{@link TarDestroyUtil}</h1>
  * Utility class to destroy a tar file.
  */
 @UtilityClass
-public class DestroyTarUtil {
+public class TarDestroyUtil {
 
     /**
      * Verifies the extraction of a tar file.

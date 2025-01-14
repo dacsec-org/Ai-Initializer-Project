@@ -1,9 +1,9 @@
 package org.dacss.projectinitai.services;
 
 import com.vaadin.hilla.BrowserCallable;
-import org.dacss.projectinitai.utillities.CompressorUtil;
+import org.dacss.projectinitai.utillities.TarCompressorUtil;
 import org.dacss.projectinitai.utillities.TarExtractorUtil;
-import org.dacss.projectinitai.utillities.DestroyTarUtil;
+import org.dacss.projectinitai.utillities.TarDestroyUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -19,7 +19,7 @@ import java.io.IOException;
 public class TarService {
 
     public void createTar(File sourceDir, File tarFile) throws IOException {
-        CompressorUtil.createTarFile(sourceDir, tarFile);
+        TarCompressorUtil.createTarFile(sourceDir, tarFile);
     }
 
     public void extractTar(File tarFile, File destDir) throws IOException {
@@ -40,6 +40,6 @@ public class TarService {
 
     public String extractAndDestroyTar(File tarFile, File destDir) throws IOException {
         extractTar(tarFile, destDir);
-        return DestroyTarUtil.destroyTarFile(tarFile, destDir);
+        return TarDestroyUtil.destroyTarFile(tarFile, destDir);
     }
 }

@@ -3,12 +3,14 @@ package org.dacss.projectinitai.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.snapshots.SnapShotHandler;
+import org.dacss.projectinitai.handlers.SnapShotHandler;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
-@Slf4j
+/**
+ * <h1>{@link SnapShotService}</h1>
+ * The SnapShotService class is a service class that handles snapshot actions.
+ * It is also an endpoint for the frontend to call the backend.
+ */
 @Service
 @BrowserCallable
 @AnonymousAllowed
@@ -20,6 +22,12 @@ public class SnapShotService {
         this.handle = handle;
     }
 
+    /**
+     * This method handles the snapshot action.
+     * @param action The action to be performed.
+     * @param source The source path.
+     * @param destination The destination path.
+     */
     private void handleSnapshotAction(String action, String source, String destination) {
         switch (action) {
             case "create":
