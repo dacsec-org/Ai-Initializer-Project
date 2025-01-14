@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.generative;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GenerativeTest {
 
