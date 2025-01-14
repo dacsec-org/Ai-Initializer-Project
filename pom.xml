@@ -10,6 +10,7 @@
         <module>tar-mod</module>
         <module>snapshots-mod</module>
         <module>contexts-mod</module>
+        <module>processors-mod</module>
     </modules>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>

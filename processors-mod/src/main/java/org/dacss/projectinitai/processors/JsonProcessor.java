@@ -1,9 +1,10 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.processors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.extern.slf4j.Slf4j;
+import org.dacss.projectinitai.interfaces.StringProcessingAdviserIface;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.processors;
 
+import org.dacss.projectinitai.interfaces.StringProcessingAdviserIface;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.springframework.stereotype.Component;

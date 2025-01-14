@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.processors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -11,6 +11,7 @@ import java.io.StringWriter;
 
 import com.vaadin.flow.component.notification.Notification;
 import lombok.extern.slf4j.Slf4j;
+import org.dacss.projectinitai.interfaces.StringProcessingAdviserIface;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;

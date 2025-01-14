@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.processors;
 
+import org.dacss.projectinitai.interfaces.StringProcessingAdviserIface;
 import org.springframework.stereotype.Component;
 
 import java.text.Normalizer;

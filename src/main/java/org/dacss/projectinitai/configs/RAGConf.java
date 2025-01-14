@@ -3,11 +3,8 @@ package org.dacss.projectinitai.configs;
 import org.dacss.projectinitai.advisers.processors.JsonProcessor;
 import org.dacss.projectinitai.advisers.processors.VectorizationProcessor;
 import org.dacss.projectinitai.rags.*;
-import org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreProperties;
-import org.springframework.ai.vectorstore.redis.RedisVectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class RAGConf {

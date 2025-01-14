@@ -1,6 +1,6 @@
 //package org.dacss.projectinitai.chats;
 //
-//import org.dacss.projectinitai.advisers.processors.ProcessingAdviserIface;
+//import org.dacss.projectinitai.processors.ProcessingAdviserIface;
 //import org.dacss.projectinitai.components.ContextualAdviserComp;
 //import org.dacss.projectinitai.components.ProcessorFactoryComp;
 //import org.dacss.projectinitai.enums.MessageType;

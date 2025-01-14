@@ -1,7 +1,8 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.processors;
 
 import com.vaadin.flow.component.notification.Notification;
 import lombok.extern.slf4j.Slf4j;
+import org.dacss.projectinitai.interfaces.ByteProcessingAdviserIface;
 import org.springframework.stereotype.Component;
 
 import javax.sound.sampled.*;

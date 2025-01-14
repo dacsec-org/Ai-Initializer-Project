@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.advisers.processors;
+package org.dacss.projectinitai.interfaces;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
