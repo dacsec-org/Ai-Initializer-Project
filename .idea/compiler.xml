@@ -9,6 +9,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ai-iinitializer-project" />
+        <module name="snapshots-mod" />
         <module name="tar-mod" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Ai-Initializer-Project" options="" />
       <module name="ai-iinitializer-project" options="-parameters" />
+      <module name="snapshots-mod" options="-parameters" />
       <module name="tar-mod" options="-parameters" />
     </option>
   </component>

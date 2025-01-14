@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * <h1>{@link CompressorUtil}</h1>
+ * <h1>{@link TarCompressorUtil}</h1>
  * Utility class to create a tar file.
  */
 @UtilityClass
-public class CompressorUtil {
+public class TarCompressorUtil {
 
     public void createTarFile(File sourceDir, File tarFile) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(tarFile);
