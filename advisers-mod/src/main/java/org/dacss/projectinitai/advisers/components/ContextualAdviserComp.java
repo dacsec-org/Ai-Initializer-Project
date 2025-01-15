@@ -1,17 +1,7 @@
 package org.dacss.projectinitai.advisers.components;
 
-
 import com.vaadin.flow.component.notification.Notification;
-import org.dacss.projectinitai.contexts.generative.Generative;
-import org.dacss.projectinitai.contexts.krr.KnowledgeRepresentationReasoning;
-import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
-import org.dacss.projectinitai.contexts.optimization.Optimization;
-import org.dacss.projectinitai.contexts.predictive.PredictiveAnalytics;
-import org.dacss.projectinitai.contexts.recomondation.RecommendationSystems;
-import org.dacss.projectinitai.contexts.reinforcement.ReinforcementLearning;
-import org.dacss.projectinitai.contexts.robotics.Robotics;
-import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
-import org.dacss.projectinitai.contexts.vision.ComputerVision;
+import org.dacss.projectinitai.contexts.interfaces.ContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -65,33 +55,14 @@ public class ContextualAdviserComp<T> {
         }
     }
 
-    public String getContextMessage(Enum<?> contextType) {
-        return switch (contextType) {
-            case NaturalLanguageProcessing naturalLanguageProcessing ->
-                    STR."NLP Context: \{contextType.name()}";
-            case RecommendationSystems recommendationSystems ->
-                    STR."Recommendation Systems Context: \{contextType.name()}";
-            case Generative generative ->
-                    STR."Generative Context: \{contextType.name()}";
-            case Optimization optimization ->
-                    STR."Optimization Context: \{contextType.name()}";
-            case ComputerVision computerVision ->
-                    STR."Computer Vision Context: \{contextType.name()}";
-            case Robotics robotics ->
-                    STR."Robotics Context: \{contextType.name()}";
-            case KnowledgeRepresentationReasoning knowledgeRepresentationReasoning ->
-                    STR."Knowledge Representation Reasoning Context: \{contextType.name()}";
-            case PredictiveAnalytics predictiveAnalytics ->
-                    STR."Predictive Analytics Context: \{contextType.name()}";
-            case ReinforcementLearning reinforcementLearning ->
-                    STR."Reinforcement Learning Context: \{contextType.name()}";
-            case SpeechRecognition speechRecognition ->
-                    STR."Speech Recognition Context: \{contextType.name()}";
-            case null, default -> {
-                assert contextType != null;
-                yield STR."Unknown Context: \{contextType.name()}";
-            }
-        };
+    /**
+     * Get context message based on the provided context type.
+     *
+     * @param contextType {@link ContextType}
+     * @return String
+     */
+    public String getContextMessage(ContextType contextType) {
+        return contextType.getContextMessage();
     }
 
     public String getContext() {

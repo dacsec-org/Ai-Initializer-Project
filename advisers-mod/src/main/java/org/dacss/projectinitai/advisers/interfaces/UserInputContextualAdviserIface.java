@@ -1,18 +1,16 @@
 package org.dacss.projectinitai.advisers.interfaces;
 
-import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
-import org.dacss.projectinitai.contexts.recomondation.RecommendationSystems;
+import org.dacss.projectinitai.contexts.interfaces.ContextType;
 
 /**
  * <h1>{@link UserInputContextualAdviserIface}</h1>
  * Interface for User Input Contextual Advisers.
  * <ul>
- *     <li>{@link NaturalLanguageProcessing}</li>
- *     <li>{@link RecommendationSystems}</li>
+ *     <li>{@link ContextType}</li>
  * </ul>
  */
 public interface UserInputContextualAdviserIface<T> {
     T processUserInput(T userRequest);
-    String getNaturalLanguageProcessingContext(NaturalLanguageProcessing nlp);
-    String getRecommendationSystemsContext(RecommendationSystems recommendationSystems);
+    String getNaturalLanguageProcessingContext(ContextType contextType);
+    String getRecommendationSystemsContext(ContextType contextType);
 }
