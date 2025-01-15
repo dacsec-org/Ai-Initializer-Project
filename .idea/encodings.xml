@@ -2,10 +2,35 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/${project.basedir}/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/advisers-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/advisers-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/checksums-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/checksums-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/configs-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/configs-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contexts-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/contexts-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/frontend-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/frontend-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loaders-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loaders-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/processors-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/processors-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rags-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rags-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/servers-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/servers-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/snapshots-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/snapshots-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tar-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tar-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/types-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/types-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utilities-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utilities-mod/src/main/resources" charset="UTF-8" />
   </component>
 </project>

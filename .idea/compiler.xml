@@ -4,25 +4,49 @@
     <option name="BUILD_PROCESS_HEAP_SIZE" value="4098" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile name="Maven default annotation processors profile">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rags-mod" />
+        <module name="types-mod" />
+        <module name="snapshots-mod" />
+        <module name="servers-mod" />
+        <module name="processors-mod" />
+        <module name="utilities-mod" />
+        <module name="loaders-mod" />
+        <module name="frontend-mod" />
+        <module name="tar-mod" />
         <module name="ai-iinitializer-project" />
         <module name="contexts-mod" />
-        <module name="snapshots-mod" />
-        <module name="tar-mod" />
+        <module name="checksums-mod" />
+        <module name="services-mod" />
+        <module name="advisers-mod" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="21" />
+    <bytecodeTargetLevel target="21">
+      <module name="configs-mod" target="21" />
+      <module name="project-ai-initializer (1)" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Ai-Initializer-Project" options="" />
+      <module name="advisers-mod" options="" />
       <module name="ai-iinitializer-project" options="-parameters" />
-      <module name="contexts-mod" options="-parameters" />
-      <module name="snapshots-mod" options="-parameters" />
-      <module name="tar-mod" options="-parameters" />
+      <module name="checksums-mod" options="" />
+      <module name="configs-mod" options="" />
+      <module name="contexts-mod" options="" />
+      <module name="frontend-mod" options="" />
+      <module name="loaders-mod" options="" />
+      <module name="processors-mod" options="" />
+      <module name="rags-mod" options="" />
+      <module name="servers-mod" options="" />
+      <module name="services-mod" options="" />
+      <module name="snapshots-mod" options="" />
+      <module name="tar-mod" options="" />
+      <module name="types-mod" options="" />
+      <module name="utilities-mod" options="" />
     </option>
   </component>
 </project>
