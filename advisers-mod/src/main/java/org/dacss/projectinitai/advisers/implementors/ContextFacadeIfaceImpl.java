@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.advisers.implementors;
 
-import org.dacss.projectinitai.loaders.components.ContextualAdviserComp;
+import org.dacss.projectinitai.advisers.components.ContextualAdviserComp;
 import org.dacss.projectinitai.advisers.interfaces.ContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.DataHandlerContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.UserInputContextualAdviserIface;
@@ -18,7 +18,6 @@ import org.dacss.projectinitai.contexts.robotics.Robotics;
 import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
 import org.dacss.projectinitai.contexts.vision.ComputerVision;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,7 +30,6 @@ import org.springframework.stereotype.Component;
  *     <li>{@link UserInputContextualAdviserIface}</li>
  * </ul>
  */
-@Slf4j
 @Component
 public class ContextFacadeIfaceImpl<T> implements
         ContextFacadeIface<T>
@@ -47,6 +45,7 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #ContextFacadeIfaceImpl(ContextualAdviserComp)}
+     *
      * @param CAC {@link ContextualAdviserComp<T>}
      */
     public ContextFacadeIfaceImpl(ContextualAdviserComp<T> CAC) {
@@ -57,64 +56,76 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getSystemInfo()}
      * <p>
      * Get System Information.
+     *
      * @return String
      * </p>
      */
     @Override
     public String getSystemInfo() {
-        return CAC.getContextMessage(NaturalLanguageProcessing.TEXT_GENERATION) + "\n" +
-               CAC.getContextMessage(SpeechRecognition.SPEECH_TO_TEXT) +
-                "\n" +
-               CAC.getContextMessage(KnowledgeRepresentationReasoning.KNOWLEDGE_GRAPHS);
+        return STR."""
+        \{CAC.getContextMessage(NaturalLanguageProcessing.TEXT_GENERATION)}
+        \{CAC.getContextMessage(SpeechRecognition.SPEECH_TO_TEXT)}
+        \{CAC.getContextMessage(KnowledgeRepresentationReasoning.KNOWLEDGE_GRAPHS)}
+        """;
     }
 
     /**
      * {@link #getToolInfo()}
      * <p>
      * Get Tool Information.
+     *
      * @return String
      * </p>
      */
     @Override
     public String getToolInfo() {
-        return CAC.getContextMessage(Generative.DEEPFAKES) + "\n" +
-               CAC.getContextMessage(ReinforcementLearning.AUTONOMOUS_DRIVING) + "\n" +
-               CAC.getContextMessage(ComputerVision.IMAGE_CLASSIFICATION);
+        return STR."""
+        \{CAC.getContextMessage(Generative.DEEPFAKES)}
+        \{CAC.getContextMessage(ReinforcementLearning.AUTONOMOUS_DRIVING)}
+        \{CAC.getContextMessage(ComputerVision.IMAGE_CLASSIFICATION)}
+        """;
     }
 
     /**
      * {@link #getUserInfo()}
      * <p>
      * Get User Information.
+     *
      * @return String
      * </p>
      */
     @Override
     public String getUserInfo() {
-        return CAC.getContextMessage(RecommendationSystems.COLLABORATIVE_FILTERING) + "\n" +
-               CAC.getContextMessage(PredictiveAnalytics.TIME_SERIES_FORECASTING) + "\n" +
-               CAC.getContextMessage(Robotics.MOTION_CONTROL);
+        return STR."""
+        \{CAC.getContextMessage(RecommendationSystems.COLLABORATIVE_FILTERING)}
+        \{CAC.getContextMessage(PredictiveAnalytics.TIME_SERIES_FORECASTING)}
+        \{CAC.getContextMessage(Robotics.MOTION_CONTROL)}
+        """;
     }
 
     /**
      * {@link #getDataInfo()}
      * <p>
-     *     Get Data Information.
+     * Get Data Information.
+     *
      * @return String
      * </p>
      */
     @Override
     public String getDataInfo() {
-        return CAC.getContextMessage(Optimization.LINEAR_PROGRAMMING) + "\n" +
-               CAC.getContextMessage(Recognition.FACIAL_RECOGNITION);
+        return STR."""
+        \{CAC.getContextMessage(Optimization.LINEAR_PROGRAMMING)}
+        \{CAC.getContextMessage(Recognition.FACIAL_RECOGNITION)}
+        """;
     }
 
     /**
      * {@link #updateContext(T, T)}
      * <p>
      * Perform Contextual Adviser update.
+     *
      * @param userRequest T
-     * @param aiResponse T
+     * @param aiResponse  T
      * @return T
      * </p>
      */
@@ -127,6 +138,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #processUserInput(T)}
      * <p>
      * Process User Input.
+     *
      * @param userRequest T
      * @return T
      * </p>
@@ -140,6 +152,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #processAIOutput(T)}
      * <p>
      * Process AI Output.
+     *
      * @param aiResponse T
      * @return T
      * </p>
@@ -153,6 +166,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getGenerativeContext(Generative)}
      * <p>
      * Get Generative Context.
+     *
      * @param generative {@link Generative}
      * @return String
      * </p>
@@ -166,6 +180,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getOptimizationContext(Optimization)}
      * <p>
      * Get Optimization Context.
+     *
      * @param optimization {@link Optimization}
      * @return String
      * </p>
@@ -179,6 +194,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getComputerVisionContext(ComputerVision)}
      * <p>
      * Get Computer Vision Context.
+     *
      * @param computerVision {@link ComputerVision}
      * @return String
      * </p>
@@ -192,6 +208,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getRoboticsContext(Robotics)}
      * <p>
      * Get Robotics Context.
+     *
      * @param robotics {@link Robotics}
      * @return String
      * </p>
@@ -205,6 +222,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getKnowledgeRepresentationReasoningContext(KnowledgeRepresentationReasoning)}
      * <p>
      * Get Knowledge Representation Reasoning Context.
+     *
      * @param krr {@link KnowledgeRepresentationReasoning}
      * @return String
      * </p>
@@ -218,6 +236,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getPredictiveAnalyticsContext(PredictiveAnalytics)}
      * <p>
      * Get Predictive Analytics Context.
+     *
      * @param predictiveAnalytics {@link PredictiveAnalytics}
      * @return String
      * </p>
@@ -231,6 +250,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #handleData(T)}
      * <p>
      * Handle Data.
+     *
      * @param data T
      * @return T
      * </p>
@@ -244,6 +264,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * {@link #getNaturalLanguageProcessingContext(NaturalLanguageProcessing)}
      * <p>
      * Get Natural Language Processing Context.
+     *
      * @param nlp {@link NaturalLanguageProcessing}
      * @return String
      * </p>

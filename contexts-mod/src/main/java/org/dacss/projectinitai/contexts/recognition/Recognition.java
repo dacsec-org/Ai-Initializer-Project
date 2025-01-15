@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.recognition;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link Recognition}</h1>
  * Enum class representing the different types of Recognition techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the Recognition technique.
  */
-@Getter
 public enum Recognition {
 
     FACIAL_RECOGNITION,

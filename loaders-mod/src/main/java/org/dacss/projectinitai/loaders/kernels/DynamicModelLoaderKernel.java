@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.loaders.kernels;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
@@ -8,9 +7,8 @@ import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
 
-import static org.dacss.projectinitai.loaders.ModelDirectoryHandler.loadModel;
+import static org.dacss.projectinitai.loaders.DirectoryFileHandler.loadModel;
 
-@Slf4j
 @Component
 public class DynamicModelLoaderKernel {
 

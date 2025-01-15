@@ -1,9 +1,7 @@
-package org.dacss.projectinitai.loaders.components;
+package org.dacss.projectinitai.advisers.components;
 
 
 import com.vaadin.flow.component.notification.Notification;
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import org.dacss.projectinitai.contexts.generative.Generative;
 import org.dacss.projectinitai.contexts.krr.KnowledgeRepresentationReasoning;
 import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
@@ -14,20 +12,20 @@ import org.dacss.projectinitai.contexts.reinforcement.ReinforcementLearning;
 import org.dacss.projectinitai.contexts.robotics.Robotics;
 import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
 import org.dacss.projectinitai.contexts.vision.ComputerVision;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link ContextualAdviserComp}</h1>
  * @param <T>
  */
-@Slf4j
 @Component
 public class ContextualAdviserComp<T> {
 
+    private static final Logger log = LoggerFactory.getLogger(ContextualAdviserComp.class);
     private final StringBuilder context = new StringBuilder();
-    @Getter
     private T lastUserRequest;
-    @Getter
     private T lastAIResponse;
 
     public T updateContext(T userRequest, T aiResponse) {
@@ -40,7 +38,7 @@ public class ContextualAdviserComp<T> {
             return userRequest;
         } catch (Exception e) {
             log.error("Error updating context: ", e);
-            Notification.show("Error updating context: " + e.getMessage());
+            Notification.show(STR."Error updating context: \{e.getMessage()}");
             return null;
         }
     }
@@ -51,7 +49,7 @@ public class ContextualAdviserComp<T> {
             return userRequest;
         } catch (Exception e) {
             log.error("Error processing user input: ", e);
-            Notification.show("Error processing user input: " + e.getMessage());
+            Notification.show(STR."Error processing user input: \{e.getMessage()}");
             return null;
         }
     }
@@ -62,7 +60,7 @@ public class ContextualAdviserComp<T> {
             return aiResponse;
         } catch (Exception e) {
             log.error("Error processing AI output: ", e);
-            Notification.show("Error processing AI output: " + e.getMessage());
+            Notification.show(STR."Error processing AI output: \{e.getMessage()}");
             return null;
         }
     }
@@ -70,28 +68,28 @@ public class ContextualAdviserComp<T> {
     public String getContextMessage(Enum<?> contextType) {
         return switch (contextType) {
             case NaturalLanguageProcessing naturalLanguageProcessing ->
-                    "NLP Context: " + contextType.name();
+                    STR."NLP Context: \{contextType.name()}";
             case RecommendationSystems recommendationSystems ->
-                    "Recommendation Systems Context: " + contextType.name();
+                    STR."Recommendation Systems Context: \{contextType.name()}";
             case Generative generative ->
-                    "Generative Context: " + contextType.name();
+                    STR."Generative Context: \{contextType.name()}";
             case Optimization optimization ->
-                    "Optimization Context: " + contextType.name();
+                    STR."Optimization Context: \{contextType.name()}";
             case ComputerVision computerVision ->
-                    "Computer Vision Context: " + contextType.name();
+                    STR."Computer Vision Context: \{contextType.name()}";
             case Robotics robotics ->
-                    "Robotics Context: " + contextType.name();
+                    STR."Robotics Context: \{contextType.name()}";
             case KnowledgeRepresentationReasoning knowledgeRepresentationReasoning ->
-                    "Knowledge Representation Reasoning Context: " + contextType.name();
+                    STR."Knowledge Representation Reasoning Context: \{contextType.name()}";
             case PredictiveAnalytics predictiveAnalytics ->
-                    "Predictive Analytics Context: " + contextType.name();
+                    STR."Predictive Analytics Context: \{contextType.name()}";
             case ReinforcementLearning reinforcementLearning ->
-                    "Reinforcement Learning Context: " + contextType.name();
+                    STR."Reinforcement Learning Context: \{contextType.name()}";
             case SpeechRecognition speechRecognition ->
-                    "Speech Recognition Context: " + contextType.name();
+                    STR."Speech Recognition Context: \{contextType.name()}";
             case null, default -> {
                 assert contextType != null;
-                yield "Unknown Context: " + contextType.name();
+                yield STR."Unknown Context: \{contextType.name()}";
             }
         };
     }
@@ -109,6 +107,6 @@ public class ContextualAdviserComp<T> {
     public void addCustomContextEntry(String entry) {
         context.append(entry).append("\n");
         log.info("Custom context entry added: {}", entry);
-        Notification.show("Custom context entry added: " + entry);
+        Notification.show(STR."Custom context entry added: \{entry}");
     }
 }

@@ -1,6 +1,6 @@
 package org.dacss.provectinitai.advisers;
 
-import org.dacss.projectinitai.loaders.components.ContextualAdviserComp;
+import org.dacss.projectinitai.advisers.components.ContextualAdviserComp;
 import org.dacss.projectinitai.advisers.interfaces.AIOutputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.implementors.ContextFacadeIfaceImpl;
 import org.dacss.projectinitai.advisers.interfaces.ContextualAdviserIface;

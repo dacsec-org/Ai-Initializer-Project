@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.predictive;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link PredictiveAnalytics}</h1>
  * Enum class representing the different types of Predictive Analytics techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the Predictive Analytics technique.
  */
-@Getter
 public enum PredictiveAnalytics {
 
     TIME_SERIES_FORECASTING,

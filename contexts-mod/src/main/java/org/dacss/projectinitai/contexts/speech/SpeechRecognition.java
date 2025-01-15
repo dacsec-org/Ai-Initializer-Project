@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.speech;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link SpeechRecognition}</h1>
  * Enum class representing the different types of Speech Recognition techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the Speech Recognition technique.
  */
-@Getter
 public enum SpeechRecognition {
 
     SPEECH_TO_TEXT,

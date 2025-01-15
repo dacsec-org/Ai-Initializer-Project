@@ -2,12 +2,10 @@ package org.dacss.projectinitai.frontend.configs;
 
 import org.dacss.projectinitai.processors.components.ProcessorFactoryComp;
 import org.dacss.projectinitai.loaders.components.ContextualAdviserComp;
-import org.dacss.projectinitai.processors.interfaces.ByteProcessingAdviserIface;
-import org.dacss.projectinitai.processors.interfaces.StringProcessingAdviserIface;
+import org.dacss.projectinitai.processors.components.TextProcessorComp;
 import org.dacss.projectinitai.loaders.kernels.DynamicModelLoaderKernel;
 import org.dacss.projectinitai.loaders.LLMProcessorComp;
 import org.dacss.projectinitai.loaders.parallelized.ParallelizedModelLoader;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
 public class ComponentConf {
 
     @Bean
-    public LLMProcessorComp llmProcessorComp() {
+    public LLMProcessorComp llmProcessorComp(TextProcessorComp textProcessor) {
         return new LLMProcessorComp(
                 new DynamicModelLoaderKernel(),
                 new ParallelizedModelLoader(),
                 new ContextualAdviserComp<>(),
+                /* fixme: the bellow ProcessorFactoryComp(); is looking for 14 args */
                 new ProcessorFactoryComp());
-
     }
 
     @Bean

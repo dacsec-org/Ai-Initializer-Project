@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.recomondation;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link RecommendationSystems}</h1>
  * Enum class representing the different types of Recommendation Systems.
  * Each enum constant has a context message that provides a brief description of the purpose of the Recommendation System technique.
  */
-@Getter
 public enum RecommendationSystems {
 
     COLLABORATIVE_FILTERING,

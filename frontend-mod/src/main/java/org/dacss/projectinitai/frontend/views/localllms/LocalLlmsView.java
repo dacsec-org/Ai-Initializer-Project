@@ -153,7 +153,7 @@ public class LocalLlmsView extends Div {
                 Notification.show("No items selected", 3000, Notification.Position.MIDDLE);
             } else {
                 for (LLMS llms : selectedItems) {
-                    System.out.println("Downloading: " + llms.getName());
+                    System.out.println(STR."Downloading: \{llms.getName()}");
                 }
                 Notification.show("Download started for selected items", 3000, Notification.Position.MIDDLE);
             }
@@ -172,6 +172,7 @@ public class LocalLlmsView extends Div {
 
     private List<LLMS> getLLMs(String url) {
         try {
+            /*fixme: Required type: List<org.dacss.projectinitai.frontend.views.localllms.LLMS> Provided: List<LLMS>*/
             return LLMLinkScraper.scrapeLLMLinks(url);
         } catch (IOException e) {
             Notification.show("Failed to fetch LLM links", 3000, Notification.Position.MIDDLE);

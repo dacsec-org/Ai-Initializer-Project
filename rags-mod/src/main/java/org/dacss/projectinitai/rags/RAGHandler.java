@@ -2,6 +2,7 @@ package org.dacss.projectinitai.rags;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dacss.projectinitai.advisers.processors.VectorizationProcessor;
+import org.dacss.projectinitai.processors.components.VectorizationProcessorComp;
 
 @Slf4j
 public class RAGHandler {
@@ -14,7 +15,7 @@ public class RAGHandler {
     private final VectorizationProcessor vectorize;
 
     public RAGHandler(RAGCreator creator, RAGDestroyer destroyer,
-                      RAGCloner cloner, RAGUpdater updater, RAGConversationLister lister, VectorizationProcessor vectorize) {
+                      RAGCloner cloner, RAGUpdater updater, RAGConversationLister lister, VectorizationProcessorComp vectorize) {
         this.creator = creator;
         this.destroyer = destroyer;
         this.cloner = cloner;

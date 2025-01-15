@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.robotics;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link Robotics}</h1>
  * Enum class representing the different types of Robotics techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the Robotics technique.
  */
-@Getter
 public enum Robotics {
 
     MOTION_CONTROL,

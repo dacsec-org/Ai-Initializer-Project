@@ -1,14 +1,11 @@
 package org.dacss.projectinitai.contexts.nlp;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link NaturalLanguageProcessing}</h1>
  * Enum class representing the different types of Natural Language Processing (NLP) techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the NLP technique
  * to be injected into conversations.
  */
-@Getter
 public enum NaturalLanguageProcessing {
 
     TEXT_GENERATION,

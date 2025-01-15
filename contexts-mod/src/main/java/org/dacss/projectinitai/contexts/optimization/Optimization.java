@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.optimization;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link Optimization}</h1>
  * Enum class representing the different types of Optimization techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the Optimization technique.
  */
-@Getter
 public enum Optimization {
 
     LINEAR_PROGRAMMING,

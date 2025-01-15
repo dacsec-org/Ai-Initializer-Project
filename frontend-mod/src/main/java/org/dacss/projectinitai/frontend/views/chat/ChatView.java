@@ -42,6 +42,7 @@ public class ChatView extends Composite<VerticalLayout> {
 
     @Autowired
     public ChatView(ProcessorFactoryComp processorFactory, ContextualAdviserComp<String> contextualAdviser, LLMProcessorComp llmProcessorComp) {
+        /*fixme: Could not autowire. No beans of 'ProcessorFactoryComp' type found.*/
         this.processorFactory = processorFactory;
         this.contextualAdviser = contextualAdviser;
         this.llmProcessorComp = llmProcessorComp;

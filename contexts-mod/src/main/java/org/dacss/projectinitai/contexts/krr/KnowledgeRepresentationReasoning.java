@@ -1,13 +1,10 @@
 package org.dacss.projectinitai.contexts.krr;
 
-import lombok.Getter;
-
 /**
  * <h1>{@link KnowledgeRepresentationReasoning}</h1>
  * Enum class representing the different types of Knowledge Representation and Reasoning (KRR) techniques.
  * Each enum constant has a context message that provides a brief description of the purpose of the KRR technique.
  */
-@Getter
 public enum KnowledgeRepresentationReasoning {
 
     KNOWLEDGE_GRAPHS,

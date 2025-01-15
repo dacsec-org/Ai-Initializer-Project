@@ -1,8 +1,10 @@
 package org.dacss.projectinitai.rags;
 
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.advisers.processors.JsonProcessor;
+
+
+import org.dacss.projectinitai.processors.components.JsonProcessorComp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreProperties;
 import org.springframework.ai.vectorstore.redis.RedisVectorStore;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,19 +13,14 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <h1>{@link RAGConversationLister}</h1>
- * This class is used to query then list the conversation histories from the
- * redis database. This is a refactor of Spring's
- * {@link org.springframework.ai.vectorstore.redis.RedisVectorStore}
- * beer example.
- */
-@Slf4j
+
 @Component
 public class RAGConversationLister implements ApplicationRunner {
 
+    private static final Logger log = LoggerFactory.getLogger(RAGConversationLister.class);
     /**
      * The keys used to query the redis database for conversation history.
      */
@@ -49,9 +46,11 @@ public class RAGConversationLister implements ApplicationRunner {
     /**
      * The JSON processor used to process JSON data.
      */
-    private final JsonProcessor jsonProcessor;
+    private final JsonProcessorComp jsonProcessor;
 
-    public RAGConversationLister(RedisVectorStore store, RedisVectorStoreProperties properties, JsonProcessor jsonProcessor) {
+    public RAGConversationLister(RedisVectorStore store,
+                                 RedisVectorStoreProperties properties,
+                                 JsonProcessorComp jsonProcessor) {
         this.store = store;
         this.properties = properties;
         this.jsonProcessor = jsonProcessor;
@@ -61,14 +60,15 @@ public class RAGConversationLister implements ApplicationRunner {
      * Queries redis database conversation histories.
      * @param source The source to query conversation histories from.
      */
-
-    @SneakyThrows
     public List<String> listChatHistory(String source) {
         log.info("Querying conversation histories from source: {}", source);
         List<String> rawHistories = store.getJedis().lrange(source, 0, -1);
-        return rawHistories.stream()
-                .map(jsonProcessor::processString)
-                .toList();
+        List<String> list = new ArrayList<>();
+        for (String rawHistory : rawHistories) {
+            String s = jsonProcessor.processString(rawHistory);
+            list.add(s);
+        }
+        return list;
     }
 
     /**
