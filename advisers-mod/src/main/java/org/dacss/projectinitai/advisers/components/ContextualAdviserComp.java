@@ -55,16 +55,6 @@ public class ContextualAdviserComp<T> {
         }
     }
 
-    /**
-     * Get context message based on the provided context type.
-     *
-     * @param contextType {@link ContextType}
-     * @return String
-     */
-    public String getContextMessage(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
-
     public String getContext() {
         return context.toString();
     }

@@ -54,9 +54,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getSystemInfo() {
         return STR."""
-        \{CAC.getContextMessage(ContextType.NATURAL_LANGUAGE_PROCESSING)}
-        \{CAC.getContextMessage(ContextType.SPEECH_RECOGNITION)}
-        \{CAC.getContextMessage(ContextType.KNOWLEDGE_REPRESENTATION_REASONING)}
+        \{ContextType.NATURAL_LANGUAGE_PROCESSING.getContextMessage()}
+        \{ContextType.SPEECH_RECOGNITION.getContextMessage()}
+        \{ContextType.KNOWLEDGE_REPRESENTATION_REASONING.getContextMessage()}
         """;
     }
 
@@ -71,9 +71,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getToolInfo() {
         return STR."""
-        \{CAC.getContextMessage(ContextType.GENERATIVE)}
-        \{CAC.getContextMessage(ContextType.REINFORCEMENT_LEARNING)}
-        \{CAC.getContextMessage(ContextType.COMPUTER_VISION)}
+        \{ContextType.GENERATIVE.getContextMessage()}
+        \{ContextType.REINFORCEMENT_LEARNING.getContextMessage()}
+        \{ContextType.COMPUTER_VISION.getContextMessage()}
         """;
     }
 
@@ -88,9 +88,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getUserInfo() {
         return STR."""
-        \{CAC.getContextMessage(ContextType.RECOMMENDATION_SYSTEMS)}
-        \{CAC.getContextMessage(ContextType.PREDICTIVE_ANALYTICS)}
-        \{CAC.getContextMessage(ContextType.ROBOTICS)}
+        \{ContextType.RECOMMENDATION_SYSTEMS.getContextMessage()}
+        \{ContextType.PREDICTIVE_ANALYTICS.getContextMessage()}
+        \{ContextType.ROBOTICS.getContextMessage()}
         """;
     }
 
@@ -105,8 +105,8 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getDataInfo() {
         return STR."""
-        \{CAC.getContextMessage(ContextType.OPTIMIZATION)}
-        \{CAC.getContextMessage(ContextType.RECOGNITION)}
+        \{ContextType.OPTIMIZATION.getContextMessage()}
+        \{ContextType.RECOGNITION.getContextMessage()}
         """;
     }
 
@@ -164,7 +164,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getGenerativeContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -178,7 +178,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getOptimizationContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -192,7 +192,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getComputerVisionContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -206,7 +206,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getRoboticsContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -220,7 +220,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getKnowledgeRepresentationReasoningContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -234,7 +234,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getPredictiveAnalyticsContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -262,7 +262,7 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getNaturalLanguageProcessingContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 
     /**
@@ -273,6 +273,6 @@ public class ContextFacadeIfaceImpl<T> implements
      */
     @Override
     public String getRecommendationSystemsContext(ContextType contextType) {
-        return CAC.getContextMessage(contextType);
+        return contextType.getContextMessage();
     }
 }
