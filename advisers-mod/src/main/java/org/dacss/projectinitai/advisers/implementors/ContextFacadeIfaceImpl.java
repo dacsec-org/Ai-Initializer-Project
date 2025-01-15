@@ -6,19 +6,9 @@ import org.dacss.projectinitai.advisers.interfaces.DataHandlerContextualAdviserI
 import org.dacss.projectinitai.advisers.interfaces.UserInputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.AIOutputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.ContextFacadeIface;
-import org.dacss.projectinitai.contexts.generative.Generative;
-import org.dacss.projectinitai.contexts.krr.KnowledgeRepresentationReasoning;
-import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
-import org.dacss.projectinitai.contexts.optimization.Optimization;
-import org.dacss.projectinitai.contexts.predictive.PredictiveAnalytics;
-import org.dacss.projectinitai.contexts.recognition.Recognition;
-import org.dacss.projectinitai.contexts.recomondation.RecommendationSystems;
-import org.dacss.projectinitai.contexts.reinforcement.ReinforcementLearning;
-import org.dacss.projectinitai.contexts.robotics.Robotics;
-import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
-import org.dacss.projectinitai.contexts.vision.ComputerVision;
-
+import org.dacss.projectinitai.contexts.interfaces.ContextType;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <h1>{@link ContextFacadeIfaceImpl}</h1>
@@ -48,6 +38,7 @@ public class ContextFacadeIfaceImpl<T> implements
      *
      * @param CAC {@link ContextualAdviserComp<T>}
      */
+    @Autowired
     public ContextFacadeIfaceImpl(ContextualAdviserComp<T> CAC) {
         this.CAC = CAC;
     }
@@ -63,9 +54,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getSystemInfo() {
         return STR."""
-        \{CAC.getContextMessage(NaturalLanguageProcessing.TEXT_GENERATION)}
-        \{CAC.getContextMessage(SpeechRecognition.SPEECH_TO_TEXT)}
-        \{CAC.getContextMessage(KnowledgeRepresentationReasoning.KNOWLEDGE_GRAPHS)}
+        \{CAC.getContextMessage(ContextType.NATURAL_LANGUAGE_PROCESSING)}
+        \{CAC.getContextMessage(ContextType.SPEECH_RECOGNITION)}
+        \{CAC.getContextMessage(ContextType.KNOWLEDGE_REPRESENTATION_REASONING)}
         """;
     }
 
@@ -80,9 +71,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getToolInfo() {
         return STR."""
-        \{CAC.getContextMessage(Generative.DEEPFAKES)}
-        \{CAC.getContextMessage(ReinforcementLearning.AUTONOMOUS_DRIVING)}
-        \{CAC.getContextMessage(ComputerVision.IMAGE_CLASSIFICATION)}
+        \{CAC.getContextMessage(ContextType.GENERATIVE)}
+        \{CAC.getContextMessage(ContextType.REINFORCEMENT_LEARNING)}
+        \{CAC.getContextMessage(ContextType.COMPUTER_VISION)}
         """;
     }
 
@@ -97,9 +88,9 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getUserInfo() {
         return STR."""
-        \{CAC.getContextMessage(RecommendationSystems.COLLABORATIVE_FILTERING)}
-        \{CAC.getContextMessage(PredictiveAnalytics.TIME_SERIES_FORECASTING)}
-        \{CAC.getContextMessage(Robotics.MOTION_CONTROL)}
+        \{CAC.getContextMessage(ContextType.RECOMMENDATION_SYSTEMS)}
+        \{CAC.getContextMessage(ContextType.PREDICTIVE_ANALYTICS)}
+        \{CAC.getContextMessage(ContextType.ROBOTICS)}
         """;
     }
 
@@ -114,8 +105,8 @@ public class ContextFacadeIfaceImpl<T> implements
     @Override
     public String getDataInfo() {
         return STR."""
-        \{CAC.getContextMessage(Optimization.LINEAR_PROGRAMMING)}
-        \{CAC.getContextMessage(Recognition.FACIAL_RECOGNITION)}
+        \{CAC.getContextMessage(ContextType.OPTIMIZATION)}
+        \{CAC.getContextMessage(ContextType.RECOGNITION)}
         """;
     }
 
@@ -163,87 +154,87 @@ public class ContextFacadeIfaceImpl<T> implements
     }
 
     /**
-     * {@link #getGenerativeContext(Generative)}
+     * {@link #getGenerativeContext(ContextType)}
      * <p>
      * Get Generative Context.
      *
-     * @param generative {@link Generative}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getGenerativeContext(Generative generative) {
-        return CAC.getContextMessage(generative);
+    public String getGenerativeContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getOptimizationContext(Optimization)}
+     * {@link #getOptimizationContext(ContextType)}
      * <p>
      * Get Optimization Context.
      *
-     * @param optimization {@link Optimization}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getOptimizationContext(Optimization optimization) {
-        return CAC.getContextMessage(optimization);
+    public String getOptimizationContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getComputerVisionContext(ComputerVision)}
+     * {@link #getComputerVisionContext(ContextType)}
      * <p>
      * Get Computer Vision Context.
      *
-     * @param computerVision {@link ComputerVision}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getComputerVisionContext(ComputerVision computerVision) {
-        return CAC.getContextMessage(computerVision);
+    public String getComputerVisionContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getRoboticsContext(Robotics)}
+     * {@link #getRoboticsContext(ContextType)}
      * <p>
      * Get Robotics Context.
      *
-     * @param robotics {@link Robotics}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getRoboticsContext(Robotics robotics) {
-        return CAC.getContextMessage(robotics);
+    public String getRoboticsContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getKnowledgeRepresentationReasoningContext(KnowledgeRepresentationReasoning)}
+     * {@link #getKnowledgeRepresentationReasoningContext(ContextType)}
      * <p>
      * Get Knowledge Representation Reasoning Context.
      *
-     * @param krr {@link KnowledgeRepresentationReasoning}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getKnowledgeRepresentationReasoningContext(KnowledgeRepresentationReasoning krr) {
-        return CAC.getContextMessage(krr);
+    public String getKnowledgeRepresentationReasoningContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getPredictiveAnalyticsContext(PredictiveAnalytics)}
+     * {@link #getPredictiveAnalyticsContext(ContextType)}
      * <p>
      * Get Predictive Analytics Context.
      *
-     * @param predictiveAnalytics {@link PredictiveAnalytics}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getPredictiveAnalyticsContext(PredictiveAnalytics predictiveAnalytics) {
-        return CAC.getContextMessage(predictiveAnalytics);
+    public String getPredictiveAnalyticsContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
@@ -261,27 +252,27 @@ public class ContextFacadeIfaceImpl<T> implements
     }
 
     /**
-     * {@link #getNaturalLanguageProcessingContext(NaturalLanguageProcessing)}
+     * {@link #getNaturalLanguageProcessingContext(ContextType)}
      * <p>
      * Get Natural Language Processing Context.
      *
-     * @param nlp {@link NaturalLanguageProcessing}
+     * @param contextType {@link ContextType}
      * @return String
      * </p>
      */
     @Override
-    public String getNaturalLanguageProcessingContext(NaturalLanguageProcessing nlp) {
-        return CAC.getContextMessage(nlp);
+    public String getNaturalLanguageProcessingContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 
     /**
-     * {@link #getRecommendationSystemsContext(RecommendationSystems)}
+     * {@link #getRecommendationSystemsContext(ContextType)}
      * <p>
      * Get Recommendation Systems Context.
      * </p>
      */
     @Override
-    public String getRecommendationSystemsContext(RecommendationSystems recommendationSystems) {
-        return CAC.getContextMessage(recommendationSystems);
+    public String getRecommendationSystemsContext(ContextType contextType) {
+        return CAC.getContextMessage(contextType);
     }
 }

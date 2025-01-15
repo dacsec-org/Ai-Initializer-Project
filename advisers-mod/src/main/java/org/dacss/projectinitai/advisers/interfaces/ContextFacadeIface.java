@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.advisers.interfaces;
 
+import org.dacss.projectinitai.contexts.interfaces.ContextType;
+
 /**
  * <h1>{@link ContextFacadeIface}</h1>
  * Facade Interface for Contextual Advisers.
