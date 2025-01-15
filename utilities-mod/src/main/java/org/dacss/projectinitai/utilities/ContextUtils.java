@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.utilities;
 
-import org.dacss.projectinitai.contexts.ContextType;
 
 /**
  * <h1>{@link ContextUtils}</h1>
