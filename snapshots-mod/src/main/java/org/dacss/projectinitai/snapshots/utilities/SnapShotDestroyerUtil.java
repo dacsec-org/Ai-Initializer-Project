@@ -33,7 +33,7 @@ public class SnapShotDestroyerUtil {
      * @param path the path to the directory to delete
      * @throws IOException if an I/O error occurs
      */
-    private void deleteDirectory(Path path) throws IOException {
+    private static void deleteDirectory(Path path) throws IOException {
         if (Files.exists(path)) {
             try (Stream<Path> paths = Files.walk(path)) {
                 paths.sorted(Comparator.reverseOrder())

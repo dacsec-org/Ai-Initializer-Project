@@ -1,24 +1,41 @@
 package org.dacss.projectinitai.services;
+/**/
+import org.dacss.projectinitai.rags.RAGHandler;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import lombok.extern.slf4j.Slf4j;
 
-import org.dacss.projectinitai.rags.RAGHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-@Slf4j
+/**
+ * <h1>{@link RAGService}</h1>
+ * Backend service for handling the RAG (Risk, Assumptions, and Goals) data.
+ * This service is displayed in the 'src/main/frontend/views/rags.tsx' file.
+ */
 @Service
 @BrowserCallable
 @AnonymousAllowed
 public class RAGService {
 
+    private static final Logger log = LoggerFactory.getLogger(RAGService.class);
     private final RAGHandler handler;
 
+    /**
+     * {@link #RAGService(RAGHandler)} 1-parameter constructor.
+     * @param handler - the RAGHandler object.
+     */
     public RAGService(RAGHandler handler) {
         this.handler = handler;
     }
 
+    /**
+     * {@link #handleRagAction(String, String, String)} method.
+     * @param action - the action to perform.
+     * @param source - the source of the action.
+     * @param destination - the destination of the action.
+     */
     private void handleRagAction(String action, String source, String destination) {
         switch (action) {
             case "create":

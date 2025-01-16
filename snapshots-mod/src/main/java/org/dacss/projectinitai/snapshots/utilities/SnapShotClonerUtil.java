@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.snapshots.utilities;
-
+/**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +40,7 @@ public class SnapShotClonerUtil {
      * @param destinationPath the destination directory
      * @throws IOException if an I/O error occurs
      */
-    private void copyFiles(Path sourcePath, Path destinationPath) throws IOException {
+    private static void copyFiles(Path sourcePath, Path destinationPath) throws IOException {
         try (Stream<Path> paths = Files.walk(sourcePath)) {
             paths.forEach(source -> {
                 //todo: map the source and destination paths to there corresponding directories

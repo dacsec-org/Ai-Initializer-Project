@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.utilities.files;
-
-import lombok.experimental.UtilityClass;
+/**/
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,9 +9,22 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-@UtilityClass
+
+/**
+ * <h1>{@link ZipUtil}</h1>
+ * <p>
+ * Utility class for zipping and unzipping directories.
+ * </p>
+ */
 public class ZipUtil {
 
+    /**
+     * Zips a directory.
+     *
+     * @param dir     the directory to zip
+     * @param zipFile the zip file
+     * @throws IOException if an I/O error occurs
+     */
     public static void zipDirectory(File dir, File zipFile) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(zipFile);
              ZipOutputStream zos = new ZipOutputStream(fos);
@@ -30,6 +42,13 @@ public class ZipUtil {
         }
     }
 
+    /**
+     * Unzips a directory.
+     *
+     * @param zipFile the zip file
+     * @param destDir the destination directory
+     * @throws IOException if an I/O error occurs
+     */
     public static void unzipDirectory(File zipFile, File destDir) throws IOException {
         try (FileInputStream fis = new FileInputStream(zipFile);
              ZipInputStream zis = new ZipInputStream(fis)) {
@@ -38,12 +57,12 @@ public class ZipUtil {
                 File newFile = newDirectory(destDir, zipEntry);
                 if (zipEntry.isDirectory()) {
                     if (!newFile.isDirectory() && !newFile.mkdirs()) {
-                        throw new IOException("Failed to create directory " + newFile);
+                        throw new IOException(STR."Failed to create directory \{newFile}");
                     }
                 } else {
                     File parent = newFile.getParentFile();
                     if (!parent.isDirectory() && !parent.mkdirs()) {
-                        throw new IOException("Failed to create directory " + parent);
+                        throw new IOException(STR."Failed to create directory \{parent}");
                     }
                     try (FileOutputStream fos = new FileOutputStream(newFile)) {
                         byte[] buffer = new byte[1024];
@@ -58,12 +77,20 @@ public class ZipUtil {
         }
     }
 
+    /**
+     * Creates a new directory.
+     *
+     * @param destinationDir the destination directory
+     * @param zipEntry       the zip entry
+     * @return the new directory
+     * @throws IOException if an I/O error occurs
+     */
     private static File newDirectory(File destinationDir, ZipEntry zipEntry) throws IOException {
         File destFile = new File(destinationDir, zipEntry.getName());
         String destDirPath = destinationDir.getCanonicalPath();
         String destFilePath = destFile.getCanonicalPath();
         if (!destFilePath.startsWith(destDirPath + File.separator)) {
-            throw new IOException("Entry is outside of the target dir: " + zipEntry.getName());
+            throw new IOException(STR."Entry is outside of the target dir: \{zipEntry.getName()}");
         }
         return destFile;
     }

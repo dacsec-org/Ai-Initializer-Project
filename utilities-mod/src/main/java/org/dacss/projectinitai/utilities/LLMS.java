@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.frontend.views.localllms;
+package org.dacss.projectinitai.utilities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +38,7 @@ public class LLMS {
         return dateInstalled;
     }
 
-    public void setDateInstalled(String dateInstalled) {
+    public void setDateInstalled() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.dateInstalled = LocalDate.now().format(formatter);
     }
@@ -98,4 +98,5 @@ public class LLMS {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

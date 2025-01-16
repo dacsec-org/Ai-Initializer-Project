@@ -1,11 +1,11 @@
 package org.dacss.projectinitai.utilities;
-
-import lombok.experimental.UtilityClass;
+/**/
 
 /**
  * <h1>{@link DeleteLocalModelUtil}</h1>
- * Utility class for deleting local models.
+ * <p>
+ *     Utility class for deleting local models.
+ * </p>
  */
-@UtilityClass
 public class DeleteLocalModelUtil {
 }

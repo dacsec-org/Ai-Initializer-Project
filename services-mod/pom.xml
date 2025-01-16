@@ -25,6 +25,23 @@
             <groupId>com.vaadin</groupId>
             <artifactId>hilla-endpoint</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>rags-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>checksums-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>loaders-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

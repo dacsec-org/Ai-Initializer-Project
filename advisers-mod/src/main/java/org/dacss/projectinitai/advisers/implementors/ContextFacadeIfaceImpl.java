@@ -45,11 +45,8 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getSystemInfo()}
-     * <p>
-     * Get System Information.
      *
-     * @return String
-     * </p>
+     * @return String - system information
      */
     @Override
     public String getSystemInfo() {
@@ -62,11 +59,8 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getToolInfo()}
-     * <p>
-     * Get Tool Information.
      *
-     * @return String
-     * </p>
+     * @return String - tool information
      */
     @Override
     public String getToolInfo() {
@@ -79,11 +73,8 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getUserInfo()}
-     * <p>
-     * Get User Information.
      *
-     * @return String
-     * </p>
+     * @return String - user information
      */
     @Override
     public String getUserInfo() {
@@ -96,11 +87,8 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getDataInfo()}
-     * <p>
-     * Get Data Information.
      *
-     * @return String
-     * </p>
+     * @return String - data information
      */
     @Override
     public String getDataInfo() {
@@ -112,13 +100,10 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #updateContext(T, T)}
-     * <p>
-     * Perform Contextual Adviser update.
      *
      * @param userRequest T
      * @param aiResponse  T
-     * @return T
-     * </p>
+     * @return T - updated context
      */
     @Override
     public T updateContext(T userRequest, T aiResponse) {
@@ -127,12 +112,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #processUserInput(T)}
-     * <p>
-     * Process User Input.
      *
      * @param userRequest T
-     * @return T
-     * </p>
+     * @return T - processed user request
      */
     @Override
     public T processUserInput(T userRequest) {
@@ -141,12 +123,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #processAIOutput(T)}
-     * <p>
-     * Process AI Output.
      *
      * @param aiResponse T
-     * @return T
-     * </p>
+     * @return T - processed AI response
      */
     @Override
     public T processAIOutput(T aiResponse) {
@@ -155,12 +134,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getGenerativeContext(ContextType)}
-     * <p>
-     * Get Generative Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - generative context
      */
     @Override
     public String getGenerativeContext(ContextType contextType) {
@@ -169,12 +145,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getOptimizationContext(ContextType)}
-     * <p>
-     * Get Optimization Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - optimization context
      */
     @Override
     public String getOptimizationContext(ContextType contextType) {
@@ -183,12 +156,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getComputerVisionContext(ContextType)}
-     * <p>
-     * Get Computer Vision Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - computer vision context
      */
     @Override
     public String getComputerVisionContext(ContextType contextType) {
@@ -197,12 +167,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getRoboticsContext(ContextType)}
-     * <p>
-     * Get Robotics Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - robotics context
      */
     @Override
     public String getRoboticsContext(ContextType contextType) {
@@ -211,12 +178,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getKnowledgeRepresentationReasoningContext(ContextType)}
-     * <p>
-     * Get Knowledge Representation Reasoning Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - knowledge representation reasoning context
      */
     @Override
     public String getKnowledgeRepresentationReasoningContext(ContextType contextType) {
@@ -225,12 +189,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getPredictiveAnalyticsContext(ContextType)}
-     * <p>
-     * Get Predictive Analytics Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - predictive analytics context
      */
     @Override
     public String getPredictiveAnalyticsContext(ContextType contextType) {
@@ -239,12 +200,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #handleData(T)}
-     * <p>
-     * Handle Data.
      *
      * @param data T
-     * @return T
-     * </p>
+     * @return T - handled data
      */
     @Override
     public T handleData(T data) {
@@ -253,12 +211,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getNaturalLanguageProcessingContext(ContextType)}
-     * <p>
-     * Get Natural Language Processing Context.
      *
      * @param contextType {@link ContextType}
-     * @return String
-     * </p>
+     * @return String - natural language processing context
      */
     @Override
     public String getNaturalLanguageProcessingContext(ContextType contextType) {
@@ -267,9 +222,9 @@ public class ContextFacadeIfaceImpl<T> implements
 
     /**
      * {@link #getRecommendationSystemsContext(ContextType)}
-     * <p>
-     * Get Recommendation Systems Context.
-     * </p>
+     *
+     * @param contextType {@link ContextType}
+     * @return String - recommendation systems context
      */
     @Override
     public String getRecommendationSystemsContext(ContextType contextType) {

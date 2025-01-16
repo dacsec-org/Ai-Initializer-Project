@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.snapshots.utilities;
-
+/**/
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,7 +37,7 @@ public class SnapShotListerUtil {
      * @return a list of snapshot directories
      * @throws IOException if an I/O error occurs
      */
-    private List<String> listSnapshotDirectories(Path dirPath) throws IOException {
+    private static List<String> listSnapshotDirectories(Path dirPath) throws IOException {
         try (Stream<Path> paths = Files.list(dirPath)) {
             return paths
                 .filter(Files::isDirectory)
