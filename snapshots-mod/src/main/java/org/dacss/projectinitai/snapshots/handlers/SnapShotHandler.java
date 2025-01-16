@@ -1,18 +1,19 @@
-// SnapShotHandler.java
 package org.dacss.projectinitai.snapshots.handlers;
-
-import lombok.extern.slf4j.Slf4j;
+/**/
 import org.dacss.projectinitai.snapshots.services.SnapShotService;
 import org.dacss.projectinitai.snapshots.utilities.*;
-import org.dacss.projectinitai.utilities.*;
+/**/
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <h1>{@link SnapShotHandler}</h1>
  * Handler class called from {@link SnapShotService} that creates, lists,
  * deletes, and copies snapshots.
  */
-@Slf4j
 public class SnapShotHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(SnapShotHandler.class);
 
     public SnapShotHandler() {}
 

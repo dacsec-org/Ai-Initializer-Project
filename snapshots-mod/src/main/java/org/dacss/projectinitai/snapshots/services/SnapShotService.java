@@ -28,6 +28,7 @@ public class SnapShotService {
      * @param destination The destination path.
      */
     private void handleSnapshotAction(String action, String source, String destination) {
+        //todo: set up destinations and sources to match the install scripts
         switch (action) {
             case "create":
                 handle.createSnapshot(source, destination);
@@ -42,7 +43,7 @@ public class SnapShotService {
                 handle.deleteSnapshot(source);
                 break;
             default:
-                throw new IllegalArgumentException("Unknown action: " + action);
+                throw new IllegalArgumentException(STR."Unknown action: \{action}");
         }
     }
 }

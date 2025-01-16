@@ -17,18 +17,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Theme(value = "ai-initializer-project", variant = Lumo.DARK)
 public class ProjectAiInitializerApplication implements AppShellConfigurator {
 
-//    private final ContextualAdviserComp<String> contextualAdviserComp;
-//    private final LLMProcessorComp llmProcessorComp;
-//    private final ProcessorFactoryComp processorFactoryComp;
-
-//    @Autowired
-//    public ProjectAiInitializerApplication(ContextualAdviserComp<String> contextualAdviserComp
-//            , LLMProcessorComp llmProcessorComp, ProcessorFactoryComp processorFactoryComp) {
-//        this.contextualAdviserComp = contextualAdviserComp;
-//        this.llmProcessorComp = llmProcessorComp;
-//        this.processorFactoryComp = processorFactoryComp;
-//    }
-
     /**
      * {@link #main(String[])}
      * @param args The command-line arguments.
@@ -36,16 +24,4 @@ public class ProjectAiInitializerApplication implements AppShellConfigurator {
     public static void main(String[] args) {
         SpringApplication.run(ProjectAiInitializerApplication.class, args);
     }
-//
-//    public ContextualAdviserComp<String> getContextualAdviserComp() {
-//        return contextualAdviserComp;
-//    }
-//
-//    public LLMProcessorComp getLlmProcessorComp() {
-//        return llmProcessorComp;
-//    }
-//
-//    public ProcessorFactoryComp getProcessorFactoryComp() {
-//        return processorFactoryComp;
-//    }
 }

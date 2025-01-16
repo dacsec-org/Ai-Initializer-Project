@@ -1,8 +1,7 @@
-// SnapShotCreatorUtil.java
 package org.dacss.projectinitai.snapshots.utilities;
 
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,18 +13,20 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotCreatorUtil}</h1>
  * Utility class to create a snapshot.
  */
-@Slf4j
-@UtilityClass
 public class SnapShotCreatorUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(SnapShotCreatorUtil.class);
 
     /**
      * Creates a snapshot from a source directory to a destination directory.
      * @param source the source directory
      * @param destination the destination directory
      */
-    public void createSnapshot(String source, String destination) {
+    public static void createSnapshot(String source, String destination) {
         Path sourcePath = Paths.get(source);
         Path destinationPath = Paths.get(destination);
+        //todo: map the source and destination to the correct path
+        // referenced in the install scripts
         try {
             createSnapshotDirectory(destinationPath);
             copyFiles(sourcePath, destinationPath);

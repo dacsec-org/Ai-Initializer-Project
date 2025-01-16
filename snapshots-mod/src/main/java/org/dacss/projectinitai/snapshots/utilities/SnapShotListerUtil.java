@@ -1,8 +1,4 @@
-// SnapShotListerUtil.java
 package org.dacss.projectinitai.snapshots.utilities;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,21 +12,21 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotListerUtil}</h1>
  * Utility class that lists snapshots in a directory.
  */
-@Slf4j
-@UtilityClass
 public class SnapShotListerUtil {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SnapShotListerUtil.class);
 
     /**
      * Lists snapshots in a directory.
      * @param directory the directory to list snapshots from
      * @return a list of snapshot directories
      */
-    public List<String> listSnapshots(String directory) {
+    public static List<String> listSnapshots(String directory) {
         Path dirPath = Paths.get(directory);
         try {
             return listSnapshotDirectories(dirPath);
-        } catch (IOException e) {
-            log.error("Failed to list snapshots in directory {}", directory, e);
+        } catch (IOException listSnapshotsExc) {
+            log.error("Failed to list snapshots in directory {}", directory, listSnapshotsExc);
             return List.of();
         }
     }

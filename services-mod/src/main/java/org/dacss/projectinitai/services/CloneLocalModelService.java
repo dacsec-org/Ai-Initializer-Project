@@ -17,6 +17,9 @@ import java.nio.file.Paths;
 @BrowserCallable
 @AnonymousAllowed
 public class CloneLocalModelService {
+    /*todo: make sure this can be deleted, 'snapshots-mod' takes its
+       place. or convert it into another function and view as the matching
+       '.tsx' frontend exists. no commands are run in the new class*/
 
     /**
      * Clones a local LLM model using BTRFS snapshots.
@@ -43,10 +46,10 @@ public class CloneLocalModelService {
             if (exitCode == 0) {
                 return "Model cloned successfully.";
             } else {
-                return "Failed to clone model. Exit code: " + exitCode;
+                return STR."Failed to clone model. Exit code: \{exitCode}";
             }
-        } catch (IOException | InterruptedException e) {
-            return "Error cloning model: " + e.getMessage();
+        } catch (IOException | InterruptedException cloneIoExc) {
+            return STR."Error cloning model: \{cloneIoExc.getMessage()}";
         }
     }
 }

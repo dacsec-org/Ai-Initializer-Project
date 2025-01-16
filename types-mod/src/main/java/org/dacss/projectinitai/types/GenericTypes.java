@@ -1,18 +1,19 @@
 package org.dacss.projectinitai.types;
 
-import org.dacss.projectinitai.generative.Generative;
-import org.dacss.projectinitai.krr.KnowledgeRepresentationReasoning;
-import org.dacss.projectinitai.nlp.NaturalLanguageProcessing;
-import org.dacss.projectinitai.optimization.Optimization;
-import org.dacss.projectinitai.predictive.PredictiveAnalytics;
-import org.dacss.projectinitai.recomondation.RecommendationSystems;
-import org.dacss.projectinitai.reinforcement.ReinforcementLearning;
-import org.dacss.projectinitai.robotics.Robotics;
-import org.dacss.projectinitai.speech.SpeechRecognition;
-import org.dacss.projectinitai.vision.ComputerVision;
+import org.dacss.projectinitai.contexts.generative.Generative;
+import org.dacss.projectinitai.contexts.krr.KnowledgeRepresentationReasoning;
+import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
+import org.dacss.projectinitai.contexts.optimization.Optimization;
+import org.dacss.projectinitai.contexts.predictive.PredictiveAnalytics;
+import org.dacss.projectinitai.contexts.recomondation.RecommendationSystems;
+import org.dacss.projectinitai.contexts.reinforcement.ReinforcementLearning;
+import org.dacss.projectinitai.contexts.robotics.Robotics;
+import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
+import org.dacss.projectinitai.contexts.vision.ComputerVision;
 
 /**
  * <h1>{@link GenericTypes}</h1>
+ * created to not have cyclic dependencies between the types and contexts modules.
  */
 public enum GenericTypes {
 

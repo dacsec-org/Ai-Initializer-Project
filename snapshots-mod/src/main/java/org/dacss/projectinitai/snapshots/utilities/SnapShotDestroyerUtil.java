@@ -1,8 +1,4 @@
-// SnapShotDestroyerUtil.java
 package org.dacss.projectinitai.snapshots.utilities;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,20 +11,20 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotDestroyerUtil}</h1>
  * Utility class that deletes snapshots.
  */
-@Slf4j
-@UtilityClass
 public class SnapShotDestroyerUtil {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SnapShotDestroyerUtil.class);
 
     /**
      * Deletes a snapshot.
      * @param snapshotPath the path to the snapshot to delete
      */
-    public void deleteSnapshot(String snapshotPath) {
+    public static void deleteSnapshot(String snapshotPath) {
         Path path = Paths.get(snapshotPath);
         try {
             deleteDirectory(path);
-        } catch (IOException e) {
-            log.error("Failed to delete snapshot at {}", snapshotPath, e);
+        } catch (IOException destroySnapshotExc) {
+            log.error("Failed to delete snapshot at {}", snapshotPath, destroySnapshotExc);
         }
     }
 
@@ -44,8 +40,8 @@ public class SnapShotDestroyerUtil {
                      .forEach(p -> {
                          try {
                              Files.delete(p);
-                         } catch (IOException e) {
-                             log.error("Failed to delete file: {}", p, e);
+                         } catch (IOException destroyDirectoryExc) {
+                             log.error("Failed to delete file: {}", p, destroyDirectoryExc);
                          }
                      });
             }

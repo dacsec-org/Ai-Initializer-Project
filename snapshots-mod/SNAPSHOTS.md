@@ -2,12 +2,24 @@
 
 ## Overview
 
-This document provides an overview of the snapshot management system implemented using Java and a frontend in TypeScript/React. The system allows users to create, list, update, and delete snapshots.
+This document provides an overview of the snapshot management system implemented using Java and a frontend in 
+TypeScript/React. The system allows users to create, list, update, and delete snapshots.
+
+## Main Purpose
+The snapshot management system is designed to provide an easy-to-use interface for managing snapshots in a Btrfs filesystem.
+Our use is snapshot entire or parts of LLM's that are stored in Btrfs filesystems. The system should allow users to perform the following actions:
+- Create a snapshot of a specified LLM.
+- List all snapshots in a specified directory.
+- Delete a specified snapshot.
+- Copy a snapshot to a new location.
+- Snapshot specific parts of LLM's t be loaded into RAM rather than the  entire LLM making it possible to load only the parts of the LLM that are 
+  needed. This is especially helpful for large LLM's that are too large to Load into RAM in their entirety. For instance, if a coding assistant 
+  type LLM with 60b parameters, the entire LLM is 100GB, but only 1GB is needed for a specific language, we simply snapshot the 1GB target 
+  language and load it. This way we don't need 60GB of RAM to load the entire LLM.
 
 ## Backend (Java)
 
 ### `SnapShotService`
-
 - **Purpose**: Handles snapshot-related actions and is exposed to the frontend via Vaadin.
 - **Methods**:
   - `handleSnapshotAction(String action, String source, String destination)`: Delegates the action to `SnapShotHandler`.
@@ -108,4 +120,4 @@ This setup ensures a clear separation of concerns, with each class performing a 
 
 ## Sequence Diagram
 
-![Snapshots Sequence Diagram](/pumles/snapshots.png)
+![Snapshots Sequence Diagram](pumles/snapshots.png)
