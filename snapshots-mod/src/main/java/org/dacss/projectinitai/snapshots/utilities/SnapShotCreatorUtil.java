@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.snapshots.utilities;
-
+/**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +40,7 @@ public class SnapShotCreatorUtil {
      * @param destinationPath the destination directory path
      * @throws IOException if an I/O error occurs
      */
-    private void createSnapshotDirectory(Path destinationPath) throws IOException {
+    private static void createSnapshotDirectory(Path destinationPath) throws IOException {
         if (!Files.exists(destinationPath)) {
             Files.createDirectories(destinationPath);
         }
@@ -52,7 +52,7 @@ public class SnapShotCreatorUtil {
      * @param destinationPath the destination directory path
      * @throws IOException if an I/O error occurs
      */
-    private void copyFiles(Path sourcePath, Path destinationPath) throws IOException {
+    private static void copyFiles(Path sourcePath, Path destinationPath) throws IOException {
         try (Stream<Path> paths = Files.walk(sourcePath)) {
             paths.forEach(source -> {
                 Path destination = destinationPath.resolve(sourcePath.relativize(source));

@@ -6,11 +6,13 @@ package org.dacss.projectinitai.advisers.interfaces;
  */
 @FunctionalInterface
 public interface ContextualAdviserActionIface {
+
     /**
+     * <h2>{@link #performAction(String)}</h2>
      * Perform an action based on the provided input.
      *
      * @param input The input data for performing the action.
-     * @return The result of the action performed based on the input data.
+     * @return String - the result of the action.
      */
     String performAction(String input);
 }

@@ -12,8 +12,10 @@ import java.util.Objects;
 
 /**
  * <h1>{@link ServerHealthService}</h1>
+ * <p>
  * Backend service for checking the health of the server using spring boot
  * actuator. this service is displayed in the 'src/main/frontend/views/metrics.tsx' file.
+ * </p>
  */
 @Service
 @BrowserCallable
@@ -35,6 +37,7 @@ public class ServerHealthService {
 
     /**
      * {@link #getMetrics()} method.
+     *
      * @return Object - returns the metrics of the server.
      */
     public Object getMetrics() {

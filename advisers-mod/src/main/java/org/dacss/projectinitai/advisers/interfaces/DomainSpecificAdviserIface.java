@@ -6,11 +6,12 @@ package org.dacss.projectinitai.advisers.interfaces;
  */
 @FunctionalInterface
 public interface DomainSpecificAdviserIface {
+
     /**
-     * Provide expertise in a specific domain.
+     * {@link #provideExpertise(String)}
      *
-     * @param input The input data for providing expertise.
-     * @return The expertise provided based on the input data.
+     * @param input The input data for the adviser.
+     * @return String - expertise provided by the adviser.
      */
     String provideExpertise(String input);
 }

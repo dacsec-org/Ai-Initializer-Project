@@ -10,7 +10,28 @@ import org.dacss.projectinitai.contexts.interfaces.ContextType;
  * </ul>
  */
 public interface UserInputContextualAdviserIface<T> {
+
+    /**
+     * {@link #processUserInput(T)}
+     *
+     * @param userRequest
+     * @return T - processed user request
+     */
     T processUserInput(T userRequest);
+
+    /**
+     * {@link #getNaturalLanguageProcessingContext(ContextType)}
+     *
+     * @param contextType
+     * @return String - natural language processing context
+     */
     String getNaturalLanguageProcessingContext(ContextType contextType);
+
+    /**
+     * {@link #getRecommendationSystemsContext(ContextType)}
+     *
+     * @param contextType
+     * @return String - recommendation systems context
+     */
     String getRecommendationSystemsContext(ContextType contextType);
 }

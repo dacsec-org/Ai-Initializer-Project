@@ -1,13 +1,14 @@
 package org.dacss.projectinitai.utilities;
+/**/
 
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.dacss.projectinitai.views.localllms.LLMS;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,46 +16,39 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Slf4j
-@UtilityClass
+/**
+ * <h1>{@link LLMLinkScraper}</h1>
+ * <p>
+ * Utility class for scraping links of Language Model Libraries (LLMs).
+ * </p>
+ */
 public class LLMLinkScraper {
 
+    private static final Logger log = LoggerFactory.getLogger(LLMLinkScraper.class);
+
+    /**
+     * Scrapes LLM links from the given URL.
+     *
+     * @param url the URL to scrape
+     * @return a list of {@link LLMS} objects
+     * @throws IOException if an I/O error occurs
+     */
     public static List<LLMS> scrapeLLMLinks(String url) throws IOException {
         if (url.contains("ollama.com")) {
-            return scrapeOllamaLinks(url);
+            return scrapeHuggingFaceLinks(url);
         } else if (url.contains("huggingface.co")) {
             return scrapeHuggingFaceLinks(url);
         }
         return new ArrayList<>();
     }
 
-    private static List<LLMS> scrapeOllamaLinks(String url) throws IOException {
-        List<LLMS> llmLinks = new ArrayList<>();
-        Document doc = Jsoup.connect(url).get();
-        Elements links = doc.select("a[href]");
-
-        for (Element link : links) {
-            String href = link.attr("href");
-            if (href.contains("/library/")) {
-                LLMS llms = new LLMS();
-                String linkText = link.text();
-
-                llms.setName(scrapeName(linkText));
-                llms.setDescription(scrapeDescription(linkText));
-                llms.setType(scrapeType(linkText));
-                llms.setAvailableSizes(scrapeAvailableSizes(linkText));
-                llms.setPulls(scrapePulls(linkText));
-                llms.setTags(scrapeTags(linkText));
-                llms.setUpdated(scrapeUpdated(linkText));
-
-                llms.setInstalled(false);
-                llms.setInstallationDate();
-                llmLinks.add(llms);
-            }
-        }
-        return llmLinks;
-    }
-
+    /**
+     * Scrapes LLM links from the huggingface website.
+     *
+     * @param url the URL to scrape
+     * @return a list of {@link LLMS} objects
+     * @throws IOException if an I/O error occurs
+     */
     private static List<LLMS> scrapeHuggingFaceLinks(String url) throws IOException {
         List<LLMS> llmLinks = new ArrayList<>();
         url += "?search=qwen"; // Append 'search=qwen' to the URL
@@ -86,7 +80,7 @@ public class LLMLinkScraper {
                     llms.setUpdated("Unknown update date");
 
                     llms.setInstalled(false);
-                    llms.setInstallationDate();
+                    llms.setDateInstalled();
                     llmLinks.add(llms);
                 }
             }
@@ -97,8 +91,8 @@ public class LLMLinkScraper {
         return llmLinks;
     }
 
-    // todo: reimplement the following methods to display cards with the
-    //  scraped data. these were set up for olloama
+    // todo: reimplement the following methods to scrape and display
+    //  hugging face data in there respective fields. these were set up for olloama
     public static String scrapeName(String input) {
         Pattern hugggingFaceReg = Pattern.compile("^(\\S+)");
         Matcher matcher = hugggingFaceReg.matcher(input);

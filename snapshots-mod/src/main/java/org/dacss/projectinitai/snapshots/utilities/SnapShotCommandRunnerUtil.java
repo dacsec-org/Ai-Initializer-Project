@@ -16,17 +16,19 @@ import java.io.IOException;
 public class SnapShotCommandRunnerUtil {
 
     private static final Logger log = LoggerFactory.getLogger(SnapShotCommandRunnerUtil.class);
-    private static final String BTRFS_COMMAND = "sudo btrfs subvolume /home/$USER/.ai-initializer-project/models ";
+    /**
+     * The BTRFS command to execute.
+     */
+    private static final String BTRFS_COMMAND = "sudo btrfs subvolume /home/$USER/.ai-initializer-project/models/.snapshots/";
     private SnapShotHandler snapShotHandler;
 
     /**
      * Executes a btrfs subvolume command.
-     * @param subcommand the subcommand to execute
+     * @param subcommand the subcommand to append to the btrfs command.
      * @param args the arguments to pass to the subcommand
      */
     public static void executeCommand(String subcommand, String... args) {
         String command = switch (subcommand) {
-            /*todo: adjust commands(sudo btrfs subvolume /home/$USER/.ai-initializer-project/models list, snapshot, delete, copy...)*/
             case "snapshot" -> STR."\{BTRFS_COMMAND}create ";
             case "find-new" -> STR."\{BTRFS_COMMAND}find-new ";
             case "delete" -> STR."\{BTRFS_COMMAND}delete ";

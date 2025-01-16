@@ -3,6 +3,7 @@ package org.dacss.projectinitai.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,8 +11,10 @@ import java.nio.file.Paths;
 
 /**
  * <h1>{@link CloneLocalModelService}</h1>
+ * <p>
  * Service class for cloning local LLM models using BTRFS snapshots with a
  * frontend view 'src/main/frontend/views/clone-model.tsx'.
+ * </p>
  */
 @Service
 @BrowserCallable
@@ -22,8 +25,9 @@ public class CloneLocalModelService {
        '.tsx' frontend exists. no commands are run in the new class*/
 
     /**
-     * Clones a local LLM model using BTRFS snapshots.
-     * @param sourcePath The source path of the model.
+     * {@link #cloneModel(String, String)} method.
+     *
+     * @param sourcePath   The source path of the model.
      * @param snapshotPath The destination path for the snapshot.
      * @return A message indicating the result of the operation.
      */

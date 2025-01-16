@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.loaders.kernels;
-
+/**/
+import org.dacss.projectinitai.utilities.DirectoryFileUtil;
+/**/
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
@@ -7,20 +9,34 @@ import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
 
-import static org.dacss.projectinitai.loaders.DirectoryFileHandler.loadModel;
+import static org.dacss.projectinitai.utilities.handlers.ModelDirectoryHandler.loadModel;
 
+/**
+ * <h1>{@link DynamicModelLoaderKernel}</h1>
+ * <p>
+ *     Kernel class for loading a model dynamically.
+ * </p>
+ */
 @Component
 public class DynamicModelLoaderKernel {
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(DynamicModelLoaderKernel.class);
+
+    /**
+     * {@link #DynamicModelLoaderKernel()} 0-parameter constructor.
+     */
     public DynamicModelLoaderKernel() {
     }
 
+    /**
+     * {@link #loadModelWithKernel(String)} method.
+     * <p>
+     *     Loads a model with a kernel.
+     * @return byte[] - returns the model data.
+     * </p>
+     */
     private byte[] loadModelWithKernel(String modelPath) throws IOException {
-        try {
-            byte[] model = loadModel(modelPath);
-        } catch (IOException e) {
-            log.error("Error loading model: {}", e.getMessage());
-        }
+        byte[] model = loadModel(modelPath);
         byte[] modelData = loadModel(modelPath);
 
         TaskGraph taskGraph = new TaskGraph("s0")
@@ -45,6 +61,13 @@ public class DynamicModelLoaderKernel {
         return modelData;
     }
 
+    /**
+     * {@link #getModel()} method.
+     * <p>
+     *     Gets the model.
+     * @return byte[] - returns the model.
+     * </p>
+     */
     public byte[] getModel() throws IOException {
         return loadModelWithKernel("modelPath");
     }
