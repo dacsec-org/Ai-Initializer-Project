@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { ServerHealthService } from 'Frontend/generated/endpoints';
 
-export const config: ViewConfig = { menu: { order: 6, icon: 'line-awesome/svg/file.svg' }, title: 'Metrics' };
+export const config: ViewConfig = { menu: { order: 7, icon: 'line-awesome/svg/file.svg' }, title: 'Metrics' };
 
 interface MetricsViewState {
   metrics: any;

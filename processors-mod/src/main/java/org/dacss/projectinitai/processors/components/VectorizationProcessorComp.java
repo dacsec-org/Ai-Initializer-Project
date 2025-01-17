@@ -1,15 +1,21 @@
 package org.dacss.projectinitai.processors.components;
+/**/
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-@Slf4j
+/**
+ * <h1>{@link VectorizationProcessorComp}</h1>
+ * Processor for vectorization of JSON responses.
+ */
 @Component
 public class VectorizationProcessorComp {
 
+    private static final Logger log = LoggerFactory.getLogger(VectorizationProcessorComp.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public double[] processJson(String jsonString) {

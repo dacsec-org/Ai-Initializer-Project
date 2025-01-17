@@ -16,8 +16,10 @@
         <module name="loaders-mod" />
         <module name="frontend-mod" />
         <module name="tar-mod" />
+        <module name="downloaders-mod" />
         <module name="contexts-mod" />
         <module name="checksums-mod" />
+        <module name="directories-mod" />
         <module name="services-mod" />
         <module name="advisers-mod" />
       </profile>

@@ -1,8 +1,10 @@
 package org.dacss.projectinitai.processors.components;
-
-import com.vaadin.flow.component.notification.Notification;
-import lombok.extern.slf4j.Slf4j;
+/**/
 import org.dacss.projectinitai.processors.interfaces.StringProcessingAdviserIface;
+/**/
+import com.vaadin.flow.component.notification.Notification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.awt.Graphics2D;
@@ -14,11 +16,22 @@ import java.io.IOException;
 import java.util.Base64;
 import javax.imageio.ImageIO;
 
-
-@Slf4j
+/**
+ * <h1>{@link ImageProcessorComp}</h1>
+ * Image processor component class.
+ */
 @Component
 public class ImageProcessorComp implements StringProcessingAdviserIface {
 
+    private static final Logger log = LoggerFactory.getLogger(ImageProcessorComp.class);
+
+    /**
+     * {@link #processString(String)}.
+     * Process image file.
+     *
+     * @param stringInputOutput Image file path to process.
+     * @return Image processed and saved as a file.
+     */
     @Override
     public String processString(String stringInputOutput) {
         try {
@@ -49,7 +62,7 @@ public class ImageProcessorComp implements StringProcessingAdviserIface {
             // Convert the processed image to Base64
             String base64Image = convertToBase64(resizedBufferedImage);
 
-            return "Image processed and saved as " + outputFilePath + ". Base64: " + base64Image;
+            return STR."Image processed and saved as \{outputFilePath}. Base64: \{base64Image}";
         } catch (IOException e) {
             log.error("Error processing image", e);
             Notification.show("Error processing image");
@@ -57,6 +70,13 @@ public class ImageProcessorComp implements StringProcessingAdviserIface {
         }
     }
 
+    /**
+     * {@link #convertToBase64(BufferedImage)}.
+     * Convert image to Base64.
+     *
+     * @param image Image to convert.
+     * @return Image converted to Base64.
+     */
     protected String convertToBase64(BufferedImage image) {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             ImageIO.write(image, "png", outputStream);

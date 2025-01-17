@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import type { MessageListItem } from '@vaadin/message-list';
 import { MessageInput } from '@vaadin/react-components/MessageInput.js';
@@ -8,18 +8,18 @@ import { getPeople } from 'Frontend/demo/domain/DataService';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 export const config: ViewConfig = {
-  menu: { order: 5, icon: 'line-awesome/svg/clone-solid.svg' },
-  title: 'Clone Model',
+  menu: { order: 6, icon: 'line-awesome/svg/comment-alt.svg' },
+  title: 'Message History',
 };
 
-function MainMessageList() {
-  const items = useSignal<MessageListItem[]>([]);
+class MainMessageList extends Component {
+  items = useSignal<MessageListItem[]>([]);
 
-  useEffect(() => {
+  componentDidMount() {
     // @ts-ignore
     getPeople({ count: 1 }).then(({ people }) => {
       const person = people[0];
-      items.value = [
+      this.items.value = [
         {
           text: 'Nature does not hurry, yet everything gets accomplished.',
           time: 'yesterday',
@@ -35,26 +35,29 @@ function MainMessageList() {
         },
       ];
     });
-  }, []);
+  }
 
-  return (
-    <>
-      <MessageList items={items.value} />
-      <MessageInput
-        onSubmit={(e) => {
-          items.value = [
-            ...items.value,
-            {
-              text: e.detail.value,
-              time: 'seconds ago',
-              userName: 'Milla Sting',
-              userAbbr: 'MS',
-              userColorIndex: 3,
-            },
-          ];
-        }}
-      />
-    </>
-  );
+  handleSubmit = (e: CustomEvent) => {
+    this.items.value = [
+      ...this.items.value,
+      {
+        text: e.detail.value,
+        time: 'seconds ago',
+        userName: 'Milla Sting',
+        userAbbr: 'MS',
+        userColorIndex: 3,
+      },
+    ];
+  };
+
+  render() {
+    return (
+      <>
+        <MessageList items={this.items.value} />
+        <MessageInput onSubmit={this.handleSubmit} />
+      </>
+    );
+  }
 }
 
+export default MainMessageList;

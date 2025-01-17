@@ -1,0 +1,38 @@
+@startuml
+
+actor User
+
+participant "DirFileView" as DirFileView
+participant "directories-files.tsx" as DirectoriesFiles
+participant "DirFileService" as DirFileService
+participant "DirFileHandler" as DirFileHandler
+participant "CreateDirFileUtil" as CreateDirFileUtil
+participant "DestroyDirFileUtil" as DestroyDirFileUtil
+
+User -> DirectoriesFiles: Click Button
+DirectoriesFiles -> DirFileView: Trigger Operation
+DirFileView -> DirFileService: handleOperation(operation, path, fileName)
+DirFileService -> DirFileHandler: handleOperation(operation, path, fileName)
+
+alt CREATE_DIRECTORY
+    DirFileHandler -> CreateDirFileUtil: createDirectory(path)
+end
+
+alt CREATE_FILE
+    DirFileHandler -> CreateDirFileUtil: createFile(path, fileName)
+end
+
+alt DELETE_DIRECTORY
+    DirFileHandler -> DestroyDirFileUtil: deleteDirectory(path)
+end
+
+alt DELETE_FILE
+    DirFileHandler -> DestroyDirFileUtil: deleteFile(path, fileName)
+end
+
+DirFileHandler --> DirFileService: return
+DirFileService --> DirFileView: return
+DirFileView --> DirectoriesFiles: return
+DirectoriesFiles --> User: Show Notification
+
+@enduml

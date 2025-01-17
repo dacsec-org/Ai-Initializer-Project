@@ -1,11 +1,9 @@
-package org.dacss.projectinitai.services;
+package org.dacss.projectinitai.downloaders.services;
 /**/
 import org.dacss.projectinitai.checksums.ChecksumVerifier;
 /**/
 import com.vaadin.hilla.BrowserCallable;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

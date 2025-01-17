@@ -4,7 +4,7 @@ import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
 import { HuggingFaceService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
-  menu: { order: 9, icon: 'line-awesome/svg/search-solid.svg' },
+  menu: { order: 10, icon: 'line-awesome/svg/search-solid.svg' },
   title: 'Search Models',
 };
 
