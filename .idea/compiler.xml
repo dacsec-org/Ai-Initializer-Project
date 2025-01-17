@@ -9,23 +9,27 @@
         <outputRelativeToContentRoot value="true" />
         <module name="rags-mod" />
         <module name="types-mod" />
+        <module name="starter-mod" />
         <module name="snapshots-mod" />
+        <module name="redis-mod" />
         <module name="servers-mod" />
         <module name="processors-mod" />
-        <module name="utilities-mod" />
         <module name="loaders-mod" />
-        <module name="frontend-mod" />
+        <module name="models-mod" />
         <module name="tar-mod" />
         <module name="downloaders-mod" />
+        <module name="security-mod" />
+        <module name="metrics-mod" />
         <module name="contexts-mod" />
         <module name="checksums-mod" />
         <module name="directories-mod" />
-        <module name="services-mod" />
         <module name="advisers-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Ai-Initializer-Project" target="21" />
+      <module name="services-mod" target="21" />
+      <module name="utilities-mod" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

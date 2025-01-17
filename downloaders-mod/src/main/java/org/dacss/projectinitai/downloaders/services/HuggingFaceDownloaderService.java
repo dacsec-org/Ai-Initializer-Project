@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.downloaders.services;
 /**/
-import org.dacss.projectinitai.checksums.ChecksumVerifier;
+import org.dacss.projectinitai.directories.handlers.DirFileHandler;
+import org.dacss.projectinitai.security.services.CredentialService;
 /**/
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -13,13 +14,19 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  * <h1>{@link HuggingFaceDownloaderService}</h1>
  * <p>
  *     Backend service for downloading models from the Hugging Face model hub.
  * </p>
+ * Module dependencies:
+ * <ul>
+ *     <li>directories-mod{@link DirFileHandler}</li>
+ *     <li>security-mod{@link CredentialService}</li>
+ * </ul>
  */
 @Service
 @BrowserCallable
@@ -27,17 +34,21 @@ import java.security.NoSuchAlgorithmException;
 public class HuggingFaceDownloaderService {
 
     private static final Logger log = LoggerFactory.getLogger(HuggingFaceDownloaderService.class);
+    private final DirFileHandler dirFileHandler;
 
     /**
-     * {@link #HuggingFaceDownloaderService(ModelDirectoryHandler)} 1-parameter constructor.
+     * {@link #HuggingFaceDownloaderService(DirFileHandler)}
+     * <p>
+     *     1-parameter constructor.
+     * </p>
      */
     @Autowired
-    public HuggingFaceDownloaderService(ModelDirectoryHandler modelDirectoryHandler) {
-        //FIXME: ASAP ModelDirectoryHandler should was somehow lost in the process of refactoring
+    public HuggingFaceDownloaderService(DirFileHandler dirFileHandler) {
+        this.dirFileHandler = dirFileHandler;
     }
 
     /**
-     * {@link #getApiToken()} method.
+     * {@link #getApiToken()}
      *
      * @return String - returns the API token.
      */
@@ -46,34 +57,30 @@ public class HuggingFaceDownloaderService {
     }
 
     /**
-     * {@link #downloadModel(String, String)} method.
+     * {@link #downloadModel(String)}
      *
      * @param modelId - the model id.
-     * @param expectedChecksum - the expected checksum.
      * @return boolean - returns true if the model was downloaded successfully.
      */
-    public boolean downloadModel(String modelId, String expectedChecksum) {
+    public boolean downloadModel(String modelId) {
         try {
             String apiToken = getApiToken();
-            URI uri = URI.create(STR."https://huggingface.co/api/models/\{modelId}/download");
+            URI uri = URI.create(String.format("https://huggingface.co/api/models/%s/download", modelId));
             URL url = uri.toURL();
-            File modelsDir = ModelDirectoryHandler.createDirectory("models");
-            File modelDir = ModelDirectoryHandler.createDirectory(STR."\{modelsDir.getPath()}/\{modelId}");
-            File modelFile = ModelDirectoryHandler.createFile(modelDir.getPath(), STR."\{modelId}.zip");
+            String modelsDirPath = "models";
+            dirFileHandler.createDirectory(modelsDirPath);
+            String modelDirPath = String.format("%s/%s", modelsDirPath, modelId);
+            dirFileHandler.createDirectory(modelDirPath);
+            String modelFilePath = String.format("%s/%s.zip", modelDirPath, modelId);
+            dirFileHandler.createFile(modelDirPath, String.format("%s.zip", modelId));
 
-            ModelDirectoryHandler.downloadFile(url.toString(), modelFile);
-
-            boolean isChecksumValid = ChecksumVerifier.verifyChecksum(modelFile.getPath(), expectedChecksum);
-
-            if (isChecksumValid) {
-                File checksumsDir = ModelDirectoryHandler.createDirectory(STR."\{modelsDir.getPath()}/checksums");
-                File checksumFile = ModelDirectoryHandler.createFile(checksumsDir.getPath(), STR."\{modelId}.checksum");
-                ModelDirectoryHandler.writeFile(checksumFile, expectedChecksum);
+            try (var inputStream = url.openStream()) {
+                Files.copy(inputStream, new File(modelFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
 
-            return isChecksumValid;
-        } catch (IOException | NoSuchAlgorithmException e) {
-            log.error("Error downloading model: {}", e.getMessage());
+            return true;
+        } catch (IOException downloadExc) {
+            log.error("Error downloading model: {}", downloadExc.getMessage());
             return false;
         }
     }
