@@ -1,19 +1,20 @@
 package org.dacss.projectinitai.loaders.kernels;
-/**/
-/**/
+
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
 import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
-
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * <h1>{@link DynamicModelLoaderKernel}</h1>
  * <p>
- *     Kernel class for loading a model dynamically.
+ * Kernel class for loading a model dynamically on to the GPU.
+ * We dynamically load the model so tornado chooses the best processor, rather than forcing it.
  * </p>
  */
 @Component
@@ -22,56 +23,71 @@ public class DynamicModelLoaderKernel {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(DynamicModelLoaderKernel.class);
 
     /**
-     * {@link #DynamicModelLoaderKernel()} 0-parameter constructor.
+     * {@link #DynamicModelLoaderKernel()}
+     * 0-parameter constructor.
      */
     public DynamicModelLoaderKernel() {
     }
 
     /**
-     * {@link #loadModelWithKernel(String)} method.
-     * <p>
-     *     Loads a model with a kernel.
+     * {@link #loadModelKernel(String)}
+     * Loads a model with kernel api.
+     *
      * @return byte[] - returns the model data.
-     * </p>
      */
-    private byte[] loadModelWithKernel(String modelPath) throws IOException {
-        byte[] model = loadModel(modelPath);
-        byte[] modelData = loadModel(modelPath);
+    byte[] loadModelKernel(String modelPath) {
+        byte[] modelData = null;
+        try {
+            modelData = loadModel(modelPath);
+            final byte[] finalModelData = modelData; // Make modelData effectively final
 
-        TaskGraph taskGraph = new TaskGraph("s0")
-                .transferToDevice(DataTransferMode.FIRST_EXECUTION, modelData)
-                .task("loadModel", () -> {
-                    KernelContext context = new KernelContext();
-                    int idx = context.globalIdx;
-                    if (idx < modelData.length) {
-                        //FIXME: ASAP this should be replaced with a real model loading process
-                        modelData[idx] = (byte) (modelData[idx] + 1);
-                    }
-                })
-                .transferToHost(DataTransferMode.EVERY_EXECUTION, modelData);
+            TaskGraph taskGraph = new TaskGraph("s0")
+                    .transferToDevice(DataTransferMode.FIRST_EXECUTION, finalModelData)
+                    .task("loadModel", () -> {
+                        KernelContext context = new KernelContext();
+                        int idx = context.globalIdx;
+                        if (idx < finalModelData.length) {
+                            finalModelData[idx] = (byte) (finalModelData[idx] + 1);
+                        }
+                    })
+                    .transferToHost(DataTransferMode.EVERY_EXECUTION, finalModelData);
 
-        try (TornadoExecutionPlan executionPlan = new TornadoExecutionPlan()) {
-            executionPlan.getDevice(0).getAvailableProcessors();
-            executionPlan.withDynamicReconfiguration(Policy.PERFORMANCE, DRMode.PARALLEL).execute();
-        } catch (TornadoExecutionPlanException e) {
-            log.error("Error executing Tornado plan: {}", e.getMessage());
+            // Create an immutable task-graph
+            ImmutableTaskGraph immutableTaskGraph = taskGraph.snapshot();
+
+            try (TornadoExecutionPlan executionPlan = new TornadoExecutionPlan(immutableTaskGraph)) {
+                executionPlan.getDevice(0).getAvailableProcessors();
+                executionPlan.withDynamicReconfiguration(Policy.PERFORMANCE, DRMode.PARALLEL).execute();
+            } catch (TornadoExecutionPlanException loadModelKernelExc) {
+                log.error("Error executing Tornado plan: {}", loadModelKernelExc.getMessage());
+            }
+        } catch (IOException loadModelKernelIOExc) {
+            log.error("Error loading model: {}", loadModelKernelIOExc.getMessage());
         }
 
         return modelData;
     }
 
-    private byte[] loadModel(String modelPath) {
-        return  null;
+    /**
+     * {@link #loadModel(String)}
+     * <p>
+     * Loads a model from the file system.
+     * </p>
+     *
+     * @param modelPath the path to the model.
+     * @return byte[] - returns the model data.
+     */
+    private byte[] loadModel(String modelPath) throws IOException {
+        Path path = Paths.get(modelPath);
+        return Files.readAllBytes(path);
     }
 
     /**
-     * {@link #getModel()} method.
-     * <p>
-     *     Gets the model.
+     * {@link #getModel()}
+     *
      * @return byte[] - returns the model.
-     * </p>
      */
-    public byte[] getModel() throws IOException {
-        return loadModelWithKernel("modelPath");
+    public byte[] getModel() {
+        return loadModelKernel("modelPath");
     }
 }

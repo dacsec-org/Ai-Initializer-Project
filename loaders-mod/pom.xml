@@ -43,6 +43,16 @@
             <version>1.0.9-dev</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>hilla-endpoint</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
