@@ -24,8 +24,8 @@ This module provides services and utilities for managing directories and files. 
 - **Location:** `frontend-mod/src/main/frontend/views/directories-files.tsx`
 - **Description:** This React component provides a user interface for managing directories and files. It includes text fields for inputting paths and file names, and buttons for triggering create and delete operations. It uses the `DirFileService` to handle these operations.
 
-### `delete-model.tsx`
-- **Location:** `frontend-mod/src/main/frontend/views/delete-model.tsx`
+### `model-destroy.tsx`
+- **Location:** `frontend-mod/src/main/frontend/views/model-destroy.tsx`
 - **Description:** This React component provides a user interface for deleting models. It includes a text field for inputting the model path and a button for triggering the delete operation. It uses the `DeleteModelService` to handle the deletion.
 
 ### `custom-textfields.tsx`

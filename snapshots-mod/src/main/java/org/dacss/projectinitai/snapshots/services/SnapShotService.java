@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-@AnonymousAllowed
 public class SnapShotService {
 
     private final SnapShotHandler handle;
@@ -29,7 +28,6 @@ public class SnapShotService {
      * @param destination The destination path.
      */
     private void handleSnapshotAction(String action, String source, String destination) {
-        //todo: set up destinations and sources to match the install scripts
         switch (action) {
             case "create":
                 handle.createSnapshot(source, destination);

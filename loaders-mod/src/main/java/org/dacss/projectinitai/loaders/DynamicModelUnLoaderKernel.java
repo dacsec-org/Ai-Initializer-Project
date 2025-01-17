@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.loaders.kernels;
+package org.dacss.projectinitai.loaders;
 
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
