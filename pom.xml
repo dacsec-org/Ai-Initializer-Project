@@ -11,17 +11,19 @@
         <module>snapshots-mod</module>
         <module>contexts-mod</module>
         <module>processors-mod</module>
-        <module>frontend-mod</module>
+        <module>starter-mod</module>
         <module>advisers-mod</module>
         <module>loaders-mod</module>
         <module>checksums-mod</module>
-        <module>services-mod</module>
         <module>rags-mod</module>
         <module>types-mod</module>
-        <module>utilities-mod</module>
         <module>servers-mod</module>
         <module>downloaders-mod</module>
         <module>directories-mod</module>
+        <module>metrics-mod</module>
+        <module>security-mod</module>
+        <module>models-mod</module>
+        <module>redis-mod</module>
     </modules>
 
     <build>

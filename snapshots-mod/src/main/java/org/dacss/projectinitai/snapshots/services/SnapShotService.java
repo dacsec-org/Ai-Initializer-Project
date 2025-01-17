@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * <h1>{@link SnapShotService}</h1>
  * The SnapShotService class is a service class that handles snapshot actions.
- * It is also an endpoint for the frontend to call the backend.
+ * It is also an endpoint for the starter to call the backend.
  */
 @Service
 @BrowserCallable

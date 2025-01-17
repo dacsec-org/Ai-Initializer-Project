@@ -48,8 +48,8 @@ public class DirFileService {
                 default:
                     throw new IllegalArgumentException(STR."Unsupported operation: \{operation}");
             }
-        } catch (Exception fileDirExc) {
-            log.error("Error handling operation: {}", operation, fileDirExc);
+        } catch (Exception dirFileExc) {
+            log.error("Error handling operation: {}", operation, dirFileExc);
         }
     }
 }

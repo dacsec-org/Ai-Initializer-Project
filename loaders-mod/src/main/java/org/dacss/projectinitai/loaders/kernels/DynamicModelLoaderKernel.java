@@ -8,7 +8,7 @@ import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
 
 import java.io.IOException;
 
-import static org.dacss.projectinitai.utilities.handlers.ModelDirectoryHandler.loadModel;
+
 
 /**
  * <h1>{@link DynamicModelLoaderKernel}</h1>
@@ -58,6 +58,10 @@ public class DynamicModelLoaderKernel {
         }
 
         return modelData;
+    }
+
+    private byte[] loadModel(String modelPath) {
+        return  null;
     }
 
     /**

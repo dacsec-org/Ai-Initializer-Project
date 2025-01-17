@@ -23,8 +23,8 @@ public class DirFileHandler {
     public void createDirectory(String path) {
         try {
             CreateDirFileUtil.createDirectory(path);
-        } catch (Exception e) {
-            log.error("Error creating directory: {}", path, e);
+        } catch (Exception creatDirExc) {
+            log.error("Error creating directory: {}", path, creatDirExc);
         }
     }
 
@@ -37,8 +37,8 @@ public class DirFileHandler {
     public void createFile(String dirPath, String fileName) {
         try {
             CreateDirFileUtil.createFile(dirPath, fileName);
-        } catch (Exception e) {
-            log.error("Error creating file: {} in directory: {}", fileName, dirPath, e);
+        } catch (Exception createFileExc) {
+            log.error("Error creating file: {} in directory: {}", fileName,  dirPath, createFileExc);
         }
     }
 
@@ -50,8 +50,8 @@ public class DirFileHandler {
     public void deleteDirectory(String path) {
         try {
             DestroyDirFileUtil.deleteDirectory(path);
-        } catch (Exception e) {
-            log.error("Error deleting directory: {}", path, e);
+        } catch (Exception deleteDirExc) {
+            log.error("Error deleting directory: {}", path, deleteDirExc);
         }
     }
 
@@ -64,8 +64,8 @@ public class DirFileHandler {
     public void deleteFile(String dirPath, String fileName) {
         try {
             DestroyDirFileUtil.deleteFile(dirPath, fileName);
-        } catch (Exception e) {
-            log.error("Error deleting file: {} in directory: {}", fileName, dirPath, e);
+        } catch (Exception deleteFileExc) {
+            log.error("Error deleting file: {} in directory: {}", fileName, dirPath, deleteFileExc);
         }
     }
 }
