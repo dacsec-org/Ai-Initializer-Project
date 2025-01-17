@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.processors.components;
+/**/
 
 import org.dacss.projectinitai.processors.interfaces.StringProcessingAdviserIface;
+/**/
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.springframework.stereotype.Component;
@@ -13,8 +15,11 @@ import org.springframework.stereotype.Component;
 public class HtmlProcessorComp implements StringProcessingAdviserIface {
 
     /**
-     * @param stringInputOutput 
-     * @return
+     * {@link #processString(String)}
+     * Process string data.
+     *
+     * @param stringInputOutput
+     * @return the cleaned HTML content
      */
     @Override
     public String processString(String stringInputOutput) {

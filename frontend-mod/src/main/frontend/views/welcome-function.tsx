@@ -3,7 +3,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import { Button, Notification, TextField } from '@vaadin/react-components';
 import { HelloWorldService } from 'Frontend/generated/endpoints.js';
 
-export const config: ViewConfig = { menu: { order: 3, icon: 'line-awesome/svg/hand-spock.svg' }, title: 'Welcome' };
+export const config: ViewConfig = { menu: { order: 13, icon: 'line-awesome/svg/hand-spock.svg' }, title: 'Welcome' };
 
 export default function WelcomeView() {
   const name = useSignal('');

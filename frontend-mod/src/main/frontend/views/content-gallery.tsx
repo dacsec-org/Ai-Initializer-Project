@@ -3,8 +3,8 @@ import { VerticalLayout, HorizontalLayout } from '@vaadin/react-components';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 export const config: ViewConfig = {
-  menu: { order: 3, icon: 'line-awesome/svg/clone-solid.svg' },
-  title: 'Clone Model',
+  menu: { order: 3, icon: 'line-awesome/svg/gallery.svg' },
+  title: 'Content Gallery',
 };
 
 interface MediaItem {

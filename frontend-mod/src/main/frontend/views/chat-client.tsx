@@ -5,8 +5,8 @@ import MainMessageInput from './main-message-input';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 export const config: ViewConfig = {
-  menu: { order: 1, icon: 'line-awesome/svg/clone-solid.svg' },
-  title: 'Clone Model',
+  menu: { order: 1, icon: 'line-awesome/svg/rocket-chat' },
+  title: 'Chat Client',
 };
 
 /**

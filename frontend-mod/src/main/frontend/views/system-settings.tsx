@@ -4,7 +4,7 @@ import { Button, Notification, TextField } from '@vaadin/react-components';
 import { HelloWorldService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
-  menu: { order:11, icon: 'line-awesome/svg/cog-solid.svg' },
+  menu: { order:12, icon: 'line-awesome/svg/cog-solid.svg' },
   title: 'System Settings',
 };
 

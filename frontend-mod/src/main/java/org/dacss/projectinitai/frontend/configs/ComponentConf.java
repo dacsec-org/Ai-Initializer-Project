@@ -1,14 +1,13 @@
 package org.dacss.projectinitai.frontend.configs;
 /**/
 import org.dacss.projectinitai.advisers.components.ContextualAdviserComp;
-import org.dacss.projectinitai.processors.components.ProcessorFactoryComp;
-import org.dacss.projectinitai.processors.components.TextProcessorComp;
+import org.dacss.projectinitai.processors.components.*;
 import org.dacss.projectinitai.loaders.kernels.DynamicModelLoaderKernel;
 import org.dacss.projectinitai.loaders.LLMProcessorComp;
 import org.dacss.projectinitai.loaders.parallelized.ParallelizedModelLoader;
+/**/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-/**/
 
 /**
  * <h1>{@link ComponentConf}</h1>
@@ -31,9 +30,22 @@ public class ComponentConf {
                 new DynamicModelLoaderKernel(),
                 new ParallelizedModelLoader(),
                 new ContextualAdviserComp<>(),
-                /* fixme: the bellow ProcessorFactoryComp(); is looking for 14 args */
-                new ProcessorFactoryComp());
-        //FIXME: ProcessorFactoryComp() is looking for 14 args
+                new ProcessorFactoryComp(new TextProcessorComp()
+                        , new JsonProcessorComp()
+                        , new XmlProcessorComp()
+                        , new CsvProcessorComp()
+                        , new DocumentProcessorComp()
+                        , new EncodingProcessorComp()
+                        , new HtmlProcessorComp()
+                        , new ImageProcessorComp()
+                        , new MissingValuesProcessorComp()
+                        , new PdfProcessorComp()
+                        , new TokenizationProcessorComp()
+                        , new VectorizationProcessorComp()
+                        , new VideoProcessorComp()
+                        , new AudioProcessorComp()
+                )
+        );
     }
 
     /**

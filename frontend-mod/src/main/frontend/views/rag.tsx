@@ -10,7 +10,7 @@ const anchorStyle = {
 };
 
 export const config: ViewConfig = {
-  menu: { order: 8, icon: 'line-awesome/svg/brain-solid.svg' },
+  menu: { order: 9, icon: 'line-awesome/svg/cogs.svg' },
   title: 'RAG Settings',
 };
 

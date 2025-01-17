@@ -20,6 +20,8 @@
         <module>types-mod</module>
         <module>utilities-mod</module>
         <module>servers-mod</module>
+        <module>downloaders-mod</module>
+        <module>directories-mod</module>
     </modules>
 
     <build>

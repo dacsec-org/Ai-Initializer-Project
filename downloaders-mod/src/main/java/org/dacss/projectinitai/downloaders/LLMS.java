@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.utilities;
+package org.dacss.projectinitai.downloaders;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -19,7 +19,8 @@ class CustomTextFields extends Component {
     switch (fieldNumber) {
       case 1:
         return (
-          <TextField label="Model location" helperText="add custom LLM location(not recomended)" placeholder="default: /project-ai-initializer/models" clearButtonVisible>
+          <TextField label="Model location" helperText="add custom LLM location(not recomended)"
+                     placeholder="default: /home/USER/project-ai-initializer/models" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 1" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>
@@ -27,7 +28,8 @@ class CustomTextFields extends Component {
         );
       case 2:
         return (
-          <TextField label="Snapshots location" helperText="add custom LLM snapshot location(not recomended)" placeholder="default: /project-ai-initializer/models/.snapshots" clearButtonVisible>
+          <TextField label="Snapshots location" helperText="add custom LLM snapshot location(not recomended)"
+                     placeholder="default: /home/USER/project-ai-initializer/models/.snapshots" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 2" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>
@@ -35,7 +37,8 @@ class CustomTextFields extends Component {
         );
       case 3:
         return (
-          <TextField label="File 3" helperText="Helper text 3" placeholder="Placeholder 3" clearButtonVisible>
+          <TextField label="path" helperText="enter path to directory"
+                     placeholder="/path/to/directory" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 3" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>
@@ -43,7 +46,8 @@ class CustomTextFields extends Component {
         );
       case 4:
         return (
-          <TextField label="File 4" helperText="Helper text 4" placeholder="Placeholder 4" clearButtonVisible>
+          <TextField label="file path" helperText="enter path to file"
+                     placeholder="/path/to/file.*" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 4" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>
@@ -51,7 +55,8 @@ class CustomTextFields extends Component {
         );
       case 5:
         return (
-          <TextField label="File 5" helperText="Helper text 5" placeholder="Placeholder 5" clearButtonVisible>
+          <TextField label="File 5" helperText="Helper text 5"
+                     placeholder="Placeholder 5" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 5" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>
@@ -59,7 +64,8 @@ class CustomTextFields extends Component {
         );
       case 6:
         return (
-          <TextField label="File 6" helperText="Helper text 6" placeholder="Placeholder 6" clearButtonVisible>
+          <TextField label="File 6" helperText="Helper text 6"
+                     placeholder="Placeholder 6" clearButtonVisible>
             <Tooltip slot="tooltip" text="Tooltip text 6" />
             <Icon slot="prefix" icon="vaadin:vaadin-h" />
             <span slot="suffix">:)</span>

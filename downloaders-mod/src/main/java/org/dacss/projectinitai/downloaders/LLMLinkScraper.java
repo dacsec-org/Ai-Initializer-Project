@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.utilities;
+package org.dacss.projectinitai.downloaders;
 /**/
 
 import org.jsoup.Connection;

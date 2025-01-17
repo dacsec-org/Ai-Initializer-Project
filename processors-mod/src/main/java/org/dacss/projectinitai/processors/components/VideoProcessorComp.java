@@ -1,8 +1,10 @@
 package org.dacss.projectinitai.processors.components;
-
-import com.vaadin.flow.component.notification.Notification;
-import lombok.extern.slf4j.Slf4j;
+/**/
 import org.dacss.projectinitai.processors.interfaces.ByteProcessingAdviserIface;
+/**/
+import com.vaadin.flow.component.notification.Notification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -11,9 +13,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-@Slf4j
+/**
+ * <h1>{@link VideoProcessorComp}</h1>
+ * Processor for video responses.
+ */
 @Component
 public class VideoProcessorComp implements ByteProcessingAdviserIface {
+
+    private static final Logger log = LoggerFactory.getLogger(VideoProcessorComp.class);
 
     @Override
     public byte[] processBytes(byte[] byteInputOutput) {
@@ -29,7 +36,7 @@ public class VideoProcessorComp implements ByteProcessingAdviserIface {
             return outputStream.toByteArray();
         } catch (IOException e) {
             log.error("Error processing video data: ", e);
-            Notification.show("Error processing video data: " + e.getMessage());
+            Notification.show(STR."Error processing video data: \{e.getMessage()}");
             return null;
         }
     }

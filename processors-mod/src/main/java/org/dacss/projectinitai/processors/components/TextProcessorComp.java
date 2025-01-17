@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.processors.components;
-
+/**/
 import org.dacss.projectinitai.processors.interfaces.StringProcessingAdviserIface;
+/**/
 import org.springframework.stereotype.Component;
 
 import java.text.Normalizer;
@@ -9,6 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * <h1>{@link TextProcessorComp}</h1>
+ */
 @Component
 public class TextProcessorComp implements StringProcessingAdviserIface {
 
