@@ -1,8 +1,5 @@
 package org.dacss.projectinitai.loaders;
 
-import org.dacss.projectinitai.loaders.handlers.ModelLoadUnloadHandler;
-import org.dacss.projectinitai.loaders.kernels.DynamicModelLoaderKernel;
-import org.dacss.projectinitai.loaders.kernels.DynamicModelUnLoaderKernel;
 import org.dacss.projectinitai.loaders.services.ModelLoadUnloadService;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -37,7 +34,7 @@ public class LoadersModuleTest {
     public void setUp() {
         dynamicModelLoaderKernel = new DynamicModelLoaderKernel();
         dynamicModelUnLoaderKernel = new DynamicModelUnLoaderKernel();
-        modelLoadUnloadHandler = new ModelLoadUnloadHandler(dynamicModelLoaderKernel, dynamicModelUnLoaderKernel);
+        modelLoadUnloadHandler = new ModelLoadUnloadHandler();
         modelLoadUnloadService = new ModelLoadUnloadService(modelLoadUnloadHandler);
     }
 

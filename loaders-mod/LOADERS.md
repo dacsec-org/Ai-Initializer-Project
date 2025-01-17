@@ -46,3 +46,7 @@ This kernel class handles the unloading of a model from the GPU. It uses Tornado
 ## Summary
 
 The `loaders-mod` module provides a comprehensive solution for dynamically loading and unloading models onto and from the GPU. It ensures efficient performance by leveraging the TornadoVM framework and provides a seamless interface for front-end interaction through the `ModelLoadUnloadService` class.
+
+## Sequence Diagram
+
+![Loaders Sequence Diagram](pumles/loaders.png)

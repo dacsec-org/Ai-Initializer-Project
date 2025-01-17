@@ -1,0 +1,32 @@
+@startuml loaders_sequence
+
+actor User
+
+participant "LoadUnloadComponent.tsx" as LUC
+participant "ModelLoadUnloadService" as MLUS
+participant "ModelLoadUnloadHandler" as MLUH
+participant "DynamicModelLoaderKernel" as DMLK
+participant "DynamicModelUnLoaderKernel" as DMUK
+
+User -> LUC: loadModel("path/to/model")
+LUC -> MLUS: loadModel("path/to/model")
+MLUS -> MLUH: loadModel("path/to/model")
+MLUH -> DMLK: loadModelKernel("path/to/model")
+DMLK -> DMLK: loadModel("path/to/model")
+DMLK -> DMLK: TaskGraph execution
+DMLK --> MLUH: byte[] modelData
+MLUH --> MLUS: byte[] modelData
+MLUS --> LUC: byte[] modelData
+LUC -> User: Notification.show("Model loaded successfully")
+
+User -> LUC: unloadModel()
+LUC -> MLUS: unloadModel(byte[] modelData)
+MLUS -> MLUH: unloadModel(byte[] modelData)
+MLUH -> DMUK: unloadModelKernel(byte[] modelData)
+DMUK -> DMUK: TaskGraph execution
+DMUK --> MLUH: boolean success
+MLUH --> MLUS: boolean success
+MLUS --> LUC: boolean success
+LUC -> User: Notification.show("Model unloaded successfully")
+
+@enduml

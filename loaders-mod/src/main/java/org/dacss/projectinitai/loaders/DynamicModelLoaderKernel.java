@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.loaders.kernels;
+package org.dacss.projectinitai.loaders;
 
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
@@ -35,7 +35,7 @@ public class DynamicModelLoaderKernel {
      *
      * @return byte[] - returns the model data.
      */
-    byte[] loadModelKernel(String modelPath) {
+    protected byte[] loadModelKernel(String modelPath) {
         byte[] modelData = null;
         try {
             modelData = loadModel(modelPath);

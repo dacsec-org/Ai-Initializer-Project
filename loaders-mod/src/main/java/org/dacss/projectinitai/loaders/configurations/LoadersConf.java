@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.loaders.configurations;
 /**/
-import org.dacss.projectinitai.loaders.kernels.DynamicModelLoaderKernel;
+import org.dacss.projectinitai.loaders.DynamicModelLoaderKernel;
 //import org.dacss.projectinitai.loaders.parallelized.ParallelizedModelLoader;
 /**/
 import org.springframework.context.annotation.Bean;
