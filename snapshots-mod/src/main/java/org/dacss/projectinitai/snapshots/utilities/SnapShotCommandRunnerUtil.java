@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.snapshots.utilities;
 /**/
-import org.dacss.projectinitai.snapshots.handlers.SnapShotHandler;
+import org.dacss.projectinitai.snapshots.handlers.SnapShotsHandler;
 /**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * <h1>{@link SnapShotCommandRunnerUtil}</h1>
  * <p>
- *     Utility class for executing BTRFS subvolume commands run byt the {@link SnapShotHandler}.
+ *     Utility class for executing BTRFS subvolume commands run byt the {@link SnapShotsHandler}.
  * </p>
  */
 public class SnapShotCommandRunnerUtil {
@@ -20,7 +20,7 @@ public class SnapShotCommandRunnerUtil {
      * The BTRFS command to execute.
      */
     private static final String BTRFS_COMMAND = "sudo btrfs subvolume /home/$USER/.ai-initializer-project/models/.snapshots/";
-    private SnapShotHandler snapShotHandler;
+    private SnapShotsHandler snapShotsHandler;
 
     /**
      * Executes a btrfs subvolume command.

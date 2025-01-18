@@ -24,6 +24,7 @@
         <module name="checksums-mod" />
         <module name="directories-mod" />
         <module name="advisers-mod" />
+        <module name="admin-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

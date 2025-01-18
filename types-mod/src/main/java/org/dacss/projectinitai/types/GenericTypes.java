@@ -1,15 +1,15 @@
 package org.dacss.projectinitai.types;
 
-import org.dacss.projectinitai.contexts.generative.Generative;
-import org.dacss.projectinitai.contexts.krr.KnowledgeRepresentationReasoning;
-import org.dacss.projectinitai.contexts.nlp.NaturalLanguageProcessing;
-import org.dacss.projectinitai.contexts.optimization.Optimization;
-import org.dacss.projectinitai.contexts.predictive.PredictiveAnalytics;
-import org.dacss.projectinitai.contexts.recomondation.RecommendationSystems;
-import org.dacss.projectinitai.contexts.reinforcement.ReinforcementLearning;
-import org.dacss.projectinitai.contexts.robotics.Robotics;
-import org.dacss.projectinitai.contexts.speech.SpeechRecognition;
-import org.dacss.projectinitai.contexts.vision.ComputerVision;
+import org.dacss.projectinitai.contexts.enums.generative.Generative;
+import org.dacss.projectinitai.contexts.enums.krr.KnowledgeRepresentationReasoning;
+import org.dacss.projectinitai.contexts.enums.nlp.NaturalLanguageProcessing;
+import org.dacss.projectinitai.contexts.enums.optimization.Optimization;
+import org.dacss.projectinitai.contexts.enums.predictive.PredictiveAnalytics;
+import org.dacss.projectinitai.contexts.enums.recomondation.RecommendationSystems;
+import org.dacss.projectinitai.contexts.enums.reinforcement.ReinforcementLearning;
+import org.dacss.projectinitai.contexts.enums.robotics.Robotics;
+import org.dacss.projectinitai.contexts.enums.speech.SpeechRecognition;
+import org.dacss.projectinitai.contexts.enums.vision.ComputerVision;
 
 /**
  * <h1>{@link GenericTypes}</h1>

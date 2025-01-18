@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.downloaders;
 /**/
-import org.dacss.projectinitai.downloaders.services.HuggingFaceDownloaderService;
+import org.dacss.projectinitai.downloaders.services.DownloadersService;
 import org.dacss.projectinitai.directories.handlers.DirFileHandler;
 /**/
 import org.testng.annotations.AfterSuite;
@@ -36,13 +36,13 @@ import static org.testng.Assert.assertFalse;
  */
 public class DownloadersModuleTest {
 
-    private HuggingFaceDownloaderService huggingFaceDownloaderService;
+    private DownloadersService downloadersService;
     private LLMLinkScraper llmLinkScraper;
 
     @BeforeMethod
     public void setUp() {
         DirFileHandler dirFileHandler = new DirFileHandler();
-        huggingFaceDownloaderService = new HuggingFaceDownloaderService(dirFileHandler);
+        downloadersService = new DownloadersService(dirFileHandler);
         llmLinkScraper = new LLMLinkScraper();
     }
 
@@ -53,14 +53,14 @@ public class DownloadersModuleTest {
 
     @Test
     public void testGetApiToken() {
-        String apiToken = huggingFaceDownloaderService.getApiToken();
+        String apiToken = downloadersService.getApiToken();
         assertNotNull(apiToken, "API token should not be null");
         System.out.println("Test 'getApiToken()' passed: " + apiToken);
     }
 
     @Test(dependsOnMethods = "testGetApiToken")
     public void testDownloadModel() {
-        boolean result = huggingFaceDownloaderService.downloadModel("test-model-id");
+        boolean result = downloadersService.downloadModel("test-model-id");
         assertTrue(result, "Model should be downloaded successfully");
         System.out.println(STR."Test 'downloadModel()' passed: \{result}");
     }
