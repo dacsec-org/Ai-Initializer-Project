@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.snapshots.configurations;
 /**/
-import org.dacss.projectinitai.snapshots.handlers.SnapShotHandler;
+import org.dacss.projectinitai.snapshots.handlers.SnapShotsHandler;
 /**/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
 public class SnapshotsConf {
 
     /**
-     * Bean for {@link SnapShotHandler}
+     * Bean for {@link SnapShotsHandler}
      */
     @Bean
-    public SnapShotHandler snapShotHandler() {
-        return new SnapShotHandler();
+    public SnapShotsHandler snapShotHandler() {
+        return new SnapShotsHandler();
     }
 }

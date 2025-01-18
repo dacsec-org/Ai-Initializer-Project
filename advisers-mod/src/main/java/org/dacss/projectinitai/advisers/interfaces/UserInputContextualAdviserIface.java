@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.advisers.interfaces;
 
-import org.dacss.projectinitai.contexts.interfaces.ContextType;
+import org.dacss.projectinitai.contexts.enums.types.ContextType;
 
 /**
  * <h1>{@link UserInputContextualAdviserIface}</h1>

@@ -1,12 +1,12 @@
 package org.dacss.projectinitai.advisers.implementors;
 
-import org.dacss.projectinitai.advisers.components.ContextualAdviserComp;
+import org.dacss.projectinitai.contexts.advisers.components.ContextualAdviserComp;
 import org.dacss.projectinitai.advisers.interfaces.ContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.DataHandlerContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.UserInputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.AIOutputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.ContextFacadeIface;
-import org.dacss.projectinitai.contexts.interfaces.ContextType;
+import org.dacss.projectinitai.contexts.enums.types.ContextType;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -106,9 +106,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return T - updated context
      */
     @Override
-    public T updateContext(T userRequest, T aiResponse) {
-        return CAC.updateContext(userRequest, aiResponse);
-    }
+    public T updateContext(T userRequest, T aiResponse) { return CAC.updateContext(userRequest, aiResponse); }
 
     /**
      * {@link #processUserInput(T)}
@@ -117,9 +115,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return T - processed user request
      */
     @Override
-    public T processUserInput(T userRequest) {
-        return CAC.processUserInput(userRequest);
-    }
+    public T processUserInput(T userRequest) { return CAC.processUserInput(userRequest); }
 
     /**
      * {@link #processAIOutput(T)}
@@ -128,9 +124,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return T - processed AI response
      */
     @Override
-    public T processAIOutput(T aiResponse) {
-        return CAC.processAIOutput(aiResponse);
-    }
+    public T processAIOutput(T aiResponse) { return CAC.processAIOutput(aiResponse); }
 
     /**
      * {@link #getGenerativeContext(ContextType)}
@@ -139,9 +133,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - generative context
      */
     @Override
-    public String getGenerativeContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getGenerativeContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getOptimizationContext(ContextType)}
@@ -150,9 +142,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - optimization context
      */
     @Override
-    public String getOptimizationContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getOptimizationContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getComputerVisionContext(ContextType)}
@@ -161,9 +151,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - computer vision context
      */
     @Override
-    public String getComputerVisionContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getComputerVisionContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getRoboticsContext(ContextType)}
@@ -172,9 +160,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - robotics context
      */
     @Override
-    public String getRoboticsContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getRoboticsContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getKnowledgeRepresentationReasoningContext(ContextType)}
@@ -183,9 +169,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - knowledge representation reasoning context
      */
     @Override
-    public String getKnowledgeRepresentationReasoningContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getKnowledgeRepresentationReasoningContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getPredictiveAnalyticsContext(ContextType)}
@@ -194,9 +178,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - predictive analytics context
      */
     @Override
-    public String getPredictiveAnalyticsContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getPredictiveAnalyticsContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #handleData(T)}
@@ -205,9 +187,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return T - handled data
      */
     @Override
-    public T handleData(T data) {
-        return CAC.updateContext(data, data);
-    }
+    public T handleData(T data) { return CAC.updateContext(data, data); }
 
     /**
      * {@link #getNaturalLanguageProcessingContext(ContextType)}
@@ -216,9 +196,7 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - natural language processing context
      */
     @Override
-    public String getNaturalLanguageProcessingContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getNaturalLanguageProcessingContext(ContextType contextType) { return contextType.getContextMessage(); }
 
     /**
      * {@link #getRecommendationSystemsContext(ContextType)}
@@ -227,7 +205,5 @@ public class ContextFacadeIfaceImpl<T> implements
      * @return String - recommendation systems context
      */
     @Override
-    public String getRecommendationSystemsContext(ContextType contextType) {
-        return contextType.getContextMessage();
-    }
+    public String getRecommendationSystemsContext(ContextType contextType) { return contextType.getContextMessage(); }
 }

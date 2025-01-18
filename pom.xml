@@ -24,6 +24,7 @@
         <module>security-mod</module>
         <module>models-mod</module>
         <module>redis-mod</module>
+        <module>admin-mod</module>
     </modules>
 
     <build>
