@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.snapshots.utilities;
 /**/
-import org.dacss.projectinitai.snapshots.handlers.SnapShotsHandler;
+import org.dacss.projectinitai.snapshots.SnapShotsHandler;
 /**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

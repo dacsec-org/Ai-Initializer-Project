@@ -25,6 +25,7 @@
         <module>models-mod</module>
         <module>redis-mod</module>
         <module>admin-mod</module>
+        <module>messages-mod</module>
     </modules>
 
     <build>

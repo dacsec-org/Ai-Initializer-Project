@@ -2,9 +2,9 @@ package org.dacss.projectinitai.rags.configurations;
 
 import org.dacss.projectinitai.processors.components.VectorizationProcessorComp;
 
+import org.dacss.projectinitai.rags.components.ConversationListerComp;
 import org.dacss.projectinitai.rags.utilities.RAGCreatorUtil;
 import org.dacss.projectinitai.rags.handlers.RAGHandler;
-import org.dacss.projectinitai.rags.components.RAGConversationListerComp;
 import org.dacss.projectinitai.rags.utilities.RAGClonerUtil;
 import org.dacss.projectinitai.rags.utilities.RAGDestroyerUtil;
 import org.dacss.projectinitai.rags.utilities.RAGUpdaterUtil;
@@ -15,7 +15,9 @@ import org.springframework.context.annotation.Configuration;
 public class RAGConf {
 
     @Bean
-    public RAGHandler ragHandler(RAGCreatorUtil creator, RAGDestroyerUtil destroyer, RAGClonerUtil cloner, RAGUpdaterUtil updater, RAGConversationListerComp lister, VectorizationProcessorComp vectorize) {
+    public RAGHandler ragHandler(RAGCreatorUtil creator, RAGDestroyerUtil destroyer
+            , RAGClonerUtil cloner, RAGUpdaterUtil updater
+            , ConversationListerComp lister, VectorizationProcessorComp vectorize) {
         return new RAGHandler(creator, destroyer, cloner, updater, lister, vectorize);
     }
 
@@ -35,10 +37,10 @@ public class RAGConf {
     }
 
     @Bean
-    public RAGConversationListerComp ragConversationLister() {
+    public ConversationListerComp ragConversationLister() {
         /*fixme: the bellow RagConversationLister() is looking for 3 args*/
         return null;
-//        return new RAGConversationListerComp();
+//        return new ConversationListerComp();
     }
 
     @Bean
@@ -47,7 +49,5 @@ public class RAGConf {
     }
 
     @Bean
-    public VectorizationProcessorComp vectorizationProcessor() {
-        return new VectorizationProcessorComp();
-    }
+    public VectorizationProcessorComp vectorizationProcessor() { return new VectorizationProcessorComp(); }
 }

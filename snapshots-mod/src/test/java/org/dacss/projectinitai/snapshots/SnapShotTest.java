@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.snapshots;
 
-import org.dacss.projectinitai.snapshots.handlers.SnapShotsHandler;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

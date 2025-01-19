@@ -1,7 +1,7 @@
 package org.dacss.projectinitai.rags.handlers;
 /**/
 import org.dacss.projectinitai.processors.components.VectorizationProcessorComp;
-import org.dacss.projectinitai.rags.components.RAGConversationListerComp;
+import org.dacss.projectinitai.rags.components.ConversationListerComp;
 import org.dacss.projectinitai.rags.utilities.RAGCreatorUtil;
 import org.dacss.projectinitai.rags.utilities.RAGClonerUtil;
 import org.dacss.projectinitai.rags.utilities.RAGDestroyerUtil;
@@ -19,11 +19,12 @@ public class RAGHandler {
     private final RAGDestroyerUtil destroyer;
     private final RAGClonerUtil cloner;
     private final RAGUpdaterUtil updater;
-    private final RAGConversationListerComp lister;
+    private final ConversationListerComp lister;
     private final VectorizationProcessorComp vectorize;
 
     public RAGHandler(RAGCreatorUtil creator, RAGDestroyerUtil destroyer,
-                      RAGClonerUtil cloner, RAGUpdaterUtil updater, RAGConversationListerComp lister, VectorizationProcessorComp vectorize) {
+                      RAGClonerUtil cloner, RAGUpdaterUtil updater, ConversationListerComp lister
+            , VectorizationProcessorComp vectorize) {
         this.creator = creator;
         this.destroyer = destroyer;
         this.cloner = cloner;
