@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class RAGService {
 
     private static final Logger log = LoggerFactory.getLogger(RAGService.class);

@@ -3,137 +3,121 @@ import { Icon, MessageList } from '@vaadin/react-components';
 import MainLayout from './@layout';
 import MainMessageInput from './main-message-input';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+import { MessagesService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
-  menu: { order: 1, icon: 'line-awesome/svg/rocket-chat' },
-  title: 'Chat Client',
+  menu: { order: 1, icon: 'line-awesome/svg/rocket-chat' }, title: 'Chat Client',
 };
 
-/**
- * {@link ChatClientProps}
- * <p>
- *   This is the props interface for the chat client component
- * </p>
- */
 interface ChatClientProps {}
 
-/**
- * {@link ChatClientState}
- * <p>
- *   This is the state interface for the chat client component
- * </p>
- */
-interface ChatClientState {
-  messages: {
+interface MessageSet {
+  userMessage: {
     text: string;
     time: string;
     userName: string;
     userColorIndex: number;
     options: React.ReactNode;
-  }[];
+  };
+  aiMessage: {
+    text: string;
+    time: string;
+    userName: string;
+    userColorIndex: number;
+    options: React.ReactNode;
+  };
+}
+
+interface ChatClientState {
+  messageSets: MessageSet[];
+  loading: boolean;
+  error: string | null;
 }
 
 /**
  * {@link ChatClient}
- * <p>
- *   This is the main chat client component that renders a chat client
- * </p>
  */
 class ChatClient extends Component<ChatClientProps, ChatClientState> {
+  private messageEndRef: React.RefObject<HTMLDivElement>;
+
   constructor(props: ChatClientProps) {
     super(props);
     this.state = {
-      messages: [],
+      messageSets: [],
+      loading: false,
+      error: null,
     };
+    this.messageEndRef = React.createRef();
   }
 
-  /**
-   * {@link #addAiMessage}
-   * <p>
-   *   This method adds an AI message to the chat client
-   * </p>
-   * @param aiResponse
-   */
-  addAiMessage(aiResponse: string) {
-    const aiMessage = {
-      text: aiResponse,
-      time: new Date().toISOString(),
-      userName: 'AI',
-      userColorIndex: 2,
-      options: this.renderMessageOptions(),
-    };
-    this.setState((prevState) => ({
-      messages: [...prevState.messages, aiMessage],
-    }));
-  }
-
-  /**
-   * {@link #addUserMessage}
-   * <p>
-   *   This method adds a user message to the chat client
-   * </p>
-   * @param userRequest
-   */
-  addUserMessage(userRequest: string) {
+  addMessageSet(userRequest: string, aiResponse: string) {
     const userMessage = {
       text: userRequest,
-      time: new Date().toISOString(),
+      time: new Date().toLocaleTimeString(),
       userName: 'User',
       userColorIndex: 1,
       options: this.renderMessageOptions(),
     };
+
+    const aiMessage = {
+      text: aiResponse,
+      time: new Date().toLocaleTimeString(),
+      userName: 'AI',
+      userColorIndex: 2,
+      options: this.renderMessageOptions(),
+    };
+
+    const messageSet: MessageSet = { userMessage, aiMessage };
+
     this.setState((prevState) => ({
-      messages: [...prevState.messages, userMessage],
-    }));
+      messageSets: [...prevState.messageSets, messageSet],
+      loading: false,
+      error: null,
+    }), this.scrollToBottom);
   }
 
-  /**
-   * {@link #renderMessageOptions}
-   * <p>
-   *   This method renders message options
-   * </p>
-   */
   renderMessageOptions() {
     return (
       <div className="message-options">
-        <Icon icon="vaadin:thumbs-up" />
-        <Icon icon="vaadin:thumbs-down" />
-        <Icon icon="vaadin:trash" />
+        <span role="img" aria-label="thumbs-up" onClick={() => alert('Thumbs up clicked!')}>👍</span>
+        <span role="img" aria-label="thumbs-down" onClick={() => alert('Thumbs down clicked!')}>👎</span>
+        <span role="img" aria-label="trash" onClick={() => alert('Trash clicked!')}>🗑️</span>
+        <span role="img" aria-label="retry" onClick={() => alert('Retry clicked!')}>🔄</span>
       </div>
     );
   }
 
-  /**
-   * {@link #handleSubmit}
-   * <p>
-   *   This method handles the submit event
-   * </p>
-   * @param event
-   */
-  handleSubmit = (event: any) => {
+  handleSubmit = async (event: any) => {
     const userRequest = event.detail.value;
-    const aiResponse = this.sendMessage(userRequest);
-    this.addUserMessage(userRequest);
-    this.addAiMessage(aiResponse);
+    this.setState({ loading: true, error: null });
+    try {
+      const aiResponse = await MessagesService.getAiResponse(userRequest);
+      this.addMessageSet(userRequest, aiResponse);
+    } catch (error) {
+      this.setState({ loading: false, error: 'Failed to get AI response' });
+    }
   };
 
-  /**
-   * {@link #sendMessage}
-   * <p>
-   *   This method sends a message
-   * </p>
-   * @param message
-   */
-  sendMessage(message: string) {
-    // Placeholder for message processing logic
-    return `Processed: ${message}`;
-  }
+  scrollToBottom = () => {
+    if (this.messageEndRef.current) {
+      this.messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   render() {
     return (
       <MainLayout>
-        <MessageList items={this.state.messages} />
+        {this.state.messageSets.map((set, index) => (
+          <div key={index} className="message-set">
+            <MessageList items={[set.userMessage]} />
+            <MessageList items={[set.aiMessage]} />
+            {set.userMessage.options}
+          </div>
+        ))}
+        {this.state.loading && <div>Loading...</div>}
+        {this.state.error && <div className="error">{this.state.error}</div>}
         <MainMessageInput onSubmit={this.handleSubmit} />
+        <div ref={this.messageEndRef} />
       </MainLayout>
     );
   }

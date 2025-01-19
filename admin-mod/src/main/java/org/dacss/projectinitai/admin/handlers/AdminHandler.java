@@ -11,8 +11,8 @@ import org.dacss.projectinitai.models.services.ModelsService;
 import org.dacss.projectinitai.processors.services.ProcessorsService;
 import org.dacss.projectinitai.rags.services.RAGService;
 import org.dacss.projectinitai.security.services.SecurityService;
-import org.dacss.projectinitai.servers.services.ServersService;
-import org.dacss.projectinitai.snapshots.services.SnapShotsService;
+import org.dacss.projectinitai.servers.ServersService;
+import org.dacss.projectinitai.snapshots.SnapShotsService;
 import org.dacss.projectinitai.types.services.TypesService;
 /**/
 import org.springframework.beans.factory.annotation.Autowired;

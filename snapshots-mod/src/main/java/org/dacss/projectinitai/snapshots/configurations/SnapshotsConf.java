@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.snapshots.configurations;
 /**/
-import org.dacss.projectinitai.snapshots.handlers.SnapShotsHandler;
+import org.dacss.projectinitai.snapshots.SnapShotsHandler;
 /**/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

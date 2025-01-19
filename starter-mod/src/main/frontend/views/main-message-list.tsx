@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import type { MessageListItem } from '@vaadin/message-list';
-import { MessageInput } from '@vaadin/react-components/MessageInput.js';
+import { MainMessageInput  } from './main-message-input';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
 // @ts-ignore
 import { getPeople } from 'Frontend/demo/domain/DataService';

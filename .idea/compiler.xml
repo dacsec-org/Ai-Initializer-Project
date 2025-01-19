@@ -19,6 +19,7 @@
         <module name="tar-mod" />
         <module name="downloaders-mod" />
         <module name="security-mod" />
+        <module name="messages-mod" />
         <module name="metrics-mod" />
         <module name="contexts-mod" />
         <module name="checksums-mod" />
