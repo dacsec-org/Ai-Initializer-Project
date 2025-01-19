@@ -73,23 +73,6 @@ the following improvements over Qwen2:
 - **AppArmor Profiles**: The application uses AppArmor profiles - a Linux security module
 - to ensure the privacy and security of user data.
 
-[//]: # (## AI Options)
-
-[//]: # ()
-[//]: # (- Cybersecurity)
-
-[//]: # (- Chat Completion)
-
-[//]: # (- Embedding)
-
-[//]: # (- Text to Image)
-
-[//]: # (- Audio Transcription)
-
-[//]: # (- Text to Speech)
-
-[//]: # (- Moderation)
-
 ## Project Directory Structure
 
 - /etc/project-ai-initializer/
@@ -114,7 +97,21 @@ the following improvements over Qwen2:
 - /var/log/project-ai-initializer/
    - *.log
 
+# Contributing
 
+## If You Want to Contribute
 
+I use IntelliJ IDEA for development. If you want to contribute to this project, please follow these steps:
 
+1. **Modify IntelliJ Settings**: Ensure your IntelliJ settings are 
+   configured as shown in the example screenshot ![ToDo Settings](/pumles/png/todo_setup.png).
 
+2. **Select a Task**: Choose a 'TODO' or 'FIXME' task from the codebase.
+
+3. **Create a Branch**: Create a new branch from the default branch.
+
+4. **Refactor**: Make your changes and refactor the code as needed.
+
+5. **Submit a Pull Request**: Once your changes are complete, submit a pull request for review.
+
+We appreciate your contributions!
