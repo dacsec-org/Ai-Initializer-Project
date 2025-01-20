@@ -37,9 +37,9 @@ public record AdminContextMessage(String detailedContextMessage) {
                                 "DataTypeHandler": "Handling various data types."
                             },
                             "configurations": {}
+                                          }
                                         }
-                                    }
-                                }
+                         }
                         """);
     }
 }
