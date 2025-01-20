@@ -23,7 +23,7 @@
         <module>metrics-mod</module>
         <module>security-mod</module>
         <module>models-mod</module>
-        <module>redis-mod</module>
+<!--        <module>redis-mod</module>-->
         <module>admin-mod</module>
         <module>messages-mod</module>
     </modules>

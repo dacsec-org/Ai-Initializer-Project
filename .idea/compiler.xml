@@ -11,7 +11,6 @@
         <module name="types-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
-        <module name="redis-mod" />
         <module name="servers-mod" />
         <module name="processors-mod" />
         <module name="loaders-mod" />
@@ -30,6 +29,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Ai-Initializer-Project" target="21" />
+      <module name="redis-mod" target="21" />
       <module name="services-mod" target="21" />
       <module name="utilities-mod" target="21" />
     </bytecodeTargetLevel>
