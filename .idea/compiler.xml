@@ -7,24 +7,41 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rags-mod" />
         <module name="types-mod" />
+        <module name="classifications-mod" />
+        <module name="reductions-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
         <module name="servers-mod" />
-        <module name="processors-mod" />
+        <module name="regressions-mod" />
         <module name="loaders-mod" />
-        <module name="models-mod" />
-        <module name="tar-mod" />
+        <module name="generative-mod" />
+        <module name="speech-mod" />
         <module name="downloaders-mod" />
-        <module name="security-mod" />
+        <module name="predictive-mod" />
         <module name="messages-mod" />
         <module name="metrics-mod" />
+        <module name="vision-mod" />
         <module name="contexts-mod" />
         <module name="checksums-mod" />
-        <module name="directories-mod" />
         <module name="advisers-mod" />
+        <module name="anomalies-mod" />
+        <module name="nlp-mod" />
+        <module name="recomondations-mod" />
+        <module name="rags-mod" />
+        <module name="sequence-mod" />
+        <module name="processors-mod" />
+        <module name="models-mod" />
+        <module name="tar-mod" />
+        <module name="security-mod" />
+        <module name="clustering-mod" />
+        <module name="directories-mod" />
+        <module name="robotics-mod" />
+        <module name="embedding-mod" />
         <module name="admin-mod" />
+        <module name="krr-mod" />
+        <module name="optimizations-mod" />
+        <module name="reinforcement-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

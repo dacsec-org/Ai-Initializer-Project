@@ -26,6 +26,23 @@
 <!--        <module>redis-mod</module>-->
         <module>admin-mod</module>
         <module>messages-mod</module>
+        <module>anomalies-mod</module>
+        <module>classifications-mod</module>
+        <module>clustering-mod</module>
+        <module>vision-mod</module>
+        <module>reductions-mod</module>
+        <module>embedding-mod</module>
+        <module>generative-mod</module>
+        <module>krr-mod</module>
+        <module>nlp-mod</module>
+        <module>optimizations-mod</module>
+        <module>predictive-mod</module>
+        <module>recomondations-mod</module>
+        <module>regressions-mod</module>
+        <module>reinforcement-mod</module>
+        <module>robotics-mod</module>
+        <module>sequence-mod</module>
+        <module>speech-mod</module>
     </modules>
 
     <build>
