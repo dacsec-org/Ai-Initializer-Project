@@ -9,6 +9,7 @@ import org.dacss.projectinitai.contexts.ContextType;
  *     <li>{@link ContextType}</li>
  * </ul>
  */
+@FunctionalInterface
 public interface UserInputContextualAdviserIface<T> {
 
     /**
@@ -18,20 +19,4 @@ public interface UserInputContextualAdviserIface<T> {
      * @return T - processed user request
      */
     T processUserInput(T userRequest);
-
-    /**
-     * {@link #getNaturalLanguageProcessingContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - natural language processing context
-     */
-    String getNaturalLanguageProcessingContext(ContextType contextType);
-
-    /**
-     * {@link #getRecommendationSystemsContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - recommendation systems context
-     */
-    String getRecommendationSystemsContext(ContextType contextType);
 }

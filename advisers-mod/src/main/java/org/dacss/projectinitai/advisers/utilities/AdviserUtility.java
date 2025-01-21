@@ -36,7 +36,7 @@ public class AdviserUtility {
      */
     public static void logAction(String action, String input, String output) {
         // Implement the logic for logging the action
-        System.out.println("Action: " + action + ", Input: " + input + ", Output: " + output);
+        System.out.println(STR."Action: \{action}, Input: \{input}, Output: \{output}");
     }
 
     /**

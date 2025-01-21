@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.advisers;
 
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.advisers.handlers.AdviserActionHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,37 +27,22 @@ public class AdvisersService {
      * @return The result of the action.
      */
     public String handleAdviserAction(String action, String input) {
-        switch (action) {
-            case "adviseLLM":
-                return adviserActionHandler.adviseLLM(input);
-            case "handleChecksum":
-                return adviserActionHandler.handleChecksum(input);
-            case "manageDirectory":
-                return adviserActionHandler.manageDirectory(input);
-            case "downloadLLM":
-                return adviserActionHandler.downloadLLM(input);
-            case "manageContext":
-                return adviserActionHandler.manageContext(input);
-            case "loadLLM":
-                return adviserActionHandler.loadLLM(input);
-            case "collectMetrics":
-                return adviserActionHandler.collectMetrics(input);
-            case "createOrMergeLLM":
-                return adviserActionHandler.createOrMergeLLM(input);
-            case "preProcessData":
-                return adviserActionHandler.preProcessData(input);
-            case "postProcessData":
-                return adviserActionHandler.postProcessData(input);
-            case "enforceSecurity":
-                return adviserActionHandler.enforceSecurity(input);
-            case "manageBackendServer":
-                return adviserActionHandler.manageBackendServer(input);
-            case "createSnapshot":
-                return adviserActionHandler.createSnapshot(input);
-            case "handleDataType":
-                return adviserActionHandler.handleDataType(input);
-            default:
-                throw new IllegalArgumentException("Unknown action: " + action);
-        }
+        return switch (action) {
+            case "adviseLLM" -> adviserActionHandler.adviseLLM(input);
+            case "handleChecksum" -> adviserActionHandler.handleChecksum(input);
+            case "manageDirectory" -> adviserActionHandler.manageDirectory(input);
+            case "downloadLLM" -> adviserActionHandler.downloadLLM(input);
+            case "manageContext" -> adviserActionHandler.manageContext(input);
+            case "loadLLM" -> adviserActionHandler.loadLLM(input);
+            case "collectMetrics" -> adviserActionHandler.collectMetrics(input);
+            case "createOrMergeLLM" -> adviserActionHandler.createOrMergeLLM(input);
+            case "preProcessData" -> adviserActionHandler.preProcessData(input);
+            case "postProcessData" -> adviserActionHandler.postProcessData(input);
+            case "enforceSecurity" -> adviserActionHandler.enforceSecurity(input);
+            case "manageBackendServer" -> adviserActionHandler.manageBackendServer(input);
+            case "createSnapshot" -> adviserActionHandler.createSnapshot(input);
+            case "handleDataType" -> adviserActionHandler.handleDataType(input);
+            default -> throw new IllegalArgumentException(STR."Unknown action: \{action}");
+        };
     }
 }

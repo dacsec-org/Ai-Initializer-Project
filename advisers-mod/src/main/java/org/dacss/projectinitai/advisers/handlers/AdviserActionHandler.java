@@ -18,7 +18,7 @@ public class AdviserActionHandler {
      */
     public String adviseLLM(String input) {
         // Implement the logic for advising an LLM
-        return "Advised LLM with input: " + input;
+        return STR."Advised LLM with input: \{input}";
     }
 
     /**
@@ -28,7 +28,7 @@ public class AdviserActionHandler {
      */
     public String handleChecksum(String input) {
         // Implement the logic for handling checksum
-        return "Handled checksum for input: " + input;
+        return STR."Handled checksum for input: \{input}";
     }
 
     /**
@@ -38,7 +38,7 @@ public class AdviserActionHandler {
      */
     public String manageDirectory(String input) {
         // Implement the logic for managing directory
-        return "Managed directory with input: " + input;
+        return STR."Managed directory with input: \{input}";
     }
 
     /**
@@ -48,7 +48,7 @@ public class AdviserActionHandler {
      */
     public String downloadLLM(String input) {
         // Implement the logic for downloading LLM
-        return "Downloaded LLM with input: " + input;
+        return STR."Downloaded LLM with input: \{input}";
     }
 
     /**
@@ -58,7 +58,7 @@ public class AdviserActionHandler {
      */
     public String manageContext(String input) {
         // Implement the logic for managing context
-        return "Managed context with input: " + input;
+        return STR."Managed context with input: \{input}";
     }
 
     /**
@@ -68,7 +68,7 @@ public class AdviserActionHandler {
      */
     public String loadLLM(String input) {
         // Implement the logic for loading LLM
-        return "Loaded LLM with input: " + input;
+        return STR."Loaded LLM with input: \{input}";
     }
 
     /**
@@ -78,7 +78,7 @@ public class AdviserActionHandler {
      */
     public String collectMetrics(String input) {
         // Implement the logic for collecting metrics
-        return "Collected metrics with input: " + input;
+        return STR."Collected metrics with input: \{input}";
     }
 
     /**
@@ -88,7 +88,7 @@ public class AdviserActionHandler {
      */
     public String createOrMergeLLM(String input) {
         // Implement the logic for creating or merging LLM
-        return "Created or merged LLM with input: " + input;
+        return STR."Created or merged LLM with input: \{input}";
     }
 
     /**
@@ -98,7 +98,7 @@ public class AdviserActionHandler {
      */
     public String preProcessData(String input) {
         // Implement the logic for pre-processing data
-        return "Pre-processed data with input: " + input;
+        return STR."Pre-processed data with input: \{input}";
     }
 
     /**
@@ -108,7 +108,7 @@ public class AdviserActionHandler {
      */
     public String postProcessData(String input) {
         // Implement the logic for post-processing data
-        return "Post-processed data with input: " + input;
+        return STR."Post-processed data with input: \{input}";
     }
 
     /**
@@ -118,7 +118,7 @@ public class AdviserActionHandler {
      */
     public String enforceSecurity(String input) {
         // Implement the logic for enforcing security
-        return "Enforced security with input: " + input;
+        return STR."Enforced security with input: \{input}";
     }
 
     /**
@@ -128,7 +128,7 @@ public class AdviserActionHandler {
      */
     public String manageBackendServer(String input) {
         // Implement the logic for managing backend server
-        return "Managed backend server with input: " + input;
+        return STR."Managed backend server with input: \{input}";
     }
 
     /**
@@ -138,7 +138,7 @@ public class AdviserActionHandler {
      */
     public String createSnapshot(String input) {
         // Implement the logic for creating snapshot
-        return "Created snapshot with input: " + input;
+        return STR."Created snapshot with input: \{input}";
     }
 
     /**
@@ -148,6 +148,6 @@ public class AdviserActionHandler {
      */
     public String handleDataType(String input) {
         // Implement the logic for handling data type
-        return "Handled data type with input: " + input;
+        return STR."Handled data type with input: \{input}";
     }
 }

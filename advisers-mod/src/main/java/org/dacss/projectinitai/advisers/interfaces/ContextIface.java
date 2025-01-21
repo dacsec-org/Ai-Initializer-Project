@@ -1,7 +1,7 @@
 package org.dacss.projectinitai.advisers.interfaces;
 
 /**
- * <h1>{@link ContextFacadeIface}</h1>
+ * <h1>{@link ContextIface}</h1>
  * Facade Interface for Contextual Advisers.
  * <ul>
  *     <li>{@link AIOutputContextualAdviserIface}</li>
@@ -11,7 +11,7 @@ package org.dacss.projectinitai.advisers.interfaces;
  * </ul>
  */
 @FunctionalInterface
-public interface ContextFacadeIface<T> {
+public interface ContextIface<T> {
 
     /**
      * {@link #updateContext(T, T)}

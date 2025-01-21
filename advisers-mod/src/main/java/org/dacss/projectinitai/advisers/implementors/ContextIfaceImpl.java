@@ -1,20 +1,18 @@
 package org.dacss.projectinitai.advisers.implementors;
 
 import org.dacss.projectinitai.contexts.ContextsHandler;
-import org.dacss.projectinitai.advisers.interfaces.ContextFacadeIface;
-import org.dacss.projectinitai.contexts.ContextType;
+import org.dacss.projectinitai.advisers.interfaces.ContextIface;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 /**
- * <h1>{@link ContextFacadeIfaceImpl}</h1>
- * Implementation of {@link ContextFacadeIface}.
+ * <h1>{@link ContextIfaceImpl}</h1>
+ * Implementation of {@link ContextIface}.
  */
 @Component
-public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
+public class ContextIfaceImpl<T> implements ContextIface<T> {
 
     /**
      * {@link ContextsHandler}
@@ -22,12 +20,12 @@ public class ContextFacadeIfaceImpl<T> implements ContextFacadeIface<T> {
     private final ContextsHandler<T> CAC;
 
     /**
-     * {@link #ContextFacadeIfaceImpl(ContextsHandler)}
+     * {@link #ContextIfaceImpl(ContextsHandler)}
      *
      * @param CAC {@link ContextsHandler <T>}
      */
     @Autowired
-    public ContextFacadeIfaceImpl(ContextsHandler<T> CAC) {
+    public ContextIfaceImpl(ContextsHandler<T> CAC) {
         this.CAC = CAC;
     }
 

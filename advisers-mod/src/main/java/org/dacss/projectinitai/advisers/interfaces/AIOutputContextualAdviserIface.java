@@ -10,6 +10,7 @@ import org.dacss.projectinitai.contexts.ContextType;
  *     <li>{@link ContextType}</li>
  * </ul>
  */
+@FunctionalInterface
 public interface AIOutputContextualAdviserIface<T> {
 
     /**
@@ -19,20 +20,4 @@ public interface AIOutputContextualAdviserIface<T> {
      * @return T - processed AI response
      */
     T processAIOutput(T aiResponse);
-
-    /**
-     * {@link #getGenerativeContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - context
-     */
-    String getGenerativeContext(ContextType contextType);
-
-    /**
-     * {@link #getOptimizationContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - context
-     */
-    String getOptimizationContext(ContextType contextType);
 }

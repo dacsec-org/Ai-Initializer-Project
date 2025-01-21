@@ -9,6 +9,7 @@ import org.dacss.projectinitai.contexts.ContextType;
  *     <li>{@link ContextType}</li>
  * </ul>
  */
+@FunctionalInterface
 public interface ContextualAdviserIface<T> {
 
     /**
@@ -19,20 +20,4 @@ public interface ContextualAdviserIface<T> {
      * @return T - updated context
      */
     T updateContext(T userRequest, T aiResponse);
-
-    /**
-     * {@link #getComputerVisionContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - computer vision context
-     */
-    String getComputerVisionContext(ContextType contextType);
-
-    /**
-     * {@link #getRoboticsContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - robotics context
-     */
-    String getRoboticsContext(ContextType contextType);
 }

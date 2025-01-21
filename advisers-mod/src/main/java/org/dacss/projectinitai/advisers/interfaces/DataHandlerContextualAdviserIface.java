@@ -9,23 +9,8 @@ import org.dacss.projectinitai.contexts.ContextType;
  *     <li>{@link ContextType}</li>
  * </ul>
  */
+@FunctionalInterface
 public interface DataHandlerContextualAdviserIface<T> {
-
-    /**
-     * {@link #getKnowledgeRepresentationReasoningContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - knowledge representation reasoning context
-     */
-    String getKnowledgeRepresentationReasoningContext(ContextType contextType);
-
-    /**
-     * {@link #getPredictiveAnalyticsContext(ContextType)}
-     *
-     * @param contextType
-     * @return String - predictive analytics context
-     */
-    String getPredictiveAnalyticsContext(ContextType contextType);
 
     /**
      * {@link #handleData(T)}
