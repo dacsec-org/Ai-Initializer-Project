@@ -7,8 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="types-mod" />
         <module name="classifications-mod" />
+        <module name="types-mod" />
         <module name="reductions-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
@@ -53,5 +53,44 @@
       <module name="services-mod" target="21" />
       <module name="utilities-mod" target="21" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-mod" options="--enable-preview" />
+      <module name="advisers-mod" options="--enable-preview" />
+      <module name="ai-iinitializer-project" options="--enable-preview" />
+      <module name="anomalies-mod" options="--enable-preview" />
+      <module name="checksums-mod" options="--enable-preview" />
+      <module name="classifications-mod" options="--enable-preview" />
+      <module name="clustering-mod" options="--enable-preview" />
+      <module name="contexts-mod" options="--enable-preview" />
+      <module name="databases-mod" options="--enable-preview" />
+      <module name="directories-mod" options="--enable-preview" />
+      <module name="downloaders-mod" options="--enable-preview" />
+      <module name="embedding-mod" options="--enable-preview" />
+      <module name="generative-mod" options="--enable-preview" />
+      <module name="krr-mod" options="--enable-preview" />
+      <module name="loaders-mod" options="--enable-preview" />
+      <module name="messages-mod" options="--enable-preview" />
+      <module name="metrics-mod" options="--enable-preview" />
+      <module name="models-mod" options="--enable-preview" />
+      <module name="nlp-mod" options="--enable-preview" />
+      <module name="optimizations-mod" options="--enable-preview" />
+      <module name="predictive-mod" options="--enable-preview" />
+      <module name="recognitions-mod" options="--enable-preview" />
+      <module name="recommendations-mod" options="--enable-preview" />
+      <module name="reductions-mod" options="--enable-preview" />
+      <module name="regressions-mod" options="--enable-preview" />
+      <module name="reinforcement-mod" options="--enable-preview" />
+      <module name="security-mod" options="--enable-preview" />
+      <module name="sequence-mod" options="--enable-preview" />
+      <module name="servers-mod" options="--enable-preview" />
+      <module name="snapshots-mod" options="--enable-preview" />
+      <module name="speech-mod" options="--enable-preview" />
+      <module name="starter-mod" options="--enable-preview" />
+      <module name="tar-mod" options="--enable-preview" />
+      <module name="types-mod" options="--enable-preview" />
+      <module name="vision-mod" options="--enable-preview" />
+    </option>
   </component>
 </project>

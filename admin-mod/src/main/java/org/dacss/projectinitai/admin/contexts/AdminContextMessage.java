@@ -44,8 +44,8 @@ public record AdminContextMessage(String detailedContextMessage) {
     }
 
     private static final StringBuilder context = new StringBuilder();
-    private String lastUserRequest;
-    private String lastAIResponse;
+    private static String lastUserRequest;
+    private static String lastAIResponse;
 
     public String updateContext(String userRequest, String aiResponse) {
         try {
