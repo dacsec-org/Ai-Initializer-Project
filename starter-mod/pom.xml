@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.dacss.projectinitai</groupId>
-        <artifactId>ai-iinitializer-project</artifactId>
+        <artifactId>ai-initializer-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>starter-mod</artifactId>
@@ -27,11 +27,6 @@
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>${vaadin.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.parttio</groupId>-->
-<!--            <artifactId>line-awesome</artifactId>-->
-<!--            <version>2.1.0</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -103,13 +98,13 @@
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>loaders-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>processors-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -119,20 +114,8 @@
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>rags-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>utilities-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
             <artifactId>advisers-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

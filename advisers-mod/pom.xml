@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.dacss.projectinitai</groupId>
-        <artifactId>ai-iinitializer-project</artifactId>
+        <artifactId>ai-initializer-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -20,13 +20,13 @@
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>contexts-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>ai-iinitializer-project</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>loaders-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -47,6 +47,7 @@
     <bytecodeTargetLevel>
       <module name="Ai-Initializer-Project" target="21" />
       <module name="rags-mod" target="21" />
+      <module name="recomondations-mod" target="21" />
       <module name="redis-mod" target="21" />
       <module name="robotics-mod" target="21" />
       <module name="services-mod" target="21" />
