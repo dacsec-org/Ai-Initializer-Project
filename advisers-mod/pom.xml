@@ -24,12 +24,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>ai-iinitializer-project</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.10.2</version>

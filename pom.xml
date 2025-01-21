@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dacss.projectinitai</groupId>
     <artifactId>ai-initializer-project</artifactId>
-    <name>ai-iinitializer-project</name>
+    <name>ai-initializer-project</name>
     <modules>
         <module>tar-mod</module>
         <module>snapshots-mod</module>
         <module>contexts-mod</module>
-        <module>processors-mod</module>
         <module>starter-mod</module>
         <module>advisers-mod</module>
         <module>loaders-mod</module>
@@ -43,39 +42,11 @@
         <module>recognitions-mod</module>
         <module>generative-mod</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>hilla-endpoint</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <basedir/>
-                    <buildDirectory/>
-                    <mainOutputDirectory/>
-                    <outputDirectory/>
-                    <projectArtifact/>
-                    <source>21</source>
-                    <target>21</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <java.version>21</java.version>
+        <maven.version>3.13.0</maven.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -108,21 +79,11 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
-            <repository>
-                <id>universityOfManchester-graal</id>
-                <url>https://raw.githubusercontent.com/beehive-lab/tornado/maven-tornadovm</url>
-            </repository>
+        <repository>
+            <id>universityOfManchester-graal</id>
+            <url>https://raw.githubusercontent.com/beehive-lab/tornado/maven-tornadovm</url>
+        </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
     <dependencyManagement>
         <dependencies>
             <dependency>
