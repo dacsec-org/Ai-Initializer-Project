@@ -49,12 +49,6 @@
             <version>${parent.version}</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>ai-iinitializer-project</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 </project>

@@ -30,7 +30,6 @@
         <module name="nlp-mod" />
         <module name="sequence-mod" />
         <module name="databases-mod" />
-        <module name="processors-mod" />
         <module name="models-mod" />
         <module name="tar-mod" />
         <module name="security-mod" />
@@ -46,6 +45,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Ai-Initializer-Project" target="21" />
+      <module name="processors-mod" target="21" />
       <module name="rags-mod" target="21" />
       <module name="recomondations-mod" target="21" />
       <module name="redis-mod" target="21" />

@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/processors-mod/pom.xml" />
         <option value="$PROJECT_DIR$/rags-mod/pom.xml" />
         <option value="$PROJECT_DIR$/services-mod/pom.xml" />
         <option value="$PROJECT_DIR$/utilities-mod/pom.xml" />
