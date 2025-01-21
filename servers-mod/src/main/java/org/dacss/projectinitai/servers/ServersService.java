@@ -5,47 +5,34 @@ import org.springframework.stereotype.Service;
 
 /**
  * <h1>{@link ServersService}</h1>
- * Backend service for managing servers.
+ * Backend hilla endpoint service for server operations.
  */
 @Service
 @BrowserCallable
 public class ServersService {
 
-    private final ServersHandler serversHandler;
+    private ServersHandler handler;
 
     /**
-     * {@link ServersService}
-     * 0-arg constructor.
+     * <h2>{@link #ServersService()}</h2>
+     * 0-arg constructor to instantiate the {@link ServersHandler}.
      */
     public ServersService() {
-        this.serversHandler = new ServersHandler();
+        this.handler = new ServersHandler();
     }
 
     /**
-     * <h1>{@link #handleServerAction(String)}</h1>
-     * Handles the server action.
-     *
-     * @param action The action to be handled.
+     * <h2>{@link #handleServerAction(String)}</h2>
+     * @param action The action to be performed.
+     * @return The result of the action.
      */
-    public void handleServerAction(String action) {
-        switch (action.toLowerCase()) {
-            case "start":
-                serversHandler.startServer();
-                break;
-            case "stop":
-                serversHandler.stopServer();
-                break;
-            case "restart":
-                serversHandler.restartServer();
-                break;
-            case "ping":
-                serversHandler.pingServers();
-                break;
-            case "stophttp":
-                serversHandler.stopHttpServer();
-                break;
-            default:
-                throw new IllegalArgumentException(STR."Unknown action: \{action}");
-        }
+    public Object handleServerAction(String action) {
+        return switch (ServersContexts.valueOf(action.toUpperCase())) {
+            case START -> handler.handleStart();
+            case STOP -> handler.handleStop();
+            case RESTART -> handler.handleRestart();
+            case PING -> handler.handlePing();
+            case STOP_HTTP -> handler.handleStopHttp();
+        };
     }
 }

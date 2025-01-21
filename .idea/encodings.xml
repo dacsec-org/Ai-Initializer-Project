@@ -18,6 +18,8 @@
     <file url="file://$PROJECT_DIR$/configs-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contexts-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contexts-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/databases-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/databases-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/directories-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/directories-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/downloaders-mod/src/main/java" charset="UTF-8" />
@@ -46,8 +48,10 @@
     <file url="file://$PROJECT_DIR$/processors-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rags-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rags-mod/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/recomondations-mod/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/recomondations-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recognitions-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recognitions-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendations-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendations-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/redis-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/redis-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reductions-mod/src/main/java" charset="UTF-8" />

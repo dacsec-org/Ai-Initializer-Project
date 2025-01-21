@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.tar;
+/**/
 
 import org.dacss.projectinitai.tar.utillities.TarDestroyUtil;
+/**/
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,6 +16,20 @@ import java.nio.file.Paths;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+/**
+ * <h1>{@link TarModuleTest}</h1>
+ * Suite for the tar-mod module.
+ * <p>
+ * Methods under test:
+ *     <ul>
+ *         <li>{@link #testCreateTar()}</li>
+ *         <li>{@link #testExtractTar()}</li>
+ *         <li>{@link #testVerifyExtraction()}</li>
+ *         <li>{@link #testExtractAndDestroyTar()}</li>
+ *         <li>{@link #testDeleteTar()}</li>
+ *         <li>{@link #testVerifyExtractionFails()}</li>
+ * </p>
+ */
 public class TarModuleTest {
 
     private TarService tarService;
@@ -54,13 +70,13 @@ public class TarModuleTest {
         }
         if (Files.exists(sourceDir)) {
             Files.walk(sourceDir)
-                .map(Path::toFile)
-                .forEach(File::delete);
+                    .map(Path::toFile)
+                    .forEach(File::delete);
         }
         if (Files.exists(destDir)) {
             Files.walk(destDir)
-                .map(Path::toFile)
-                .forEach(File::delete);
+                    .map(Path::toFile)
+                    .forEach(File::delete);
         }
     }
 
@@ -107,8 +123,8 @@ public class TarModuleTest {
     public void testVerifyExtractionFails() throws IOException {
         // Remove all files in the destination directory to simulate extraction failure
         Files.walk(destDir)
-            .map(Path::toFile)
-            .forEach(File::delete);
+                .map(Path::toFile)
+                .forEach(File::delete);
 
         File destDirFile = destDir.toFile();
         assertTrue(TarDestroyUtil.verifyExtraction(destDirFile),

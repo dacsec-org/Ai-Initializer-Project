@@ -23,6 +23,10 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>hilla-endpoint</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

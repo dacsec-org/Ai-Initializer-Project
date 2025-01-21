@@ -1,56 +1,56 @@
 package org.dacss.projectinitai.servers;
 
-import org.dacss.projectinitai.servers.utillities.PingServerUtil;
-import org.dacss.projectinitai.servers.utillities.RestartUnixSocketServerUtil;
-import org.dacss.projectinitai.servers.utillities.StartUnixSocketServerUtil;
-import org.dacss.projectinitai.servers.utillities.StopUnixServerUtil;
-import org.dacss.projectinitai.servers.utillities.StopHttpServerUtil;
+import org.springframework.stereotype.Component;
+import org.dacss.projectinitai.servers.utillities.*;
 
 /**
  * <h1>{@link ServersHandler}</h1>
- * <p>
- *     This class is used to handle the server actions.
- * </p>
+ * Handler class for server operations.
  */
-public class ServersHandler {
+@Component
+public class ServersHandler implements ServersIface {
+
+    private final ServersService serversService;
 
     /**
-     * <h1>{@link #startServer()}</h1>
-     * Starts the server.
+     * <h2>{@link #ServersHandler()}</h2>
+     * 0-arg constructor to instantiate the {@link ServersService}.
      */
-    public void startServer() {
+    public ServersHandler() {
+        this.serversService = new ServersService();
+    }
+
+    public String handleStart() {
         StartUnixSocketServerUtil.startServer();
+        return "Server started successfully";
     }
 
-    /**
-     * <h1>{@link #stopServer()}</h1>
-     * Stops the server.
-     */
-    public void stopServer() {
+    public String handleStop() {
         StopUnixServerUtil.stopServer();
+        return "Server stopped successfully";
     }
 
-    /**
-     * <h1>{@link #restartServer()}</h1>
-     * Restarts the server.
-     */
-    public void restartServer() {
-        RestartUnixSocketServerUtil.restartServer();
+    public String handleRestart() {
+        RestartServersUtil.restartServer();
+        return "Server restarted successfully";
     }
 
-    /**
-     * <h1>{@link #pingServers()}</h1>
-     * Pings the servers.
-     */
-    public void pingServers() {
+    public String handlePing() {
         PingServerUtil.pingServers();
+        return "Server pinged successfully";
+    }
+
+    public String handleStopHttp() {
+        StopHttpServerUtil.stopServer();
+        return "HTTP server stopped successfully";
     }
 
     /**
-     * <h1>{@link #stopHttpServer()}</h1>
-     * Stops the HTTP server.
+     * <h2>{@link ServersIface#manage()}</h2>
+     * Perform server management operations.
      */
-    public void stopHttpServer() {
-        StopHttpServerUtil.stopServer();
+    @Override
+    public void manage() {
+        //todo: implement
     }
 }

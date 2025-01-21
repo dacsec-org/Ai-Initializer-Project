@@ -1,12 +1,12 @@
 package org.dacss.projectinitai.advisers.implementors;
 
-import org.dacss.projectinitai.contexts.advisers.components.ContextualAdviserComp;
+import org.dacss.projectinitai.contexts.ContextsHandler;
 import org.dacss.projectinitai.advisers.interfaces.ContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.DataHandlerContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.UserInputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.AIOutputContextualAdviserIface;
 import org.dacss.projectinitai.advisers.interfaces.ContextFacadeIface;
-import org.dacss.projectinitai.contexts.enums.types.ContextType;
+import org.dacss.projectinitai.contexts.ContextType;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,17 +29,17 @@ public class ContextFacadeIfaceImpl<T> implements
         , UserInputContextualAdviserIface<T> {
 
     /**
-     * {@link ContextualAdviserComp}
+     * {@link ContextsHandler}
      */
-    private final ContextualAdviserComp<T> CAC;
+    private final ContextsHandler<T> CAC;
 
     /**
-     * {@link #ContextFacadeIfaceImpl(ContextualAdviserComp)}
+     * {@link #ContextFacadeIfaceImpl(ContextsHandler)}
      *
-     * @param CAC {@link ContextualAdviserComp<T>}
+     * @param CAC {@link ContextsHandler <T>}
      */
     @Autowired
-    public ContextFacadeIfaceImpl(ContextualAdviserComp<T> CAC) {
+    public ContextFacadeIfaceImpl(ContextsHandler<T> CAC) {
         this.CAC = CAC;
     }
 
