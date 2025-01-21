@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.tar;
 /**/
-/**/
+
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -8,6 +10,7 @@ import java.io.IOException;
  * <h1>{@link TarHandler}</h1>
  * Handler class to create, extract and delete tar files.
  */
+@Component
 public class TarHandler {
 
     private final TarService tarService;

@@ -7,5 +7,8 @@ package org.dacss.projectinitai.types;
  * </p>
  */
 public class TypesHandler {
+    public void handle(String dataType) {
+
+    }
     //todo: implement the data types
 }

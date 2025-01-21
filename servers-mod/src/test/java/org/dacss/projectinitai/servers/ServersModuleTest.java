@@ -71,7 +71,7 @@ public class ServersModuleTest {
 
     @Test(dependsOnMethods = "testStopUnixSocketServer")
     public void testRestartUnixSocketServer() {
-        RestartUnixSocketServerUtil.restartServer();
+        RestartServersUtil.restartServer();
         assertTrue(Files.exists(socketPath), "Unix socket should be recreated");
         System.out.println(STR."Test 'restartServer()' passed: \{socketPath}");
     }

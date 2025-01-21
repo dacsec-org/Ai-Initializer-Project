@@ -19,60 +19,23 @@ import java.io.IOException;
 @BrowserCallable
 public class TarService {
 
-    /**
-     * {@link #createTar(File, File)}
-     * Method to create a tar file from a source directory.
-     *
-     * @param sourceDir
-     * @param tarFile
-     * @throws IOException
-     */
-    public void createTar(File sourceDir, File tarFile) throws IOException {
-        TarCompressorUtil.createTarFile(sourceDir, tarFile);
-    }
+    private TarHandler handler;
 
     /**
-     * {@link #extractTar(File, File)}
-     * Method to extract a tar file to a destination directory.
-     *
-     * @param tarFile
-     * @param destDir
-     * @throws IOException
+     * {@link #TarService()} 0-arg constructor to instantiate the {@link TarHandler}.
      */
-    public void extractTar(File tarFile, File destDir) throws IOException {
-        TarExtractorUtil.extractTarFile(tarFile, destDir);
+    public TarService() {
+        this.handler = new TarHandler();
     }
 
-    /**
-     * {@link #deleteTar(File)}
-     * Method to delete a tar file.
-     *
-     * @param tarFile
-     * @throws IOException
-     */
-    public void deleteTar(File tarFile) throws IOException {
-        if (!tarFile.exists()) {
-            throw new IOException(STR."Tar file does not exist: \{tarFile.getAbsolutePath()}");
-        }
-        if (!tarFile.canWrite()) {
-            throw new IOException(STR."No write permission for tar file: \{tarFile.getAbsolutePath()}");
-        }
-        if (!tarFile.delete()) {
-            throw new IOException(STR."Failed to delete tar file: \{tarFile.getAbsolutePath()}");
-        }
-    }
-
-    /**
-     * {@link #extractAndDestroyTar(File, File)}
-     * Method to extract a tar file to a destination directory and destroy the tar file.
-     *
-     * @param tarFile
-     * @param destDir
-     * @return
-     * @throws IOException
-     */
-    public String extractAndDestroyTar(File tarFile, File destDir) throws IOException {
-        extractTar(tarFile, destDir);
-        return TarDestroyUtil.destroyTarFile(tarFile, destDir);
+    public Object handleTarAction(String action, File sourceDir, File tarFile, File destDir) {
+        return switch (action.toLowerCase()) {
+            case "create" -> handler.createTar(sourceDir, tarFile);
+            case "extract" -> handler.extractTar(tarFile, destDir);
+            case "delete" -> handler.deleteTar(tarFile);
+            default ->
+                    throw new IllegalArgumentException(STR."Unknown action: \{action}");
+        };
     }
 }
+

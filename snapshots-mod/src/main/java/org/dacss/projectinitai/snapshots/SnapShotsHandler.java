@@ -1,61 +1,56 @@
 package org.dacss.projectinitai.snapshots;
-/**/
+
+import org.springframework.stereotype.Component;
 import org.dacss.projectinitai.snapshots.utilities.*;
-/**/
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <h1>{@link SnapShotsHandler}</h1>
- * Handler class called from {@link SnapShotsService} that creates, lists,
- * deletes, and copies snapshots.
+ * Handler class for snapshot operations.
  */
-public class SnapShotsHandler {
+@Component
+public class SnapShotsHandler implements SnapShotsIface {
 
-    private static final Logger log = LoggerFactory.getLogger(SnapShotsHandler.class);
-
-    public SnapShotsHandler() {}
+    private final SnapShotsService snapShotsService;
 
     /**
-     * Creates a snapshot of a directory.
-     * @param source the source directory
-     * @param destination the destination directory
+     * <h2>{@link #SnapShotsHandler()}</h2>
+     * 0-arg constructor to instantiate the {@link SnapShotsService}.
      */
-    public void createSnapshot(String source, String destination) {
+    public SnapShotsHandler() {
+        this.snapShotsService = new SnapShotsService();
+    }
+
+    public String handleCreate(String source, String destination) {
         SnapShotCreatorUtil.createSnapshot(source, destination);
+        return "Snapshot created successfully";
     }
 
-    /**
-     * Lists snapshots in a directory.
-     * @param directory the directory to list snapshots from
-     */
-    public void listSnapshots(String directory) {
-        SnapShotListerUtil.listSnapshots(directory).forEach(log::info);
+    public String handleList(String directory) {
+        SnapShotListerUtil.listSnapshots(directory).forEach(System.out::println);
+        return "Snapshots listed successfully";
     }
 
-    /**
-     * Deletes a snapshot.
-     * @param snapshotPath the snapshot path
-     */
-    public void deleteSnapshot(String snapshotPath) {
+    public String handleDelete(String snapshotPath) {
         SnapShotDestroyerUtil.deleteSnapshot(snapshotPath);
+        return "Snapshot deleted successfully";
     }
 
-    /**
-     * Copies a snapshot.
-     * @param source the source snapshot
-     * @param destination the destination snapshot
-     */
-    public void copySnapshot(String source, String destination) {
+    public String handleCopy(String source, String destination) {
         SnapShotClonerUtil.copySnapshot(source, destination);
+        return "Snapshot copied successfully";
+    }
+
+    public String handleExecuteCommand(String subcommand, String... args) {
+        SnapShotCommandRunnerUtil.executeCommand(subcommand, args);
+        return "Command executed successfully";
     }
 
     /**
-     * Executes a command.
-     * @param subcommand the subcommand
-     * @param args the arguments
+     * <h2>{@link SnapShotsIface#manageSnapshots()}</h2>
+     * Perform snapshot management operations.
      */
-    public void executeCommand(String subcommand, String... args) {
-        SnapShotCommandRunnerUtil.executeCommand(subcommand, args);
+    @Override
+    public void manageSnapshots() {
+        //todo: implement
     }
 }

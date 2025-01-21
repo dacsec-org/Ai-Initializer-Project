@@ -1,8 +1,8 @@
 package org.dacss.projectinitai.downloaders;
 /**/
-import org.dacss.projectinitai.downloaders.services.DownloadersService;
-import org.dacss.projectinitai.directories.handlers.DirFileHandler;
+import org.dacss.projectinitai.directories.DirFileHandler;
 /**/
+import org.dacss.projectinitai.downloaders.utillities.LLMLinkScraperUtil;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -37,13 +37,13 @@ import static org.testng.Assert.assertFalse;
 public class DownloadersModuleTest {
 
     private DownloadersService downloadersService;
-    private LLMLinkScraper llmLinkScraper;
+    private LLMLinkScraperUtil llmLinkScraperUtil;
 
     @BeforeMethod
     public void setUp() {
         DirFileHandler dirFileHandler = new DirFileHandler();
         downloadersService = new DownloadersService(dirFileHandler);
-        llmLinkScraper = new LLMLinkScraper();
+        llmLinkScraperUtil = new LLMLinkScraperUtil();
     }
 
     @AfterSuite
@@ -67,7 +67,7 @@ public class DownloadersModuleTest {
 
     @Test
     public void testScrapeLLMLinks() throws IOException {
-        List<LLMS> llmsList = LLMLinkScraper.scrapeLLMLinks("https://huggingface.co/models");
+        List<LLMS> llmsList = LLMLinkScraperUtil.scrapeLLMLinks("https://huggingface.co/models");
         assertNotNull(llmsList, "LLMS list should not be null");
         assertFalse(llmsList.isEmpty(), "LLMS list should not be empty");
         System.out.println(STR."Test 'scrapeLLMLinks()' passed: \{llmsList.size()} items found");
@@ -75,49 +75,49 @@ public class DownloadersModuleTest {
 
     @Test(dependsOnMethods = "testScrapeLLMLinks")
     public void testScrapeName() {
-        String name = LLMLinkScraper.scrapeName("test-name");
+        String name = LLMLinkScraperUtil.scrapeName("test-name");
         assertEquals(name, "test-name", "Name should be 'test-name'");
         System.out.println(STR."Test 'scrapeName()' passed: \{name}");
     }
 
     @Test(dependsOnMethods = "testScrapeName")
     public void testScrapeDescription() {
-        String description = LLMLinkScraper.scrapeDescription("test-name test-description 123b");
+        String description = LLMLinkScraperUtil.scrapeDescription("test-name test-description 123b");
         assertEquals(description, "test-description", "Description should be 'test-description'");
         System.out.println(STR."Test 'scrapeDescription()' passed: \{description}");
     }
 
     @Test(dependsOnMethods = "testScrapeDescription")
     public void testScrapeType() {
-        String type = LLMLinkScraper.scrapeType("test-name test-type 123b");
+        String type = LLMLinkScraperUtil.scrapeType("test-name test-type 123b");
         assertEquals(type, "test-type", "Type should be 'test-type'");
         System.out.println(STR."Test 'scrapeType()' passed: \{type}");
     }
 
     @Test(dependsOnMethods = "testScrapeType")
     public void testScrapeAvailableSizes() {
-        String sizes = LLMLinkScraper.scrapeAvailableSizes("123b, 456b");
+        String sizes = LLMLinkScraperUtil.scrapeAvailableSizes("123b, 456b");
         assertEquals(sizes, "123b, 456b", "Sizes should be '123b, 456b'");
         System.out.println(STR."Test 'scrapeAvailableSizes()' passed: \{sizes}");
     }
 
     @Test(dependsOnMethods = "testScrapeAvailableSizes")
     public void testScrapePulls() {
-        String pulls = LLMLinkScraper.scrapePulls("123K Pulls");
+        String pulls = LLMLinkScraperUtil.scrapePulls("123K Pulls");
         assertEquals(pulls, "123K", "Pulls should be '123K'");
         System.out.println(STR."Test 'scrapePulls()' passed: \{pulls}");
     }
 
     @Test(dependsOnMethods = "testScrapePulls")
     public void testScrapeTags() {
-        String tags = LLMLinkScraper.scrapeTags("123 Tags");
+        String tags = LLMLinkScraperUtil.scrapeTags("123 Tags");
         assertEquals(tags, "123", "Tags should be '123'");
         System.out.println(STR."Test 'scrapeTags()' passed: \{tags}");
     }
 
     @Test(dependsOnMethods = "testScrapeTags")
     public void testScrapeUpdated() {
-        String updated = LLMLinkScraper.scrapeUpdated("Updated 2023-10-01");
+        String updated = LLMLinkScraperUtil.scrapeUpdated("Updated 2023-10-01");
         assertEquals(updated, "2023-10-01", "Updated date should be '2023-10-01'");
         System.out.println(STR."Test 'scrapeUpdated()' passed: \{updated}");
     }

@@ -80,34 +80,34 @@ public class SnapShotTest {
     public void testCreateSnapshot() {
         snapShotsHandler.createSnapshot(sourceDir.toString(), snapshotDir.toString());
         assertTrue(Files.exists(snapshotDir.resolve("dummyFile.txt")), "Snapshot should be created");
-        System.out.println("Test 'createSnapshot()' passed: " + snapshotDir);
+        System.out.println(STR."Test 'createSnapshot()' passed: \{snapshotDir}");
     }
 
     @Test(dependsOnMethods = "testCreateSnapshot")
     public void testListSnapshots() {
         snapShotsHandler.listSnapshots(snapshotDir.toString());
         // Assuming the log output is verified manually
-        System.out.println("Test 'listSnapshots()' passed: " + snapshotDir);
+        System.out.println(STR."Test 'listSnapshots()' passed: \{snapshotDir}");
     }
 
     @Test(dependsOnMethods = "testCreateSnapshot")
     public void testCopySnapshot() {
         snapShotsHandler.copySnapshot(snapshotDir.toString(), destDir.toString());
         assertTrue(Files.exists(destDir.resolve("dummyFile.txt")), "Snapshot should be copied");
-        System.out.println("Test 'copySnapshot()' passed: " + destDir);
+        System.out.println(STR."Test 'copySnapshot()' passed: \{destDir}");
     }
 
     @Test(dependsOnMethods = "testCopySnapshot")
     public void testDeleteSnapshot() {
         snapShotsHandler.deleteSnapshot(snapshotDir.toString());
         assertFalse(Files.exists(snapshotDir), "Snapshot should be deleted");
-        System.out.println("Test 'deleteSnapshot()' passed: " + snapshotDir);
+        System.out.println(STR."Test 'deleteSnapshot()' passed: \{snapshotDir}");
     }
 
     @Test
     public void testExecuteCommand() {
         snapShotsHandler.executeCommand("snapshot", sourceDir.toString(), snapshotDir.toString());
         // Assuming the command execution is verified manually
-        System.out.println("Test 'executeCommand()' passed: snapshot");
+        System.out.println(STR."Test 'executeCommand()' passed: \{snapshotDir}");
     }
 }
