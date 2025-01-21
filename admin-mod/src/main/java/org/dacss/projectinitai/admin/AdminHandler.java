@@ -2,7 +2,6 @@ package org.dacss.projectinitai.admin;
 /**/
 import org.dacss.projectinitai.advisers.AdviserHandler;
 import org.dacss.projectinitai.checksums.ChecksumHandler;
-import org.dacss.projectinitai.contexts.ContextsHandler;
 import org.dacss.projectinitai.directories.DirFileHandler;
 import org.dacss.projectinitai.downloaders.DownloadersIface;
 import org.dacss.projectinitai.loaders.LoadUnloadHandler;
@@ -12,8 +11,6 @@ import org.dacss.projectinitai.processors.handlers.ProcessorsHandler;
 import org.dacss.projectinitai.security.SecurityHandler;
 import org.dacss.projectinitai.servers.ServersHandler;
 import org.dacss.projectinitai.snapshots.SnapShotsHandler;
-import org.dacss.projectinitai.types.TypesHandler;
-/**/
 import org.dacss.projectinitai.vision.VisionIface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +24,6 @@ public class AdminHandler {
     private VisionIface computerVisionHandler;
     private AdviserHandler adviserHandler;
     private ChecksumHandler checksumHandler;
-    private ContextsHandler contextHandler;
     private DirFileHandler directoryManager;
     private LoadUnloadHandler llmLoader;
     private MetricsHandler metricsCollector;
@@ -36,16 +32,12 @@ public class AdminHandler {
     private SecurityHandler securityManager;
     private ServersHandler backendServerManager;
     private SnapShotsHandler snapshotHandler;
-    private TypesHandler dataTypeHandler;
 
     @Autowired
     public void setLlmAdviser(AdviserHandler adviserHandler) { this.adviserHandler = adviserHandler; }
 
     @Autowired
     public void setChecksumHandler(ChecksumHandler checksumHandler) { this.checksumHandler = checksumHandler; }
-
-    @Autowired
-    public void setContextManager(ContextsHandler contextHandler) { this.contextHandler = contextHandler; }
 
     @Autowired
     public void setDirectoryManager(DirFileHandler directoryManager) { this.directoryManager = directoryManager; }
@@ -85,9 +77,6 @@ public class AdminHandler {
     @Autowired
     public void setSnapshotManager(SnapShotsHandler snapshotHandler) { this.snapshotHandler = snapshotHandler; }
 
-    @Autowired
-    public void setDataTypeHandler(TypesHandler dataTypeHandler) { this.dataTypeHandler = dataTypeHandler; }
-
     public void adviseLLM(String llmId) { adviserHandler.advise(); }
 
     public void handleChecksum(String filePath) { checksumHandler.calculateChecksum(); }
@@ -105,7 +94,7 @@ public class AdminHandler {
      */
     public void processImage() { computerVisionHandler.processInput(); }
 
-    public void manageContext(String contextId) { contextHandler.getContext(); }
+    public void manageContext(String contextId) { getContext(); }
 
     public void loadLLM(String path) { llmLoader.loadModel(path); }
 
@@ -123,5 +112,53 @@ public class AdminHandler {
 
     public void createSnapshot(String source, String destination) { snapshotHandler.createSnapshot(source, destination); }
 
-    public void handleDataType(String dataType) { dataTypeHandler.handle(dataType); }
+    public void handleDataType(String dataType) { handle(dataType); }
+
+    private static final StringBuilder context = new StringBuilder();
+    private String lastUserRequest;
+    private String lastAIResponse;
+
+    public String updateContext(String userRequest, String aiResponse) {
+        try {
+            lastUserRequest = userRequest;
+            lastAIResponse = aiResponse;
+            context.append("USER: ").append(userRequest).append("\n");
+            context.append("AI: ").append(aiResponse).append("\n");
+            return userRequest;
+        } catch (Exception updateContextExc) {
+            return null;
+        }
+    }
+
+    public String processUserInput(String userRequest) {
+        try {
+            return userRequest;
+        } catch (Exception processUserInputExc) {
+            return null;
+        }
+    }
+
+    public String processAIOutput(String aiResponse) {
+        try {
+            return aiResponse;
+        } catch (Exception processAIOutputExc) {
+            return null;
+        }
+    }
+
+    public String getContext() {
+        return context.toString();
+    }
+
+    public void clearContext() {
+        context.setLength(0);
+    }
+
+    public void addCustomContextEntry(String entry) {
+        context.append(entry).append("\n");
+    }
+
+    public void handle(String dataType) {
+        // Implement the data type handling logic here
+    }
 }

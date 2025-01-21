@@ -9,12 +9,10 @@
     <modules>
         <module>tar-mod</module>
         <module>snapshots-mod</module>
-        <module>contexts-mod</module>
         <module>starter-mod</module>
         <module>advisers-mod</module>
         <module>loaders-mod</module>
         <module>checksums-mod</module>
-        <module>types-mod</module>
         <module>servers-mod</module>
         <module>downloaders-mod</module>
         <module>directories-mod</module>

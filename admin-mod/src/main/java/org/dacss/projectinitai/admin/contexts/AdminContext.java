@@ -44,4 +44,48 @@ public class AdminContext {
     public String toString() {
         return STR."AdminContext{currentTask='\{currentTask}', toolUsage=\{toolUsage}, configurations=\{configurations}}";
     }
+
+    private static final StringBuilder context = new StringBuilder();
+    private String lastUserRequest;
+    private String lastAIResponse;
+
+    public String updateContext(String userRequest, String aiResponse) {
+        try {
+            lastUserRequest = userRequest;
+            lastAIResponse = aiResponse;
+            context.append("USER: ").append(userRequest).append("\n");
+            context.append("AI: ").append(aiResponse).append("\n");
+            return userRequest;
+        } catch (Exception updateContextExc) {
+            return null;
+        }
+    }
+
+    public String processUserInput(String userRequest) {
+        try {
+            return userRequest;
+        } catch (Exception processUserInputExc) {
+            return null;
+        }
+    }
+
+    public String processAIOutput(String aiResponse) {
+        try {
+            return aiResponse;
+        } catch (Exception processAIOutputExc) {
+            return null;
+        }
+    }
+
+    public String getContext() {
+        return context.toString();
+    }
+
+    public void clearContext() {
+        context.setLength(0);
+    }
+
+    public void addCustomContextEntry(String entry) {
+        context.append(entry).append("\n");
+    }
 }
