@@ -6,8 +6,8 @@ package org.dacss.projectinitai.snapshots;
 @FunctionalInterface
 public interface SnapShotsIface {
     /**
-     * <h2>{@link #manageSnapshots()}</h2>
+     * <h2>{@link #manageSnapshots(String action, String source, String destination)}</h2>
      * Perform snapshot management operations.
      */
-    void manageSnapshots();
+    void manageSnapshots(String action, String source, String destination);
 }

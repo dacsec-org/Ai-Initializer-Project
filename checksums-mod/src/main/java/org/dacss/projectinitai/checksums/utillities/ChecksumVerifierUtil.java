@@ -19,7 +19,7 @@ public class ChecksumVerifierUtil {
      * @throws IOException if an I/O error occurs
      * @throws NoSuchAlgorithmException if the algorithm is not available
      */
-    public static boolean verifyChecksum(String filePath, String expectedChecksum) throws IOException, NoSuchAlgorithmException {
+    public static boolean verifyFileChecksum(String filePath, String expectedChecksum) throws IOException, NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         try (FileInputStream fis = new FileInputStream(filePath)) {
             byte[] byteArray = new byte[1024];
@@ -43,7 +43,7 @@ public class ChecksumVerifierUtil {
      * @return true if the checksum is correct, false otherwise
      * @throws NoSuchAlgorithmException if the algorithm is not available
      */
-    public static boolean verifyChecksum(byte[] data, String expectedChecksum) throws NoSuchAlgorithmException {
+    public static boolean verifyByteArrayChecksum(byte[] data, String expectedChecksum) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         digest.update(data);
         byte[] bytes = digest.digest();

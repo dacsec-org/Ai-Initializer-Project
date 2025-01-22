@@ -3,7 +3,15 @@ package org.dacss.projectinitai.downloaders;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class LLMS {
+/**
+ * <h1>{@link DownloadersDetails}</h1>
+ * <p>
+ *     This class is used to store the details of the LLM downloads.
+ *     We will convert it into an entity later to query the database,
+ *     rather than downloading the entire list of LLMs every time.
+ * </p>
+ */
+public class DownloadersDetails {
     private String name;
     private String description;
     private String type;
@@ -15,7 +23,7 @@ public class LLMS {
     private String dateInstalled;
     private String availableSizes;
 
-    public LLMS() {
+    public DownloadersDetails() {
     }
 
     public String getName() {

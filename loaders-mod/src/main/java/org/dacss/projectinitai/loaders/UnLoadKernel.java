@@ -28,7 +28,7 @@ public class UnLoadKernel {
      *
      * @return boolean - returns true if the model was successfully unloaded.
      */
-    boolean unloadModelKernel(byte[] modelData) {
+    public boolean unloadModelKernel(byte[] modelData) {
         boolean success = false;
         try {
             final byte[] finalModelData = modelData; // Make modelData effectively final

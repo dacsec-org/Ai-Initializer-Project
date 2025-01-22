@@ -1,7 +1,6 @@
-package org.dacss.projectinitai.downloaders.utillities;
+package org.dacss.projectinitai.downloaders;
 /**/
 
-import org.dacss.projectinitai.downloaders.LLMS;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,23 +17,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <h1>{@link LLMLinkScraperUtil}</h1>
+ * <h1>{@link DownloadersScraperUtil}</h1>
  * <p>
  * Utility class for scraping links of Language Model Libraries (LLMs).
  * </p>
  */
-public class LLMLinkScraperUtil {
+public class DownloadersScraperUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(LLMLinkScraperUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(DownloadersScraperUtil.class);
 
     /**
      * Scrapes LLM links from the given URL.
      *
      * @param url the URL to scrape
-     * @return a list of {@link LLMS} objects
+     * @return a list of {@link DownloadersDetails} objects
      * @throws IOException if an I/O error occurs
      */
-    public static List<LLMS> scrapeLLMLinks(String url) throws IOException {
+    public static List<DownloadersDetails> scrapeLLMLinks(String url) throws IOException {
         if (url.contains("ollama.com")) {
             return scrapeHuggingFaceLinks(url);
         } else if (url.contains("huggingface.co")) {
@@ -47,11 +46,11 @@ public class LLMLinkScraperUtil {
      * Scrapes LLM links from the huggingface website.
      *
      * @param url the URL to scrape
-     * @return a list of {@link LLMS} objects
+     * @return a list of {@link DownloadersDetails} objects
      * @throws IOException if an I/O error occurs
      */
-    private static List<LLMS> scrapeHuggingFaceLinks(String url) throws IOException {
-        List<LLMS> llmLinks = new ArrayList<>();
+    private static List<DownloadersDetails> scrapeHuggingFaceLinks(String url) throws IOException {
+        List<DownloadersDetails> llmLinks = new ArrayList<>();
         url += "?search=qwen"; // Append 'search=qwen' to the URL
         log.info("Requesting URL: {}", url);
 
@@ -69,20 +68,20 @@ public class LLMLinkScraperUtil {
             for (Element link : links) {
                 String href = link.attr("href");
                 if (href.contains("/models/")) {
-                    LLMS llms = new LLMS();
+                    DownloadersDetails downloadersDetails = new DownloadersDetails();
                     String linkText = link.text();
 
-                    llms.setName(linkText);
-                    llms.setDescription("Description not available");
-                    llms.setType("Unknown type");
-                    llms.setAvailableSizes("Unknown sizes");
-                    llms.setPulls("Unknown pulls");
-                    llms.setTags("Unknown tags");
-                    llms.setUpdated("Unknown update date");
+                    downloadersDetails.setName(linkText);
+                    downloadersDetails.setDescription("Description not available");
+                    downloadersDetails.setType("Unknown type");
+                    downloadersDetails.setAvailableSizes("Unknown sizes");
+                    downloadersDetails.setPulls("Unknown pulls");
+                    downloadersDetails.setTags("Unknown tags");
+                    downloadersDetails.setUpdated("Unknown update date");
 
-                    llms.setInstalled(false);
-                    llms.setDateInstalled();
-                    llmLinks.add(llms);
+                    downloadersDetails.setInstalled(false);
+                    downloadersDetails.setDateInstalled();
+                    llmLinks.add(downloadersDetails);
                 }
             }
         } catch (IOException e) {

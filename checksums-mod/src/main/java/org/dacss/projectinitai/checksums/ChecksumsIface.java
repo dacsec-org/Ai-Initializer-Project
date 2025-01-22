@@ -7,7 +7,8 @@ package org.dacss.projectinitai.checksums;
 @FunctionalInterface
 public interface ChecksumsIface {
     /**
-     * <h2>{@link ChecksumsIface#calculateChecksum()}</h2>
+     * <h2>{@link ChecksumsIface#calculateChecksum(String, String, String)}</h2>
+     * Handles the checksum operations.
      */
-    void calculateChecksum();
+    void calculateChecksum(String action, String filePath, String expectedChecksum);
 }

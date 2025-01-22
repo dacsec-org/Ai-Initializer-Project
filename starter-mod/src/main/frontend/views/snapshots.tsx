@@ -15,7 +15,7 @@ interface SnapshotsViewState {
   dialogAction: () => void;
 }
 
-class SnapshotsView extends Component<{}, SnapshotsViewState> {
+class Snapshots extends Component<{}, SnapshotsViewState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -95,4 +95,4 @@ class SnapshotsView extends Component<{}, SnapshotsViewState> {
   }
 }
 
-export default SnapshotsView;
+export default Snapshots;

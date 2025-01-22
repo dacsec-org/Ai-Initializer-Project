@@ -35,6 +35,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.google.common.base.Function;
 
+import java.io.File;
+
+/**
+ * <h1>{@link AdminHandler}</h1>
+ * Handler class for the admin LLM operations.
+ */
 @Component
 public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIface, ClassificationsIface, ClusteringIface, DataBaseIface, DirectoriesIface,
         DownloadersIface, EmbeddingIface, GenerativeIface, KRRIface, LoadersIface, MessagesIface, MetricsIface, ModelIface, NLPIface,
@@ -63,10 +69,11 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link ChecksumsIface#calculateChecksum()}</h2>
+     * <h2>{@link ChecksumsIface#calculateChecksum(String, String, String)}</h2>
+     * Handles the checksum operations.
      */
     @Override
-    public void calculateChecksum() {
+    public void calculateChecksum(String action, String filePath, String expectedChecksum) {
 
     }
 
@@ -96,23 +103,22 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link DirectoriesIface#processDirFileAction()}</h2>
+     * <h2>{@link DirectoriesIface#processDirFileAction(String, String, String)}</h2>
      */
     @Override
-    public void processDirFileAction() {
+    public void processDirFileAction(String action, String path, String fileName) {
 
     }
 
     /**
-     * <h2>{@link DownloadersIface#download(String)}</h2>
+     * <h2>{@link DownloadersIface#download(String, String, String)}</h2>
      *
+     * @param action The action to perform.
      * @param url The URL to download the file from.
-     * @return The path to the downloaded file.
+     * @param filePath The path to save the downloaded file.
      */
     @Override
-    public String download(String url) {
-        return "";
-    }
+    public void download(String action, String url, String filePath) {}
 
     /**
      * <h2>{@link EmbeddingIface#processEmbedding()}</h2>
@@ -131,10 +137,14 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link ModelIface#processModel()}</h2>
+     * <h2>{@link ModelIface#processModel(String, String, String)}</h2>
+     *
+     * @param action The action to perform.
+     * @param modelPath1 The path to the first model.
+     * @param modelPath2 The path to the second model.
      */
     @Override
-    public void processModel() {
+    public void processModel(String action, String modelPath1, String modelPath2) {
 
     }
 
@@ -180,18 +190,22 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link ServersIface#manage()}</h2>
+     * <h2>{@link ServersIface#manageServer(String)}</h2>
+     *
+     * @param operation The operation to perform.
      */
     @Override
-    public void manage() {
-
-    }
+    public void manageServer(String operation) {}
 
     /**
-     * <h2>{@link SnapShotsIface#manageSnapshots()}</h2>
+     * <h2>{@link SnapShotsIface#manageSnapshots(String, String, String)}</h2>
+     *
+     * @param action The action to perform.
+     * @param source The source of the snapshot.
+     * @param destination The destination of the snapshot.
      */
     @Override
-    public void manageSnapshots() {
+    public void manageSnapshots(String action, String source, String destination) {
 
     }
 
@@ -204,10 +218,15 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link TarIface#processTar()}</h2>
+     * <h2>{@link TarIface#processTar(String, File, File, File)}</h2>
+     *
+     * @param action The action to perform.
+     * @param sourceDir The source directory.
+     * @param tarFile The tar file.
+     * @param destDir The destination directory.
      */
     @Override
-    public void processTar() {
+    public void processTar(String action, File sourceDir, File tarFile, File destDir) {
 
     }
 
@@ -219,13 +238,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
 
     }
 
-    /**
-     * <h2>{@link ModelIface#processModel()}</h2>
-     */
-    @Override
-    public void modelSequence() {
 
-    }
 
     /**
      * <h2>{@link PredictiveIface#predict()}</h2>
@@ -236,10 +249,14 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link LoadersIface#loadUnloadLLM()}</h2>
+     * <h2>{@link LoadersIface#loadUnloadLLM(String, String, byte[])}</h2>
+     *
+     * @param action The action to perform.
+     * @param modelPath The path to the model.
+     * @param modelData The model data.
      */
     @Override
-    public void loadUnloadLLM() {
+    public void loadUnloadLLM(String action, String modelPath, byte[] modelData) {
 
     }
 
@@ -266,7 +283,6 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     public void learn() {
 
     }
-
     /**
      * <h2>{@link RecommendationsIface#recommend()}</h2>
      */
@@ -296,6 +312,15 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
      */
     @Override
     public void processGenerative() {
+
+    }
+
+    /**
+     * <h2>{@link #modelSequence()}</h2>
+     * Perform sequence modeling on the data.
+     */
+    @Override
+    public void modelSequence() {
 
     }
 }

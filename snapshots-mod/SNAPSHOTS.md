@@ -87,7 +87,7 @@ Our use is snapshot entire or parts of LLM's that are stored in Btrfs filesystem
 
 ## Frontend (TypeScript/React)
 
-### `snapshots-view.tsx`
+### `snapshots.tsx`
 
 - **Purpose**: React component that provides a user interface for managing snapshots.
 - **Methods**:
@@ -102,7 +102,7 @@ Our use is snapshot entire or parts of LLM's that are stored in Btrfs filesystem
 ## Interaction Flow
 
 1. **User Interaction**:
-   - The user interacts with the React component (`snapshots-view.tsx`), clicking buttons to perform snapshot actions.
+   - The user interacts with the React component (`snapshots.tsx`), clicking buttons to perform snapshot actions.
 
 2. **Frontend to Backend**:
    - The React component calls methods on `SnapShotService` to perform the requested actions.

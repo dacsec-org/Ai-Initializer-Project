@@ -7,10 +7,12 @@ package org.dacss.projectinitai.downloaders;
 @FunctionalInterface
 public interface DownloadersIface {
     /**
+     * <h2>{@link #download(String, String, String)}</h2>
      * Downloads the file from the given URL.
      *
+     * @param action The action to perform.
      * @param url The URL to download the file from.
-     * @return The path to the downloaded file.
+     * @param filePath The path to save the downloaded file.
      */
-    String download(String url);
+    void download(String action, String url, String filePath);
 }

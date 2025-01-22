@@ -6,8 +6,8 @@ package org.dacss.projectinitai.servers;
 @FunctionalInterface
 public interface ServersIface {
     /**
-     * <h2>{@link #manage()}</h2>
+     * <h2>{@link #manageServer()}</h2>
      * Perform server management operations.
      */
-    void manage();
+    void manageServer(String operation);
 }

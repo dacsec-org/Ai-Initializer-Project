@@ -7,7 +7,7 @@ package org.dacss.projectinitai.loaders;
 @FunctionalInterface
 public interface LoadersIface {
     /**
-     * <h2>{@link #loadUnloadLLM()} ()}</h2>
+     * <h2>{@link #loadUnloadLLM(String, String, byte[])}</h2>
      */
-    void loadUnloadLLM();
+    void loadUnloadLLM(String action, String modelPath, byte[] modelData);
 }

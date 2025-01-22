@@ -34,7 +34,7 @@ public class LoadKernel {
      *
      * @return byte[] - returns the model data.
      */
-    protected byte[] loadModelKernel(String modelPath) {
+    public byte[] loadModelKernel(String modelPath) {
         byte[] modelData = null;
         try {
             modelData = loadModel(modelPath);

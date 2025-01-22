@@ -6,7 +6,7 @@ export const config = {
     menu: { order: 11, icon: 'line-awesome/svg/solid/camera.svg' },
     title: 'Snapshots',
 };
-class SnapshotsView extends Component {
+class Snapshots extends Component {
     constructor(props) {
         super(props);
         this.openDialog = (message, action) => {

@@ -6,7 +6,7 @@ package org.dacss.projectinitai.directories;
 @FunctionalInterface
 public interface DirectoriesIface {
     /**
-     * <h2>{@link #processDirFileAction()}</h2>
+     * <h2>{@link #processDirFileAction(String, String, String)}</h2>
      */
-    void processDirFileAction();
+    void processDirFileAction(String action, String path, String fileName);
 }

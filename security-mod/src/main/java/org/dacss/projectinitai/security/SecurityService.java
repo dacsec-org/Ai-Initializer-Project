@@ -1,7 +1,13 @@
 package org.dacss.projectinitai.security;
 
+import org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil;
+
 import com.vaadin.hilla.BrowserCallable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * <h1>{@link SecurityService}</h1>
@@ -9,28 +15,26 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class SecurityService {
+public class SecurityService implements SecurityIface {
 
-    private SecurityHandler handler;
+    private static final Logger log = LoggerFactory.getLogger(SecurityService.class);
 
     /**
      * <h2>{@link #SecurityService()}</h2>
-     * 0-arg constructor to instantiate the {@link SecurityHandler}.
+     * 0-arg constructor.
      */
-    public SecurityService() {
-        this.handler = new SecurityHandler();
-    }
+    public SecurityService() {}
 
     /**
-     * <h2>{@link #handleSecurityAction(String, String)}</h2>
-     * @param action The action to be performed.
-     * @param data The data to be processed.
-     * @return The result of the action.
+     * <h2>{@link SecurityIface#secure()}</h2>
+     * Perform security operations on the data.
      */
-    public Object handleSecurityAction(String action, String data) {
-        return switch (SecurityContexts.valueOf(action.toUpperCase())) {
-            case PROJECT_SECURITY -> handler.handleProjectSecurity(data);
-            case CYBER_SECURITY -> handler.handleCyberSecurity(data);
-        };
+    @Override
+    public void secure() {
+        try {
+            SecurityApiTokenUtil.getApiToken();
+        } catch (IOException secExc) {
+            log.error("Error setting API token", secExc);
+        }
     }
 }

@@ -84,28 +84,28 @@ public class TarModuleTest {
     public void testCreateTar() throws IOException {
         tarService.createTar(sourceDir.toFile(), tarFile.toFile());
         assertTrue(Files.exists(tarFile), "Tar file should exist");
-        System.out.println("Test 'createTar()' passed: " + tarFile);
+        System.out.println(STR."Test 'createTar()' passed: \{tarFile}");
     }
 
     @Test(dependsOnMethods = "testCreateTar")
     public void testExtractTar() throws IOException {
         tarService.extractTar(tarFile.toFile(), destDir.toFile());
         assertTrue(Files.exists(destDir), "Destination directory should exist");
-        System.out.println("Test 'extractTar()' passed: " + tarFile);
+        System.out.println(STR."Test 'extractTar()' passed: \{tarFile}");
     }
 
     @Test(dependsOnMethods = "testExtractTar")
     public void testVerifyExtraction() {
         File destDirFile = destDir.toFile();
         assertTrue(TarDestroyUtil.verifyExtraction(destDirFile), "Extraction should be verified");
-        System.out.println("Test 'verifyExtraction()' passed: " + destDir);
+        System.out.println(STR."Test 'verifyExtraction()' passed: \{destDir}");
     }
 
     @Test(dependsOnMethods = "testVerifyExtraction")
     public void testExtractAndDestroyTar() throws IOException {
         String message = tarService.extractAndDestroyTar(tarFile.toFile(), destDir.toFile());
         assertFalse(Files.exists(tarFile), "Tar file should be destroyed");
-        System.out.println("Test 'extractAndDestroy()' passed: " + tarFile + " - " + message);
+        System.out.println(STR."Test 'extractAndDestroy()' passed: \{tarFile} - \{message}");
     }
 
     @Test(dependsOnMethods = "testExtractAndDestroyTar")
@@ -116,7 +116,7 @@ public class TarModuleTest {
         }
         tarService.deleteTar(tarFile.toFile());
         assertFalse(Files.exists(tarFile), "Tar file should be deleted");
-        System.out.println("Test 'deleteTar()' passed: " + tarFile);
+        System.out.println(STR."Test 'deleteTar()' passed: \{tarFile}");
     }
 
     @Test(dependsOnMethods = "testExtractTar")
@@ -129,6 +129,6 @@ public class TarModuleTest {
         File destDirFile = destDir.toFile();
         assertTrue(TarDestroyUtil.verifyExtraction(destDirFile),
                 "Extraction should not be verified");
-        System.out.println("Test 'verifyExtractionFails()' passed: " + destDir);
+        System.out.println(STR."Test 'verifyExtractionFails()' passed: \{destDir}");
     }
 }

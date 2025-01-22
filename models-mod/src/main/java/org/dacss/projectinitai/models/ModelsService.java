@@ -1,6 +1,9 @@
 package org.dacss.projectinitai.models;
 
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.models.utilities.CreateNewModelUtil;
+import org.dacss.projectinitai.models.utilities.DestroyModelUtil;
+import org.dacss.projectinitai.models.utilities.MergeModelUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -11,30 +14,36 @@ import java.io.IOException;
  */
 @Service
 @BrowserCallable
-public class ModelsService {
-
-    private ModelHandler handler;
+public class ModelsService implements ModelIface {
 
     /**
      * <h2>{@link #ModelsService()}</h2>
-     * 0-arg constructor to instantiate the {@link ModelHandler}.
+     * 0-arg constructor.
      */
-    public ModelsService() {
-        this.handler = new ModelHandler();
-    }
+    public ModelsService() {}
 
     /**
-     * <h2>{@link #handleModelAction(String, String, String)}</h2>
-     * @param action The action to be performed.
+     * <h2>{@link #processModel(String, String, String)}</h2>
+     * Perform model operations.
+     *
+     * @param action    The action to perform on the model.
      * @param modelPath1 The path of the first model.
      * @param modelPath2 The path of the second model (optional for destroy and create).
-     * @return The result of the action.
      */
-    public Object handleModelAction(String action, String modelPath1, String modelPath2) throws IOException {
-        return switch (ModelContexts.valueOf(action.toUpperCase())) {
-            case MERGE -> handler.handleMerge(modelPath1, modelPath2);
-            case DESTROY -> handler.handleDestroy(modelPath1);
-            case CREATE -> handler.handleCreate(modelPath1);
-        };
+    @Override
+    public void processModel(String action, String modelPath1, String modelPath2) throws IOException {
+        switch (action.toLowerCase()) {
+            case "create":
+                new CreateNewModelUtil().createNewModel();
+                break;
+            case "destroy":
+                DestroyModelUtil.destroyModel(modelPath1);
+                break;
+            case "merge":
+                MergeModelUtil.mergeModels(modelPath1, modelPath2);
+                break;
+            default:
+                throw new IllegalArgumentException(STR."Unknown action: \{action}");
+        }
     }
 }

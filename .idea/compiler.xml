@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="classifications-mod" />
-        <module name="types-mod" />
         <module name="reductions-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
@@ -44,6 +43,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ai-iinitializer-project" target="21" />
       <module name="Ai-Initializer-Project" target="21" />
       <module name="contexts-mod" target="21" />
       <module name="generative" target="21" />
@@ -52,6 +52,7 @@
       <module name="recomondations-mod" target="21" />
       <module name="redis-mod" target="21" />
       <module name="services-mod" target="21" />
+      <module name="types-mod" target="21" />
       <module name="utilities-mod" target="21" />
     </bytecodeTargetLevel>
   </component>

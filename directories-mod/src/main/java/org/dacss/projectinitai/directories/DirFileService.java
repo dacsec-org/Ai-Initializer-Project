@@ -1,8 +1,11 @@
 package org.dacss.projectinitai.directories;
-/**/
+
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.directories.utilities.CreateDirFileUtil;
+import org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.expression.Operation;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,40 +16,43 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class DirFileService {
+public class DirFileService implements DirectoriesIface {
 
     private static final Logger log = LoggerFactory.getLogger(DirFileService.class);
-    private final DirFileHandler dirFileHandler;
 
     /**
-     * <h2>{@link #DirFileService()}</h2>
      * 0-arg constructor.
      */
-    public DirFileService() {
-        this.dirFileHandler = new DirFileHandler();
-    }
+    public DirFileService() {}
 
-
-    public void handleOperation(Operation operation, String path, String fileName) {
+    /**
+     * Perform directory and file operations.
+     *
+     * @param action The action to perform.
+     * @param path The directory path.
+     * @param fileName The file name (optional, can be null).
+     */
+    @Override
+    public void processDirFileAction(String action, String path, String fileName) {
         try {
-            switch (operation) {
-                case CREATE_DIRECTORY:
-                    dirFileHandler.createDirectory(path);
+            switch (action.toLowerCase()) {
+                case "create_directory":
+                    CreateDirFileUtil.createDirectory(path);
                     break;
-                case CREATE_FILE:
-                    dirFileHandler.createFile(path, fileName);
+                case "create_file":
+                    CreateDirFileUtil.createFile(path, fileName);
                     break;
-                case DELETE_DIRECTORY:
-                    dirFileHandler.deleteDirectory(path);
+                case "delete_directory":
+                    DestroyDirFileUtil.deleteDirectory(path);
                     break;
-                case DELETE_FILE:
-                    dirFileHandler.deleteFile(path, fileName);
+                case "delete_file":
+                    DestroyDirFileUtil.deleteFile(path, fileName);
                     break;
                 default:
-                    throw new IllegalArgumentException(STR."Unsupported operation: \{operation}");
+                    throw new IllegalArgumentException(STR."Unsupported operation: \{action}");
             }
         } catch (Exception dirFileExc) {
-            log.error("Error handling operation: {}", operation, dirFileExc);
+            log.error("Error handling operation: {}", action, dirFileExc);
         }
     }
 }

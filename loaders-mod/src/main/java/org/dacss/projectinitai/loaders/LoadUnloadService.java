@@ -1,8 +1,9 @@
 package org.dacss.projectinitai.loaders;
 
 import com.vaadin.hilla.BrowserCallable;
-import org.dacss.projectinitai.loaders.LoadUnloadHandler;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * <h1>{@link LoadUnloadService}</h1>
@@ -10,30 +11,33 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class LoadUnloadService {
-
-    private LoadUnloadHandler handler;
+public class LoadUnloadService implements LoadersIface {
 
     /**
      * <h2>{@link #LoadUnloadService()}</h2>
-     * 0-arg constructor to instantiate the {@link LoadUnloadHandler}.
+     * 0-arg constructor.
      */
-    public LoadUnloadService() {
-        this.handler = new LoadUnloadHandler();
-    }
+    public LoadUnloadService() {}
 
     /**
-     * <h2>{@link #handleModelAction(String, String, byte[])}</h2>
-     * @param action The action to be performed.
+     * <h2>{@link #loadUnloadLLM(String, String, byte[])}</h2>
+     * Perform load/unload operations on models.
+     *
+     * @param action    The action to perform on the model.
      * @param modelPath The path to the model.
      * @param modelData The model data.
-     * @return The result of the action.
      */
-    public Object handleModelAction(String action, String modelPath, byte[] modelData) {
-        return switch (action.toLowerCase()) {
-            case "load" -> handler.loadModel(modelPath);
-            case "unload" -> handler.unloadModel(modelData);
-            default -> throw new IllegalArgumentException(STR."Unknown action: \{action}");
-        };
+    @Override
+    public void loadUnloadLLM(String action, String modelPath, byte[] modelData) {
+        switch (action.toLowerCase()) {
+            case "load":
+                new LoadKernel().loadModelKernel(modelPath);
+                break;
+            case "unload":
+                new UnLoadKernel().unloadModelKernel(modelData);
+                break;
+            default:
+                throw new IllegalArgumentException(STR."Unknown action: \{action}");
+        }
     }
 }

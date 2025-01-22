@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.snapshots;
 
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.snapshots.utilities.*;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,32 +10,42 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class SnapShotsService {
-
-    private SnapShotsHandler handler;
+public class SnapShotsService implements SnapShotsIface {
 
     /**
      * <h2>{@link #SnapShotsService()}</h2>
-     * 0-arg constructor to instantiate the {@link SnapShotsHandler}.
+     * 0-arg constructor.
      */
-    public SnapShotsService() {
-        this.handler = new SnapShotsHandler();
-    }
+    public SnapShotsService() {}
 
     /**
-     * <h2>{@link #handleSnapShotsAction(String, String, String)}</h2>
-     * @param action The action to be performed.
-     * @param source The source path.
-     * @param destination The destination path.
-     * @return The result of the action.
+     * <h2>{@link #manageSnapshots(String, String, String)}</h2>
+     * Perform snapshot management operations.
+     *
+     * @param action      The action to perform on the snapshot.
+     * @param source      The source directory for the snapshot.
+     * @param destination The destination directory for the snapshot.
      */
-    public Object handleSnapShotsAction(String action, String source, String destination) {
-        return switch (SnapShotsContexts.valueOf(action.toUpperCase())) {
-            case CREATE -> handler.handleCreate(source, destination);
-            case LIST -> handler.handleList(source);
-            case DELETE -> handler.handleDelete(source);
-            case COPY -> handler.handleCopy(source, destination);
-            case EXECUTE_COMMAND -> handler.handleExecuteCommand(source, destination);
-        };
+    @Override
+    public void manageSnapshots(String action, String source, String destination) {
+        switch (action.toLowerCase()) {
+            case "create":
+                SnapShotCreatorUtil.createSnapshot(source, destination);
+                break;
+            case "list":
+                SnapShotListerUtil.listSnapshots(source);
+                break;
+            case "delete":
+                SnapShotDestroyerUtil.deleteSnapshot(source);
+                break;
+            case "copy":
+                SnapShotClonerUtil.copySnapshot(source, destination);
+                break;
+            case "execute":
+                SnapShotCommandRunnerUtil.executeCommand(source, destination);
+                break;
+            default:
+                throw new IllegalArgumentException(STR."Invalid action: \{action}");
+        }
     }
 }

@@ -1,87 +1,64 @@
 package org.dacss.projectinitai.downloaders;
 /**/
-import org.dacss.projectinitai.directories.DirFileHandler;
-import org.dacss.projectinitai.security.SecurityService;
-/**/
+
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import static org.dacss.projectinitai.checksums.utillities.ChecksumGeneratorUtil.generateSHA512;
+import static org.dacss.projectinitai.directories.utilities.CreateDirFileUtil.createDirectory;
+import static org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil.getApiToken;
 
 /**
  * <h1>{@link DownloadersService}</h1>
  * <p>
- *     Backend service for downloading models from the Hugging Face model hub.
+ * Backend service for downloading models from the Hugging Face model hub.
  * </p>
- * Module dependencies:
- * <ul>
- *     <li>directories-mod{@link DirFileHandler}</li>
- *     <li>security-mod{@link SecurityService}</li>
- * </ul>
  */
 @Service
 @BrowserCallable
-@AnonymousAllowed
-public class DownloadersService {
+public class DownloadersService implements DownloadersIface {
 
     private static final Logger log = LoggerFactory.getLogger(DownloadersService.class);
-    private final DirFileHandler dirFileHandler;
 
     /**
-     * {@link #DownloadersService(DirFileHandler)}
+     * <h2>{@link #DownloadersService()}</h2>
      * <p>
-     *     1-parameter constructor.
+     * 0-parameter constructor.
      * </p>
      */
-    @Autowired
-    public DownloadersService(DirFileHandler dirFileHandler) {
-        this.dirFileHandler = dirFileHandler;
-    }
+    public DownloadersService() {}
 
     /**
-     * {@link #getApiToken()}
+     * Downloads the file from the given URL.
      *
-     * @return String - returns the API token.
+     * @param action   The action to perform.
+     * @param url      The URL to download the file from.
+     * @param filePath The path to the file.
      */
-    public String getApiToken() {
-        return SecurityService.getApiToken();
-    }
-
-    /**
-     * {@link #downloadModel(String)}
-     *
-     * @param modelId - the model id.
-     * @return boolean - returns true if the model was downloaded successfully.
-     */
-    public boolean downloadModel(String modelId) {
+    @Override
+    public void download(String action, String url, String filePath) {
         try {
-            String apiToken = getApiToken();
-            URI uri = URI.create(String.format("https://huggingface.co/api/models/%s/download", modelId));
-            URL url = uri.toURL();
-            String modelsDirPath = "models";
-            dirFileHandler.createDirectory(modelsDirPath);
-            String modelDirPath = String.format("%s/%s", modelsDirPath, modelId);
-            dirFileHandler.createDirectory(modelDirPath);
-            String modelFilePath = String.format("%s/%s.zip", modelDirPath, modelId);
-            dirFileHandler.createFile(modelDirPath, String.format("%s.zip", modelId));
-
-            try (var inputStream = url.openStream()) {
-                Files.copy(inputStream, new File(modelFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            switch (action.toLowerCase()) {
+                case "api_token":
+                    getApiToken();
+                    break;
+                case "download":
+                    DownloadersScraperUtil.scrapeLLMLinks(url);
+                    break;
+                case "create_directory":
+                    createDirectory(url);
+                    break;
+                //todo: add the checksum generator to the switch statement
+                case "generate_checksum":
+                    generateSHA512(filePath);
+                    break;
+                default:
+                    throw new IllegalArgumentException(STR."Unsupported operation: \{action}");
             }
-
-            return true;
-        } catch (IOException downloadExc) {
-            log.error("Error downloading model: {}", downloadExc.getMessage());
-            return false;
+        } catch (Exception downloadExc) {
+            log.error("Error downloading file: {}", url, downloadExc);
         }
     }
 }

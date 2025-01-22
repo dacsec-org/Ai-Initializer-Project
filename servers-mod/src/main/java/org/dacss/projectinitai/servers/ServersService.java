@@ -1,6 +1,9 @@
 package org.dacss.projectinitai.servers;
 
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.servers.utillities.*;
+import org.dacss.projectinitai.loaders.LoadKernel;
+import org.dacss.projectinitai.loaders.UnLoadKernel;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,30 +12,46 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class ServersService {
+public class ServersService implements ServersIface {
 
-    private ServersHandler handler;
+    private final LoadKernel loadKernel;
+    private final UnLoadKernel unLoadKernel;
 
     /**
      * <h2>{@link #ServersService()}</h2>
-     * 0-arg constructor to instantiate the {@link ServersHandler}.
+     * 0-arg constructor to instantiate the {@link LoadKernel} and {@link UnLoadKernel}.
      */
     public ServersService() {
-        this.handler = new ServersHandler();
+        this.loadKernel = new LoadKernel();
+        this.unLoadKernel = new UnLoadKernel();
     }
 
     /**
-     * <h2>{@link #handleServerAction(String)}</h2>
-     * @param action The action to be performed.
-     * @return The result of the action.
+     * <h2>{@link #manageServer(String)}</h2>
+     * Perform server management operations.
+     *
+     * @param operation The operation to perform on the servers.
      */
-    public Object handleServerAction(String action) {
-        return switch (ServersContexts.valueOf(action.toUpperCase())) {
-            case START -> handler.handleStart();
-            case STOP -> handler.handleStop();
-            case RESTART -> handler.handleRestart();
-            case PING -> handler.handlePing();
-            case STOP_HTTP -> handler.handleStopHttp();
-        };
+    @Override
+    public void manageServer(String operation) {
+        switch (operation.toUpperCase()) {
+            case "START":
+                StartUnixSocketServerUtil.startServer();
+                break;
+            case "STOP":
+                StopUnixServerUtil.stopServer();
+                break;
+            case "RESTART":
+                RestartServersUtil.restartServer();
+                break;
+            case "PING":
+                PingServerUtil.pingServers();
+                break;
+            case "STOP_HTTP":
+                StopHttpServerUtil.stopServer();
+                break;
+            default:
+                throw new IllegalArgumentException(STR."Unknown operation: \{operation}");
+        }
     }
 }
