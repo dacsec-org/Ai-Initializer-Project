@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.dacss.projectinitai</groupId>
@@ -20,7 +20,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>6.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -29,67 +28,163 @@
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>directories-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>loaders-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>models-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>metrics-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>advisers-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>checksums-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>downloaders-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>servers-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>snapshots-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>vision-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>anomalies-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>krr-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>optimizations-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>classifications-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>clustering-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>databases-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>embedding-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>messages-mod</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>nlp-mod</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>downloaders-mod</artifactId>
-            <version>${parent.version}</version>
+            <artifactId>tar-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>servers-mod</artifactId>
-            <version>${parent.version}</version>
+            <artifactId>reductions-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>snapshots-mod</artifactId>
-            <version>${parent.version}</version>
+            <artifactId>sequence-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>vision-mod</artifactId>
-            <version>${parent.version}</version>
+            <artifactId>recommendations-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
-            <artifactId>anomalies-mod</artifactId>
-            <version>${parent.version}</version>
+            <artifactId>predictive-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>speech-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>regressions-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>reinforcement-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>robotics-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>recognitions-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>generative-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

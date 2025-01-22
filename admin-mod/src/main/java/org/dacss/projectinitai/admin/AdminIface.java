@@ -8,7 +8,7 @@ import org.dacss.projectinitai.anomalies.AnomaliesIface;
  */
 @FunctionalInterface
 public interface AdminIface {
-    //todo: implement
+
     /**
      * <h2>{@link #manage()}</h2>
      * manage the data.

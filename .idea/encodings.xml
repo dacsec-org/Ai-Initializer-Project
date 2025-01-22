@@ -28,6 +28,8 @@
     <file url="file://$PROJECT_DIR$/embedding-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/generative-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/generative-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/generative/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/generative/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/krr-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/krr-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/loaders-mod/src/main/java" charset="UTF-8" />
@@ -62,6 +64,8 @@
     <file url="file://$PROJECT_DIR$/reinforcement-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/robotics-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/robotics-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/robotics/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/robotics/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/security-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/security-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sequence-mod/src/main/java" charset="UTF-8" />

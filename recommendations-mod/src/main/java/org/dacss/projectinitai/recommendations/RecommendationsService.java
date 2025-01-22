@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.recomondations;
+package org.dacss.projectinitai.recommendations;
 
 import com.vaadin.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;

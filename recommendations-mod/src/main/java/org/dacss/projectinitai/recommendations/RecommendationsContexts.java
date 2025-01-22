@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.recomondations;
+package org.dacss.projectinitai.recommendations;
 
 /**
  * <h1>{@link RecommendationsContexts}</h1>

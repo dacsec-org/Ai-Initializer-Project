@@ -1,5 +1,4 @@
-package org.dacss.projectinitai.contexts;
-/**/
+package org.dacss.projectinitai.admin.handlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,9 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link ContextsHandler}</h1>
- * <p>
  * This class is a component that provides methods to update, process, and clear the context of the application.
- * </p>
  *
  * @param <T>
  */
@@ -21,13 +18,6 @@ public class ContextsHandler<T> {
     private T lastUserRequest;
     private T lastAIResponse;
 
-    /**
-     * {@link #updateContext(T, T)}
-     *
-     * @param userRequest
-     * @param aiResponse
-     * @return T
-     */
     public T updateContext(T userRequest, T aiResponse) {
         try {
             lastUserRequest = userRequest;
@@ -42,12 +32,6 @@ public class ContextsHandler<T> {
         }
     }
 
-    /**
-     * {@link #processUserInput(T)}
-     *
-     * @param userRequest
-     * @return T
-     */
     public T processUserInput(T userRequest) {
         try {
             log.info("Processing user input: {}", userRequest);
@@ -58,12 +42,6 @@ public class ContextsHandler<T> {
         }
     }
 
-    /**
-     * {@link #processAIOutput(T)}
-     *
-     * @param aiResponse
-     * @return T
-     */
     public T processAIOutput(T aiResponse) {
         try {
             log.info("Processing AI output: {}", aiResponse);
@@ -74,28 +52,15 @@ public class ContextsHandler<T> {
         }
     }
 
-    /**
-     * {@link #getContext()}
-     *
-     * @return String
-     */
     public String getContext() {
         return context.toString();
     }
 
-    /**
-     * {@link #clearContext()}
-     */
     public void clearContext() {
         context.setLength(0);
         log.info("Context cleared.");
     }
 
-    /**
-     * {@link #addCustomContextEntry(String)}
-     *
-     * @param entry
-     */
     public void addCustomContextEntry(String entry) {
         context.append(entry).append("\n");
         log.info("Custom context entry added: {}", entry);

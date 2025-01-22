@@ -22,7 +22,6 @@
         <module name="messages-mod" />
         <module name="metrics-mod" />
         <module name="vision-mod" />
-        <module name="contexts-mod" />
         <module name="checksums-mod" />
         <module name="recognitions-mod" />
         <module name="advisers-mod" />
@@ -36,6 +35,7 @@
         <module name="recommendations-mod" />
         <module name="clustering-mod" />
         <module name="directories-mod" />
+        <module name="robotics-mod" />
         <module name="embedding-mod" />
         <module name="admin-mod" />
         <module name="krr-mod" />
@@ -45,11 +45,12 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Ai-Initializer-Project" target="21" />
+      <module name="contexts-mod" target="21" />
+      <module name="generative" target="21" />
       <module name="processors-mod" target="21" />
       <module name="rags-mod" target="21" />
       <module name="recomondations-mod" target="21" />
       <module name="redis-mod" target="21" />
-      <module name="robotics-mod" target="21" />
       <module name="services-mod" target="21" />
       <module name="utilities-mod" target="21" />
     </bytecodeTargetLevel>
@@ -58,7 +59,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="admin-mod" options="--enable-preview" />
       <module name="advisers-mod" options="--enable-preview" />
-      <module name="ai-iinitializer-project" options="--enable-preview" />
+      <module name="ai-initializer-project" options="--enable-preview" />
       <module name="anomalies-mod" options="--enable-preview" />
       <module name="checksums-mod" options="--enable-preview" />
       <module name="classifications-mod" options="--enable-preview" />
@@ -68,6 +69,7 @@
       <module name="directories-mod" options="--enable-preview" />
       <module name="downloaders-mod" options="--enable-preview" />
       <module name="embedding-mod" options="--enable-preview" />
+      <module name="generative" options="--enable-preview" />
       <module name="generative-mod" options="--enable-preview" />
       <module name="krr-mod" options="--enable-preview" />
       <module name="loaders-mod" options="--enable-preview" />
@@ -82,6 +84,7 @@
       <module name="reductions-mod" options="--enable-preview" />
       <module name="regressions-mod" options="--enable-preview" />
       <module name="reinforcement-mod" options="--enable-preview" />
+      <module name="robotics-mod" options="--enable-preview" />
       <module name="security-mod" options="--enable-preview" />
       <module name="sequence-mod" options="--enable-preview" />
       <module name="servers-mod" options="--enable-preview" />

@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.admin;
+package org.dacss.projectinitai.admin.services;
 /**/
+import org.dacss.projectinitai.admin.handlers.AdminHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -13,7 +14,6 @@ import com.vaadin.hilla.BrowserCallable;
  */
 @Service
 @BrowserCallable
-@AnonymousAllowed
 public class AdminService {
 
     private final AdminHandler adminHandler;

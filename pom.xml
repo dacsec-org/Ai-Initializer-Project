@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -7,40 +6,40 @@
     <artifactId>ai-initializer-project</artifactId>
     <name>ai-initializer-project</name>
     <modules>
-        <module>tar-mod</module>
-        <module>snapshots-mod</module>
-        <module>contexts-mod</module>
-        <module>starter-mod</module>
-        <module>advisers-mod</module>
-        <module>loaders-mod</module>
-        <module>checksums-mod</module>
-        <module>types-mod</module>
-        <module>servers-mod</module>
-        <module>downloaders-mod</module>
-        <module>directories-mod</module>
-        <module>metrics-mod</module>
-        <module>security-mod</module>
-        <module>models-mod</module>
         <module>admin-mod</module>
-        <module>messages-mod</module>
+        <module>advisers-mod</module>
         <module>anomalies-mod</module>
+        <module>checksums-mod</module>
         <module>classifications-mod</module>
         <module>clustering-mod</module>
-        <module>vision-mod</module>
-        <module>reductions-mod</module>
+        <module>databases-mod</module>
+        <module>directories-mod</module>
+        <module>downloaders-mod</module>
         <module>embedding-mod</module>
+        <module>generative-mod</module>
         <module>krr-mod</module>
+        <module>loaders-mod</module>
+        <module>messages-mod</module>
+        <module>metrics-mod</module>
+        <module>models-mod</module>
         <module>nlp-mod</module>
         <module>optimizations-mod</module>
         <module>predictive-mod</module>
         <module>recommendations-mod</module>
+        <module>recognitions-mod</module>
+        <module>reductions-mod</module>
         <module>regressions-mod</module>
         <module>reinforcement-mod</module>
+        <module>robotics-mod</module>
+        <module>security-mod</module>
         <module>sequence-mod</module>
+        <module>servers-mod</module>
+        <module>snapshots-mod</module>
         <module>speech-mod</module>
-        <module>databases-mod</module>
-        <module>recognitions-mod</module>
-        <module>generative-mod</module>
+        <module>starter-mod</module>
+        <module>tar-mod</module>
+        <module>types-mod</module>
+        <module>vision-mod</module>
     </modules>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -60,7 +59,7 @@
             <id>vaadin-prerelease</id>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
         <repository>

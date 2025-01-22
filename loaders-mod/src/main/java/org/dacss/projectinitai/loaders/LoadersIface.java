@@ -7,7 +7,7 @@ package org.dacss.projectinitai.loaders;
 @FunctionalInterface
 public interface LoadersIface {
     /**
-     * <h2>{@link #processModels()}</h2>
+     * <h2>{@link #loadUnloadLLM()} ()}</h2>
      */
-    void processModels();
+    void loadUnloadLLM();
 }
