@@ -1,5 +1,3 @@
-// ts config file for the project with custom paths for the backend services(java) in different
-// modules, frontend, and the generated jar resources
 {
   "_version": "9.1",
   "compilerOptions": {
@@ -24,7 +22,39 @@
       "@vaadin/flow-frontend": ["generated/jar-resources"],
       "@vaadin/flow-frontend/*": ["generated/jar-resources/*"],
       "Frontend/*": ["*"],
-      "org/dacss/projectinitai/*": ["../../../../org/dacss/projectinitai/*"]
+      "org/dacss/projectinitai/*": ["../../../../org/dacss/projectinitai/*"],
+      "org/dacss/projectinitai/admin/services/*": ["../../../../admin-mod/src/main/java/org/dacss/projectinitai/admin/services/*"],
+      "org/dacss/projectinitai/advisers/*": ["../../../../advisers-mod/src/main/java/org/dacss/projectinitai/advisers/*"],
+      "org/dacss/projectinitai/anomalies/*": ["../../../../anomalies-mod/src/main/java/org/dacss/projectinitai/anomalies/*"],
+      "org/dacss/projectinitai/checksums/*": ["../../../../checksums-mod/src/main/java/org/dacss/projectinitai/checksums/*"],
+      "org/dacss/projectinitai/classifications/*": ["../../../../classifications-mod/src/main/java/org/dacss/projectinitai/classifications/*"],
+      "org/dacss/projectinitai/clustering/*": ["../../../../clustering-mod/src/main/java/org/dacss/projectinitai/clustering/*"],
+      "org/dacss/projectinitai/databases/*": ["../../../../databases-mod/src/main/java/org/dacss/projectinitai/databases/*"],
+      "org/dacss/projectinitai/directories/*": ["../../../../directories-mod/src/main/java/org/dacss/projectinitai/directories/*"],
+      "org/dacss/projectinitai/downloaders/*": ["../../../../downloaders-mod/src/main/java/org/dacss/projectinitai/downloaders/*"],
+      "org/dacss/projectinitai/embedding/*": ["../../../../embedding-mod/src/main/java/org/dacss/projectinitai/embedding/*"],
+      "org/dacss/projectinitai/generative/*": ["../../../../generative-mod/src/main/java/org/dacss/projectinitai/generative/*"],
+      "org/dacss/projectinitai/krr/*": ["../../../../krr-mod/src/main/java/org/dacss/projectinitai/krr/*"],
+      "org/dacss/projectinitai/loaders/*": ["../../../../loaders-mod/src/main/java/org/dacss/projectinitai/loaders/*"],
+      "org/dacss/projectinitai/messages/*": ["../../../../messages-mod/src/main/java/org/dacss/projectinitai/messages/*"],
+      "org/dacss/projectinitai/metrics/*": ["../../../../metrics-mod/src/main/java/org/dacss/projectinitai/metrics/*"],
+      "org/dacss/projectinitai/models/*": ["../../../../models-mod/src/main/java/org/dacss/projectinitai/models/*"],
+      "org/dacss/projectinitai/nlp/*": ["../../../../nlp-mod/src/main/java/org/dacss/projectinitai/nlp/*"],
+      "org/dacss/projectinitai/optimizations/*": ["../../../../optimizations-mod/src/main/java/org/dacss/projectinitai/optimizations/*"],
+      "org/dacss/projectinitai/predictive/*": ["../../../../predictive-mod/src/main/java/org/dacss/projectinitai/predictive/*"],
+      "org/dacss/projectinitai/recognitions/*": ["../../../../recognitions-mod/src/main/java/org/dacss/projectinitai/recognitions/*"],
+      "org/dacss/projectinitai/recommendations/*": ["../../../../recommendations-mod/src/main/java/org/dacss/projectinitai/recommendations/*"],
+      "org/dacss/projectinitai/reductions/*": ["../../../../reductions-mod/src/main/java/org/dacss/projectinitai/reductions/*"],
+      "org/dacss/projectinitai/regressions/*": ["../../../../regressions-mod/src/main/java/org/dacss/projectinitai/regressions/*"],
+      "org/dacss/projectinitai/reinforcement/*": ["../../../../reinforcement-mod/src/main/java/org/dacss/projectinitai/reinforcement/*"],
+      "org/dacss/projectinitai/robotics/*": ["../../../../robotics-mod/src/main/java/org/dacss/projectinitai/robotics/*"],
+      "org/dacss/projectinitai/security/*": ["../../../../security-mod/src/main/java/org/dacss/projectinitai/security/*"],
+      "org/dacss/projectinitai/sequence/*": ["../../../../sequence-mod/src/main/java/org/dacss/projectinitai/sequence/*"],
+      "org/dacss/projectinitai/servers/*": ["../../../../servers-mod/src/main/java/org/dacss/projectinitai/servers/*"],
+      "org/dacss/projectinitai/snapshots/*": ["../../../../snapshots-mod/src/main/java/org/dacss/projectinitai/snapshots/*"],
+      "org/dacss/projectinitai/speech/*": ["../../../../speech-mod/src/main/java/org/dacss/projectinitai/speech/*"],
+      "org/dacss/projectinitai/tar/*": ["../../../../tar-mod/src/main/java/org/dacss/projectinitai/tar/*"],
+      "org/dacss/projectinitai/vision/*": ["../../../../vision-mod/src/main/java/org/dacss/projectinitai/vision/*"]
     }
   },
   "include": [

@@ -17,6 +17,39 @@ import ManageView from 'Frontend/views/servers';
 import Snapshots from 'Frontend/views/snapshots';
 // import SystemSettingsView from 'Frontend/views/system-settings';
 
+import { AdminService } from 'Frontend/generated/org/dacss/projectinitai/admin/services/AdminService';
+import { AdvisersService } from 'Frontend/generated/org/dacss/projectinitai/advisers/AdvisersService';
+import { AnomaliesService } from 'Frontend/generated/org/dacss/projectinitai/anomalies/AnomaliesService';
+import { ChecksumsService } from 'Frontend/generated/org/dacss/projectinitai/checksums/ChecksumsService';
+import { ClassificationsService } from 'Frontend/generated/org/dacss/projectinitai/classifications/ClassificationsService';
+import { ClusteringService } from 'Frontend/generated/org/dacss/projectinitai/clustering/ClusteringService';
+import { DataBaseService } from 'Frontend/generated/org/dacss/projectinitai/databases/DataBaseService';
+import { DirFileService } from 'Frontend/generated/org/dacss/projectinitai/directories/DirFileService';
+import { DownloadersService } from 'Frontend/generated/org/dacss/projectinitai/downloaders/DownloadersService';
+import { EmbeddingService } from 'Frontend/generated/org/dacss/projectinitai/embedding/EmbeddingService';
+import { GenerativeService } from 'Frontend/generated/org/dacss/projectinitai/generative/GenerativeService';
+import { KRRService } from 'Frontend/generated/org/dacss/projectinitai/krr/KRRService';
+import { LoadUnloadService } from 'Frontend/generated/org/dacss/projectinitai/loaders/LoadUnloadService';
+import { MessagesService } from 'Frontend/generated/org/dacss/projectinitai/messages/MessagesService';
+import { MetricsService } from 'Frontend/generated/org/dacss/projectinitai/metrics/services/MetricsService';
+import { ModelsService } from 'Frontend/generated/org/dacss/projectinitai/models/ModelsService';
+import { NLPService } from 'Frontend/generated/org/dacss/projectinitai/nlp/NLPService';
+import { OptimizationsService } from 'Frontend/generated/org/dacss/projectinitai/optimizations/OptimizationsService';
+import { PredictiveService } from 'Frontend/generated/org/dacss/projectinitai/predictive/PredictiveService';
+import { RecognitionsService } from 'Frontend/generated/org/dacss/projectinitai/recognitions/RecognitionsService';
+import { RecommendationsService } from 'Frontend/generated/org/dacss/projectinitai/recommendations/RecommendationsService';
+import { ReductionsService } from 'Frontend/generated/org/dacss/projectinitai/reductions/ReductionsService';
+import { RegressionsService } from 'Frontend/generated/org/dacss/projectinitai/regressions/RegressionsService';
+import { ReinforcementService } from 'Frontend/generated/org/dacss/projectinitai/reinforcement/ReinforcementService';
+import { RoboticsService } from 'Frontend/generated/org/dacss/projectinitai/robotics/RoboticsService';
+import { SecurityService } from 'Frontend/generated/org/dacss/projectinitai/security/SecurityService';
+import { SequenceService } from 'Frontend/generated/org/dacss/projectinitai/sequence/SequenceService';
+import { ServersService } from 'Frontend/generated/org/dacss/projectinitai/servers/ServersService';
+import { SnapShotsService } from 'Frontend/generated/org/dacss/projectinitai/snapshots/SnapShotsService';
+import { SpeechService } from 'Frontend/generated/org/dacss/projectinitai/speech/SpeechService';
+import { TarService } from 'Frontend/generated/org/dacss/projectinitai/tar/TarService';
+import { VisionService } from 'Frontend/generated/org/dacss/projectinitai/vision/VisionService';
+
 export const { router, routes } = new RouterConfigurationBuilder()
   // .withFileRoutes(fileRoutes)
   .withReactRoutes(
