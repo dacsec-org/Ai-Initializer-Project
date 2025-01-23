@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog } from '@vaadin/react-components';
-import { ServersService } from 'Frontend/generated/endpoints.js';
+import { ServersService } from '../routes';
 
 export const config: ViewConfig = {
   menu: { order: 12, icon: 'line-awesome/svg/solid/server.svg' },

@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.messages;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class MessagesService {
 
     private MessagesHandler handler;

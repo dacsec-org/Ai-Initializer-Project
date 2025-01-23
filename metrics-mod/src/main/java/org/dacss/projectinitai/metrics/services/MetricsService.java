@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.metrics.services;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.metrics.MetricsTypes;
 import org.dacss.projectinitai.metrics.MetricsHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
  * </p>
  */
 @Service
+@BrowserCallable
+@AnonymousAllowed
 public class MetricsService {
 
     private final MetricsHandler handler;

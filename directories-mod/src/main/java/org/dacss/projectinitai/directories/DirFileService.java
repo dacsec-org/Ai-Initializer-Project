@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.directories;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.directories.utilities.CreateDirFileUtil;
 import org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class DirFileService implements DirectoriesIface {
 
     private static final Logger log = LoggerFactory.getLogger(DirFileService.class);

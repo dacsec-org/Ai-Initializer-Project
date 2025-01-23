@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Icon, MessageList } from '@vaadin/react-components';
 import MainLayout from './@layout';
-import MainMessageInput from './main-message-input';
+import MainMessageInput from './components/main-message-input';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { MessagesService } from 'Frontend/generated/endpoints.js';
+import { MessagesService } from 'Frontend/generated/endpoints.';
 
 export const config: ViewConfig = {
   menu: { order: 1, icon: 'line-awesome/svg/rocket-chat' }, title: 'Chat Client',

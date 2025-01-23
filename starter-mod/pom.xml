@@ -8,6 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>starter-mod</artifactId>
+    <packaging>jar</packaging>
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -55,6 +56,15 @@
             <artifactId>line-awesome</artifactId>
             <version>2.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
@@ -68,6 +78,46 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>${vaadin.version}</version>
+                <configuration>
+                    <parser>
+                        <packages>
+                            <package>org.dacss.projectinitai</package>
+                            <package>org.dacss.projectinitai.admin-mod</package>
+                            <package>org.dacss.projectinitai.advisers-mod</package>
+                            <package>org.dacss.projectinitai.anomalies-mod</package>
+                            <package>org.dacss.projectinitai.checksums-mod</package>
+                            <package>org.dacss.projectinitai.classifications-mod</package>
+                            <package>org.dacss.projectinitai.clustering-mod</package>
+                            <package>org.dacss.projectinitai.databases-mod</package>
+                            <package>org.dacss.projectinitai.directories-mod</package>
+                            <package>org.dacss.projectinitai.downloaders-mod</package>
+                            <package>org.dacss.projectinitai.embedding-mod</package>
+                            <package>org.dacss.projectinitai.generative-mod</package>
+                            <package>org.dacss.projectinitai.krr-mod</package>
+                            <package>org.dacss.projectinitai.loaders-mod</package>
+                            <package>org.dacss.projectinitai.messages-mod</package>
+                            <package>org.dacss.projectinitai.metrics-mod</package>
+                            <package>org.dacss.projectinitai.models-mod</package>
+                            <package>org.dacss.projectinitai.nlp-mod</package>
+                            <package>org.dacss.projectinitai.optimizations-mod</package>
+                            <package>org.dacss.projectinitai.predictive-mod</package>
+                            <package>org.dacss.projectinitai.recommendations-mod</package>
+                            <package>org.dacss.projectinitai.recognitions-mod</package>
+                            <package>org.dacss.projectinitai.reductions-mod</package>
+                            <package>org.dacss.projectinitai.regressions-mod</package>
+                            <package>org.dacss.projectinitai.reinforcement-mod</package>
+                            <package>org.dacss.projectinitai.robotics-mod</package>
+                            <package>org.dacss.projectinitai.security-mod</package>
+                            <package>org.dacss.projectinitai.sequence-mod</package>
+                            <package>org.dacss.projectinitai.servers-mod</package>
+                            <package>org.dacss.projectinitai.snapshots-mod</package>
+                            <package>org.dacss.projectinitai.speech-mod</package>
+                            <package>org.dacss.projectinitai.starter-mod</package>
+                            <package>org.dacss.projectinitai.tar-mod</package>
+                            <package>org.dacss.projectinitai.vision-mod</package>
+                        </packages>
+                    </parser>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

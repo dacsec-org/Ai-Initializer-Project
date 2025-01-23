@@ -1,7 +1,8 @@
 // import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 // import { useSignal } from '@vaadin/hilla-react-signals';
 // import { Button, Notification, TextField } from '@vaadin/react-components';
-// import { HelloWorldService } from 'Frontend/generated/endpoints.js';
+// // @ts-ignore
+// import { HelloWorldService } from 'Frontend/generated/endpoints';
 //
 // export const config: ViewConfig = {
 //   menu: { order:12, icon: 'line-awesome/svg/cog-solid.svg' },

@@ -10,10 +10,11 @@
     </parent>
 
     <artifactId>servers-mod</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -36,10 +37,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>loaders-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField, Dialog } from '@vaadin/react-components';
-import { MergeDestroyModelService } from 'Frontend/generated/endpoints.js';
+import { MergeDestroyModelService } from 'Frontend/generated/endpoints';
 
 /**
  * {@link config}

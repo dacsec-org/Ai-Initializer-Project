@@ -3,8 +3,9 @@ import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtim
 import { effect, signal } from '@vaadin/hilla-react-signals';
 import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import MainMenubar from './main-menubar';
-import MainMessageInput from './main-message-input';
+import MainMenubar from './components/main-menubar';
+import MainMessageInput from './components/main-message-input';
+import { MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
 
 const documentTitleSignal = signal('');
 effect(() => {
@@ -37,12 +38,11 @@ class MainLayout extends Component {
     }
   }
 
-  /**
-   * {@link render}
-   * <p>
-   *   This method renders the main layout of the application.
-   * </p>
-   */
+  handleSubmit = (event: MessageInputSubmitEvent) => {
+    event.preventDefault();
+    //fixme: asap! Handle the submit action here
+  };
+
   render() {
     return (
       <AppLayout primarySection="drawer">
@@ -71,7 +71,7 @@ class MainLayout extends Component {
         </Suspense>
 
         <footer>
-          <MainMessageInput />
+          <MainMessageInput onSubmit={this.handleSubmit} />
         </footer>
       </AppLayout>
     );

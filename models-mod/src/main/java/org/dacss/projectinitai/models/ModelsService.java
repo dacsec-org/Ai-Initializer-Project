@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.models;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.models.utilities.CreateNewModelUtil;
 import org.dacss.projectinitai.models.utilities.DestroyModelUtil;
@@ -14,6 +15,7 @@ import java.io.IOException;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class ModelsService implements ModelIface {
 
     /**

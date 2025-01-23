@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField } from '@vaadin/react-components';
-import { CloneLocalModelService } from 'Frontend/generated/endpoints.js';
+import { TextFieldValueChangedEvent } from '@vaadin/react-components';
+import { CloneLocalModelService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
   menu: { order: 2, icon: 'line-awesome/svg/clone-solid.svg' },
@@ -30,8 +31,10 @@ class CloneModelView extends Component<CloneModelViewProps, CloneModelViewState>
     Notification.show(response);
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ [e.target.name]: e.target.value } as Partial<CloneModelViewState>);
+  handleInputChange = (e: TextFieldValueChangedEvent) => {
+    if (e.target && 'name' in e.target) {
+      this.setState({ [e.target.name as string]: e.detail.value } as unknown as CloneModelViewState);
+    }
   };
 
   render() {
@@ -44,13 +47,13 @@ class CloneModelView extends Component<CloneModelViewProps, CloneModelViewState>
             label="Source Path"
             name="sourcePath"
             value={sourcePath}
-            onValueChanged={(e) => this.handleInputChange(e)}
+            onValueChanged={(e: TextFieldValueChangedEvent) => this.handleInputChange(e)}
           />
           <TextField
             label="Snapshot Path"
             name="snapshotPath"
             value={snapshotPath}
-            onValueChanged={(e) => this.handleInputChange(e)}
+            onValueChanged={(e: TextFieldValueChangedEvent) => this.handleInputChange(e)}
           />
           <Button onClick={this.handleClone}>
             Clone Model

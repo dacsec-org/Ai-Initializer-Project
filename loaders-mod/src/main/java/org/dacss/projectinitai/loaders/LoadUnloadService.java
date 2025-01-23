@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.loaders;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class LoadUnloadService implements LoadersIface {
 
     /**

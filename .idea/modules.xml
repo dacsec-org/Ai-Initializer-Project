@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/admin-mod/admin-mod.iml" filepath="$PROJECT_DIR$/admin-mod/admin-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/advisers-mod/advisers-mod.iml" filepath="$PROJECT_DIR$/advisers-mod/advisers-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anomalies-mod/anomalies-mod.iml" filepath="$PROJECT_DIR$/anomalies-mod/anomalies-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/checksums-mod/checksums-mod.iml" filepath="$PROJECT_DIR$/checksums-mod/checksums-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classifications-mod/classifications-mod.iml" filepath="$PROJECT_DIR$/classifications-mod/classifications-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clustering-mod/clustering-mod.iml" filepath="$PROJECT_DIR$/clustering-mod/clustering-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/databases-mod/databases-mod.iml" filepath="$PROJECT_DIR$/databases-mod/databases-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/directories-mod/directories-mod.iml" filepath="$PROJECT_DIR$/directories-mod/directories-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/downloaders-mod/downloaders-mod.iml" filepath="$PROJECT_DIR$/downloaders-mod/downloaders-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/embedding-mod/embedding-mod.iml" filepath="$PROJECT_DIR$/embedding-mod/embedding-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generative-mod.iml" filepath="$PROJECT_DIR$/generative-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/krr-mod/krr-mod.iml" filepath="$PROJECT_DIR$/krr-mod/krr-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loaders-mod/loaders-mod.iml" filepath="$PROJECT_DIR$/loaders-mod/loaders-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/messages-mod/messages-mod.iml" filepath="$PROJECT_DIR$/messages-mod/messages-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/metrics-mod/metrics-mod.iml" filepath="$PROJECT_DIR$/metrics-mod/metrics-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/models-mod/models-mod.iml" filepath="$PROJECT_DIR$/models-mod/models-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nlp-mod/nlp-mod.iml" filepath="$PROJECT_DIR$/nlp-mod/nlp-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/optimizations-mod/optimizations-mod.iml" filepath="$PROJECT_DIR$/optimizations-mod/optimizations-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/predictive-mod/predictive-mod.iml" filepath="$PROJECT_DIR$/predictive-mod/predictive-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recognitions-mod/recognitions-mod.iml" filepath="$PROJECT_DIR$/recognitions-mod/recognitions-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommendations-mod/recommendations-mod.iml" filepath="$PROJECT_DIR$/recommendations-mod/recommendations-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reductions-mod/reductions-mod.iml" filepath="$PROJECT_DIR$/reductions-mod/reductions-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/regressions-mod/regressions-mod.iml" filepath="$PROJECT_DIR$/regressions-mod/regressions-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reinforcement-mod/reinforcement-mod.iml" filepath="$PROJECT_DIR$/reinforcement-mod/reinforcement-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/robotics-mod/robotics-mod.iml" filepath="$PROJECT_DIR$/robotics-mod/robotics-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security-mod/security-mod.iml" filepath="$PROJECT_DIR$/security-mod/security-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sequence-mod/sequence-mod.iml" filepath="$PROJECT_DIR$/sequence-mod/sequence-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servers-mod/servers-mod.iml" filepath="$PROJECT_DIR$/servers-mod/servers-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snapshots-mod/snapshots-mod.iml" filepath="$PROJECT_DIR$/snapshots-mod/snapshots-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/speech-mod/speech-mod.iml" filepath="$PROJECT_DIR$/speech-mod/speech-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/starter-mod/starter-mod.iml" filepath="$PROJECT_DIR$/starter-mod/starter-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tar-mod/tar-mod.iml" filepath="$PROJECT_DIR$/tar-mod/tar-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vision-mod/vision-mod.iml" filepath="$PROJECT_DIR$/vision-mod/vision-mod.iml" />
+    </modules>
+  </component>
+</project>

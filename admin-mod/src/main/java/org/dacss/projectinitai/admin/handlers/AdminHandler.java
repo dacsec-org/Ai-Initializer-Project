@@ -9,6 +9,7 @@ import org.dacss.projectinitai.databases.DataBaseIface;
 import org.dacss.projectinitai.directories.DirectoriesIface;
 import org.dacss.projectinitai.downloaders.DownloadersIface;
 import org.dacss.projectinitai.embedding.EmbeddingIface;
+import org.dacss.projectinitai.generative.GenerativeIface;
 import org.dacss.projectinitai.krr.KRRIface;
 import org.dacss.projectinitai.loaders.LoadersIface;
 import org.dacss.projectinitai.messages.MessagesIface;
@@ -23,7 +24,7 @@ import org.dacss.projectinitai.servers.ServersIface;
 import org.dacss.projectinitai.snapshots.SnapShotsIface;
 import org.dacss.projectinitai.tar.TarIface;
 import org.dacss.projectinitai.vision.VisionIface;
-import org.dacss.projectinitai.generative.GenerativeIface;
+
 import org.dacss.projectinitai.speech.SpeechIface;
 import org.dacss.projectinitai.predictive.PredictiveIface;
 import org.dacss.projectinitai.recommendations.RecommendationsIface;

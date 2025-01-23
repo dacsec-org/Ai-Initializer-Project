@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog, Details, VerticalLayout } from '@vaadin/react-components';
-import { RagService } from 'Frontend/generated/endpoints.js';
+import { RagService } from 'Frontend/generated/endpoints';
 import { NavigateFunction, useNavigate } from 'react-router';
 
 const anchorStyle = {

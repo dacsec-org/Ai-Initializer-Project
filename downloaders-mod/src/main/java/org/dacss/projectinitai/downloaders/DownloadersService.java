@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.downloaders;
 /**/
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import static org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil.ge
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class DownloadersService implements DownloadersIface {
 
     private static final Logger log = LoggerFactory.getLogger(DownloadersService.class);

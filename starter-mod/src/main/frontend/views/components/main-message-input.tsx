@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { MessageInput, type MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
-import { Notification } from '@vaadin/react-components/Notification.js';
 
 interface MainMessageInputProps {
   onSubmit: (event: MessageInputSubmitEvent) => void;
@@ -14,8 +13,13 @@ interface MainMessageInputProps {
  * </p>
  */
 class MainMessageInput extends Component<MainMessageInputProps> {
+  handleSubmit(event: MessageInputSubmitEvent) {
+    event.preventDefault();
+    //fixme: asap! handle the submit action here
+  }
+
   render() {
-    return <MessageInput onSubmit={this.props.onSubmit} />;
+    return <MessageInput onSubmit={this.handleSubmit} />;
   }
 }
 

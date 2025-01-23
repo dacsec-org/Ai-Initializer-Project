@@ -18,7 +18,7 @@ public class ProjectAiInitializerApplication implements AppShellConfigurator {
 
     /**
      * {@link #main(String[])}
-     * @param args The command-line arguments.
+     * @param args
      */
     public static void main(String[] args) {
         SpringApplication.run(ProjectAiInitializerApplication.class, args);

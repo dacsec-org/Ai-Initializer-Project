@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
-import { HuggingFaceService } from 'Frontend/generated/endpoints.js';
+import { HuggingFaceService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
   menu: { order: 10, icon: 'line-awesome/svg/search-solid.svg' },

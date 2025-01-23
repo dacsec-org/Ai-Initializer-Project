@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.checksums;
 /**/
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import static org.dacss.projectinitai.checksums.utillities.ChecksumVerifierUtil.
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class ChecksumsService implements ChecksumsIface {
 
     private static final Logger log = LoggerFactory.getLogger(ChecksumsService.class);

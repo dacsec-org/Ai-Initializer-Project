@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Notification } from '@vaadin/notification';
-import { ModelLoadUnloadService } from 'Frontend/generated/endpoints.js';
+import { ModelLoadUnloadService } from 'Frontend/generated/endpoints';
 
 /**
  * {@link LoadUnloadComponentState}

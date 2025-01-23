@@ -10,10 +10,11 @@
     </parent>
 
     <artifactId>downloaders-mod</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -36,22 +37,19 @@
             <artifactId>hilla-endpoint</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>checksums-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>security-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.dacss.projectinitai</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>directories-mod</artifactId>
-            <version>${parent.version}</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>

@@ -8,9 +8,6 @@
 ### BlueJ files
 *.ctxt
 
-### intellij iml files
-*.iml
-
 ### Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -318,3 +315,8 @@ vite.generated.ts
 
 ### environment files
 /environments/
+
+### IntelliJ IDEA iml files
+!/ai-initializer-project.iml
+!/types.d.ts
+!/vite.generated.ts

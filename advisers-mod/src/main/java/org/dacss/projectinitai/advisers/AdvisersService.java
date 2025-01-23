@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.advisers;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.advisers.handlers.AdviserActionHandler;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class AdvisersService {
 
     private final AdviserActionHandler adviserActionHandler;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, Dialog } from '@vaadin/react-components';
-import { DirFileService } from 'Frontend/generated/endpoints.js';
-import CustomTextFields from './custom-textfields';
+import { DirFileService } from 'Frontend/generated/endpoints';
+import CustomTextFields from '../views/components/custom-textfields';
 
 /**
  * {@link #config}

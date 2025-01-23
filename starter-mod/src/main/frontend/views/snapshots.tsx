@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog } from '@vaadin/react-components';
-import { SnapShotService } from 'Frontend/generated/endpoints.js';
+import { SnapShotService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
   menu: { order: 11, icon: 'line-awesome/svg/solid/camera.svg' },

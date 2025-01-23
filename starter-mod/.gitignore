@@ -335,3 +335,4 @@ vite.generated.ts
 
 ### example file
 /loaders-mod/src/main/java/org/dacss/projectinitai/loaders/Examples.java
+!/starter-mod.iml
