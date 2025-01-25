@@ -1,7 +1,7 @@
-import React, { Component, Suspense } from 'react';
 import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtime.js';
 import { effect, signal } from '@vaadin/hilla-react-signals';
 import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
+import { Component, Suspense, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import MainMenubar from './components/main-menubar';
 import MainMessageInput from './components/main-message-input';

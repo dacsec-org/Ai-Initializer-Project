@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>checksums-mod</artifactId>
-    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -23,14 +22,6 @@
             <artifactId>tornado-api</artifactId>
             <version>1.0.9-dev</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>hilla-endpoint</artifactId>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>

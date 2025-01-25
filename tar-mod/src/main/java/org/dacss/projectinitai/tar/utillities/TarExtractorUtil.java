@@ -31,12 +31,12 @@ public class TarExtractorUtil {
                 File outputFile = new File(destDir, entry.getName());
                 if (entry.isDirectory()) {
                     if (!outputFile.exists() && !outputFile.mkdirs()) {
-                        throw new IOException(STR."Failed to create directory \{outputFile.getAbsolutePath()}");
+                        throw new IOException("Failed to create directory " + outputFile.getAbsolutePath());
                     }
                 } else {
                     File parent = outputFile.getParentFile();
                     if (!parent.exists() && !parent.mkdirs()) {
-                        throw new IOException(STR."Failed to create directory \{parent.getAbsolutePath()}");
+                        throw new IOException("Failed to create directory " + parent.getAbsolutePath());
                     }
                     try (FileOutputStream fos = new FileOutputStream(outputFile)) {
                         byte[] buffer = new byte[1024];

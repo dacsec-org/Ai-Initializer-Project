@@ -1,5 +1,8 @@
 package org.dacss.projectinitai.advisers.utilities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * <h1>{@link AdviserUtility}</h1>
  * <p>
@@ -7,6 +10,8 @@ package org.dacss.projectinitai.advisers.utilities;
  * </p>
  */
 public class AdviserUtility {
+
+    private static final Logger log = LoggerFactory.getLogger(AdviserUtility.class);
 
     /**
      * Validates the input data for adviser actions.
@@ -35,8 +40,7 @@ public class AdviserUtility {
      * @param output The output data for the action.
      */
     public static void logAction(String action, String input, String output) {
-        // Implement the logic for logging the action
-        System.out.println(STR."Action: \{action}, Input: \{input}, Output: \{output}");
+        log.info("Action: {}, Input: {}, Output: {}", action, input, output);
     }
 
     /**

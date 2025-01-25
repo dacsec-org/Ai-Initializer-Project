@@ -36,15 +36,15 @@ public class TarDestroyUtil {
         if (verifyExtraction(destDir)) {
             try {
                 if (Files.deleteIfExists(tarFile.toPath())) {
-                    return STR."Tar file deleted: \{tarFile.getAbsolutePath()}";
+                    return "Tar file deleted: " + tarFile.getAbsolutePath();
                 } else {
-                    return STR."Failed to delete tar file: \{tarFile.getAbsolutePath()}";
+                    return "Failed to delete tar file: " + tarFile.getAbsolutePath();
                 }
-            } catch (IOException e) {
-                return STR."Error deleting tar file: \{e.getMessage()}";
+            } catch (IOException destroyExc) {
+                return "Error deleting tar file: " + destroyExc.getMessage();
             }
         } else {
-            return STR."Extraction verification failed for directory: \{destDir.getAbsolutePath()}";
+            return "Extraction verification failed for directory: " + destDir.getAbsolutePath();
         }
     }
 }

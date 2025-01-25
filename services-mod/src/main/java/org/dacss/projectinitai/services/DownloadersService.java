@@ -1,11 +1,15 @@
-package org.dacss.projectinitai.downloaders;
+package org.dacss.projectinitai.services;
 /**/
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.downloaders.DownloadersIface;
+import org.dacss.projectinitai.downloaders.DownloadersScraperUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.text.MessageFormat;
 
 import static org.dacss.projectinitai.checksums.utillities.ChecksumGeneratorUtil.generateSHA512;
 import static org.dacss.projectinitai.directories.utilities.CreateDirFileUtil.createDirectory;
@@ -57,7 +61,7 @@ public class DownloadersService implements DownloadersIface {
                     generateSHA512(filePath);
                     break;
                 default:
-                    throw new IllegalArgumentException(STR."Unsupported operation: \{action}");
+                    throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
             }
         } catch (Exception downloadExc) {
             log.error("Error downloading file: {}", url, downloadExc);

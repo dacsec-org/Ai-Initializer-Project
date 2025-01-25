@@ -1,10 +1,16 @@
-package org.dacss.projectinitai.servers;
+package org.dacss.projectinitai.services;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.servers.ServersIface;
 import org.dacss.projectinitai.servers.utillities.*;
 import org.dacss.projectinitai.loaders.LoadKernel;
 import org.dacss.projectinitai.loaders.UnLoadKernel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link ServersService}</h1>
@@ -12,8 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class ServersService implements ServersIface {
 
+    private static final Logger log = LoggerFactory.getLogger(ServersService.class);
     private final LoadKernel loadKernel;
     private final UnLoadKernel unLoadKernel;
 
@@ -51,7 +59,7 @@ public class ServersService implements ServersIface {
                 StopHttpServerUtil.stopServer();
                 break;
             default:
-                throw new IllegalArgumentException(STR."Unknown operation: \{operation}");
+                throw new IllegalArgumentException(MessageFormat.format("Invalid operation: {0}", operation));
         }
     }
 }

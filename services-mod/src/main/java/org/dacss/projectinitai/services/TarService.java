@@ -1,15 +1,18 @@
-package org.dacss.projectinitai.tar;
+package org.dacss.projectinitai.services;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.tar.TarIface;
 import org.dacss.projectinitai.tar.utillities.TarCompressorUtil;
 import org.dacss.projectinitai.tar.utillities.TarExtractorUtil;
 import org.dacss.projectinitai.tar.utillities.TarDestroyUtil;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link TarService}</h1>
@@ -18,18 +21,20 @@ import java.io.IOException;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class TarService implements TarIface {
 
     private static final Logger log = LoggerFactory.getLogger(TarService.class);
 
     /**
-     * {@link #TarService()} 0-arg constructor.
+     * <h2>{@link #TarService()}</h2> 0-arg constructor.
+     *
      */
     public TarService() {}
 
     /**
-     * {@link #processTar(String, File, File, File)} method to create, extract, delete or extract and destroy tar files.
-     *
+     * <h2>{@link #processTar(String, File, File, File)}</h2>
+     * Implementation of the Functional Interface {@link TarIface} method.
      * @param action    The action to perform on the tar file.
      * @param sourceDir The source directory to create the tar file from.
      * @param tarFile   The tar file to create, extract or delete.
@@ -47,7 +52,7 @@ public class TarService implements TarIface {
                     break;
                 case "delete":
                     if (!tarFile.delete()) {
-                        throw new IOException(STR."Failed to delete tar file: \{tarFile.getAbsolutePath()}");
+                        throw new IOException(MessageFormat.format("Failed to delete tar file: {0}", tarFile));
                     }
                     break;
                 case "extract_and_destroy":
@@ -55,7 +60,7 @@ public class TarService implements TarIface {
                     TarDestroyUtil.destroyTarFile(tarFile, destDir);
                     break;
                 default:
-                    throw new IllegalArgumentException(STR."Unknown action: \{action}");
+                    throw new IllegalArgumentException (MessageFormat.format("Invalid action: {0}", action));
             }
         } catch (Exception tarExc) {
             log.error("Error handling tar operation: {}", action, tarExc);

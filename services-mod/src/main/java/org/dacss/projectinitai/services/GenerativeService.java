@@ -1,7 +1,10 @@
-package org.dacss.projectinitai.generative;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.generative.GenerativeIface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,32 +14,41 @@ import org.springframework.stereotype.Service;
 @Service
 @BrowserCallable
 @AnonymousAllowed
-public class GenerativeService {
+public class GenerativeService implements GenerativeIface {
 
-    private GenerativeHandler handler;
+
+    private static final Logger log = LoggerFactory.getLogger(GenerativeService.class);
 
     /**
      * <h2>{@link #GenerativeService()}</h2>
-     * 0-arg constructor to instantiate the {@link GenerativeHandler}.
      */
     public GenerativeService() {
-        this.handler = new GenerativeHandler();
+
     }
 
     /**
-     * <h2>{@link #handleGenerativeAction(String, String)}</h2>
-     * @param action The action to be performed.
-     * @param data The data to be processed.
-     * @return The result of the action.
+     * <h2>{@link #processGenerative()}</h2>
      */
-    public Object handleGenerativeAction(String action, String data) {
-        return switch (GenerativeContexts.valueOf(action.toUpperCase())) {
-            case DEEPFAKES -> handler.handleDeepfakes(data);
-            case GENERATIVE_ADVERSARIAL_NETWORKS -> handler.handleGANs(data);
-            case TEXT_TO_IMAGE -> handler.handleTextToImage(data);
-            case VARIATIONAL_AUTOENCODERS -> handler.handleVAEs(data);
-            case MUSIC_GENERATION -> handler.handleMusicGeneration(data);
-            case TEXT_GENERATION -> handler.handleTextGeneration(data);
-        };
+    @Override
+    public void processGenerative() {
+
     }
 }
+
+//    /**
+//     * <h2>{@link #handleGenerativeAction(String, String)}</h2>
+//     * @param action The action to be performed.
+//     * @param data The data to be processed.
+//     * @return The result of the action.
+//     */
+//    public Object handleGenerativeAction(String action, String data) {
+//        return switch (GenerativeContexts.valueOf(action.toUpperCase())) {
+//            case DEEPFAKES -> handler.handleDeepfakes(data);
+//            case GENERATIVE_ADVERSARIAL_NETWORKS -> handler.handleGANs(data);
+//            case TEXT_TO_IMAGE -> handler.handleTextToImage(data);
+//            case VARIATIONAL_AUTOENCODERS -> handler.handleVAEs(data);
+//            case MUSIC_GENERATION -> handler.handleMusicGeneration(data);
+//            case TEXT_GENERATION -> handler.handleTextGeneration(data);
+//        };
+//    }
+//}

@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.vision;
 
 import com.vaadin.hilla.BrowserCallable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,32 +11,40 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
-public class VisionService {
+public class VisionService implements VisionIface {
 
-    private VisionHandler handler;
+    private static final Logger log = LoggerFactory.getLogger(VisionService.class);
 
     /**
      * <h2>{@link #VisionService()}</h2>
-     * 0-arg constructor to instantiate the {@link VisionHandler}.
      */
     public VisionService() {
-        this.handler = new VisionHandler();
     }
 
+
     /**
-     * <h2>{@link #handleVisionAction(String, String)}</h2>
-     * @param action The action to be performed.
-     * @param data The data to be processed.
-     * @return The result of the action.
+     * <h2>{@link #processInput()}</h2>
      */
-    public Object handleVisionAction(String action, String data) {
-        return switch (VisionContexts.valueOf(action.toUpperCase())) {
-            case IMAGE_CLASSIFICATION -> handler.handleImageClassification(data);
-            case OBJECT_DETECTION -> handler.handleObjectDetection(data);
-            case IMAGE_SEGMENTATION -> handler.handleImageSegmentation(data);
-            case IMAGE_GENERATION -> handler.handleImageGeneration(data);
-            case IMAGE_SUPER_RESOLUTION -> handler.handleImageSuperResolution(data);
-            case IMAGE_RECOGNITION -> handler.handleImageRecognition(data);
-        };
+    @Override
+    public void processInput() {
+
     }
 }
+
+//    /**
+//     * <h2>{@link #handleVisionAction(String, String)}</h2>
+//     * @param action The action to be performed.
+//     * @param data The data to be processed.
+//     * @return The result of the action.
+//     */
+//    public Object handleVisionAction(String action, String data) {
+//        return switch (VisionContexts.valueOf(action.toUpperCase())) {
+//            case IMAGE_CLASSIFICATION -> handler.handleImageClassification(data);
+//            case OBJECT_DETECTION -> handler.handleObjectDetection(data);
+//            case IMAGE_SEGMENTATION -> handler.handleImageSegmentation(data);
+//            case IMAGE_GENERATION -> handler.handleImageGeneration(data);
+//            case IMAGE_SUPER_RESOLUTION -> handler.handleImageSuperResolution(data);
+//            case IMAGE_RECOGNITION -> handler.handleImageRecognition(data);
+//        };
+//    }
+//}

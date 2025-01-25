@@ -1,7 +1,4 @@
 package org.dacss.projectinitai.snapshots.utilities;
-/**/
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +13,7 @@ import java.util.stream.Stream;
 
 public class SnapShotClonerUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(SnapShotClonerUtil.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SnapShotClonerUtil.class);
 
     /**
      * Clones a snapshot from a source to a destination.

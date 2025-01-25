@@ -30,8 +30,8 @@ public class SnapShotCreatorUtil {
         try {
             createSnapshotDirectory(destinationPath);
             copyFiles(sourcePath, destinationPath);
-        } catch (IOException e) {
-            log.error("Failed to create snapshot from {} to {}", source, destination, e);
+        } catch (IOException createSnapExc) {
+            log.error("Failed to create snapshot from {} to {}", source, destination, createSnapExc);
         }
     }
 
@@ -58,8 +58,8 @@ public class SnapShotCreatorUtil {
                 Path destination = destinationPath.resolve(sourcePath.relativize(source));
                 try {
                     Files.copy(source, destination);
-                } catch (IOException e) {
-                    log.error("Failed to copy file: {}", source, e);
+                } catch (IOException copyFilesExc) {
+                    log.error("Failed to copy file: {}", source, copyFilesExc);
                 }
             });
         }

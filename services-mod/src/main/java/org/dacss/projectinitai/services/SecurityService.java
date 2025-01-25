@@ -1,7 +1,8 @@
-package org.dacss.projectinitai.security;
+package org.dacss.projectinitai.services;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import org.dacss.projectinitai.security.SecurityIface;
 import org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil;
-
 import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import java.io.IOException;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class SecurityService implements SecurityIface {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityService.class);
@@ -27,7 +29,7 @@ public class SecurityService implements SecurityIface {
 
     /**
      * <h2>{@link SecurityIface#secure()}</h2>
-     * Perform security operations on the data.
+     * Perform security operations on the data via the function interface {@link SecurityIface}.
      */
     @Override
     public void secure() {

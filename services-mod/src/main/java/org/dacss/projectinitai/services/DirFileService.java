@@ -1,13 +1,15 @@
-package org.dacss.projectinitai.directories;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.directories.DirectoriesIface;
 import org.dacss.projectinitai.directories.utilities.CreateDirFileUtil;
 import org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.expression.Operation;
 import org.springframework.stereotype.Service;
+
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link DirFileService}</h1>
@@ -28,7 +30,8 @@ public class DirFileService implements DirectoriesIface {
     public DirFileService() {}
 
     /**
-     * Perform directory and file operations.
+     * <h2>{@link #processDirFileAction(String, String, String)}</h2>
+     * Perform directory and file operations. via the functional interface {@link DirectoriesIface}.
      *
      * @param action The action to perform.
      * @param path The directory path.
@@ -51,7 +54,7 @@ public class DirFileService implements DirectoriesIface {
                     DestroyDirFileUtil.deleteFile(path, fileName);
                     break;
                 default:
-                    throw new IllegalArgumentException(STR."Unsupported operation: \{action}");
+                    throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
             }
         } catch (Exception dirFileExc) {
             log.error("Error handling operation: {}", action, dirFileExc);

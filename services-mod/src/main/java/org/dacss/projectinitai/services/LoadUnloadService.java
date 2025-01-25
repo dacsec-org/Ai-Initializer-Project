@@ -1,10 +1,15 @@
-package org.dacss.projectinitai.loaders;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.loaders.LoadKernel;
+import org.dacss.projectinitai.loaders.LoadersIface;
+import org.dacss.projectinitai.loaders.UnLoadKernel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link LoadUnloadService}</h1>
@@ -14,6 +19,9 @@ import java.io.IOException;
 @BrowserCallable
 @AnonymousAllowed
 public class LoadUnloadService implements LoadersIface {
+
+
+    private static final Logger log = LoggerFactory.getLogger(LoadUnloadService.class);
 
     /**
      * <h2>{@link #LoadUnloadService()}</h2>
@@ -39,7 +47,7 @@ public class LoadUnloadService implements LoadersIface {
                 new UnLoadKernel().unloadModelKernel(modelData);
                 break;
             default:
-                throw new IllegalArgumentException(STR."Unknown action: \{action}");
+                throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
         }
     }
 }

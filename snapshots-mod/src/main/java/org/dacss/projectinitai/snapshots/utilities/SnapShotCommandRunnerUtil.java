@@ -1,17 +1,14 @@
 package org.dacss.projectinitai.snapshots.utilities;
 /**/
-import org.dacss.projectinitai.snapshots.SnapShotsHandler;
 /**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link SnapShotCommandRunnerUtil}</h1>
- * <p>
- *     Utility class for executing BTRFS subvolume commands run byt the {@link SnapShotsHandler}.
- * </p>
  */
 public class SnapShotCommandRunnerUtil {
 
@@ -20,7 +17,6 @@ public class SnapShotCommandRunnerUtil {
      * The BTRFS command to execute.
      */
     private static final String BTRFS_COMMAND = "sudo btrfs subvolume /home/$USER/.ai-initializer-project/models/.snapshots/";
-    private SnapShotsHandler snapShotsHandler;
 
     /**
      * Executes a btrfs subvolume command.
@@ -29,12 +25,12 @@ public class SnapShotCommandRunnerUtil {
      */
     public static void executeCommand(String subcommand, String... args) {
         String command = switch (subcommand) {
-            case "snapshot" -> STR."\{BTRFS_COMMAND}create ";
-            case "find-new" -> STR."\{BTRFS_COMMAND}find-new ";
-            case "delete" -> STR."\{BTRFS_COMMAND}delete ";
-            case "list" -> STR."\{BTRFS_COMMAND}list ";
-            case "copy" -> STR."\{BTRFS_COMMAND}copy ";
-            default -> throw new IllegalArgumentException(STR."Unknown subcommand: \{subcommand}");
+            case "snapshot" -> "%ssnapshot ".formatted(BTRFS_COMMAND);
+            case "find-new" -> "%sfind-new ".formatted(BTRFS_COMMAND);
+            case "delete" -> "%sdelete ".formatted(BTRFS_COMMAND);
+            case "list" -> "%slist ".formatted(BTRFS_COMMAND);
+            case "copy" -> "%scopy ".formatted(BTRFS_COMMAND);
+            default -> throw new IllegalArgumentException(MessageFormat.format("Invalid subcommand: {0}", subcommand));
         };
 
         try {

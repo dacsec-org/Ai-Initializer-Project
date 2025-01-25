@@ -1,9 +1,8 @@
 package org.dacss.projectinitai.directories.utilities;
-/**/
+
 import java.io.File;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * <h1>{@link CreateDirFileUtil}</h1>
@@ -13,7 +12,8 @@ import org.slf4j.LoggerFactory;
  */
 public class CreateDirFileUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(CreateDirFileUtil.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CreateDirFileUtil.class);
+
 
     /**
      * {@link #createDirectory(String)}

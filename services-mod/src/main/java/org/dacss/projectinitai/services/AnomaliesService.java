@@ -1,7 +1,11 @@
-package org.dacss.projectinitai.anomalies;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.anomalies.AnomaliesIface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,31 +15,39 @@ import org.springframework.stereotype.Service;
 @Service
 @BrowserCallable
 @AnonymousAllowed
-public class AnomaliesService {
+public class AnomaliesService implements AnomaliesIface {
 
-    private AnomaliesHandler handler;
+
+    private static final Logger log = LoggerFactory.getLogger(AnomaliesService.class);
 
     /**
      * <h2>{@link #AnomaliesService()}</h2>
-     * 0-arg constructor to instantiate the {@link AnomaliesHandler}.
      */
     public AnomaliesService() {
-        this.handler = new AnomaliesHandler();
     }
 
     /**
-     * <h2>{@link #handleAnomalyAction(String, String)}</h2>
-     *
-     * @param action The action to be performed.
-     * @param data   The data to be analyzed.
-     * @return The result of the action.
+     * <h2>{@link AnomaliesIface#detectAnomaly()}</h2>
+     * detect anomaly in the data.
      */
-    public Object handleAnomalyAction(String action, String data) {
-        return switch (AnomaliesContexts.valueOf(action.toUpperCase())) {
-            case ANOMALY_DETECTION -> handler.detectAnomaly(data);
-            case ANOMALY_REMOVAL -> handler.removeAnomaly(data);
-            case ANOMALY_REPAIR -> handler.repairAnomaly(data);
-            case ANOMALY_REPORTING -> handler.reportAnomaly(data);
-        };
+    @Override
+    public void detectAnomaly() {
+
     }
 }
+
+//    /**
+//     * <h2>{@link #handleAnomalyAction(String, String)}</h2>
+//     *
+//     * @param action The action to be performed.
+//     * @param data   The data to be analyzed.
+//     * @return The result of the action.
+//     */
+//    public Object handleAnomalyAction(String action, String data) {
+//        return switch (AnomaliesContexts.valueOf(action.toUpperCase())) {
+//            case ANOMALY_DETECTION -> handler.detectAnomaly(data);
+//            case ANOMALY_REMOVAL -> handler.removeAnomaly(data);
+//            case ANOMALY_REPAIR -> handler.repairAnomaly(data);
+//            case ANOMALY_REPORTING -> handler.reportAnomaly(data);
+//        };
+//    }

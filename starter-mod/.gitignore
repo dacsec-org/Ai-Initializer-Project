@@ -46,6 +46,8 @@ buildNumber.properties
 
 ### VisualStudioCode template
 .vscode/*
+
+### vs unignore
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -301,9 +303,9 @@ flycheck_*.el
 gradle-app.setting
 
 ### Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+gradle-wrapper.jar
 
-### Avoid ignore Gradle wrappper properties
+### Avoid ignore Gradle wrappper properties unignore
 !gradle-wrapper.properties
 
 ### Cache of project
@@ -335,4 +337,9 @@ vite.generated.ts
 
 ### example file
 /loaders-mod/src/main/java/org/dacss/projectinitai/loaders/Examples.java
-!/starter-mod.iml
+
+### vite config unignore
+!/vite.config.ts
+
+### intellij *.iml unignore
+!*.iml

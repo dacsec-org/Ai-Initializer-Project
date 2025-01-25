@@ -1,15 +1,16 @@
-package org.dacss.projectinitai.checksums;
+package org.dacss.projectinitai.services;
 /**/
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.checksums.ChecksumsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.text.MessageFormat;
 
 import static org.dacss.projectinitai.checksums.utillities.ChecksumGeneratorUtil.generateSHA512;
 import static org.dacss.projectinitai.checksums.utillities.ChecksumVerifierUtil.*;
@@ -29,7 +30,7 @@ public class ChecksumsService implements ChecksumsIface {
      * <h2>{@link #ChecksumsService()}</h2>
      * 0-argument constructor.
      */
-    @Autowired
+
     public ChecksumsService() {}
 
     /**
@@ -53,7 +54,7 @@ public class ChecksumsService implements ChecksumsIface {
                 case "generate":
                     generateSHA512(filePath);
                 default:
-                    throw new IllegalArgumentException(STR."Unknown action: \{action}");
+                    throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
             }
         } catch (IOException | NoSuchAlgorithmException e) {
             log.error("Error calculating checksum: {}", e.getMessage());

@@ -36,6 +36,7 @@
         <module name="directories-mod" />
         <module name="robotics-mod" />
         <module name="embedding-mod" />
+        <module name="services-mod" />
         <module name="admin-mod" />
         <module name="krr-mod" />
         <module name="optimizations-mod" />
@@ -45,40 +46,41 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="admin-mod" options="-parameters --enable-preview" />
-      <module name="advisers-mod" options="-parameters --enable-preview" />
-      <module name="ai-initializer-project" options="-parameters --enable-preview" />
-      <module name="anomalies-mod" options="-parameters --enable-preview" />
-      <module name="checksums-mod" options="-parameters --enable-preview" />
-      <module name="classifications-mod" options="-parameters --enable-preview" />
-      <module name="clustering-mod" options="-parameters --enable-preview" />
-      <module name="databases-mod" options="-parameters --enable-preview" />
-      <module name="directories-mod" options="-parameters --enable-preview" />
-      <module name="downloaders-mod" options="-parameters --enable-preview" />
-      <module name="embedding-mod" options="-parameters --enable-preview" />
-      <module name="generative-mod" options="-parameters --enable-preview" />
-      <module name="krr-mod" options="-parameters --enable-preview" />
-      <module name="loaders-mod" options="-parameters --enable-preview" />
-      <module name="messages-mod" options="-parameters --enable-preview" />
-      <module name="metrics-mod" options="-parameters --enable-preview" />
-      <module name="models-mod" options="-parameters --enable-preview" />
-      <module name="nlp-mod" options="-parameters --enable-preview" />
-      <module name="optimizations-mod" options="-parameters --enable-preview" />
-      <module name="predictive-mod" options="-parameters --enable-preview" />
-      <module name="recognitions-mod" options="-parameters --enable-preview" />
-      <module name="recommendations-mod" options="-parameters --enable-preview" />
-      <module name="reductions-mod" options="-parameters --enable-preview" />
-      <module name="regressions-mod" options="-parameters --enable-preview" />
-      <module name="reinforcement-mod" options="-parameters --enable-preview" />
-      <module name="robotics-mod" options="-parameters --enable-preview" />
-      <module name="security-mod" options="-parameters --enable-preview" />
-      <module name="sequence-mod" options="-parameters --enable-preview" />
-      <module name="servers-mod" options="-parameters --enable-preview" />
-      <module name="snapshots-mod" options="-parameters --enable-preview" />
-      <module name="speech-mod" options="-parameters --enable-preview" />
-      <module name="starter-mod" options="-parameters --enable-preview" />
-      <module name="tar-mod" options="-parameters --enable-preview" />
-      <module name="vision-mod" options="-parameters --enable-preview" />
+      <module name="admin-mod" options="-parameters" />
+      <module name="advisers-mod" options="-parameters" />
+      <module name="ai-initializer-project" options="" />
+      <module name="anomalies-mod" options="-parameters" />
+      <module name="checksums-mod" options="-parameters" />
+      <module name="classifications-mod" options="-parameters" />
+      <module name="clustering-mod" options="-parameters" />
+      <module name="databases-mod" options="-parameters" />
+      <module name="directories-mod" options="-parameters" />
+      <module name="downloaders-mod" options="-parameters" />
+      <module name="embedding-mod" options="-parameters" />
+      <module name="generative-mod" options="-parameters" />
+      <module name="krr-mod" options="-parameters" />
+      <module name="loaders-mod" options="-parameters" />
+      <module name="messages-mod" options="-parameters" />
+      <module name="metrics-mod" options="-parameters" />
+      <module name="models-mod" options="-parameters" />
+      <module name="nlp-mod" options="-parameters" />
+      <module name="optimizations-mod" options="-parameters" />
+      <module name="predictive-mod" options="-parameters" />
+      <module name="recognitions-mod" options="-parameters" />
+      <module name="recommendations-mod" options="-parameters" />
+      <module name="reductions-mod" options="-parameters" />
+      <module name="regressions-mod" options="-parameters" />
+      <module name="reinforcement-mod" options="-parameters" />
+      <module name="robotics-mod" options="-parameters" />
+      <module name="security-mod" options="-parameters" />
+      <module name="sequence-mod" options="-parameters" />
+      <module name="servers-mod" options="-parameters" />
+      <module name="services-mod" options="-parameters" />
+      <module name="snapshots-mod" options="-parameters" />
+      <module name="speech-mod" options="-parameters" />
+      <module name="starter-mod" options="-parameters" />
+      <module name="tar-mod" options="-parameters" />
+      <module name="vision-mod" options="-parameters" />
     </option>
   </component>
 </project>

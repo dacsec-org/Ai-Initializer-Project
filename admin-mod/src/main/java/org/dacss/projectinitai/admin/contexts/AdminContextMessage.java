@@ -22,18 +22,11 @@ public record AdminContextMessage(String detailedContextMessage) {
                             "currentTask": "You are a helpful Admin in charge of managing various aspects of the framework.",
                             "toolUsage": {
                                 "LLMAdviser": "Advising other LLMs.",
-                                "ChecksumHandler": "Handling checksums.",
                                 "ContextManager": "Managing contexts.",
-                                "DirectoryManager": "Managing directories.",
-                                "LLMDownloader": "Downloading LLM models.",
                                 "LLMLoader": "Loading and unloading LLMs.",
                                 "MetricsCollector": "Collecting metrics.",
                                 "LLMCreator": "Creating or merging LLMs.",
                                 "PrePostProcessor": "Handling pre-processing and post-processing tasks.",
-                                "RAGEnhancer": "Enhancing LLMs with RAG functionality.",
-                                "SecurityManager": "Enforcing security best practices.",
-                                "BackendServerManager": "Managing backend servers.",
-                                "SnapshotManager": "Creating and managing snapshots.",
                                 "DataTypeHandler": "Handling various data types."
                             },
                             "configurations": {}
@@ -42,6 +35,16 @@ public record AdminContextMessage(String detailedContextMessage) {
                          }
                         """);
     }
+
+
+//                                    "DirectoryManager": "Managing directories.",
+//                                "LLMDownloader": "Downloading LLM models.",
+    //                                "ChecksumHandler": "Handling checksums.",
+//                                    "RAGEnhancer": "Enhancing LLMs with RAG functionality.",
+//                                "SecurityManager": "Enforcing security best practices.",
+//                                "BackendServerManager": "Managing backend servers.",
+//                                "SnapshotManager": "Creating and managing snapshots.",
+
 
     private static final StringBuilder context = new StringBuilder();
     private static String lastUserRequest;

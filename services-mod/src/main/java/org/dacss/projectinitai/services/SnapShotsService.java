@@ -1,8 +1,14 @@
-package org.dacss.projectinitai.snapshots;
+package org.dacss.projectinitai.services;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.snapshots.SnapShotsIface;
 import org.dacss.projectinitai.snapshots.utilities.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link SnapShotsService}</h1>
@@ -10,7 +16,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class SnapShotsService implements SnapShotsIface {
+
+    private static final Logger log = LoggerFactory.getLogger(SnapShotsService.class);
 
     /**
      * <h2>{@link #SnapShotsService()}</h2>
@@ -45,7 +54,7 @@ public class SnapShotsService implements SnapShotsIface {
                 SnapShotCommandRunnerUtil.executeCommand(source, destination);
                 break;
             default:
-                throw new IllegalArgumentException(STR."Invalid action: \{action}");
+                throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
         }
     }
 }

@@ -57,7 +57,7 @@ public class TarCompressorUtil {
         } else if (file.isDirectory()) {
             TOS.closeArchiveEntry();
             for (File childFile : Objects.requireNonNull(file.listFiles())) {
-                addFilesToTar(TOS, childFile, STR."\{entryName}/");
+                addFilesToTar(TOS, childFile, entryName + "/");
             }
         }
     }

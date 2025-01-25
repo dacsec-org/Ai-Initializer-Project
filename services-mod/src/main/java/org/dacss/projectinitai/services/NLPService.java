@@ -1,7 +1,10 @@
-package org.dacss.projectinitai.nlp;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.nlp.NLPIface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,31 +14,41 @@ import org.springframework.stereotype.Service;
 @Service
 @BrowserCallable
 @AnonymousAllowed
-public class NLPService {
+public class NLPService implements NLPIface {
 
-    private NLPHandler handler;
+
+    private static final Logger log = LoggerFactory.getLogger(NLPService.class);
 
     /**
      * <h2>{@link #NLPService()}</h2>
-     * 0-arg constructor to instantiate the {@link NLPHandler}.
      */
     public NLPService() {
-        this.handler = new NLPHandler();
+
     }
 
     /**
-     * <h2>{@link #handleNLPAction(String, String)}</h2>
-     * @param action The action to be performed.
-     * @param data The data to be processed.
-     * @return The result of the action.
+     * <h2>{@link #processText()}</h2>
+     * Perform NLP on the data.
      */
-    public Object handleNLPAction(String action, String data) {
-        return switch (NLPContexts.valueOf(action.toUpperCase())) {
-            case TEXT_GENERATION -> handler.handleTextGeneration(data);
-            case SENTIMENT_ANALYSIS -> handler.handleSentimentAnalysis(data);
-            case NAMED_ENTITY_RECOGNITION -> handler.handleNamedEntityRecognition(data);
-            case MACHINE_TRANSLATION -> handler.handleMachineTranslation(data);
-            case TEXT_SUMMARIZATION -> handler.handleTextSummarization(data);
-        };
+    @Override
+    public void processText() {
+
     }
 }
+
+//    /**
+//     * <h2>{@link #handleNLPAction(String, String)}</h2>
+//     * @param action The action to be performed.
+//     * @param data The data to be processed.
+//     * @return The result of the action.
+//     */
+//    public Object handleNLPAction(String action, String data) {
+//        return switch (NLPContexts.valueOf(action.toUpperCase())) {
+//            case TEXT_GENERATION -> handler.handleTextGeneration(data);
+//            case SENTIMENT_ANALYSIS -> handler.handleSentimentAnalysis(data);
+//            case NAMED_ENTITY_RECOGNITION -> handler.handleNamedEntityRecognition(data);
+//            case MACHINE_TRANSLATION -> handler.handleMachineTranslation(data);
+//            case TEXT_SUMMARIZATION -> handler.handleTextSummarization(data);
+//        };
+//    }
+//}

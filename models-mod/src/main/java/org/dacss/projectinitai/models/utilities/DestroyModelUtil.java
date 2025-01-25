@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.models.utilities;
 /**/
+
 import java.io.File;
 
 /**
@@ -9,6 +10,8 @@ import java.io.File;
  * </p>
  */
 public class DestroyModelUtil {
+
+
 
     /**
      * {@link DestroyModelUtil#destroyModel(String)}
@@ -24,7 +27,7 @@ public class DestroyModelUtil {
         if (modelFile.exists()) {
             return modelFile.delete();
         } else {
-            System.err.println(STR."Model file not found: \{modelPath}");
+            System.err.println("Model does not exist: " + modelPath);
             return false;
         }
     }

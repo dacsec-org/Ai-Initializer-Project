@@ -2,7 +2,6 @@ package org.dacss.projectinitai.admin.contexts;
 
 import java.util.Map;
 
-import static java.lang.StringTemplate.STR;
 
 /**
  * <h1>AdminContext</h1>
@@ -44,7 +43,11 @@ public class AdminContext {
 
     @Override
     public String toString() {
-        return STR."AdminContext{currentTask='\{currentTask}', toolUsage=\{toolUsage}, configurations=\{configurations}}";
+        return "AdminContext{" +
+                "currentTask='" + currentTask + '\'' +
+                ", toolUsage=" + toolUsage +
+                ", configurations=" + configurations +
+                '}';
     }
 
     private static final StringBuilder context = new StringBuilder();

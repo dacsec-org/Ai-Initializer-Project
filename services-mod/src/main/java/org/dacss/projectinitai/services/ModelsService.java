@@ -1,13 +1,17 @@
-package org.dacss.projectinitai.models;
+package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.models.ModelIface;
 import org.dacss.projectinitai.models.utilities.CreateNewModelUtil;
 import org.dacss.projectinitai.models.utilities.DestroyModelUtil;
 import org.dacss.projectinitai.models.utilities.MergeModelUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * <h1>{@link ModelsService}</h1>
@@ -17,6 +21,9 @@ import java.io.IOException;
 @BrowserCallable
 @AnonymousAllowed
 public class ModelsService implements ModelIface {
+
+
+    private static final Logger log = LoggerFactory.getLogger(ModelsService.class);
 
     /**
      * <h2>{@link #ModelsService()}</h2>
@@ -45,7 +52,7 @@ public class ModelsService implements ModelIface {
                 MergeModelUtil.mergeModels(modelPath1, modelPath2);
                 break;
             default:
-                throw new IllegalArgumentException(STR."Unknown action: \{action}");
+                throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
         }
     }
 }

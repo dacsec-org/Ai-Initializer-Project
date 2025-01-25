@@ -51,7 +51,7 @@ public final class PingServerUtil {
             connection.setRequestMethod("GET");
             int responseCode = connection.getResponseCode();
             if (responseCode == 200) {
-                logger.info("HTTP server is up and running on port {}", PORT);
+                logger.info("Ping... {}", PORT);
             } else {
                 logger.warn("Failed to ping HTTP server on port {}: {}", PORT, responseCode);
             }
