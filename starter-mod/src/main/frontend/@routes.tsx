@@ -15,6 +15,7 @@ import LoadUnloadComponent from './views/load-unload';
 import MetricsView from './views/metrics';
 import SystemSettingsView from './views/system-settings';
 import ModelSettings from './views/model-settings';
+import { AdminService, AdvisersService, AnomaliesService, ChecksumsService, ClassificationsService, ClusteringService, DataBaseService, DirFileService, DownloadersService, EmbeddingService, GenerativeService, HelloWorldService, LoadUnloadService, MessagesService, ModelsService, NLPService, OptimizationsService, PredictiveService, RecognitionsService, RegressionsService, RoboticsService, SecurityService, SequenceService, ServersService, SnapShotsService, SpeechService, TarService } from 'Frontend/generated/endpoints';
 
 export const { router, routes } = new RouterConfigurationBuilder()
   .withFileRoutes(fileRoutes)
