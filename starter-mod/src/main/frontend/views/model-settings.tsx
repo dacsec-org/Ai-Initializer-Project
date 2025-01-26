@@ -4,7 +4,7 @@ import { Button, Notification, TextField } from '@vaadin/react-components';
 import { HelloWorldService } from 'Frontend/generated/endpoints.js';
 
 export const config: ViewConfig = {
-  menu: { order: 8, icon: 'line-awesome/svg/robot-solid.svg' },
+  menu: { order: 10, icon: 'line-awesome/svg/robot-solid.svg' },
   title: 'Model Settings',
 };
 
@@ -12,7 +12,10 @@ interface ModelSettingsState {
   name: string;
 }
 
-class ModelSettings extends Component<{}, ModelSettingsState> {
+/**
+ * <h1>{@link ModelSettingsView}</h1>
+ */
+class ModelSettingsView extends Component<{}, ModelSettingsState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -20,8 +23,8 @@ class ModelSettings extends Component<{}, ModelSettingsState> {
     };
   }
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ name: e.target.value });
+  handleInputChange = (T: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ name: T.target.value });
   };
 
   handleButtonClick = async () => {
@@ -33,21 +36,23 @@ class ModelSettings extends Component<{}, ModelSettingsState> {
   render() {
     const { name } = this.state;
 
-    return (
-      <>
-        <section className="flex p-m gap-m items-end">
-          <TextField
-            label="Your name"
-            value={name}
-            onValueChanged={(e) => this.handleInputChange(e)}
-          />
-          <Button onClick={this.handleButtonClick}>
-            Say hello
-          </Button>
-        </section>
-      </>
-    );
+    return <>
+      <section className="flex p-m gap-m items-end">
+        <TextField
+          label="Your name"
+          value={name}
+          onValueChanged={(T) => {
+            // @ts-ignore
+            this.handleInputChange(T);
+            //todo: fix above line
+          }}
+        />
+        <Button onClick={this.handleButtonClick}>
+          Say hello
+        </Button>
+      </section>
+    </>;
   }
 }
 
-export default ModelSettings;
+export default ModelSettingsView;

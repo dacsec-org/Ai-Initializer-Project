@@ -1,64 +1,87 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Notification, TextField } from '@vaadin/react-components';
-import { TextFieldValueChangedEvent } from '@vaadin/react-components';
-import { CloneLocalModelService } from 'Frontend/generated/endpoints';
+import { Button, Notification, TextField, Dialog } from '@vaadin/react-components';
+import { ModelsService } from 'Frontend/generated/endpoints';
+import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
   menu: { order: 2, icon: 'line-awesome/svg/clone-solid.svg' },
   title: 'Clone Model',
 };
 
-interface CloneModelViewProps {}
-
 interface CloneModelViewState {
   sourcePath: string;
-  snapshotPath: string;
+  dialogOpened: boolean;
+  dialogMessage: string;
+  dialogAction: () => void;
 }
 
-class CloneModelView extends Component<CloneModelViewProps, CloneModelViewState> {
-  constructor(props: CloneModelViewProps) {
+class CloneModelView extends Component<{}, CloneModelViewState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       sourcePath: '',
-      snapshotPath: ''
+      dialogOpened: false,
+      dialogMessage: '',
+      dialogAction: () => {}
     };
   }
 
+  openDialog = (message: string, action: () => void) => {
+    this.setState({
+      dialogMessage: message,
+      dialogAction: action,
+      dialogOpened: true
+    });
+  };
+
+  handleDialogClose = () => {
+    this.setState({ dialogOpened: false });
+  };
+
   handleClone = async () => {
-    const { sourcePath, snapshotPath } = this.state;
-    const response = await CloneLocalModelService.cloneModel(sourcePath, snapshotPath);
-    Notification.show(response);
+    const { sourcePath } = this.state;
+    const response = await ModelsService.processModel('clone', sourcePath, '');
+    Notification.show("Cloning successful" + response);
+    this.setState({ dialogOpened: false });
   };
 
   handleInputChange = (e: TextFieldValueChangedEvent) => {
-    if (e.target && 'name' in e.target) {
-      this.setState({ [e.target.name as string]: e.detail.value } as unknown as CloneModelViewState);
-    }
+    this.setState({ sourcePath: e.detail.value });
   };
 
   render() {
-    const { sourcePath, snapshotPath } = this.state;
+    const { sourcePath, dialogOpened, dialogMessage, dialogAction } = this.state;
 
     return (
       <>
         <section className="flex p-m gap-m items-end">
           <TextField
             label="Source Path"
-            name="sourcePath"
             value={sourcePath}
             onValueChanged={(e: TextFieldValueChangedEvent) => this.handleInputChange(e)}
           />
-          <TextField
-            label="Snapshot Path"
-            name="snapshotPath"
-            value={snapshotPath}
-            onValueChanged={(e: TextFieldValueChangedEvent) => this.handleInputChange(e)}
-          />
-          <Button onClick={this.handleClone}>
-            Clone Model
-          </Button>
+          <Button
+            onClick={() => this.openDialog('Are you sure you want to clone this model?', this.handleClone)}
+            style={{ backgroundColor: 'blue' }}>Clone Model</Button>
         </section>
+        <Dialog opened={dialogOpened}
+                onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
+          <div>
+            <p>{dialogMessage}</p>
+            <div className="flex gap-s">
+              <Button theme="primary" onClick={() => {
+                dialogAction();
+                this.handleDialogClose();
+              }}>
+                Yes
+              </Button>
+              <Button theme="secondary" onClick={this.handleDialogClose}>
+                No
+              </Button>
+            </div>
+          </div>
+        </Dialog>
       </>
     );
   }

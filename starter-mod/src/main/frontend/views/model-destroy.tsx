@@ -1,38 +1,20 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField, Dialog } from '@vaadin/react-components';
-import { MergeDestroyModelService } from 'Frontend/generated/endpoints';
+// @ts-ignore
+import { ModelsService } from 'Frontend/generated/endpoints';
+import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
-/**
- * {@link config}
- * <p>
- *   Configuration for the view, including menu order, icon, and title.
- * </p>
- */
 export const config: ViewConfig = {
-  menu: { order: 4, icon: 'line-awesome/svg/trash-alt-solid.svg' },
+  menu: { order: 8, icon: 'line-awesome/svg/trash-alt-solid.svg' },
   title: 'Delete Model',
 };
 
-/**
- * {@link DeleteModelViewState}
- * <p>
- *   Interface for the state of the DeleteModelView component.
- * </p>
- */
 interface DeleteModelViewState {
   modelPath: string;
   dialogOpened: boolean;
 }
 
-/**
- * {@link DeleteModelView}
- * <p>
- *   This component allows users to delete a model by providing its path.
- *   It includes an input field for the model path and a button to trigger the deletion.
- *   A dialog is shown to confirm the deletion action.
- * </p>
- */
 class DeleteModelView extends Component<{}, DeleteModelViewState> {
   constructor(props: {}) {
     super(props);
@@ -42,57 +24,25 @@ class DeleteModelView extends Component<{}, DeleteModelViewState> {
     };
   }
 
-  /**
-   * {@link handleDelete}
-   * <p>
-   *   This function handles the delete action by calling the MergeDestroyModelService.
-   *   It shows a notification with the response and closes the dialog.
-   * </p>
-   */
   handleDelete = async () => {
     const { modelPath } = this.state;
-    const response = await MergeDestroyModelService.deleteModel(modelPath);
+    const response = await ModelsService.processModel("destroy", modelPath, "");
     Notification.show(response);
     this.setState({ dialogOpened: false });
-  };
+  }
 
-  /**
-   * {@link openDialog}
-   * <p>
-   *   This function opens the confirmation dialog.
-   * </p>
-   */
   openDialog = () => {
     this.setState({ dialogOpened: true });
   };
 
-  /**
-   * {@link closeDialog}
-   * <p>
-   *   This function closes the confirmation dialog.
-   * </p>
-   */
   closeDialog = () => {
     this.setState({ dialogOpened: false });
   };
 
-  /**
-   * {@link handleInputChange}
-   * <p>
-   *   This function updates the state with the value of the model path input field.
-   * </p>
-   */
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ modelPath: e.target.value });
+  handleInputChange = (e: TextFieldValueChangedEvent) => {
+    this.setState({ modelPath: e.detail.value });
   };
 
-  /**
-   * {@link render}
-   * <p>
-   *   This function renders the component, including an input field for the model path,
-   *   a button to trigger the deletion, and a confirmation dialog.
-   * </p>
-   */
   render() {
     const { modelPath, dialogOpened } = this.state;
 

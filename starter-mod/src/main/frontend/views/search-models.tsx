@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
-import { HuggingFaceService } from 'Frontend/generated/endpoints';
+import {
+  Button,
+  Grid,
+  GridColumn,
+  TextField,
+  Notification
+} from '@vaadin/react-components';
+import { DownloadersService } from 'Frontend/generated/endpoints';
+import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
-  menu: { order: 10, icon: 'line-awesome/svg/search-solid.svg' },
-  title: 'Search Models',
+  menu: { order: 12, icon: 'line-awesome/svg/search-solid.svg' },
+  title: 'Search Models'
 };
 
 interface SearchModelsViewState {
@@ -13,6 +20,9 @@ interface SearchModelsViewState {
   models: any[];
 }
 
+/**
+ * <h1>{@link SearchModelsView}</h1>
+ */
 class SearchModelsView extends Component<{}, SearchModelsViewState> {
   constructor(props: {}) {
     super(props);
@@ -24,7 +34,7 @@ class SearchModelsView extends Component<{}, SearchModelsViewState> {
 
   handleSearch = async () => {
     const { searchQuery } = this.state;
-    const apiToken = await HuggingFaceService.getApiToken();
+    const apiToken = await DownloadersService.download('api_token', '', '');
     const response = await fetch(`https://huggingface.co/api/models?search=${searchQuery}`, {
       headers: {
         'Authorization': `Bearer ${apiToken}`
@@ -32,16 +42,16 @@ class SearchModelsView extends Component<{}, SearchModelsViewState> {
     });
     const models = await response.json();
     this.setState({ models });
+    Notification.show('Models searched successfully');
   };
 
   handleDownload = async (modelId: string) => {
-    await fetch(`/api/huggingface/downloadModel?modelId=${modelId}`, {
-      method: 'POST'
-    });
+    await DownloadersService.download('download', `https://huggingface.co/api/models/${modelId}/download`, '');
+    Notification.show('Model downloaded successfully');
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchQuery: e.target.value });
+  handleInputChange = (e: TextFieldValueChangedEvent) => {
+    this.setState({ searchQuery: e.detail.value });
   };
 
   render() {
@@ -59,7 +69,8 @@ class SearchModelsView extends Component<{}, SearchModelsViewState> {
             Search Models
           </Button>
         </section>
-        <Grid items={models} columnReorderingAllowed style={{ height: '75vh', width: '150%' }}>
+        <Grid items={models} columnReorderingAllowed
+              style={{ height: '75vh', width: '150%' }}>
           <GridColumn path="modelId" header="Model ID" resizable />
           <GridColumn path="description" header="Description" resizable />
           <GridColumn path="tags" header="Tags" resizable />

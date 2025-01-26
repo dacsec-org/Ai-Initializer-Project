@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Dialog } from '@vaadin/react-components';
-import { ServersService } from '../routes';
+import { Button, Dialog, Notification } from '@vaadin/react-components';
+import { ServersService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
-  menu: { order: 12, icon: 'line-awesome/svg/solid/server.svg' },
-  title: 'Manage',
+  menu: { order: 13, icon: 'line-awesome/svg/solid/server.svg' },
+  title: 'Servers'
 };
 
 interface ManageViewState {
@@ -14,13 +14,16 @@ interface ManageViewState {
   dialogAction: () => void;
 }
 
-class ManageView extends Component<{}, ManageViewState> {
+/**
+ * <h1>{@link ManageServersView}</h1>
+ */
+class ManageServersView extends Component<{}, ManageViewState> {
   constructor(props: {}) {
     super(props);
     this.state = {
       dialogOpened: false,
       dialogMessage: '',
-      dialogAction: () => {},
+      dialogAction: () => {}
     };
   }
 
@@ -28,7 +31,7 @@ class ManageView extends Component<{}, ManageViewState> {
     this.setState({
       dialogMessage: message,
       dialogAction: action,
-      dialogOpened: true,
+      dialogOpened: true
     });
   };
 
@@ -37,31 +40,18 @@ class ManageView extends Component<{}, ManageViewState> {
   };
 
   startServer = async () => {
-    const result = await ServersService.startServer();
-    alert(result);
+    const result = await ServersService.manageServer('start');
+    Notification.show("Started server" + result);
   };
 
   stopServer = async () => {
-    const result = await ServersService.stopServer();
-    alert(result);
+    const result = await ServersService.manageServer('stop');
+    Notification.show("Server stopped" + result);
   };
 
   restartServer = async () => {
-    const result = await ServersService.restartServer();
-    alert(result);
-  };
-
-  loadModel = async () => {
-    const modelPath = prompt('Enter model path:');
-    if (modelPath) {
-      const result = await ServersService.loadModel(modelPath);
-      alert('Model loaded successfully');
-    }
-  };
-
-  unloadModel = async () => {
-    const result = await ServersService.unloadModel(new Uint8Array());
-    alert(result);
+    const result = await ServersService.manageServer('restart');
+    Notification.show("Restarted server" + result);
   };
 
   render() {
@@ -70,17 +60,25 @@ class ManageView extends Component<{}, ManageViewState> {
     return (
       <>
         <section className="flex p-m gap-m items-end">
-          <Button onClick={() => this.openDialog('Are you sure you want to start the server?', this.startServer)} style={{ backgroundColor: 'green' }}>Start Server</Button>
-          <Button onClick={() => this.openDialog('Are you sure you want to stop the server?', this.stopServer)} style={{ backgroundColor: 'red' }}>Stop Server</Button>
-          <Button onClick={() => this.openDialog('Are you sure you want to restart the server?', this.restartServer)} style={{ backgroundColor: 'blue' }}>Restart Server</Button>
-          <Button onClick={() => this.openDialog('Are you sure you want to load the model?', this.loadModel)} style={{ backgroundColor: 'yellow' }}>Load Model</Button>
-          <Button onClick={() => this.openDialog('Are you sure you want to unload the model?', this.unloadModel)} style={{ backgroundColor: 'orange' }}>Unload Model</Button>
+          <Button
+            onClick={() => this.openDialog('Are you sure you want to start the server?', this.startServer)}
+            style={{ backgroundColor: 'green' }}>Start Server</Button>
+          <Button
+            onClick={() => this.openDialog('Are you sure you want to stop the server?', this.stopServer)}
+            style={{ backgroundColor: 'red' }}>Stop Server</Button>
+          <Button
+            onClick={() => this.openDialog('Are you sure you want to restart the server?', this.restartServer)}
+            style={{ backgroundColor: 'blue' }}>Restart Server</Button>
         </section>
-        <Dialog opened={dialogOpened} onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
+        <Dialog opened={dialogOpened}
+                onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
           <div>
             <p>{dialogMessage}</p>
             <div className="flex gap-s">
-              <Button theme="primary" onClick={() => { dialogAction(); this.handleDialogClose(); }}>
+              <Button theme="primary" onClick={() => {
+                dialogAction();
+                this.handleDialogClose();
+              }}>
                 Yes
               </Button>
               <Button theme="secondary" onClick={this.handleDialogClose}>
@@ -94,4 +92,4 @@ class ManageView extends Component<{}, ManageViewState> {
   }
 }
 
-export default ManageView;
+export default ManageServersView;

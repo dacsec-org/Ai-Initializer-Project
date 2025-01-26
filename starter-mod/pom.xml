@@ -92,6 +92,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+<!--                <version>3.4.1</version>-->
+                <configuration>
+                    <wait>500</wait>
+                    <maxAttempts>240</maxAttempts>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -105,6 +110,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <parser>
+                        <packages>
+                            <package>org.dacss.projectinitai</package>
+                        </packages>
+                    </parser>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -164,8 +176,16 @@
                                 <goals>
                                     <goal>build-frontend</goal>
                                 </goals>
+                                <phase>compile</phase>
                             </execution>
                         </executions>
+                        <configuration>
+                            <parser>
+                                <packages>
+                                    <package>org.dacss.projectinitai</package>
+                                </packages>
+                            </parser>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
