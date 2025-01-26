@@ -122,10 +122,10 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     public void download(String action, String url, String filePath) {}
 
     /**
-     * <h2>{@link EmbeddingIface#processEmbedding()}</h2>
+     * <h2>{@link EmbeddingIface#processEmbedding(String, String)}</h2>
      */
     @Override
-    public void processEmbedding() {
+    public void processEmbedding(String action, String data) {
 
     }
 
@@ -158,10 +158,10 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link MetricsIface#measure()}</h2>
+     * <h2>{@link MetricsIface#measure(String)}</h2>
      */
     @Override
-    public void measure() {
+    public void measure(String metricType) {
 
     }
 

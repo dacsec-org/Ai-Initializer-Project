@@ -30,7 +30,10 @@ public class MessagesService implements MessagesIface {
      */
     @Override
     public void processMessages() {
-
+        /*fixme: ASAP!
+           add below switch to the functional iface overload,
+           and its 3 other implementating classes/interface
+           like the rest of the service classes*/
     }
 }
 

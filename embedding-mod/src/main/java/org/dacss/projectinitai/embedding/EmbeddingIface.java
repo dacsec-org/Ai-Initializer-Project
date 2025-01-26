@@ -7,7 +7,7 @@ package org.dacss.projectinitai.embedding;
 @FunctionalInterface
 public interface EmbeddingIface {
     /**
-     * <h2>{@link #processEmbedding()}</h2>
+     * <h2>{@link #processEmbedding(String action, String data)}</h2>
      */
-    void processEmbedding();
+    void processEmbedding(String action, String data);
 }

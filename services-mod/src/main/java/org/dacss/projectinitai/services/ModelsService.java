@@ -3,6 +3,7 @@ package org.dacss.projectinitai.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.models.ModelIface;
+import org.dacss.projectinitai.models.utilities.CloneModelUtil;
 import org.dacss.projectinitai.models.utilities.CreateNewModelUtil;
 import org.dacss.projectinitai.models.utilities.DestroyModelUtil;
 import org.dacss.projectinitai.models.utilities.MergeModelUtil;
@@ -21,7 +22,6 @@ import java.text.MessageFormat;
 @BrowserCallable
 @AnonymousAllowed
 public class ModelsService implements ModelIface {
-
 
     private static final Logger log = LoggerFactory.getLogger(ModelsService.class);
 
@@ -50,6 +50,9 @@ public class ModelsService implements ModelIface {
                 break;
             case "merge":
                 MergeModelUtil.mergeModels(modelPath1, modelPath2);
+                break;
+            case "clone":
+                new CloneModelUtil().cloneModel(modelPath1);
                 break;
             default:
                 throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));

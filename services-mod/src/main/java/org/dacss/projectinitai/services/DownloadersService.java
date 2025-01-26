@@ -56,7 +56,6 @@ public class DownloadersService implements DownloadersIface {
                 case "create_directory":
                     createDirectory(url);
                     break;
-                //todo: add the checksum generator to the switch statement
                 case "generate_checksum":
                     generateSHA512(filePath);
                     break;

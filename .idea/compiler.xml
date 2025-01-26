@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="4824" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -75,7 +76,7 @@
       <module name="security-mod" options="" />
       <module name="sequence-mod" options="" />
       <module name="servers-mod" options="" />
-      <module name="services-mod" options="" />
+      <module name="services-mod" options="-parameters" />
       <module name="snapshots-mod" options="" />
       <module name="speech-mod" options="" />
       <module name="starter-mod" options="" />

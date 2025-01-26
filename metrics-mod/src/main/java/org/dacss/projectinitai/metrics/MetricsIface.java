@@ -1,5 +1,4 @@
 package org.dacss.projectinitai.metrics;
-/**/
 
 /**
  * <h1>{@link MetricsIface}</h1>
@@ -7,8 +6,8 @@ package org.dacss.projectinitai.metrics;
 @FunctionalInterface
 public interface MetricsIface {
     /**
-     * <h2>{@link MetricsIface#measure()}</h2>
+     * <h2>{@link MetricsIface#measure(String)}</h2>
      * measure the data.
      */
-    void measure();
+    void measure(String metricType);
 }

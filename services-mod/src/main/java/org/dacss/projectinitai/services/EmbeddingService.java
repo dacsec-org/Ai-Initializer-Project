@@ -3,6 +3,7 @@ package org.dacss.projectinitai.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.embedding.EmbeddingIface;
+import org.dacss.projectinitai.embedding.utillities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,33 +22,46 @@ public class EmbeddingService implements EmbeddingIface {
 
     /**
      * <h2>{@link #EmbeddingService()}</h2>
+     * 0-arg constructor.
      */
     public EmbeddingService() {
     }
 
     /**
-     * <h2>{@link #processEmbedding()}</h2>
+     * <h2>{@link #processEmbedding(String action, String data)}</h2>
+     * Perform embedding operations. via the functional interface {@link EmbeddingIface}.
+     *
+     * @param action The action to perform.
+     * @param data The data to process.
      */
     @Override
-    public void processEmbedding() {
+    public void processEmbedding(String action, String data) {
+        try {
+            switch (action) {
+                case "word2vec":
+                    Word2VectorUtil.useWord2VecUtil(data);
+                    break;
+                case "glove":
+                    GloveUtil.useGloveUtil(data);
+                    break;
+                case "fasttext":
+                    FastTextUtil.useFastTextUtil(data);
+                    break;
+                case "bert":
+                    BertUtil.useBertUtil(data);
+                    break;
+                case "gpt":
+                    GptUtil.useGptUtil(data);
+                    break;
+                case "transformer":
+                    TransformerUtil.useTransformerUtil(data);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid action: " + action);
+            }
+        } catch (Exception embeddingExc) {
+            log.error("Error handling operation: {}", action, embeddingExc);
+        }
 
     }
 }
-
-//    /**
-//     * <h2>{@link #handleEmbeddingAction(String, String)}</h2>
-//     * @param action The action to be performed.
-//     * @param data The data to be processed.
-//     * @return The result of the action.
-//     */
-//    public Object handleEmbeddingAction(String action, String data) {
-//        return switch (EmbeddingContexts.valueOf(action.toUpperCase())) {
-//            case WORD2VEC -> handler.handleWord2Vec(data);
-//            case GLOVE -> handler.handleGloVe(data);
-//            case FASTTEXT -> handler.handleFastText(data);
-//            case BERT -> handler.handleBert(data);
-//            case GPT -> handler.handleGpt(data);
-//            case TRANSFORMER -> handler.handleTransformer(data);
-//        };
-//    }
-//}

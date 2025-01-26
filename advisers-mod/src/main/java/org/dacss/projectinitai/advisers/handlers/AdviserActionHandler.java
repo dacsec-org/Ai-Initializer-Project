@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.advisers.handlers;
 
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link AdviserActionHandler}</h1>
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Component;
  *     This class is used to handle the adviser actions.
  * </p>
  */
-@Component
+
 public class AdviserActionHandler {
 
     /**
@@ -22,36 +21,6 @@ public class AdviserActionHandler {
         return "Advised LLM with input: " + input;
     }
 
-//    /**
-//     * Handles the action of calculating a checksum.
-//     * @param input The input data for the action.
-//     * @return The result of the action.
-//     */
-//    public String handleChecksum(String input) {
-//        // Implement the logic for handling checksum
-//        return "Handled checksum with input: " + input;
-//    }
-//
-//    /**
-//     * Handles the action of managing a directory.
-//     * @param input The input data for the action.
-//     * @return The result of the action.
-//     */
-//    public String manageDirectory(String input) {
-//        // Implement the logic for managing directory
-//        return "Managed directory with input: " + input;
-//    }
-
-//    /**
-//     * Handles the action of downloading an LLM.
-//     * @param input The input data for the action.
-//     * @return The result of the action.
-//     */
-//    public String downloadLLM(String input) {
-//        // Implement the logic for downloading LLM
-//        return STR."Downloaded LLM with input: \{input}";
-//    }
-//
 
     /**
      * Handles the action of managing a context.

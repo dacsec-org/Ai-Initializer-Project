@@ -54,7 +54,7 @@ public class SnapShotsService implements SnapShotsIface {
                 SnapShotCommandRunnerUtil.executeCommand(source, destination);
                 break;
             default:
-                throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
+                log.error("Invalid action: {}", action);
         }
     }
 }

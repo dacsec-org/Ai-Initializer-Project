@@ -22,16 +22,16 @@ import java.text.MessageFormat;
 public class ServersService implements ServersIface {
 
     private static final Logger log = LoggerFactory.getLogger(ServersService.class);
-    private final LoadKernel loadKernel;
-    private final UnLoadKernel unLoadKernel;
+//    private final LoadKernel loadKernel;
+//    private final UnLoadKernel unLoadKernel;
 
     /**
      * <h2>{@link #ServersService()}</h2>
      * 0-arg constructor to instantiate the {@link LoadKernel} and {@link UnLoadKernel}.
      */
     public ServersService() {
-        this.loadKernel = new LoadKernel();
-        this.unLoadKernel = new UnLoadKernel();
+//        this.loadKernel = new LoadKernel();
+//        this.unLoadKernel = new UnLoadKernel();
     }
 
     /**
@@ -42,24 +42,24 @@ public class ServersService implements ServersIface {
      */
     @Override
     public void manageServer(String operation) {
-        switch (operation.toUpperCase()) {
-            case "START":
+        switch (operation) {
+            case "start":
                 StartUnixSocketServerUtil.startServer();
                 break;
-            case "STOP":
+            case "stop":
                 StopUnixServerUtil.stopServer();
                 break;
-            case "RESTART":
+            case "restart":
                 RestartServersUtil.restartServer();
                 break;
-            case "PING":
+            case "ping":
                 PingServerUtil.pingServers();
                 break;
-            case "STOP_HTTP":
+            case "stop-http":
                 StopHttpServerUtil.stopServer();
                 break;
             default:
-                throw new IllegalArgumentException(MessageFormat.format("Invalid operation: {0}", operation));
+                log.error("Invalid operation: {}", operation);
         }
     }
 }

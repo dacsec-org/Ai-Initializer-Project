@@ -20,7 +20,6 @@ import java.text.MessageFormat;
 @AnonymousAllowed
 public class LoadUnloadService implements LoadersIface {
 
-
     private static final Logger log = LoggerFactory.getLogger(LoadUnloadService.class);
 
     /**
@@ -39,7 +38,7 @@ public class LoadUnloadService implements LoadersIface {
      */
     @Override
     public void loadUnloadLLM(String action, String modelPath, byte[] modelData) {
-        switch (action.toLowerCase()) {
+        switch (action) {
             case "load":
                 new LoadKernel().loadModelKernel(modelPath);
                 break;
@@ -47,7 +46,7 @@ public class LoadUnloadService implements LoadersIface {
                 new UnLoadKernel().unloadModelKernel(modelData);
                 break;
             default:
-                throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
+                log.error("Invalid action: {}", action);
         }
     }
 }
