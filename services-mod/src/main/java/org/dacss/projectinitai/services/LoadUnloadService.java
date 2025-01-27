@@ -2,6 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.loaders.LoadKernel;
 import org.dacss.projectinitai.loaders.LoadersIface;
 import org.dacss.projectinitai.loaders.UnLoadKernel;
@@ -16,6 +17,7 @@ import java.text.MessageFormat;
  * Backend hilla endpoint service for loading and unloading models.
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class LoadUnloadService implements LoadersIface {
@@ -40,6 +42,7 @@ public class LoadUnloadService implements LoadersIface {
     public void loadUnloadLLM(String action, String modelPath, byte[] modelData) {
         switch (action) {
             case "load":
+                //info-> these methods are not static, so we need to create an object of the class to call them.
                 new LoadKernel().loadModelKernel(modelPath);
                 break;
             case "unload":

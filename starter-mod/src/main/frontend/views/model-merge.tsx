@@ -6,7 +6,7 @@ import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
   menu: { order: 9, icon: 'line-awesome/svg/merge-solid.svg' },
-  title: 'Merge Models',
+  title: 'Merge Model',
 };
 
 interface MergeModelViewState {

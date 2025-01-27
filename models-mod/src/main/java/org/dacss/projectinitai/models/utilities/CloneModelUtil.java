@@ -19,7 +19,7 @@ public class CloneModelUtil {
      * @param modelPath The path of the model to clone.
      * @throws IOException If an I/O error occurs.
      */
-    public void cloneModel(String modelPath) throws IOException {
+    public static void cloneModel(String modelPath) throws IOException {
         File modelFile = new File(modelPath);
         if (!modelFile.exists()) {
             throw new IllegalArgumentException("Model file does not exist: " + modelPath);

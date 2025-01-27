@@ -7,7 +7,7 @@ import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
   menu: { order: 8, icon: 'line-awesome/svg/trash-alt-solid.svg' },
-  title: 'Delete Model',
+  title: 'Delete ~ Model',
 };
 
 interface DeleteModelViewState {
@@ -15,7 +15,10 @@ interface DeleteModelViewState {
   dialogOpened: boolean;
 }
 
-class DeleteModelView extends Component<{}, DeleteModelViewState> {
+/**
+ * <h1>{@link DestroyModelView}</h1>
+ */
+class DestroyModelView extends Component<{}, DeleteModelViewState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -26,8 +29,8 @@ class DeleteModelView extends Component<{}, DeleteModelViewState> {
 
   handleDelete = async () => {
     const { modelPath } = this.state;
-    const response = await ModelsService.processModel("destroy", modelPath, "");
-    Notification.show(response);
+    const response = await ModelsService.processModel('destroy', modelPath, '');
+    Notification.show("Model destroyed" + response);
     this.setState({ dialogOpened: false });
   }
 
@@ -77,4 +80,4 @@ class DeleteModelView extends Component<{}, DeleteModelViewState> {
   }
 }
 
-export default DeleteModelView;
+export default DestroyModelView;

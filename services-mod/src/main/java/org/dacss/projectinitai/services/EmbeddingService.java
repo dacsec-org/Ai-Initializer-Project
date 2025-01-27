@@ -2,17 +2,26 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.embedding.EmbeddingIface;
 import org.dacss.projectinitai.embedding.utillities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import static org.dacss.projectinitai.embedding.utillities.BertUtil.useBertUtil;
+import static org.dacss.projectinitai.embedding.utillities.FastTextUtil.useFastTextUtil;
+import static org.dacss.projectinitai.embedding.utillities.GloveUtil.useGloveUtil;
+import static org.dacss.projectinitai.embedding.utillities.GptUtil.useGptUtil;
+import static org.dacss.projectinitai.embedding.utillities.TransformerUtil.useTransformerUtil;
+import static org.dacss.projectinitai.embedding.utillities.Word2VectorUtil.useWord2VecUtil;
+
 /**
  * <h1>{@link EmbeddingService}</h1>
  * Backend hilla endpoint service for embedding operations.
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class EmbeddingService implements EmbeddingIface {
@@ -39,22 +48,22 @@ public class EmbeddingService implements EmbeddingIface {
         try {
             switch (action) {
                 case "word2vec":
-                    Word2VectorUtil.useWord2VecUtil(data);
+                    useWord2VecUtil(data);
                     break;
                 case "glove":
-                    GloveUtil.useGloveUtil(data);
+                    useGloveUtil(data);
                     break;
                 case "fasttext":
-                    FastTextUtil.useFastTextUtil(data);
+                    useFastTextUtil(data);
                     break;
                 case "bert":
-                    BertUtil.useBertUtil(data);
+                    useBertUtil(data);
                     break;
                 case "gpt":
-                    GptUtil.useGptUtil(data);
+                    useGptUtil(data);
                     break;
                 case "transformer":
-                    TransformerUtil.useTransformerUtil(data);
+                    useTransformerUtil(data);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid action: " + action);

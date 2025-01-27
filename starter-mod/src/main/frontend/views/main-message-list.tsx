@@ -3,40 +3,31 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import type { MessageListItem } from '@vaadin/message-list';
 import MainMessageInput from './components/main-message-input';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
-
-// @ts-ignore
-import { getPeople } from 'Frontend/demo/domain/DataService';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 export const config: ViewConfig = {
   menu: { order: 6, icon: 'line-awesome/svg/comment-alt.svg' },
-  title: 'Message History',
+  title: 'Message ~ History',
 };
 
-class MainMessageList extends Component {
-  items = useSignal<MessageListItem[]>([]);
-
-  componentDidMount() {
-    // @ts-ignore
-    getPeople({ count: 1 }).then(({ people }) => {
-      const person = people[0];
-      this.items.value = [
-        {
-          text: 'This is a stub message.',
-          time: 'yesterday',
-          userName: 'Matt Mambo',
-          userColorIndex: 1,
-        },
-        {
-          text: 'Using your talent, hobby or profession in a way that makes you contribute with something good to this world is truly the way to go.',
-          time: 'right now',
-          userName: 'Linsey Listy',
-          userColorIndex: 2,
-          userImg: person.pictureUrl,
-        },
-      ];
-    });
-  }
+/**
+ * <h1>{@link MainMessageListView}</h1>
+ */
+class MainMessageListView extends Component {
+  items = useSignal<MessageListItem[]>([
+    {
+      text: 'This is a stub message.',
+      time: 'yesterday',
+      userName: 'Matt Mambo',
+      userColorIndex: 1,
+    },
+    {
+      text: 'Using your talent, hobby or profession in a way that makes you contribute with something good to this world is truly the way to go.',
+      time: 'right now',
+      userName: 'Linsey Listy',
+      userColorIndex: 2,
+    },
+  ]);
 
   /**
    * {@link #handleSubmit} is called when the user submits a new message.
@@ -68,4 +59,4 @@ class MainMessageList extends Component {
   }
 }
 
-export default MainMessageList;
+export default MainMessageListView;

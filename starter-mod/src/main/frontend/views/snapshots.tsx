@@ -8,7 +8,7 @@ import { SnapShotsService } from 'Frontend/generated/endpoints';
  */
 export const config: ViewConfig = {
   menu: { order: 14, icon: 'line-awesome/svg/solid/camera.svg' },
-  title: 'SnapshotsView'
+  title: 'Snapshots'
 };
 
 /**

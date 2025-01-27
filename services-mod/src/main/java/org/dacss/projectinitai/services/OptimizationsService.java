@@ -2,20 +2,25 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.optimizations.OptimizationsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import static org.dacss.projectinitai.optimizations.utillities.GeneticAlgorithmsUtil.geneticAlgorithms;
+import static org.dacss.projectinitai.optimizations.utillities.IntegerProgramingUtil.integerProgramming;
+import static org.dacss.projectinitai.optimizations.utillities.LinearProgramingUtil.linearProgramming;
 
 /**
  * <h1>{@link OptimizationsService}</h1>
  * Backend hilla endpoint service for optimization operations.
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class OptimizationsService implements OptimizationsIface {
-
 
     private static final Logger log = LoggerFactory.getLogger(OptimizationsService.class);
 
@@ -26,26 +31,28 @@ public class OptimizationsService implements OptimizationsIface {
     }
 
     /**
-     * <h2>{@link #optimize()}</h2>
+     * <h2>{@link #optimize(String, String)}</h2>
      * Perform optimization on the data.
      */
     @Override
-    public void optimize() {
-
+    public void optimize(String action, String data) {
+        try {
+            switch (action) {
+                case "linear_programming":
+                    linearProgramming();
+                    break;
+                case "integer_programming":
+                    integerProgramming();
+                    break;
+                case "genetic_algorithms":
+                    geneticAlgorithms();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid optimization action: " + action);
+            }
+        } catch (Exception optimizationServiceExc) {
+            log.error("Error occurred while performing optimization: {}", optimizationServiceExc.getMessage());
+            throw new RuntimeException("Error occurred while performing optimization: " + optimizationServiceExc.getMessage());
+        }
     }
 }
-
-//    /**
-//     * <h2>{@link #handleOptimizationAction(String, String)}</h2>
-//     * @param action The action to be performed.
-//     * @param data The data to be processed.
-//     * @return The result of the action.
-//     */
-//    public Object handleOptimizationAction(String action, String data) {
-//        return switch (OptimizationContexts.valueOf(action.toUpperCase())) {
-//            case LINEAR_PROGRAMMING -> handler.handleLinearProgramming(data);
-//            case INTEGER_PROGRAMMING -> handler.handleIntegerProgramming(data);
-//            case GENETIC_ALGORITHMS -> handler.handleGeneticAlgorithms(data);
-//        };
-//    }
-//}

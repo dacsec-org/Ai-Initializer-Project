@@ -3,6 +3,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.downloaders.DownloadersIface;
 import org.dacss.projectinitai.downloaders.DownloadersScraperUtil;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import java.text.MessageFormat;
 
 import static org.dacss.projectinitai.checksums.utillities.ChecksumGeneratorUtil.generateSHA512;
 import static org.dacss.projectinitai.directories.utilities.CreateDirFileUtil.createDirectory;
+import static org.dacss.projectinitai.downloaders.DownloadersScraperUtil.scrapeLLMLinks;
 import static org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil.getApiToken;
 
 /**
@@ -22,6 +24,7 @@ import static org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil.ge
  * </p>
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class DownloadersService implements DownloadersIface {
@@ -51,7 +54,7 @@ public class DownloadersService implements DownloadersIface {
                     getApiToken();
                     break;
                 case "download":
-                    DownloadersScraperUtil.scrapeLLMLinks(url);
+                    scrapeLLMLinks(url);
                     break;
                 case "create_directory":
                     createDirectory(url);

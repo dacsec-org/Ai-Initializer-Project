@@ -9,7 +9,7 @@ public class CreateNewModelUtil {
      * <h2>{@link CreateNewModelUtil#createNewModel()}</h2>
      * Create a new model.
      */
-    public void createNewModel() {
-        System.out.println("Creating a new model...");
+    public static void createNewModel() {
+        System.out.println("STUB...implement me!");
     }
 }

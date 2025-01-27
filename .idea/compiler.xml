@@ -47,35 +47,35 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="admin-mod" options="" />
-      <module name="advisers-mod" options="" />
+      <module name="admin-mod" options="-parameters" />
+      <module name="advisers-mod" options="-parameters" />
       <module name="ai-initializer-project" options="" />
-      <module name="anomalies-mod" options="" />
-      <module name="checksums-mod" options="" />
-      <module name="classifications-mod" options="" />
-      <module name="clustering-mod" options="" />
-      <module name="databases-mod" options="" />
-      <module name="directories-mod" options="" />
-      <module name="downloaders-mod" options="" />
-      <module name="embedding-mod" options="" />
-      <module name="generative-mod" options="" />
-      <module name="krr-mod" options="" />
-      <module name="loaders-mod" options="" />
-      <module name="messages-mod" options="" />
-      <module name="metrics-mod" options="" />
-      <module name="models-mod" options="" />
-      <module name="nlp-mod" options="" />
-      <module name="optimizations-mod" options="" />
-      <module name="predictive-mod" options="" />
-      <module name="recognitions-mod" options="" />
-      <module name="recommendations-mod" options="" />
-      <module name="reductions-mod" options="" />
-      <module name="regressions-mod" options="" />
-      <module name="reinforcement-mod" options="" />
-      <module name="robotics-mod" options="" />
-      <module name="security-mod" options="" />
-      <module name="sequence-mod" options="" />
-      <module name="servers-mod" options="" />
+      <module name="anomalies-mod" options="-parameters" />
+      <module name="checksums-mod" options="-parameters" />
+      <module name="classifications-mod" options="-parameters" />
+      <module name="clustering-mod" options="-parameters" />
+      <module name="databases-mod" options="-parameters" />
+      <module name="directories-mod" options="-parameters" />
+      <module name="downloaders-mod" options="-parameters" />
+      <module name="embedding-mod" options="-parameters" />
+      <module name="generative-mod" options="-parameters" />
+      <module name="krr-mod" options="-parameters" />
+      <module name="loaders-mod" options="-parameters" />
+      <module name="messages-mod" options="-parameters" />
+      <module name="metrics-mod" options="-parameters" />
+      <module name="models-mod" options="-parameters" />
+      <module name="nlp-mod" options="-parameters" />
+      <module name="optimizations-mod" options="-parameters" />
+      <module name="predictive-mod" options="-parameters" />
+      <module name="recognitions-mod" options="-parameters" />
+      <module name="recommendations-mod" options="-parameters" />
+      <module name="reductions-mod" options="-parameters" />
+      <module name="regressions-mod" options="-parameters" />
+      <module name="reinforcement-mod" options="-parameters" />
+      <module name="robotics-mod" options="-parameters" />
+      <module name="security-mod" options="-parameters" />
+      <module name="sequence-mod" options="-parameters" />
+      <module name="servers-mod" options="-parameters" />
       <module name="services-mod" options="-parameters" />
       <module name="snapshots-mod" options="" />
       <module name="speech-mod" options="" />

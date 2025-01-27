@@ -8,7 +8,7 @@ package org.dacss.projectinitai.messages.utillities;
 public class UserRequestUtil {
 
 
-    public String processUserRequest(String message) {
-        return null;
+    public static void processUserRequest(String message) {
+        //TODO: Implement this method
     }
 }

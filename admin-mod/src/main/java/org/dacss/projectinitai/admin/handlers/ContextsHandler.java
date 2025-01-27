@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  *
  * @param <T>
  */
-@Component
 public class ContextsHandler<T> {
 
     private static final Logger log = LoggerFactory.getLogger(ContextsHandler.class);

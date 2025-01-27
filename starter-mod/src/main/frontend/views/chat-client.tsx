@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Icon, MessageList } from '@vaadin/react-components';
+import { MessageList, Notification } from '@vaadin/react-components';
 import MainLayout from './@layout';
 import MainMessageInput from './components/main-message-input';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-// @ts-ignore
-import { MessagesService } from 'Frontend/generated/endpoints.';
+import { MessagesService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
   menu: { order: 1, icon: 'line-awesome/svg/rocket-chat' }, title: 'Chat',
@@ -12,6 +11,10 @@ export const config: ViewConfig = {
 
 interface ChatClientProps {}
 
+/**
+ * <h3>{@link MessageSet}</h3>
+ * Represents a set of messages exchanged between the user and the AI.
+ */
 interface MessageSet {
   userMessage: {
     text: string;
@@ -36,9 +39,9 @@ interface ChatClientState {
 }
 
 /**
- * {@link ChatClient}
+ * <h1>{@link ChatClientView}</h1>
  */
-class ChatClient extends Component<ChatClientProps, ChatClientState> {
+class ChatClientView extends Component<ChatClientProps, ChatClientState> {
   private readonly messageEndRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: ChatClientProps) {
@@ -88,15 +91,47 @@ class ChatClient extends Component<ChatClientProps, ChatClientState> {
     );
   }
 
+  handleRequest = async (message: string) => {
+    const response = await MessagesService.processMessages('request', '');
+    Notification.show('Request processed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
+  handleResponse = async (message: string) => {
+    const response = await MessagesService.processMessages('response', '');
+    Notification.show('Response processed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
+  handleThumbsUp = async (message: string) => {
+    const response = await MessagesService.processMessages('thumbs_up', '');
+    Notification.show('Thumbs up processed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
+  handleThumbsDown = async (message: string) => {
+    const response = await MessagesService.processMessages('thumbs_down', '');
+    Notification.show('Thumbs down processed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
+  handleTrash = async (message: string) => {
+    const response = await MessagesService.processMessages('trash', '');
+    Notification.show('Message trashed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
+  handleRetry = async (message: string) => {
+    const response = await MessagesService.processMessages('retry', '');
+    Notification.show('Retry processed' + message + response);
+    this.setState({ loading: true, error: null });
+  };
+
   handleSubmit = async (event: any) => {
     const userRequest = event.detail.value;
     this.setState({ loading: true, error: null });
-    try {
-      const aiResponse = await MessagesService.getAiResponse(userRequest);
-      this.addMessageSet(userRequest, aiResponse);
-    } catch (error) {
-      this.setState({ loading: false, error: 'Failed to get AI response' });
-    }
+    const aiResponse = event.detail.value;
+    this.addMessageSet(userRequest, aiResponse);
   };
 
   scrollToBottom = () => {
@@ -124,4 +159,4 @@ class ChatClient extends Component<ChatClientProps, ChatClientState> {
   }
 }
 
-export default ChatClient;
+export default ChatClientView;

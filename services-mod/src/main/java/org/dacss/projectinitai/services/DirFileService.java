@@ -2,6 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.directories.DirectoriesIface;
 import org.dacss.projectinitai.directories.utilities.CreateDirFileUtil;
 import org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 
+import static org.dacss.projectinitai.directories.utilities.CreateDirFileUtil.createDirectory;
+import static org.dacss.projectinitai.directories.utilities.CreateDirFileUtil.createFile;
+import static org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil.deleteDirectory;
+import static org.dacss.projectinitai.directories.utilities.DestroyDirFileUtil.deleteFile;
+
 /**
  * <h1>{@link DirFileService}</h1>
  * <p>
@@ -18,6 +24,7 @@ import java.text.MessageFormat;
  * </p>
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class DirFileService implements DirectoriesIface {
@@ -41,18 +48,18 @@ public class DirFileService implements DirectoriesIface {
     @Override
     public void processDirFileAction(String action, String path, String fileName) {
         try {
-            switch (action.toLowerCase()) {
+            switch (action) {
                 case "create_directory":
-                    CreateDirFileUtil.createDirectory(path);
+                    createDirectory(path);
                     break;
                 case "create_file":
-                    CreateDirFileUtil.createFile(path, fileName);
+                    createFile(path, fileName);
                     break;
                 case "delete_directory":
-                    DestroyDirFileUtil.deleteDirectory(path);
+                    deleteDirectory(path);
                     break;
                 case "delete_file":
-                    DestroyDirFileUtil.deleteFile(path, fileName);
+                    deleteFile(path, fileName);
                     break;
                 default:
                     throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));

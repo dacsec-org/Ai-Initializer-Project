@@ -343,3 +343,6 @@ vite.generated.ts
 
 ### intellij *.iml unignore
 !*.iml
+
+### frontend errors scratch file
+/frontenderrors.txt

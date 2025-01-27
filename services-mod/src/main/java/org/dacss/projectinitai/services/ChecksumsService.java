@@ -3,6 +3,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.checksums.ChecksumsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ import static org.dacss.projectinitai.checksums.utillities.ChecksumVerifierUtil.
  * Hilla back-end service class for the Checksums module.
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class ChecksumsService implements ChecksumsIface {
@@ -44,7 +46,7 @@ public class ChecksumsService implements ChecksumsIface {
     @Override
     public void calculateChecksum(String action, String filePath, String expectedChecksum) {
         try {
-            switch (action.toLowerCase()) {
+            switch (action) {
                 case "verify":
                     verifyFileChecksum(filePath, expectedChecksum);
                     break;

@@ -6,8 +6,11 @@ package org.dacss.projectinitai.nlp;
 @FunctionalInterface
 public interface NLPIface {
     /**
-     * <h2>{@link #processText()}</h2>
+     * <h2>{@link #processText(String, String)}</h2>
      * Perform NLP on the data.
+     *
+     * @param action The action to be performed.
+     * @param data The data to be processed.
      */
-    void processText();
+    void processText(String action, String data);
 }

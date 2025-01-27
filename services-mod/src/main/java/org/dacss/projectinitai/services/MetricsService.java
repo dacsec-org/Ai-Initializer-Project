@@ -2,6 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.metrics.MetricsIface;
 import org.dacss.projectinitai.metrics.utilities.*;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import reactor.core.publisher.Flux;
  * <h1>{@link MetricsService}</h1>
  */
 @Service
+@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class MetricsService implements MetricsIface {
@@ -24,6 +26,9 @@ public class MetricsService implements MetricsIface {
         Flux<String> flux;
         switch (action) {
             case "gpu":
+                /* info-> idk how to make the utilities static for flux?
+                    but i figured using reactive methods would be better
+                    for real time metrics */
                 flux = new GpuStatsUtil().fetchGpuStats();
                 break;
             case "cpu":

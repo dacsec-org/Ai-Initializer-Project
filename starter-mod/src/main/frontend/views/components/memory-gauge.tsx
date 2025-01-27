@@ -1,44 +1,75 @@
-import React, { useEffect, useState } from 'react';
-// @ts-ignore
-import { RadialGauge } from 'react-canvas-gauges';
+import React, { Component } from 'react';
+import { RadialGauge } from '@progress/kendo-react-gauges';
+import { MetricsService } from 'Frontend/generated/endpoints';
 
 interface MemoryGaugeProps {
   value?: number;
 }
 
-const MemoryGauge: React.FC<MemoryGaugeProps> = ({ value: propValue }) => {
-  const [value, setValue] = useState(0);
+interface MemoryGaugeState {
+  value: number;
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Fetch Memory stats and update value
-      setValue(Math.random() * 100); // Replace with actual data fetching logic
-    }, 1000);
+interface MetricData {
+  value: number;
+}
 
-    return () => clearInterval(interval);
-  }, []);
+/**
+ * <h1>{@link MemoryGauge}</h1>
+ */
+class MemoryGauge extends Component<MemoryGaugeProps, MemoryGaugeState> {
+  private intervalId: NodeJS.Timeout | null = null;
 
-  return (
-    <RadialGauge
-      value={propValue ?? value}
-      maxValue={100}
-      title="Memory Usage"
-      units="%"
-      colorPlate="#222"
-      colorMajorTicks="#f5f5f5"
-      colorMinorTicks="#ddd"
-      colorTitle="#fff"
-      colorUnits="#ccc"
-      colorNumbers="#eee"
-      colorNeedleStart="rgba(240, 128, 128, 1)"
-      colorNeedleEnd="rgba(255, 160, 122, .9)"
-      needleCircleSize={15}
-      needleCircleOuter={true}
-      needleCircleInner={false}
-      animationDuration={1500}
-      animationRule="linear"
-    />
-  );
-};
+  constructor(props: MemoryGaugeProps) {
+    super(props);
+    this.state = {
+      value: 0,
+    };
+  }
+
+  /**
+   * <h3>{@link fetchData}</h3>
+   * Fetches the memory data from the reactive backend.
+   */
+  async fetchData() {
+    const data = await MetricsService.measure('memory') as unknown as MetricData;
+    this.setState({ value: data.value });
+  }
+
+  async componentDidMount() {
+    await this.fetchData();
+    this.intervalId = setInterval(() => this.fetchData(), 1000);
+  }
+
+  componentWillUnmount() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  render() {
+    const { value } = this.state;
+    const { value: propValue } = this.props;
+
+    const gaugeOptions = {
+      value: propValue ?? value,
+      scale: {
+        max: 100,
+        majorUnit: 20,
+        minorUnit: 2,
+        ranges: [
+          { from: 0, to: 40, color: '#28a745' },
+          { from: 40, to: 70, color: '#ffc107' },
+          { from: 70, to: 100, color: '#dc3545' }
+        ]
+      },
+      pointer: {
+        value: propValue ?? value
+      }
+    };
+
+    return <RadialGauge {...gaugeOptions} />;
+  }
+}
 
 export default MemoryGauge;

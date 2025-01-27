@@ -17,7 +17,7 @@ interface MediaGalleryProps {
   items: MediaItem[];
 }
 
-class ContentGallery extends Component<MediaGalleryProps> {
+class ContentGalleryView extends Component<MediaGalleryProps> {
   render() {
     const { items } = this.props;
     return (
@@ -45,8 +45,8 @@ const mediaItems: MediaItem[] = [
 
 class App extends Component {
   render() {
-    return <ContentGallery items={mediaItems} />;
+    return <ContentGalleryView items={mediaItems} />;
   }
 }
 
-export default ContentGallery;
+export default ContentGalleryView;

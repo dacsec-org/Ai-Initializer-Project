@@ -6,7 +6,7 @@ import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
   menu: { order: 2, icon: 'line-awesome/svg/clone-solid.svg' },
-  title: 'Clone Model',
+  title: 'Clone',
 };
 
 interface CloneModelViewState {

@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.vision;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @BrowserCallable
+@AnonymousAllowed
 public class VisionService implements VisionIface {
 
     private static final Logger log = LoggerFactory.getLogger(VisionService.class);

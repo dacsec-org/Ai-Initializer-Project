@@ -42,7 +42,6 @@ import java.io.File;
  * <h1>{@link AdminHandler}</h1>
  * Handler class for the admin LLM operations.
  */
-@Component
 public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIface, ClassificationsIface, ClusteringIface, DataBaseIface, DirectoriesIface,
         DownloadersIface, EmbeddingIface, GenerativeIface, KRRIface, LoadersIface, MessagesIface, MetricsIface, ModelIface, NLPIface,
         OptimizationsIface, PredictiveIface, RecognitionsIface,
@@ -150,10 +149,13 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link MessagesIface#processMessages()}</h2>
+     * <h2>{@link MessagesIface#processMessages(String, String)}</h2>
+     *
+     * @param action The action to perform.
+     * @param message The message to process.
      */
     @Override
-    public void processMessages() {
+    public void processMessages(String action, String message) {
 
     }
 
@@ -166,19 +168,24 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link NLPIface#processText()}</h2>
+     * <h2>{@link NLPIface#processText(String, String)}</h2>
+     *
+     * @param action The action to perform.
+     * @param data The data to process.
      */
     @Override
-    public void processText() {
+    public void processText(String action, String data) {
 
     }
 
     /**
-     * <h2>{@link OptimizationsIface#optimize()}</h2>
+     * <h2>{@link OptimizationsIface#optimize(String, String)}</h2>
      *
+     * @param action The optimization action to perform.
+     * @param data The data to optimize.
      */
     @Override
-    public void optimize() {
+    public void optimize(String action, String data) {
 
     }
 
