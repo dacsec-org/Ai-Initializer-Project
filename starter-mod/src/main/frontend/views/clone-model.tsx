@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField, Dialog } from '@vaadin/react-components';
 import { ModelsService } from 'Frontend/generated/endpoints';
@@ -9,82 +9,62 @@ export const config: ViewConfig = {
   title: 'Clone',
 };
 
-interface CloneModelViewState {
-  sourcePath: string;
-  dialogOpened: boolean;
-  dialogMessage: string;
-  dialogAction: () => void;
-}
+const CloneModelView: React.FC = () => {
+  const [sourcePath, setSourcePath] = useState('');
+  const [dialogOpened, setDialogOpened] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState('');
+  const [dialogAction, setDialogAction] = useState<() => void>(() => {});
 
-class CloneModelView extends Component<{}, CloneModelViewState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      sourcePath: '',
-      dialogOpened: false,
-      dialogMessage: '',
-      dialogAction: () => {}
-    };
-  }
-
-  openDialog = (message: string, action: () => void) => {
-    this.setState({
-      dialogMessage: message,
-      dialogAction: action,
-      dialogOpened: true
-    });
+  const openDialog = (message: string, action: () => void) => {
+    setDialogMessage(message);
+    setDialogAction(() => action);
+    setDialogOpened(true);
   };
 
-  handleDialogClose = () => {
-    this.setState({ dialogOpened: false });
+  const handleDialogClose = () => {
+    setDialogOpened(false);
   };
 
-  handleClone = async () => {
-    const { sourcePath } = this.state;
+  const handleClone = async () => {
     const response = await ModelsService.processModel('clone', sourcePath, '');
     Notification.show("Cloning successful" + response);
-    this.setState({ dialogOpened: false });
+    setDialogOpened(false);
   };
 
-  handleInputChange = (e: TextFieldValueChangedEvent) => {
-    this.setState({ sourcePath: e.detail.value });
+  const handleInputChange = (e: TextFieldValueChangedEvent) => {
+    setSourcePath(e.detail.value);
   };
 
-  render() {
-    const { sourcePath, dialogOpened, dialogMessage, dialogAction } = this.state;
-
-    return (
-      <>
-        <section className="flex p-m gap-m items-end">
-          <TextField
-            label="Source Path"
-            value={sourcePath}
-            onValueChanged={(e: TextFieldValueChangedEvent) => this.handleInputChange(e)}
-          />
-          <Button
-            onClick={() => this.openDialog('Are you sure you want to clone this model?', this.handleClone)}
-            style={{ backgroundColor: 'blue' }}>Clone Model</Button>
-        </section>
-        <Dialog opened={dialogOpened}
-                onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
-          <div>
-            <p>{dialogMessage}</p>
-            <div className="flex gap-s">
-              <Button theme="primary" onClick={() => {
-                dialogAction();
-                this.handleDialogClose();
-              }}>
-                Yes
-              </Button>
-              <Button theme="secondary" onClick={this.handleDialogClose}>
-                No
-              </Button>
-            </div>
+  return (
+    <>
+      <section className="flex p-m gap-m items-end">
+        <TextField
+          label="Source Path"
+          value={sourcePath}
+          onValueChanged={handleInputChange}
+        />
+        <Button
+          onClick={() => openDialog('Are you sure you want to clone this model?', handleClone)}
+          style={{ backgroundColor: 'blue' }}>Clone Model</Button>
+      </section>
+      <Dialog opened={dialogOpened} onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+        <div>
+          <p>{dialogMessage}</p>
+          <div className="flex gap-s">
+            <Button theme="primary" onClick={() => {
+              dialogAction();
+              handleDialogClose();
+            }}>
+              Yes
+            </Button>
+            <Button theme="secondary" onClick={handleDialogClose}>
+              No
+            </Button>
           </div>
-        </Dialog>
-      </>
-    );
-  }
-}
+        </div>
+      </Dialog>
+    </>
+  );
+};
 
 export default CloneModelView;

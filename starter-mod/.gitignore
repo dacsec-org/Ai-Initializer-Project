@@ -346,3 +346,6 @@ vite.generated.ts
 
 ### frontend errors scratch file
 /frontenderrors.txt
+
+### generated js files
+/generatedjsfiles/

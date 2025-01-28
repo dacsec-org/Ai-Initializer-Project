@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { VerticalLayout, HorizontalLayout } from '@vaadin/react-components';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
@@ -17,24 +17,21 @@ interface MediaGalleryProps {
   items: MediaItem[];
 }
 
-class ContentGalleryView extends Component<MediaGalleryProps> {
-  render() {
-    const { items } = this.props;
-    return (
-      <VerticalLayout>
-        {items.map((item, index) => (
-          <HorizontalLayout key={index} style={{ marginBottom: '10px' }}>
-            {item.type === 'image' ? (
-              <img src={item.src} alt={item.alt || 'Image'} style={{ width: '100%' }} />
-            ) : (
-              <video src={item.src} controls style={{ width: '100%' }} />
-            )}
-          </HorizontalLayout>
-        ))}
-      </VerticalLayout>
-    );
-  }
-}
+const ContentGalleryView: React.FC<MediaGalleryProps> = ({ items }) => {
+  return (
+    <VerticalLayout>
+      {items.map((item, index) => (
+        <HorizontalLayout key={index} style={{ marginBottom: '10px' }}>
+          {item.type === 'image' ? (
+            <img src={item.src} alt={item.alt || 'Image'} style={{ width: '100%' }} />
+          ) : (
+            <video src={item.src} controls style={{ width: '100%' }} />
+          )}
+        </HorizontalLayout>
+      ))}
+    </VerticalLayout>
+  );
+};
 
 const mediaItems: MediaItem[] = [
   { type: 'image', src: 'path/to/pictures.jpg', alt: 'Pictures' },
@@ -43,10 +40,8 @@ const mediaItems: MediaItem[] = [
   { type: 'image', src: 'path/to/projects.jpg', alt: 'Projects' },
 ];
 
-class App extends Component {
-  render() {
-    return <ContentGalleryView items={mediaItems} />;
-  }
-}
+const App: React.FC = () => {
+  return <ContentGalleryView items={mediaItems} />;
+};
 
 export default ContentGalleryView;

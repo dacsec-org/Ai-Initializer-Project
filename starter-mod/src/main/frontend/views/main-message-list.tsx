@@ -1,62 +1,98 @@
-import React, { Component } from 'react';
-import { useSignal } from '@vaadin/hilla-react-signals';
-import type { MessageListItem } from '@vaadin/message-list';
-import MainMessageInput from './components/main-message-input';
+import React, { useState } from 'react';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+import MainMessageInput from './main-message-input';
+import ResponseArea from './response-area';
+import { MessagesService } from 'Frontend/generated/endpoints';
 
-export const config: ViewConfig = {
-  menu: { order: 6, icon: 'line-awesome/svg/comment-alt.svg' },
-  title: 'Message ~ History',
-};
-
-/**
- * <h1>{@link MainMessageListView}</h1>
- */
-class MainMessageListView extends Component {
-  items = useSignal<MessageListItem[]>([
-    {
-      text: 'This is a stub message.',
-      time: 'yesterday',
-      userName: 'Matt Mambo',
-      userColorIndex: 1,
-    },
-    {
-      text: 'Using your talent, hobby or profession in a way that makes you contribute with something good to this world is truly the way to go.',
-      time: 'right now',
-      userName: 'Linsey Listy',
-      userColorIndex: 2,
-    },
-  ]);
-
-  /**
-   * {@link #handleSubmit} is called when the user submits a new message.
-   * @param e
-   */
-  handleSubmit = (e: CustomEvent) => {
-    this.items.value = [
-      ...this.items.value,
-      {
-        text: e.detail.value,
-        time: 'seconds ago',
-        userName: 'Milla Sting',
-        userAbbr: 'MS',
-        userColorIndex: 3,
-      },
-    ];
+interface MessageSet {
+  userMessage: {
+    text: string;
+    time: string;
+    userName: string;
+    userColorIndex: number;
+    options: React.ReactNode;
   };
-
-  /**
-   * {@link #render}
-   */
-  render() {
-    return (
-      <>
-        <MessageList items={this.items.value} />
-        <MainMessageInput onSubmit={this.handleSubmit} />
-      </>
-    );
-  }
+  aiMessage: {
+    text: string;
+    time: string;
+    userName: string;
+    userColorIndex: number;
+    options: React.ReactNode;
+  };
 }
 
-export default MainMessageListView;
+/**
+ * <h1>{@link MainMessageListArea}</h1>
+ * @constructor Generates the message list area for the User and AI conversation.
+ */
+const MainMessageListArea: React.FC = () => {
+  const [messageSets, setMessageSets] = useState<MessageSet[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [userRequest, setUserRequest] = useState('');
+
+  const addMessageSet = (userRequest: string, aiResponse: string) => {
+    const userMessage = {
+      text: userRequest,
+      time: new Date().toLocaleTimeString(),
+      userName: 'User',
+      userColorIndex: 1,
+      options: renderMessageOptions(messageSets.length),
+    };
+
+    const aiMessage = {
+      text: aiResponse,
+      time: new Date().toLocaleTimeString(),
+      userName: 'AI',
+      userColorIndex: 2,
+      options: renderMessageOptions(messageSets.length),
+    };
+
+    const messageSet: MessageSet = { userMessage, aiMessage };
+
+    setMessageSets((prevMessageSets) => [...prevMessageSets, messageSet]);
+  };
+
+  const handleUserRequest = (userRequest: string) => {
+    setUserRequest(userRequest);
+  };
+
+  const handleResponseReceived = (aiResponse: string) => {
+    addMessageSet(userRequest, aiResponse);
+  };
+
+  const renderMessageOptions = (index: number) => (
+    <div className="message-options">
+      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick('thumbs_up', index)}>👍</span>
+      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick('thumbs_down', index)}>👎</span>
+      <span role="img" aria-label="trash" onClick={() => handleIconClick('trash', index)}>🗑️</span>
+      <span role="img" aria-label="retry" onClick={() => handleIconClick('retry', index)}>🔄</span>
+    </div>
+  );
+
+  const handleIconClick = (action: string, index: number) => {
+    MessagesService.processMessages(action)
+      .then(() => {
+        // Handle the action if needed
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  return (
+    <>
+      <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat()} />
+      <ResponseArea
+        userRequest={userRequest}
+        onResponseReceived={handleResponseReceived}
+        onError={setError}
+        onLoading={setLoading}
+      />
+      {loading && <div>Loading...</div>}
+      {error && <div className="error">{error}</div>}
+    </>
+  );
+};
+
+export default MainMessageListArea;

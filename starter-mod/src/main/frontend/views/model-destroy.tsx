@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField, Dialog } from '@vaadin/react-components';
-// @ts-ignore
 import { ModelsService } from 'Frontend/generated/endpoints';
 import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
@@ -10,74 +9,56 @@ export const config: ViewConfig = {
   title: 'Delete ~ Model',
 };
 
-interface DeleteModelViewState {
-  modelPath: string;
-  dialogOpened: boolean;
-}
+const DestroyModelView: React.FC = () => {
+  const [modelPath, setModelPath] = useState('');
+  const [dialogOpened, setDialogOpened] = useState(false);
 
-/**
- * <h1>{@link DestroyModelView}</h1>
- */
-class DestroyModelView extends Component<{}, DeleteModelViewState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      modelPath: '',
-      dialogOpened: false
-    };
-  }
-
-  handleDelete = async () => {
-    const { modelPath } = this.state;
+  const handleDelete = async () => {
     const response = await ModelsService.processModel('destroy', modelPath, '');
     Notification.show("Model destroyed" + response);
-    this.setState({ dialogOpened: false });
-  }
-
-  openDialog = () => {
-    this.setState({ dialogOpened: true });
+    setDialogOpened(false);
   };
 
-  closeDialog = () => {
-    this.setState({ dialogOpened: false });
+  const openDialog = () => {
+    setDialogOpened(true);
   };
 
-  handleInputChange = (e: TextFieldValueChangedEvent) => {
-    this.setState({ modelPath: e.detail.value });
+  const closeDialog = () => {
+    setDialogOpened(false);
   };
 
-  render() {
-    const { modelPath, dialogOpened } = this.state;
+  const handleInputChange = (e: TextFieldValueChangedEvent) => {
+    setModelPath(e.detail.value);
+  };
 
-    return (
-      <>
-        <section className="flex p-m gap-m items-end">
-          <TextField
-            label="Model Path"
-            value={modelPath}
-            onValueChanged={(e) => this.handleInputChange(e)}
-          />
-          <Button onClick={this.openDialog}>
-            Delete Model
-          </Button>
-        </section>
-        <Dialog opened={dialogOpened} onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
-          <div>
-            <p>Are you sure you want to delete this model?
-              Any work associated with this model will be deleted as well!</p>
-            <div className="flex gap-s">
-              <Button theme="primary error" onClick={this.handleDelete}>
-                Yes
-              </Button>
-              <Button theme="secondary" onClick={this.closeDialog}>
-                No
-              </Button>
-            </div>
+  return (
+    <>
+      <section className="flex p-m gap-m items-end">
+        <TextField
+          label="Model Path"
+          value={modelPath}
+          onValueChanged={handleInputChange}
+        />
+        <Button onClick={openDialog}>
+          Delete Model
+        </Button>
+      </section>
+      <Dialog opened={dialogOpened} onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+        <div>
+          <p>Are you sure you want to delete this model?
+            Any work associated with this model will be deleted as well!</p>
+          <div className="flex gap-s">
+            <Button theme="primary error" onClick={handleDelete}>
+              Yes
+            </Button>
+            <Button theme="secondary" onClick={closeDialog}>
+              No
+            </Button>
           </div>
-        </Dialog>
-      </>
-    );
-  }
-}
+        </div>
+      </Dialog>
+    </>
+  );
+};
 
 export default DestroyModelView;

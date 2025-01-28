@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog, Notification } from '@vaadin/react-components';
 import { ServersService } from 'Frontend/generated/endpoints';
@@ -8,88 +8,68 @@ export const config: ViewConfig = {
   title: 'Servers'
 };
 
-interface ManageViewState {
-  dialogOpened: boolean;
-  dialogMessage: string;
-  dialogAction: () => void;
-}
+const ManageServersView: React.FC = () => {
+  const [dialogOpened, setDialogOpened] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState('');
+  const [dialogAction, setDialogAction] = useState<() => void>(() => {});
 
-/**
- * <h1>{@link ManageServersView}</h1>
- */
-class ManageServersView extends Component<{}, ManageViewState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      dialogOpened: false,
-      dialogMessage: '',
-      dialogAction: () => {}
-    };
-  }
-
-  openDialog = (message: string, action: () => void) => {
-    this.setState({
-      dialogMessage: message,
-      dialogAction: action,
-      dialogOpened: true
-    });
+  const openDialog = (message: string, action: () => void) => {
+    setDialogMessage(message);
+    setDialogAction(() => action);
+    setDialogOpened(true);
   };
 
-  handleDialogClose = () => {
-    this.setState({ dialogOpened: false });
+  const handleDialogClose = () => {
+    setDialogOpened(false);
   };
 
-  startServer = async () => {
+  const startServer = async () => {
     const result = await ServersService.manageServer('start');
     Notification.show("Started server" + result);
   };
 
-  stopServer = async () => {
+  const stopServer = async () => {
     const result = await ServersService.manageServer('stop');
     Notification.show("Server stopped" + result);
   };
 
-  restartServer = async () => {
+  const restartServer = async () => {
     const result = await ServersService.manageServer('restart');
     Notification.show("Restarted server" + result);
   };
 
-  render() {
-    const { dialogOpened, dialogMessage, dialogAction } = this.state;
-
-    return (
-      <>
-        <section className="flex p-m gap-m items-end">
-          <Button
-            onClick={() => this.openDialog('Are you sure you want to start the server?', this.startServer)}
-            style={{ backgroundColor: 'green' }}>Start Server</Button>
-          <Button
-            onClick={() => this.openDialog('Are you sure you want to stop the server?', this.stopServer)}
-            style={{ backgroundColor: 'red' }}>Stop Server</Button>
-          <Button
-            onClick={() => this.openDialog('Are you sure you want to restart the server?', this.restartServer)}
-            style={{ backgroundColor: 'blue' }}>Restart Server</Button>
-        </section>
-        <Dialog opened={dialogOpened}
-                onOpenedChanged={(e) => this.setState({ dialogOpened: e.detail.value })}>
-          <div>
-            <p>{dialogMessage}</p>
-            <div className="flex gap-s">
-              <Button theme="primary" onClick={() => {
-                dialogAction();
-                this.handleDialogClose();
-              }}>
-                Yes
-              </Button>
-              <Button theme="secondary" onClick={this.handleDialogClose}>
-                No
-              </Button>
-            </div>
+  return (
+    <>
+      <section className="flex p-m gap-m items-end">
+        <Button
+          onClick={() => openDialog('Are you sure you want to start the server?', startServer)}
+          style={{ backgroundColor: 'green' }}>Start Server</Button>
+        <Button
+          onClick={() => openDialog('Are you sure you want to stop the server?', stopServer)}
+          style={{ backgroundColor: 'red' }}>Stop Server</Button>
+        <Button
+          onClick={() => openDialog('Are you sure you want to restart the server?', restartServer)}
+          style={{ backgroundColor: 'blue' }}>Restart Server</Button>
+      </section>
+      <Dialog opened={dialogOpened}
+              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+        <div>
+          <p>{dialogMessage}</p>
+          <div className="flex gap-s">
+            <Button theme="primary" onClick={() => {
+              dialogAction();
+              handleDialogClose();
+            }}>
+              Yes
+            </Button>
+            <Button theme="secondary" onClick={handleDialogClose}>
+              No
+            </Button>
           </div>
-        </Dialog>
-      </>
-    );
-  }
-}
+        </div>
+      </Dialog>
+    </>
+  );
+};
 
 export default ManageServersView;

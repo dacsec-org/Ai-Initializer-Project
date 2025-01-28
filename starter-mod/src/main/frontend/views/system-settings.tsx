@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, TextField } from '@vaadin/react-components';
 import { HelloWorldService } from 'Frontend/generated/endpoints';
@@ -8,47 +8,31 @@ export const config: ViewConfig = {
   title: 'System Settings'
 };
 
-interface SystemSettingsViewProps {}
+const SystemSettingsView: React.FC = () => {
+  const [name, setName] = useState('');
 
-interface SystemSettingsViewState {
-  name: string;
-}
-
-/**
- * <h1>{@link SystemSettingsView}</h1>
- */
-class SystemSettingsView extends Component<SystemSettingsViewProps, SystemSettingsViewState> {
-  constructor(props: SystemSettingsViewProps) {
-    super(props);
-    this.state = {
-      name: ''
-    };
-  }
-
-  handleNameChange = (e: CustomEvent) => {
-    this.setState({ name: e.detail.value });
+  const handleNameChange = (e: CustomEvent) => {
+    setName(e.detail.value);
   };
 
-  handleButtonClick = async () => {
-    const serverResponse = await HelloWorldService.sayHello(this.state.name);
+  const handleButtonClick = async () => {
+    const serverResponse = await HelloWorldService.sayHello(name);
     Notification.show(serverResponse);
   };
 
-  render() {
-    return (
-      <>
-        <section className="flex p-m gap-m items-end">
-          <TextField
-            label="Your name"
-            onValueChanged={this.handleNameChange}
-          />
-          <Button onClick={this.handleButtonClick}>
-            Say hello
-          </Button>
-        </section>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <section className="flex p-m gap-m items-end">
+        <TextField
+          label="Your name"
+          onValueChanged={handleNameChange}
+        />
+        <Button onClick={handleButtonClick}>
+          Say hello
+        </Button>
+      </section>
+    </>
+  );
+};
 
 export default SystemSettingsView;

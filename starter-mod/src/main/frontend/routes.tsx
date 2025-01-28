@@ -18,7 +18,6 @@ import SnapshotsView from './views/snapshots';
 import SystemSettingsView from './views/system-settings';
 import HelloWorldView from './views/hello-world';
 
-
 export const { router, routes } = new RouterConfigurationBuilder()
   .withReactRoutes([
     {
@@ -41,9 +40,9 @@ export const { router, routes } = new RouterConfigurationBuilder()
         { path: '/servers', element: <ManageServersView />, handle: { title: 'Servers' } },
         { path: '/snapshots', element: <SnapshotsView />, handle: { title: 'Snapshots' } },
         { path: '/system-settings', element: <SystemSettingsView />, handle: { title: 'System Settings' } },
+        { index: true, element: <ChatClientView />, handle: { title: 'Chat' } }, // Default route
       ],
     },
   ])
   .withFallback(Flow)
-  // .protect()
   .build();
