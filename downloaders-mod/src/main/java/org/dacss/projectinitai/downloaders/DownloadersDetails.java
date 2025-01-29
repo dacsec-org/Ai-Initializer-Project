@@ -12,99 +12,49 @@ import java.time.format.DateTimeFormatter;
  * </p>
  */
 public class DownloadersDetails {
-    private String name;
-    private String description;
-    private String type;
-    private String sizes;
-    private String pulls;
-    private String tags;
-    private String updated;
-    private boolean isInstalled;
-    private String dateInstalled;
-    private String availableSizes;
+    private String id;
+    private String modelId;
+    private int likes;
+    private int trendingScore;
+    private boolean isPrivate;
+    private int downloads;
+    private String pipelineTag;
+    private String libraryName;
+    private String createdAt;
 
-    public DownloadersDetails() {
-    }
+    public String getId() { return id; }
 
-    public String getName() {
-        return name;
-    }
+    public void setId(String id) { this.id = id; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getModelId() { return modelId; }
 
-    public String getAvailableSizes() {
-        return availableSizes;
-    }
+    public void setModelId(String modelId) { this.modelId = modelId; }
 
-    public void setAvailableSizes(String availableSizes) {
-        this.availableSizes = availableSizes;
-    }
+    public int getLikes() { return likes; }
 
-    public String getDateInstalled() {
-        return dateInstalled;
-    }
+    public void setLikes(int likes) { this.likes = likes; }
 
-    public void setDateInstalled() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.dateInstalled = LocalDate.now().format(formatter);
-    }
+    public int getTrendingScore() { return trendingScore; }
 
-    public boolean isInstalled() {
-        return isInstalled;
-    }
+    public void setTrendingScore(int trendingScore) { this.trendingScore = trendingScore; }
 
-    public void setInstalled(boolean installed) {
-        isInstalled = installed;
-    }
+    public boolean isPrivate() { return isPrivate; }
 
-    public String getUpdated() {
-        return updated;
-    }
+    public void setPrivate(boolean isPrivate) { this.isPrivate = isPrivate; }
 
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
+    public int getDownloads() { return downloads; }
 
-    public String getTags() {
-        return tags;
-    }
+    public void setDownloads(int downloads) { this.downloads = downloads; }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
+    public String getPipelineTag() { return pipelineTag; }
 
-    public String getPulls() {
-        return pulls;
-    }
+    public void setPipelineTag(String pipelineTag) { this.pipelineTag = pipelineTag; }
 
-    public void setPulls(String pulls) {
-        this.pulls = pulls;
-    }
+    public String getLibraryName() { return libraryName; }
 
-    public String getSizes() {
-        return sizes;
-    }
+    public void setLibraryName(String libraryName) { this.libraryName = libraryName; }
 
-    public void setSizes(String sizes) {
-        this.sizes = sizes;
-    }
+    public String getCreatedAt() { return createdAt; }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
 }

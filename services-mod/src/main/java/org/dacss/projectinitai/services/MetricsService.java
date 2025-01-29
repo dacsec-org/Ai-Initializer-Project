@@ -26,9 +26,6 @@ public class MetricsService implements MetricsIface {
         Flux<String> flux;
         switch (action) {
             case "gpu":
-                /* info-> idk how to make the utilities static for flux?
-                    but i figured using reactive methods would be better
-                    for real time metrics */
                 flux = new GpuStatsUtil().fetchGpuStats();
                 break;
             case "cpu":

@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.messages.utillities;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link ThumbsUpUtil}</h1>
  * Utility class to handle thumbs up.(saves the message as a set) to be
@@ -10,7 +12,8 @@ package org.dacss.projectinitai.messages.utillities;
 public class ThumbsUpUtil {
 
 
-    public static void processThumbsUp(String message) {
-        //todo: save message as a set
+    public static Flux<String> processThumbsUp(Flux<String> messageSets) {
+
+        return Flux.just("Message set saved as thumbs up: " + messageSets);
     }
 }

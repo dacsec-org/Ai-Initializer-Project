@@ -8,7 +8,6 @@ import ContentGalleryView from './views/content-gallery';
 import DirFileView from './views/directories-files';
 import EmbeddingSettingsView from './views/embedding-settings';
 import LoadUnloadView from './views/load-unload';
-import MainMessageListView from './views/main-message-list';
 import DestroyModelView from './views/model-destroy';
 import MetricsView from './views/metrics';
 import MergeModelView from './views/model-merge';
@@ -22,7 +21,7 @@ export const { router, routes } = new RouterConfigurationBuilder()
     .withReactRoutes([
     {
         element: _jsx(MainLayout, {}),
-        handle: { title: 'Main' },
+        handle: { title: 'Home' },
         children: [
             { path: '/chat-client', element: _jsx(ChatClientView, {}), handle: { title: 'Chat' } },
             { path: '/clone-model', element: _jsx(CloneModelView, {}), handle: { title: 'Clone' } },
@@ -31,7 +30,6 @@ export const { router, routes } = new RouterConfigurationBuilder()
             { path: '/embedding-settings', element: _jsx(EmbeddingSettingsView, {}), handle: { title: 'Embedding' } },
             { path: '/load-unload', element: _jsx(LoadUnloadView, {}), handle: { title: 'Load ~ Unload' } },
             { path: '/hello-world', element: _jsx(HelloWorldView, {}), handle: { title: 'Hello World' } },
-            { path: '/main-message-list', element: _jsx(MainMessageListView, {}), handle: { title: 'Message ~ History' } },
             { path: '/metrics', element: _jsx(MetricsView, {}), handle: { title: 'Metrics' } },
             { path: '/model-destroy', element: _jsx(DestroyModelView, {}), handle: { title: 'Delete ~ Model' } },
             { path: '/model-merge', element: _jsx(MergeModelView, {}), handle: { title: 'Merge Model' } },

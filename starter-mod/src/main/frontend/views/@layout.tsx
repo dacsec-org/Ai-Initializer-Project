@@ -4,8 +4,7 @@ import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/rea
 import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import MainMenubar from './components/main-menubar';
-import MainMessageInput from './components/main-message-input';
-import { MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
+import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 const documentTitleSignal = signal('');
 effect(() => {
@@ -14,6 +13,11 @@ effect(() => {
 
 // Publish for Vaadin to use
 (window as any).Vaadin.documentTitleSignal = documentTitleSignal;
+
+export const config: ViewConfig = {
+  menu: { order: 0, icon: 'line-awesome/svg/home.svg' },
+  title: 'Home',
+};
 
 const MainLayout: React.FC = () => {
   const currentTitle = useViewConfig()?.title;
@@ -26,10 +30,25 @@ const MainLayout: React.FC = () => {
     }
   }, [currentTitle]);
 
-  const handleSubmit = (event: MessageInputSubmitEvent) => {
-    event.preventDefault();
-    // Handle the submit action here
-  };
+  // Filter the menu items to include only the desired view components
+  const menuItems = createMenuItems().filter(({ to }) =>
+    ['/chat-client'
+      , '/clone-model'
+      , '/content-gallery'
+      , '/directories-files'
+      , '/embedding-settings'
+      , '/load-unload'
+      , '/hello-world'
+      , '/main-message-list'
+      , '/metrics'
+      , '/model-destroy'
+      , '/model-merge'
+      , '/model-settings'
+      , '/search-models'
+      , '/servers'
+      , '/snapshots'
+      , '/system-settings'].includes(to)
+  );
 
   return (
     <AppLayout primarySection="drawer">
@@ -37,7 +56,7 @@ const MainLayout: React.FC = () => {
         <header className="flex flex-col gap-m">
           <span className="font-semibold text-l">The Ai Initializer Project</span>
           <SideNav onNavigate={({ path }) => navigate(path!)} location={location}>
-            {createMenuItems().map(({ to, title, icon }) => (
+            {menuItems.map(({ to, title, icon }) => (
               <SideNavItem path={to} key={to}>
                 {icon ? <Icon src={icon} slot="prefix"></Icon> : <></>}
                 {title}
@@ -56,10 +75,6 @@ const MainLayout: React.FC = () => {
       <Suspense>
         <Outlet />
       </Suspense>
-
-      <footer>
-        <MainMessageInput onSubmit={handleSubmit} />
-      </footer>
     </AppLayout>
   );
 };

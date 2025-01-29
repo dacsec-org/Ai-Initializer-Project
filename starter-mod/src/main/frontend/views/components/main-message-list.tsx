@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
-import MainMessageInput from './main-message-input';
 import ResponseArea from './response-area';
 import { MessagesService } from 'Frontend/generated/endpoints';
 
@@ -21,14 +20,9 @@ interface MessageSet {
   };
 }
 
-/**
- * <h1>{@link MainMessageListArea}</h1>
- * @constructor Generates the message list area for the User and AI conversation.
- */
 const MainMessageListArea: React.FC = () => {
   const [messageSets, setMessageSets] = useState<MessageSet[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [userRequest, setUserRequest] = useState('');
 
   const addMessageSet = (userRequest: string, aiResponse: string) => {
@@ -63,20 +57,18 @@ const MainMessageListArea: React.FC = () => {
 
   const renderMessageOptions = (index: number) => (
     <div className="message-options">
-      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick('thumbs_up', index)}>👍</span>
-      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick('thumbs_down', index)}>👎</span>
-      <span role="img" aria-label="trash" onClick={() => handleIconClick('trash', index)}>🗑️</span>
-      <span role="img" aria-label="retry" onClick={() => handleIconClick('retry', index)}>🔄</span>
+      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick('THUMBS_UP', index)}>👍</span>
+      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick('THUMBS_DOWN', index)}>👎</span>
+      <span role="img" aria-label="trash" onClick={() => handleIconClick('TRASH', index)}>🗑️</span>
+      <span role="img" aria-label="retry" onClick={() => handleIconClick('RETRY', index)}>🔄</span>
     </div>
   );
 
   const handleIconClick = (action: string, index: number) => {
+    const request = { action, index };
     MessagesService.processMessages(action)
       .then(() => {
         // Handle the action if needed
-      })
-      .catch((error) => {
-        setError(error.message);
       });
   };
 
@@ -84,13 +76,11 @@ const MainMessageListArea: React.FC = () => {
     <>
       <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat()} />
       <ResponseArea
-        userRequest={userRequest}
+        request={userRequest}
         onResponseReceived={handleResponseReceived}
-        onError={setError}
         onLoading={setLoading}
       />
       {loading && <div>Loading...</div>}
-      {error && <div className="error">{error}</div>}
     </>
   );
 };

@@ -12,7 +12,8 @@ public interface DownloadersIface {
      *
      * @param action The action to perform.
      * @param url The URL to download the file from.
+     * @param searchQuery The search query to append to the URL.
      * @param filePath The path to save the downloaded file.
      */
-    void download(String action, String url, String filePath);
+    void download(String action, String searchQuery,String filePath);
 }

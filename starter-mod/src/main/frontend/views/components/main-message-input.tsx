@@ -8,13 +8,6 @@ interface MainMessageInputProps {
   onLoading: (loading: boolean) => void;
 }
 
-/**
- * <h1>{@link MainMessageInput}</h1>
- * @param onMessageSent Callback to handle the user request
- * @param onError Callback to handle errors
- * @param onLoading Callback to handle loading state
- * @constructor Generates the main message input area for the user, and sends the user request to the AI via the {@link MessagesService}.
- */
 const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onError, onLoading }) => {
   const [message, setMessage] = useState('');
 
@@ -23,9 +16,9 @@ const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onEr
     const userRequest = event.detail.value;
     setMessage(userRequest);
     onLoading(true);
-    onError(null);
+    onError('');
 
-    MessagesService.processMessages('request')
+    MessagesService.processMessages('REQUEST')
       .then(() => {
         onMessageSent(userRequest);
         onLoading(false);

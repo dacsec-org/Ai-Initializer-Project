@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.messages.utillities;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link ThumbsDownUtil}</h1>
  * Utility class to handle thumbs down (saves the message as a set) to be
@@ -9,7 +11,9 @@ package org.dacss.projectinitai.messages.utillities;
  */
 public class ThumbsDownUtil {
 
-    public static void processThumbsDown(String message) {
-        //todo: save message as a set in the database under negative reinforcement
+    public static Flux<String> processThumbsDown(Flux<String> messageSets) {
+
+        return Flux.just("Message set saved as thumbs down: " + messageSets);
+
     }
 }

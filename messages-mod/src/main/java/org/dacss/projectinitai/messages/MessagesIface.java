@@ -7,7 +7,7 @@ package org.dacss.projectinitai.messages;
 @FunctionalInterface
 public interface MessagesIface {
     /**
-     * <h2>{@link #processMessages(String, String)}</h2>
+     * <h2>{@link #processMessages(String)}</h2>
      */
-    void processMessages(String action, String message);
+    void processMessages(String action);
 }

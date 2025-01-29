@@ -114,11 +114,11 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
      * <h2>{@link DownloadersIface#download(String, String, String)}</h2>
      *
      * @param action The action to perform.
-     * @param url The URL to download the file from.
+     * @param searchQuery The search query to append to the URL.
      * @param filePath The path to save the downloaded file.
      */
     @Override
-    public void download(String action, String url, String filePath) {}
+    public void download(String action, String searchQuery, String filePath) {}
 
     /**
      * <h2>{@link EmbeddingIface#processEmbedding(String, String)}</h2>
@@ -149,13 +149,14 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     }
 
     /**
-     * <h2>{@link MessagesIface#processMessages(String, String)}</h2>
+     * <h2>{@link MessagesIface#processMessages(String)}</h2>
      *
      * @param action The action to perform.
      * @param message The message to process.
+     * @param messageSets The message sets to process.
      */
     @Override
-    public void processMessages(String action, String message) {
+    public void processMessages(String action) {
 
     }
 

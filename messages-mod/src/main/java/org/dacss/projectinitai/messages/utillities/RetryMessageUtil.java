@@ -1,6 +1,8 @@
 package org.dacss.projectinitai.messages.utillities;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link RetryMessageUtil}</h1>
  * Utility class to retry a a users request via the retry clickable icon.
@@ -9,7 +11,8 @@ package org.dacss.projectinitai.messages.utillities;
 public class RetryMessageUtil {
 
 
-    public static void processRetryMessage(String message) {
-        //todo: implement retry message
+    public static Flux<String> processRetryMessage(Flux<String> messageSets) {
+
+        return Flux.just("Message set retried: " + messageSets);
     }
 }
