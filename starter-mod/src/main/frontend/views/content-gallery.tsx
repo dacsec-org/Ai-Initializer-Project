@@ -3,9 +3,7 @@ import { VerticalLayout, HorizontalLayout } from '@vaadin/react-components';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
 export const config: ViewConfig = {
-  menu: { order: 3, icon: 'line-awesome/svg/gallery.svg' },
-  title: 'Gallery',
-};
+  menu: { order: 3, icon: 'line-awesome/svg/images-solid.svg' }, title: 'Gallery' };
 
 interface MediaItem {
   type: 'image' | 'video';

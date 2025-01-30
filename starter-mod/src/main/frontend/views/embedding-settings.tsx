@@ -4,14 +4,12 @@ import { Button, Dialog, Details, VerticalLayout, Notification } from '@vaadin/r
 import { EmbeddingService } from 'Frontend/generated/endpoints';
 import { useNavigate } from 'react-router';
 
+export const config: ViewConfig = {
+  menu: { order: 11, icon: 'line-awesome/svg/layer-group-solid.svg' }, title: 'Embedding Settings' };
+
 const anchorStyle = {
   textDecoration: 'none',
   color: 'var(--lumo-primary-text-color)',
-};
-
-export const config: ViewConfig = {
-  menu: { order: 11, icon: 'line-awesome/svg/cogs.svg' },
-  title: 'Embedding',
 };
 
 const EmbeddingSettingsView: React.FC = () => {

@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import {
-  Button,
-  Grid,
-  GridColumn,
-  TextField,
-  Notification
-} from '@vaadin/react-components';
-import { DownloadersService } from 'Frontend/generated/endpoints';
+import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
+import { DataBaseService, DownloadersService } from 'Frontend/generated/endpoints';
 import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
@@ -18,58 +12,47 @@ export const config: ViewConfig = {
 const SearchModelsView: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [models, setModels] = useState<any[]>([]);
+  const [allModels, setAllModels] = useState<any[]>([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const downloadJsonFile = async () => {
+    const fetchData = async () => {
       try {
-        await DownloadersService.download('DOWNLOAD', '', '');
-        Notification.show('LLM JSON file downloaded successfully');
+        await DataBaseService.performDatabaseAction({ action: 'H2' });
+        const response = await fetch('/path/to/your/data/source');
+        const data: any[] = await response.json();
+        setAllModels(data);
+        setModels(data.slice(0, 100));
+        setOffset(100);
       } catch (error: any) {
-        Notification.show('Error downloading LLM JSON file: ' + error.message);
+        console.error('Error fetching data:', error.message);
       }
     };
 
-    downloadJsonFile().catch(console.error);
+    fetchData().catch(console.error);
   }, []);
 
-  const handleSearch = async () => {
-    setOffset(0);
-    setModels([]);
-    await loadMoreData(0).catch(console.error);
-  };
-
-  const loadMoreData = async (offset: number) => {
+  const loadMoreData = async () => {
     if (loading) return;
     setLoading(true);
     try {
-      const response = await fetch('/downloaders-mod/llm.json');
-      if (!response.ok) {
-        Notification.show(`HTTP error! status: ${response.status}`);
-      }
-      const allModels = await response.json();
-      const filteredModels = allModels.filter((model: any) =>
-        model.modelId.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      const newModels = filteredModels.slice(offset, offset + 100);
+      const newModels = allModels.slice(offset, offset + 100);
       setModels((prevModels) => [...prevModels, ...newModels]);
       setOffset(offset + 100);
-      Notification.show('Models loaded successfully');
     } catch (error: any) {
-      Notification.show('Error loading models: ' + error.message);
+      console.error('Error loading more models:', error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDownload = async (modelId: string) => {
-    try {
-      await DownloadersService.download('DOWNLOAD', modelId, '');
-      Notification.show('Model downloaded successfully: ' + modelId);
-    } catch (error: any) {
-      Notification.show('Error downloading model: ' + error.message);
-    }
+  const handleSearch = () => {
+    const filteredModels = allModels.filter((model: any) =>
+      model.modelId.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setModels(filteredModels.slice(0, 100));
+    setOffset(100);
   };
 
   const handleInputChange = (e: TextFieldValueChangedEvent) => {
@@ -79,7 +62,28 @@ const SearchModelsView: React.FC = () => {
   const handleScroll = (e: any) => {
     const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
     if (bottom) {
-      loadMoreData(offset).catch(console.error);
+      loadMoreData().catch(console.error);
+    }
+  };
+
+  const handleDownload = async (modelId: string) => {
+    try {
+      await DownloadersService.download('DOWNLOAD_LLM_MODEL', modelId, '', '');
+    } catch (error: any) {
+      console.error('Error downloading model:', error.message);
+    }
+  };
+
+  const handleRefresh = async () => {
+    try {
+      await DataBaseService.performDatabaseAction({ 'H2' });
+      const response = await fetch('/path/to/your/data/source');
+      const data: any[] = await response.json();
+      setAllModels(data);
+      setModels(data.slice(0, 100));
+      setOffset(100);
+    } catch (error: any) {
+      console.error('Error refreshing data:', error.message);
     }
   };
 
@@ -91,8 +95,11 @@ const SearchModelsView: React.FC = () => {
           value={searchQuery}
           onValueChanged={handleInputChange}
         />
-        <Button onClick={handleSearch}>
-          Search Models
+        <Button onClick={handleSearch} theme="small">
+          🔍
+        </Button>
+        <Button onClick={handleRefresh} theme="small">
+          🔄
         </Button>
       </section>
       <Grid items={models} columnReorderingAllowed style={{ height: '75vh', width: '150%' }} onScroll={handleScroll}>
@@ -105,7 +112,7 @@ const SearchModelsView: React.FC = () => {
         <GridColumn path="createdAt" header="Created At" resizable />
         <GridColumn header="Actions" resizable>
           {({ item }) => (
-            <Button onClick={() => handleDownload(item.modelId)}>
+            <Button onClick={() => handleDownload(item.modelId)} theme="small">
               Download
             </Button>
           )}

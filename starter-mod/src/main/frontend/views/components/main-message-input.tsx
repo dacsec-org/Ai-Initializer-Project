@@ -18,7 +18,7 @@ const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onEr
     onLoading(true);
     onError('');
 
-    MessagesService.processMessages('REQUEST')
+    MessagesService.processMessages({})
       .then(() => {
         onMessageSent(userRequest);
         onLoading(false);

@@ -6,7 +6,8 @@ package org.dacss.projectinitai.downloaders;
  */
 public enum DownloadAction {
     API_TOKEN,
-    DOWNLOAD,
+    DOWNLOAD_LLM_JSON,
+    DOWNLOAD_LLM_MODEL,
     CREATE_DIRECTORY,
     GENERATE_CHECKSUM
 }

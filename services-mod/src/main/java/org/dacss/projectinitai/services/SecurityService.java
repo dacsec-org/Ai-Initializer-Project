@@ -5,9 +5,12 @@ import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.security.SecurityIface;
 import org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil;
 import com.vaadin.hilla.BrowserCallable;
+import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import reactor.core.CoreSubscriber;
+import reactor.core.publisher.Flux;
 
 import java.io.IOException;
 
@@ -36,7 +39,31 @@ public class SecurityService implements SecurityIface {
     @Override
     public void secure() {
         try {
-            SecurityApiTokenUtil.getApiToken();
+            Flux<Object> flux;
+            flux = new SecurityApiTokenUtil().getApiToken();
+            assert flux != null;
+            flux.subscribe(new CoreSubscriber<>() {
+                @Override
+                public void onSubscribe(Subscription subscription) {
+                    subscription.request(1);
+                }
+
+                @Override
+                public void onNext(Object value) {
+                    log.info("API Token: {}", value);
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    log.error("Error securing data", throwable);
+                }
+
+                @Override
+                public void onComplete() {
+                    log.info("Data secured");
+                }
+            });
+
         } catch (IOException secExc) {
             log.error("Error setting API token", secExc);
         }

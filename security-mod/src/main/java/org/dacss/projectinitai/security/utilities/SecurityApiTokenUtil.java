@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.security.utilities;
 
+import reactor.core.publisher.Flux;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,7 +11,7 @@ import java.util.Properties;
  * <h1>{@link SecurityApiTokenUtil}</h1>
  * <p>
  *     Utility class for handling API tokens.
- *     for now we read an env file to get the token from the '/environments/.env' file. We will pass this off to PAM later.
+ *     For now, we read an env file to get the token from the '/environments/.env' file. We will pass this off to PAM later.
  * </p>
  */
 public class SecurityApiTokenUtil {
@@ -20,15 +22,23 @@ public class SecurityApiTokenUtil {
     /**
      * <h3>{@link #getApiToken()}</h3>
      *
-     * @return the API token
+     * @return a Flux containing the API token as an Object
      */
-    public static String getApiToken() throws IOException {
-        Properties properties = new Properties();
-        try (var inputStream = Files.newInputStream(Paths.get(ENV_FILE_PATH))) {
-            properties.load(inputStream);
-        } catch (IOException ioExc) {
-            throw new IOException("Error reading the .env file", ioExc);
-        }
-        return properties.getProperty(API_TOKEN_KEY);
+    public Flux<Object> getApiToken() {
+        return Flux.create(sink -> {
+            Properties properties = new Properties();
+            try (var inputStream = Files.newInputStream(Paths.get(ENV_FILE_PATH))) {
+                properties.load(inputStream);
+                Object apiToken = properties.getProperty(API_TOKEN_KEY);
+                if (apiToken != null) {
+                    sink.next(apiToken);
+                    sink.complete();
+                } else {
+                    sink.error(new IOException("API token not found in the .env file"));
+                }
+            } catch (IOException ioExc) {
+                sink.error(new IOException("Error reading the .env file", ioExc));
+            }
+        });
     }
 }

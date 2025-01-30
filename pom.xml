@@ -55,6 +55,13 @@
         <spring-ai.version>1.0.0-M5</spring-ai.version>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/>
+    </parent>
+
     <repositories>
         <repository>
             <id>central</id>

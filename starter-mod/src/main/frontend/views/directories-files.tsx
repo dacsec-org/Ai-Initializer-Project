@@ -5,9 +5,7 @@ import { DirFileService } from 'Frontend/generated/endpoints';
 import CustomTextFields from '../views/components/custom-textfields';
 
 export const config: ViewConfig = {
-  menu: { order: 4, icon: 'line-awesome/svg/folder-open-solid.svg' },
-  title: 'Directories ~ Files',
-};
+  menu: { order: 4, icon: 'line-awesome/svg/folder-open-solid.svg' }, title: 'Directories ~ Files' };
 
 const DirFileView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);

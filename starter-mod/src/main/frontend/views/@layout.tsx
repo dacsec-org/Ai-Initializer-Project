@@ -6,18 +6,17 @@ import { Outlet, useLocation, useNavigate } from 'react-router';
 import MainMenubar from './components/main-menubar';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
+export const config: ViewConfig = {
+  menu: { order: 1, icon: 'line-awesome/svg/home-solid.svg' , title: '' } };
+
 const documentTitleSignal = signal('');
+
 effect(() => {
   document.title = documentTitleSignal.value;
 });
 
 // Publish for Vaadin to use
 (window as any).Vaadin.documentTitleSignal = documentTitleSignal;
-
-export const config: ViewConfig = {
-  menu: { order: 0, icon: 'line-awesome/svg/home.svg' },
-  title: 'Home',
-};
 
 const MainLayout: React.FC = () => {
   const currentTitle = useViewConfig()?.title;
@@ -31,7 +30,8 @@ const MainLayout: React.FC = () => {
   }, [currentTitle]);
 
   // Filter the menu items to include only the desired view components
-  const menuItems = createMenuItems().filter(({ to }) =>
+  const menuItems
+    = createMenuItems().filter(({ to }) =>
     ['/chat-client'
       , '/clone-model'
       , '/content-gallery'
@@ -54,7 +54,7 @@ const MainLayout: React.FC = () => {
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m">
         <header className="flex flex-col gap-m">
-          <span className="font-semibold text-l">The Ai Initializer Project</span>
+          <span className="font-semibold text-l">Tools Nav</span>
           <SideNav onNavigate={({ path }) => navigate(path!)} location={location}>
             {menuItems.map(({ to, title, icon }) => (
               <SideNavItem path={to} key={to}>

@@ -1,6 +1,11 @@
 import React from 'react';
 import MainMessageListArea from './components/main-message-list';
 import MainMessageInput from './components/main-message-input';
+import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+
+export const config: ViewConfig = {
+  menu: { order: 1, icon: 'line-awesome/svg/comment-alt-solid.svg' }, title: 'Chat',
+};
 
 /**
  * <h1>{@link ChatClientView}</h1>

@@ -1,17 +1,22 @@
-package org.dacss.projectinitai.downloaders;
+package org.dacss.projectinitai.databases;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
- * <h1>{@link DownloadersDetails}</h1>
+ * <h1>{@link LLMDetails}</h1>
  * <p>
  *     This class is used to store the details of the LLM downloads.
  *     We will convert it into an entity later to query the database,
  *     rather than downloading the entire list of LLMs every time.
  * </p>
  */
-public class DownloadersDetails {
+@Entity
+public class LLMDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String modelId;
     private int likes;

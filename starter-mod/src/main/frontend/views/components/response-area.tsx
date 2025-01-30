@@ -15,7 +15,7 @@ const ResponseArea: React.FC<ResponseAreaProps> = ({ request, onResponseReceived
     if (request) {
       onLoading(true);
 
-      MessagesService.processMessages('RESPONSE')
+      MessagesService.processMessages({})
         .then(() => {
           const value = "Processed message: " + request;
           setResponse(value);

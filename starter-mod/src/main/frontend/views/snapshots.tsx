@@ -4,7 +4,7 @@ import { Button, Dialog, Notification } from '@vaadin/react-components';
 import { SnapShotsService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
-  menu: { order: 14, icon: 'line-awesome/svg/solid/camera.svg' },
+  menu: { order: 14, icon: 'line-awesome/svg/camera-solid.svg' },
   title: 'Snapshots'
 };
 

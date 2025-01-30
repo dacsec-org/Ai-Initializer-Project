@@ -7,7 +7,7 @@ package org.dacss.projectinitai.databases;
 @FunctionalInterface
 public interface DataBaseIface {
     /**
-     * <h2>{@link #performDatabaseAction()}</h2>
+     * <h2>{@link #performDatabaseAction(String)}</h2>
      */
-    void performDatabaseAction();
+    void performDatabaseAction(String action);
 }

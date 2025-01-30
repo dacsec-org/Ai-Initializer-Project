@@ -57,16 +57,15 @@ const MainMessageListArea: React.FC = () => {
 
   const renderMessageOptions = (index: number) => (
     <div className="message-options">
-      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick('THUMBS_UP', index)}>👍</span>
-      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick('THUMBS_DOWN', index)}>👎</span>
-      <span role="img" aria-label="trash" onClick={() => handleIconClick('TRASH', index)}>🗑️</span>
-      <span role="img" aria-label="retry" onClick={() => handleIconClick('RETRY', index)}>🔄</span>
+      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick(index)}>👍</span>
+      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick(index)}>👎</span>
+      <span role="img" aria-label="trash" onClick={() => handleIconClick(index)}>🗑️</span>
+      <span role="img" aria-label="retry" onClick={() => handleIconClick(index)}>🔄</span>
     </div>
   );
 
-  const handleIconClick = (action: string, index: number) => {
-    const request = { action, index };
-    MessagesService.processMessages(action)
+  const handleIconClick = (index: number) => {
+    MessagesService.processMessages({})
       .then(() => {
         // Handle the action if needed
       });

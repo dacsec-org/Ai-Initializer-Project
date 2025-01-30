@@ -77,11 +77,11 @@
       <module name="sequence-mod" options="-parameters" />
       <module name="servers-mod" options="-parameters" />
       <module name="services-mod" options="-parameters" />
-      <module name="snapshots-mod" options="" />
-      <module name="speech-mod" options="" />
-      <module name="starter-mod" options="" />
-      <module name="tar-mod" options="" />
-      <module name="vision-mod" options="" />
+      <module name="snapshots-mod" options="-parameters" />
+      <module name="speech-mod" options="-parameters" />
+      <module name="starter-mod" options="-parameters" />
+      <module name="tar-mod" options="-parameters" />
+      <module name="vision-mod" options="-parameters" />
     </option>
   </component>
 </project>

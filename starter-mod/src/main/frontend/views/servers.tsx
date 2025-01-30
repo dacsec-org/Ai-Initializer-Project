@@ -4,9 +4,7 @@ import { Button, Dialog, Notification } from '@vaadin/react-components';
 import { ServersService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
-  menu: { order: 13, icon: 'line-awesome/svg/solid/server.svg' },
-  title: 'Servers'
-};
+  menu: { order: 13, icon: 'line-awesome/svg/server-solid.svg' , title: 'Servers' }};
 
 const ManageServersView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);

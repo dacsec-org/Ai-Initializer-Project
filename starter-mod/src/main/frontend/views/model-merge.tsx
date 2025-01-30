@@ -5,9 +5,8 @@ import { ModelsService } from 'Frontend/generated/endpoints';
 import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 
 export const config: ViewConfig = {
-  menu: { order: 9, icon: 'line-awesome/svg/merge-solid.svg' },
-  title: 'Merge Model',
-};
+  menu: { order: 9, icon: 'line-awesome/svg/arrows-alt-h-solid.svg' },
+  title: 'Merge Model' };
 
 const MergeModelView: React.FC = () => {
   const [modelPath1, setModelPath1] = useState('');
