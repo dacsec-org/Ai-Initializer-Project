@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.loaders;
 /**/
+import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
 import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
@@ -10,6 +11,7 @@ import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
  * Kernel class for unloading a model dynamically from the GPU.
  * </p>
  */
+@Component
 public class UnLoadKernel {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(UnLoadKernel.class);

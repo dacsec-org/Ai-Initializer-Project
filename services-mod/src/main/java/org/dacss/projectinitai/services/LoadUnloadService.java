@@ -4,6 +4,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.loaders.LoadKernel;
+import org.dacss.projectinitai.loaders.LoadUnLoadActions;
 import org.dacss.projectinitai.loaders.LoadersIface;
 import org.dacss.projectinitai.loaders.UnLoadKernel;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link LoadUnloadService}</h1>
@@ -23,33 +25,26 @@ import java.text.MessageFormat;
 public class LoadUnloadService implements LoadersIface {
 
     private static final Logger log = LoggerFactory.getLogger(LoadUnloadService.class);
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
-    /**
-     * <h2>{@link #LoadUnloadService()}</h2>
-     * 0-arg constructor.
-     */
+
     public LoadUnloadService() {}
 
-    /**
-     * <h2>{@link #loadUnloadLLM(String, String, byte[])}</h2>
-     * Perform load/unload operations on models.
-     *
-     * @param action    The action to perform on the model.
-     * @param modelPath The path to the model.
-     * @param modelData The model data.
-     */
+
     @Override
-    public void loadUnloadLLM(String action, String modelPath, byte[] modelData) {
+    public Flux<Object> loadUnloadLLM(LoadUnLoadActions action) {
         switch (action) {
-            case "load":
-                //info-> these methods are not static, so we need to create an object of the class to call them.
+            case LOAD_KERNEL:
+                String modelPath = null;
                 new LoadKernel().loadModelKernel(modelPath);
                 break;
-            case "unload":
+            case UNLOAD_KERNEL:
+                byte[] modelData = new byte[0];
                 new UnLoadKernel().unloadModelKernel(modelData);
                 break;
-            default:
-                log.error("Invalid action: {}", action);
         }
+        return Flux.just(MessageFormat.format("{0}Model {1} successfully{2}", GREEN, action, RESET));
     }
 }

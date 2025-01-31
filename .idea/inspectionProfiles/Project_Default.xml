@@ -6,7 +6,7 @@
     </inspection_tool>
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <Languages>
-        <language minSize="57" name="XML" />
+        <language minSize="79" name="XML" />
         <language minSize="72" name="Java" />
       </Languages>
     </inspection_tool>
@@ -47,15 +47,27 @@
       <option name="ignoredModules">
         <list>
           <option value="Ai-Initializer-Project" />
+          <option value="services-mod" />
+          <option value="starter-mod" />
+          <option value="databases-mod" />
+          <option value="admin-mod" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
+          <option value="ch.qos.logback:logback-core:1.5.12" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>
       </option>

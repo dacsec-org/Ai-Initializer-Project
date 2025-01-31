@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.security.utilities;
 
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Properties;
  *     For now, we read an env file to get the token from the '/environments/.env' file. We will pass this off to PAM later.
  * </p>
  */
+@Component
 public class SecurityApiTokenUtil {
 
     private static final String ENV_FILE_PATH = "../environments/.env";
@@ -24,7 +26,7 @@ public class SecurityApiTokenUtil {
      *
      * @return a Flux containing the API token as an Object
      */
-    public Flux<Object> getApiToken() {
+    public static Flux<Object> getApiToken() {
         return Flux.create(sink -> {
             Properties properties = new Properties();
             try (var inputStream = Files.newInputStream(Paths.get(ENV_FILE_PATH))) {

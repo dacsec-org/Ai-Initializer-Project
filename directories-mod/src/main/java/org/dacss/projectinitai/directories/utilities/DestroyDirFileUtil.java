@@ -3,6 +3,7 @@ package org.dacss.projectinitai.directories.utilities;
 import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link DestroyDirFileUtil}</h1>
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
  * Utility class for destroying directories and files.
  * </p>
  */
+@Component
 public class DestroyDirFileUtil {
 
     private static final Logger log = LoggerFactory.getLogger(DestroyDirFileUtil.class);

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
+import { Button, Grid, GridColumn, TextField, Notification } from '@vaadin/react-components';
 import { DataBaseService, DownloadersService } from 'Frontend/generated/endpoints';
 import { TextFieldValueChangedEvent } from '@vaadin/text-field';
+import { DataTypes } from 'Frontend/enums/DataTypes';
+import { DlAction } from 'Frontend/enums/DlAction';
 
 export const config: ViewConfig = {
-  menu: { order: 12, icon: 'line-awesome/svg/search-solid.svg' },
-  title: 'Search Models'
-};
+  menu: { order: 12, icon: 'line-awesome/svg/search-solid.svg' }, title: 'Search Models' };
 
+/**
+ * <h1>{@link SearchModelsView}</h1>
+ * @constructor
+ */
 const SearchModelsView: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [models, setModels] = useState<any[]>([]);
@@ -19,14 +23,11 @@ const SearchModelsView: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await DataBaseService.performDatabaseAction({ action: 'H2' });
-        const response = await fetch('/path/to/your/data/source');
-        const data: any[] = await response.json();
-        setAllModels(data);
-        setModels(data.slice(0, 100));
-        setOffset(100);
+        // @ts-ignore
+        await DataBaseService.performDatabaseAction(DataTypes.H_2);
+        Notification.show('Data fetched successfully');
       } catch (error: any) {
-        console.error('Error fetching data:', error.message);
+        Notification.show('Error fetching data:', error.message);
       }
     };
 
@@ -41,7 +42,7 @@ const SearchModelsView: React.FC = () => {
       setModels((prevModels) => [...prevModels, ...newModels]);
       setOffset(offset + 100);
     } catch (error: any) {
-      console.error('Error loading more models:', error.message);
+      Notification.show('Error loading more models:', error.message);
     } finally {
       setLoading(false);
     }
@@ -68,22 +69,19 @@ const SearchModelsView: React.FC = () => {
 
   const handleDownload = async (modelId: string) => {
     try {
-      await DownloadersService.download('DOWNLOAD_LLM_MODEL', modelId, '', '');
+      await DownloadersService.download(DlAction.DOWNLOAD_LLM_MODEL, "", "", {});
+      Notification.show('Model downloaded successfully' + modelId);
     } catch (error: any) {
-      console.error('Error downloading model:', error.message);
+      Notification.show('Error downloading model:', error.message);
     }
   };
 
   const handleRefresh = async () => {
     try {
-      await DataBaseService.performDatabaseAction({ 'H2' });
-      const response = await fetch('/path/to/your/data/source');
-      const data: any[] = await response.json();
-      setAllModels(data);
-      setModels(data.slice(0, 100));
-      setOffset(100);
+      await DownloadersService.download(DlAction.DOWNLOAD_LLM_JSON, "", "", {});
+      Notification.show('Downloaded new LLM list to the database successfully');
     } catch (error: any) {
-      console.error('Error refreshing data:', error.message);
+      Notification.show('Error refreshing data:', error.message);
     }
   };
 
@@ -95,14 +93,10 @@ const SearchModelsView: React.FC = () => {
           value={searchQuery}
           onValueChanged={handleInputChange}
         />
-        <Button onClick={handleSearch} theme="small">
-          🔍
-        </Button>
-        <Button onClick={handleRefresh} theme="small">
-          🔄
-        </Button>
+        <Button onClick={handleSearch} theme="small">🔍</Button>
+        <Button onClick={handleRefresh} theme="small">🔄</Button>
       </section>
-      <Grid items={models} columnReorderingAllowed style={{ height: '75vh', width: '150%' }} onScroll={handleScroll}>
+      <Grid items={models} columnReorderingAllowed style={{ height: '100vh', width: '100%' }} onScroll={handleScroll}>
         <GridColumn path="modelId" header="Model ID" resizable />
         <GridColumn path="likes" header="Likes" resizable />
         <GridColumn path="trendingScore" header="Trending Score" resizable />

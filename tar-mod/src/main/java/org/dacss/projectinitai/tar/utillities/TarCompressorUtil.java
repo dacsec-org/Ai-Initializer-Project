@@ -1,7 +1,9 @@
 package org.dacss.projectinitai.tar.utillities;
-/**/
+
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,34 +15,22 @@ import java.util.Objects;
  * <h1>{@link TarCompressorUtil}</h1>
  * Utility class to create a tar file.
  */
+@Component
 public class TarCompressorUtil {
 
-    /**
-     * {@link #createTarFile(File, File)}
-     * Method to create a tar file from a source directory.
-     *
-     * @param sourceDir - directory to be tarred
-     * @param tarFile - tar file to be created
-     * @throws IOException - if an I/O error occurs
-     */
-    public static void createTarFile(File sourceDir, File tarFile) throws IOException {
+    public static Flux<Object> createTarFile() {
+        File sourceDir = new File("/path/to/source");
+        File tarFile = new File("/path/to/tarfile.tar");
         try (FileOutputStream fos = new FileOutputStream(tarFile);
              TarArchiveOutputStream TOS = new TarArchiveOutputStream(fos)) {
             addFilesToTar(TOS, sourceDir, "");
+            return Flux.just("Tar file created successfully");
+        } catch (IOException createTarExc) {
+            return Flux.error(createTarExc);
         }
     }
 
-    /**
-     * {@link #addFilesToTar(TarArchiveOutputStream, File, String)}
-     * Method to add files to a tar file.
-     *
-     * @param TOS - TarArchiveOutputStream
-     * @param file - File
-     * @param parent - String
-     * @throws IOException - if an I/O error occurs
-     */
-    private static void addFilesToTar(TarArchiveOutputStream TOS, File file,
-                                      String parent) throws IOException {
+    private static void addFilesToTar(TarArchiveOutputStream TOS, File file, String parent) throws IOException {
         String entryName = parent + file.getName();
         TarArchiveEntry tarEntry = new TarArchiveEntry(file, entryName);
         TOS.putArchiveEntry(tarEntry);

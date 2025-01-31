@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.metrics.utilities;
 
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import java.io.File;
 import java.time.Duration;
@@ -8,13 +9,11 @@ import java.time.Duration;
  * <h1>{@link DiskStatsUtil}</h1>
  * Utility class to fetch disk statistics.
  */
+@Component
 public class DiskStatsUtil {
 
-    /**
-     * <h3>{@link #fetchDiskStats}</h3>
-     * @return Flux<String> - Disk statistics
-     */
-    public Flux<String> fetchDiskStats() {
+
+    public static Flux<Object> fetchDiskStats() {
         return Flux.interval(Duration.ofSeconds(1))
                    .map(tick -> {
                        File root = new File("/");

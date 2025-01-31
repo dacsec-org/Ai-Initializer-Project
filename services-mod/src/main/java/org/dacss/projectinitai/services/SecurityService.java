@@ -2,6 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.Endpoint;
+import org.dacss.projectinitai.security.SecurityActions;
 import org.dacss.projectinitai.security.SecurityIface;
 import org.dacss.projectinitai.security.utilities.SecurityApiTokenUtil;
 import com.vaadin.hilla.BrowserCallable;
@@ -25,47 +26,27 @@ import java.io.IOException;
 public class SecurityService implements SecurityIface {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityService.class);
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
-    /**
-     * <h2>{@link #SecurityService()}</h2>
-     * 0-arg constructor.
-     */
     public SecurityService() {}
 
-    /**
-     * <h2>{@link SecurityIface#secure()}</h2>
-     * Perform security operations on the data via the function interface {@link SecurityIface}.
-     */
     @Override
-    public void secure() {
+    public Flux<Object> secure(SecurityActions action) {
+        Flux<Object> flux;
         try {
-            Flux<Object> flux;
-            flux = new SecurityApiTokenUtil().getApiToken();
-            assert flux != null;
-            flux.subscribe(new CoreSubscriber<>() {
-                @Override
-                public void onSubscribe(Subscription subscription) {
-                    subscription.request(1);
-                }
-
-                @Override
-                public void onNext(Object value) {
-                    log.info("API Token: {}", value);
-                }
-
-                @Override
-                public void onError(Throwable throwable) {
-                    log.error("Error securing data", throwable);
-                }
-
-                @Override
-                public void onComplete() {
-                    log.info("Data secured");
-                }
-            });
-
-        } catch (IOException secExc) {
-            log.error("Error setting API token", secExc);
+            flux = switch (action) {
+                case API_TOKEN -> SecurityApiTokenUtil.getApiToken();
+                case PROJECT_SECURITY, CYBER_SECURITY -> null;
+            };
+        } catch (Exception securityServiceExc) {
+            log.error(RED + "Error from SecurityService performing action: {}" + RESET, action, securityServiceExc);
+            return Flux.empty();
+        } finally {
+            log.info(GREEN + "SecurityService action completed: {}" + RESET, action);
         }
+        assert flux != null;
+        return flux;
     }
 }

@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link CloneModelUtil}</h1>
  * Utility class for clone model operations.
  */
+@Component
 public class CloneModelUtil {
 
     /**

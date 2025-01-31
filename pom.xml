@@ -5,44 +5,15 @@
     <groupId>org.dacss.projectinitai</groupId>
     <artifactId>ai-initializer-project</artifactId>
     <name>ai-initializer-project</name>
-    <modules>
-        <module>admin-mod</module>
-        <module>advisers-mod</module>
-        <module>anomalies-mod</module>
-        <module>checksums-mod</module>
-        <module>classifications-mod</module>
-        <module>clustering-mod</module>
-        <module>databases-mod</module>
-        <module>directories-mod</module>
-        <module>downloaders-mod</module>
-        <module>embedding-mod</module>
-        <module>generative-mod</module>
-        <module>krr-mod</module>
-        <module>loaders-mod</module>
-        <module>messages-mod</module>
-        <module>metrics-mod</module>
-        <module>models-mod</module>
-        <module>nlp-mod</module>
-        <module>optimizations-mod</module>
-        <module>predictive-mod</module>
-        <module>recommendations-mod</module>
-        <module>recognitions-mod</module>
-        <module>reductions-mod</module>
-        <module>regressions-mod</module>
-        <module>reinforcement-mod</module>
-        <module>robotics-mod</module>
-        <module>security-mod</module>
-        <module>sequence-mod</module>
-        <module>servers-mod</module>
-        <module>snapshots-mod</module>
-        <module>speech-mod</module>
-        <module>starter-mod</module>
-        <module>tar-mod</module>
-        <module>vision-mod</module>
-        <module>services-mod</module>
-    </modules>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.2</version>
+        <relativePath/>
+    </parent>
 
     <properties>
         <java.version>21</java.version>
@@ -50,17 +21,10 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <apring-boot.version>3.4.1</apring-boot.version>
-        <vaadin.version>24.6.2</vaadin.version>
+        <apring-boot.version>3.4.2</apring-boot.version>
+        <vaadin.version>24.6.4</vaadin.version>
         <spring-ai.version>1.0.0-M5</spring-ai.version>
     </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.1</version>
-        <relativePath/>
-    </parent>
 
     <repositories>
         <repository>
@@ -107,7 +71,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.4.1</version>
+                <version>3.4.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -127,5 +91,49 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>admin-mod</module>
+        <module>advisers-mod</module>
+        <module>anomalies-mod</module>
+        <module>checksums-mod</module>
+        <module>classifications-mod</module>
+        <module>clustering-mod</module>
+        <module>databases-mod</module>
+        <module>directories-mod</module>
+        <module>downloaders-mod</module>
+        <module>embedding-mod</module>
+        <module>generative-mod</module>
+        <module>krr-mod</module>
+        <module>loaders-mod</module>
+        <module>messages-mod</module>
+        <module>metrics-mod</module>
+        <module>models-mod</module>
+        <module>nlp-mod</module>
+        <module>optimizations-mod</module>
+        <module>predictive-mod</module>
+        <module>recommendations-mod</module>
+        <module>recognitions-mod</module>
+        <module>reductions-mod</module>
+        <module>regressions-mod</module>
+        <module>reinforcement-mod</module>
+        <module>robotics-mod</module>
+        <module>security-mod</module>
+        <module>sequence-mod</module>
+        <module>servers-mod</module>
+        <module>snapshots-mod</module>
+        <module>speech-mod</module>
+        <module>starter-mod</module>
+        <module>tar-mod</module>
+        <module>vision-mod</module>
+        <module>services-mod</module>
+    </modules>
 
 </project>

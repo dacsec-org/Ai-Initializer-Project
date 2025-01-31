@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.metrics.utilities;
 
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
@@ -10,6 +11,7 @@ import java.time.Duration;
  * <h1>{@link MemoryStatsUtil}</h1>
  * Utility class to fetch memory statistics.
  */
+@Component
 public class MemoryStatsUtil {
     private final MemoryMXBean memoryBean;
 
@@ -25,7 +27,7 @@ public class MemoryStatsUtil {
      * <h3>{@link #fetchMemoryStats}</h3>
      * @return Flux<String> - Memory statistics
      */
-    public Flux<String> fetchMemoryStats() {
+    public static Flux<Object> fetchMemoryStats() {
         return Flux.interval(Duration.ofSeconds(1))
                    .map(tick -> {
                        MemoryUsage heapUsage = memoryBean.getHeapMemoryUsage();

@@ -1,14 +1,13 @@
 package org.dacss.projectinitai.anomalies;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link AnomaliesIface}</h1>
  */
 @FunctionalInterface
 public interface AnomaliesIface {
-    /**
-     * <h2>{@link AnomaliesIface#detectAnomaly()}</h2>
-     * detect anomaly in the data.
-     */
-    void detectAnomaly();
+
+    Flux<Object> detectAnomaly(AnomalyTypes type);
 }

@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.security;
 
 import java.io.IOException;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link SecurityIface}</h1>
@@ -9,7 +10,6 @@ import java.io.IOException;
 public interface SecurityIface {
     /**
      * <h2>{@link #secure()}</h2>
-     * Perform security operations on the data.
      */
-    void secure() throws IOException;
+    Flux<Object> secure(SecurityActions action) throws IOException;
 }

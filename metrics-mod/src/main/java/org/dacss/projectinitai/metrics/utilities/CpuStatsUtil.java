@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.metrics.utilities;
 
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
@@ -10,24 +11,17 @@ import java.util.stream.IntStream;
  * <h1>{@link CpuStatsUtil}</h1>
  * Utility class to fetch CPU statistics.
  */
+@Component
 public class CpuStatsUtil {
-    private final OperatingSystemMXBean osBean;
-    private final int availableProcessors;
+    private static OperatingSystemMXBean osBean;
+    private static int availableProcessors;
 
-    /**
-     * <h3>{@link CpuStatsUtil}</h3>
-     * 0-arg constructor to initialize the OperatingSystemMXBean.
-     */
     public CpuStatsUtil() {
-        this.osBean = ManagementFactory.getOperatingSystemMXBean();
-        this.availableProcessors = osBean.getAvailableProcessors();
+        osBean = ManagementFactory.getOperatingSystemMXBean();
+        availableProcessors = osBean.getAvailableProcessors();
     }
 
-    /**
-     * <h3>{@link #fetchCpuStats}</h3>
-     * @return Flux<String> - CPU statistics for each core
-     */
-    public Flux<String> fetchCpuStats() {
+    public static Flux<Object> fetchCpuStats() {
         return Flux.interval(Duration.ofSeconds(1))
                    .flatMap(tick -> Flux.fromStream(IntStream.range(0, availableProcessors)
                        .mapToObj(core -> {

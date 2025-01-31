@@ -15,7 +15,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @NpmPackage(value = "@fontsource/roboto-mono", version = "4.5.0")
 @Theme(value = "ai-initializer-project", variant = Lumo.DARK)
-//@PWA(name = "ai-initializer-project", shortName = "ai-initializer-project", offlineResources = {})
 public class ProjectAiInitializerApplication implements AppShellConfigurator {
 
     /**

@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link StopUnixServerUtil}</h1>
  * Utility class for stopping the Unix Socket server.
  */
+@Component
 public final class StopUnixServerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(StopUnixServerUtil.class);

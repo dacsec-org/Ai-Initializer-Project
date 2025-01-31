@@ -13,5 +13,5 @@ public enum DataBaseTypes {
     REDIS_VECTOR,
     NEO4J,
     POSTGRESQL_VECTOR,
-    H2;
+    H_2
 }

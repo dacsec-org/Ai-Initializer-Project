@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link MergeModelUtil}</h1>
@@ -16,6 +17,7 @@ import java.util.Map;
  * Utility class for merging models.
  * </p>
  */
+@Component
 public class MergeModelUtil {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();

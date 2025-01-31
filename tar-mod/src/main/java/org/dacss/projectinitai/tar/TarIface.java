@@ -1,16 +1,13 @@
 package org.dacss.projectinitai.tar;
 /**/
 
-import java.io.File;
-import java.io.IOException;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link TarIface}</h1>
  */
 @FunctionalInterface
 public interface TarIface {
-    /**
-     * <h2>{@link TarIface#processTar(String, File, File, File)}</h2>
-     */
-    void processTar(String action, File sourceDir, File tarFile, File destDir) throws IOException;
+
+    Flux<Object> processTar(TarActions action);
 }

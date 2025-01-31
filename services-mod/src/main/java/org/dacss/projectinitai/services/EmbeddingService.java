@@ -1,20 +1,18 @@
 package org.dacss.projectinitai.services;
+/**/
+
+import org.dacss.projectinitai.embedding.EmbeddingIface;
+import org.dacss.projectinitai.embedding.EmbeddingTypes;
+import org.dacss.projectinitai.embedding.utillities.*;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
-import org.dacss.projectinitai.embedding.EmbeddingIface;
-import org.dacss.projectinitai.embedding.utillities.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import static org.dacss.projectinitai.embedding.utillities.BertUtil.useBertUtil;
-import static org.dacss.projectinitai.embedding.utillities.FastTextUtil.useFastTextUtil;
-import static org.dacss.projectinitai.embedding.utillities.GloveUtil.useGloveUtil;
-import static org.dacss.projectinitai.embedding.utillities.GptUtil.useGptUtil;
-import static org.dacss.projectinitai.embedding.utillities.TransformerUtil.useTransformerUtil;
-import static org.dacss.projectinitai.embedding.utillities.Word2VectorUtil.useWord2VecUtil;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link EmbeddingService}</h1>
@@ -26,51 +24,29 @@ import static org.dacss.projectinitai.embedding.utillities.Word2VectorUtil.useWo
 @AnonymousAllowed
 public class EmbeddingService implements EmbeddingIface {
 
-
     private static final Logger log = LoggerFactory.getLogger(EmbeddingService.class);
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
-    /**
-     * <h2>{@link #EmbeddingService()}</h2>
-     * 0-arg constructor.
-     */
-    public EmbeddingService() {
-    }
-
-    /**
-     * <h2>{@link #processEmbedding(String action, String data)}</h2>
-     * Perform embedding operations. via the functional interface {@link EmbeddingIface}.
-     *
-     * @param action The action to perform.
-     * @param data The data to process.
-     */
     @Override
-    public void processEmbedding(String action, String data) {
+    public Flux<Object> processEmbedding(EmbeddingTypes type) {
+        Flux<Object> flux;
         try {
-            switch (action) {
-                case "word2vec":
-                    useWord2VecUtil(data);
-                    break;
-                case "glove":
-                    useGloveUtil(data);
-                    break;
-                case "fasttext":
-                    useFastTextUtil(data);
-                    break;
-                case "bert":
-                    useBertUtil(data);
-                    break;
-                case "gpt":
-                    useGptUtil(data);
-                    break;
-                case "transformer":
-                    useTransformerUtil(data);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid action: " + action);
-            }
+            flux = switch (type) {
+                case WORD2VEC -> Word2VectorUtil.fetchWord2Vec();
+                case GLOVE -> GloveUtil.fetchGlove();
+                case FASTTEXT -> FastTextUtil.fetchFastText();
+                case BERT -> BertUtil.fetchBert();
+                case GPT -> GptUtil.fetchGpt();
+                case TRANSFORMER -> TransformerUtil.fetchTransformer();
+            };
         } catch (Exception embeddingExc) {
-            log.error("Error handling operation: {}", action, embeddingExc);
+            log.error(RED + "Error handling operation: {}" + RESET, type, embeddingExc);
+            return Flux.empty();
+        } finally {
+            log.info(GREEN + "Embedding operation completed: {}" + RESET, type);
         }
-
+        return flux;
     }
 }

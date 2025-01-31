@@ -2,6 +2,7 @@ package org.dacss.projectinitai.downloaders.utilities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
@@ -17,11 +18,12 @@ import java.time.Duration;
  * <h1>{@link LLMLibraryUtil}</h1>
  * Utility class for downloading LLM JSON file in weekly intervals.
  */
+@Component
 public class LLMLibraryUtil {
 
     private static final Logger log = LoggerFactory.getLogger(LLMLibraryUtil.class);
 
-    public Flux<Object> downloadLLMJsonFile() {
+    public static Flux<Object> downloadLLMJsonFile() {
         return Flux.create(sink -> {
             String urlString = "https://huggingface.co/api/models";
             log.info("Downloading JSON from URL: {}", urlString);
@@ -40,10 +42,10 @@ public class LLMLibraryUtil {
                     sink.next(response.body());
                     sink.complete();
                 } else {
-                    sink.error(new IOException("HTTP request failed with response code " + response.statusCode()));
+                    sink.error(new IOException("HTTP request from LLMLibraryUtil failed with response code " + response.statusCode()));
                 }
-            } catch (IOException | InterruptedException e) {
-                sink.error(e);
+            } catch (IOException | InterruptedException llmLibraryUtilExc) {
+                sink.error(llmLibraryUtilExc);
             }
         }).delayElements(Duration.ofMillis(100));
     }

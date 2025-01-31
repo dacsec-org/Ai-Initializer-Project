@@ -2,6 +2,7 @@ package org.dacss.projectinitai.models.utilities;
 /**/
 
 import java.io.File;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link DestroyModelUtil}</h1>
@@ -9,6 +10,7 @@ import java.io.File;
  * Utility class for deleting local models.
  * </p>
  */
+@Component
 public class DestroyModelUtil {
 
 

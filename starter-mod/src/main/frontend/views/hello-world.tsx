@@ -16,8 +16,12 @@ const HelloWorldView: React.FC = () => {
   };
 
   const handleButtonClick = async () => {
-    const serverResponse = await HelloWorldService.sayHello(name);
-    Notification.show(serverResponse);
+    try {
+      const serverResponse = await HelloWorldService.sayHello(name);
+      Notification.show(serverResponse);
+    } catch (error: any) {
+      Notification.show('Error: ' + (error as Error).message);
+    }
   };
 
   return (
@@ -25,6 +29,7 @@ const HelloWorldView: React.FC = () => {
       <section className="flex p-m gap-m items-end">
         <TextField
           label="Your name"
+          value={name}
           onValueChanged={handleNameChange}
         />
         <Button onClick={handleButtonClick}>

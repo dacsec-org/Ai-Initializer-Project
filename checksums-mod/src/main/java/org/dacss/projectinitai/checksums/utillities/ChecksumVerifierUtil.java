@@ -4,11 +4,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link ChecksumVerifierUtil}</h1>
  * Verifies the checksum of a file or byte array.
  */
+@Component
 public class ChecksumVerifierUtil {
 
     /**

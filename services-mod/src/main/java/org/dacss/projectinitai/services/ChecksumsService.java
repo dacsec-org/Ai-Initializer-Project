@@ -1,17 +1,18 @@
 package org.dacss.projectinitai.services;
 /**/
-
+import org.dacss.projectinitai.checksums.ChecksumActions;
+import org.dacss.projectinitai.checksums.ChecksumsIface;
+/**/
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
-import org.dacss.projectinitai.checksums.ChecksumsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
+import reactor.core.publisher.Flux;
 
 import static org.dacss.projectinitai.checksums.utillities.ChecksumGeneratorUtil.generateSHA512;
 import static org.dacss.projectinitai.checksums.utillities.ChecksumVerifierUtil.*;
@@ -27,39 +28,30 @@ import static org.dacss.projectinitai.checksums.utillities.ChecksumVerifierUtil.
 public class ChecksumsService implements ChecksumsIface {
 
     private static final Logger log = LoggerFactory.getLogger(ChecksumsService.class);
-
-    /**
-     * <h2>{@link #ChecksumsService()}</h2>
-     * 0-argument constructor.
-     */
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
     public ChecksumsService() {}
 
-    /**
-     * <h2>{@link ChecksumsIface#calculateChecksum(String, String, String)}</h2>
-     * Handles the calculation of the checksum.
-     *
-     * @param action The action to perform.
-     * @param filePath The path to the file.
-     * @param expectedChecksum The expected checksum.
-     */
     @Override
-    public void calculateChecksum(String action, String filePath, String expectedChecksum) {
+    public Flux<Object> calculateChecksum(ChecksumActions action, String filePath, String expectedChecksum) {
         try {
             switch (action) {
-                case "verify":
+                case VERIFY:
                     verifyFileChecksum(filePath, expectedChecksum);
                     break;
-                case "verify_byte_array":
+                case VERIFY_BYTE_ARRAY:
                     verifyByteArrayChecksum(filePath.getBytes(), expectedChecksum);
                     break;
-                case "generate":
+                case GENERATE:
                     generateSHA512(filePath);
-                default:
-                    throw new IllegalArgumentException(MessageFormat.format("Invalid action: {0}", action));
-            }
-        } catch (IOException | NoSuchAlgorithmException e) {
-            log.error("Error calculating checksum: {}", e.getMessage());
+                }
+        } catch (IOException | NoSuchAlgorithmException checksumsServiceExc) {
+            log.error(RED + "Error from ChecksumsService performing action: {}" + RESET, action, checksumsServiceExc);
+        } finally {
+            log.info(GREEN + "ChecksumsService action completed: {}" + RESET, action);
         }
+        return Flux.just(MessageFormat.format("Checksum calculation completed for {0}.", filePath));
     }
 }

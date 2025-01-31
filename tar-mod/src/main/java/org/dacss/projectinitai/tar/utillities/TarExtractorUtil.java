@@ -1,8 +1,9 @@
 package org.dacss.projectinitai.tar.utillities;
-/**/
 
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,17 +14,12 @@ import java.io.IOException;
  * <h1>{@link TarExtractorUtil}</h1>
  * Utility class to extract a tar file.
  */
+@Component
 public class TarExtractorUtil {
 
-    /**
-     * {@link #extractTarFile(File, File)}
-     * Method to extract a tar file to a destination directory.
-     *
-     * @param tarFile - the tar file to extract
-     * @param destDir - the destination directory
-     * @throws IOException - if an I/O error occurs
-     */
-    public static void extractTarFile(File tarFile, File destDir) throws IOException {
+    public static Flux<Object> extractTarFile() {
+        File tarFile = new File("/path/to/tarfile.tar");
+        File destDir = new File("/path/to/destination");
         try (FileInputStream FIS = new FileInputStream(tarFile);
              TarArchiveInputStream TAIS = new TarArchiveInputStream(FIS)) {
             TarArchiveEntry entry;
@@ -47,6 +43,9 @@ public class TarExtractorUtil {
                     }
                 }
             }
+            return Flux.just("Tar file extracted successfully");
+        } catch (IOException extractTarExc) {
+            return Flux.error(extractTarExc);
         }
     }
 }

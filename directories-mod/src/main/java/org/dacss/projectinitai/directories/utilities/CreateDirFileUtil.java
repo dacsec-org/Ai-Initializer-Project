@@ -2,6 +2,7 @@ package org.dacss.projectinitai.directories.utilities;
 
 import java.io.File;
 import java.io.IOException;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -10,6 +11,7 @@ import java.io.IOException;
  * Utility class for creating directories and files.
  * </p>
  */
+@Component
 public class CreateDirFileUtil {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CreateDirFileUtil.class);

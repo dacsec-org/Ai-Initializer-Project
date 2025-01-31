@@ -17,8 +17,10 @@ public class HelloWorldService {
 
     public String sayHello(String name) {
         if (name.isEmpty()) {
+            System.out.println("Hello stranger from the hello world service backend");
             return "Hello stranger";
         } else {
+            System.out.println("Hello " + name + " from the hello world service backend");
             return "Hello " + name;
         }
     }

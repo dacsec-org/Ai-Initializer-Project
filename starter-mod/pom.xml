@@ -10,57 +10,12 @@
 
     <artifactId>starter-mod</artifactId>
 
-    <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>services-mod</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.parttio</groupId>
-            <artifactId>line-awesome</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -70,11 +25,15 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        <!--    vaadin deps    -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.parttio</groupId>
+            <artifactId>line-awesome</artifactId>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
 
@@ -84,10 +43,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.4.2</version>
                 <configuration>
-                    <wait>500</wait>
-                    <maxAttempts>240</maxAttempts>
+                    <wait>600</wait>
+                    <maxAttempts>200</maxAttempts>
                 </configuration>
             </plugin>
 
@@ -102,13 +61,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <parser>
-                        <packages>
-                            <package>org.dacss.projectinitai</package>
-                        </packages>
-                    </parser>
-                </configuration>
             </plugin>
 
             <plugin>
@@ -168,16 +120,9 @@
                                 <goals>
                                     <goal>build-frontend</goal>
                                 </goals>
-<!--                                <phase>compile</phase>-->
+                                <phase>compile</phase>
                             </execution>
                         </executions>
-                        <configuration>
-                            <parser>
-                                <packages>
-                                    <package>org.dacss.projectinitai</package>
-                                </packages>
-                            </parser>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

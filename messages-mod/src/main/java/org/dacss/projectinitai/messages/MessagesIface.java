@@ -1,13 +1,13 @@
 package org.dacss.projectinitai.messages;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link MessagesIface}</h1>
  */
 @FunctionalInterface
 public interface MessagesIface {
-    /**
-     * <h2>{@link #processMessages(String)}</h2>
-     */
-    void processMessages(String action);
+
+    Flux<Object> processMessages(MessageAction action);
 }

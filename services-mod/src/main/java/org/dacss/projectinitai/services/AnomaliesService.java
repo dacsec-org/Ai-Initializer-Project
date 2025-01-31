@@ -1,13 +1,17 @@
 package org.dacss.projectinitai.services;
-
+/**/
+import org.dacss.projectinitai.anomalies.AnomaliesIface;
+import org.dacss.projectinitai.anomalies.AnomalyTypes;
+import org.dacss.projectinitai.anomalies.utillities.*;
+/**/
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
-import org.dacss.projectinitai.anomalies.AnomaliesIface;
+/**/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link AnomaliesService}</h1>
@@ -19,37 +23,30 @@ import org.springframework.stereotype.Service;
 @AnonymousAllowed
 public class AnomaliesService implements AnomaliesIface {
 
-
     private static final Logger log = LoggerFactory.getLogger(AnomaliesService.class);
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
-    /**
-     * <h2>{@link #AnomaliesService()}</h2>
-     */
     public AnomaliesService() {
     }
 
-    /**
-     * <h2>{@link AnomaliesIface#detectAnomaly()}</h2>
-     * detect anomaly in the data.
-     */
     @Override
-    public void detectAnomaly() {
-
+    public Flux<Object> detectAnomaly(AnomalyTypes type) {
+        Flux<Object> flux;
+        try {
+            flux = switch (type) {
+                case ANOMALY_DETECTION -> DetectUtil.detectAnomaly();
+                case ANOMALY_REMOVAL -> RemoveUtil.removeAnomaly();
+                case ANOMALY_REPAIR -> RemediateUtil.repairAnomaly();
+                case ANOMALY_REPORTING -> ReportUtil.reportAnomaly();
+            };
+        } catch (Exception anomaliesServiceExc) {
+            log.error(RED + "Error from AnomaliesService detecting anomaly: {}" + RESET, type, anomaliesServiceExc);
+            return Flux.empty();
+        } finally {
+            log.info(GREEN + "AnomaliesService anomaly detection completed: {}" + RESET, type);
+        }
+        return flux;
     }
 }
-
-//    /**
-//     * <h2>{@link #handleAnomalyAction(String, String)}</h2>
-//     *
-//     * @param action The action to be performed.
-//     * @param data   The data to be analyzed.
-//     * @return The result of the action.
-//     */
-//    public Object handleAnomalyAction(String action, String data) {
-//        return switch (AnomaliesContexts.valueOf(action.toUpperCase())) {
-//            case ANOMALY_DETECTION -> handler.detectAnomaly(data);
-//            case ANOMALY_REMOVAL -> handler.removeAnomaly(data);
-//            case ANOMALY_REPAIR -> handler.repairAnomaly(data);
-//            case ANOMALY_REPORTING -> handler.reportAnomaly(data);
-//        };
-//    }

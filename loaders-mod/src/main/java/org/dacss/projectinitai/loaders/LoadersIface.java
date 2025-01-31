@@ -1,13 +1,13 @@
 package org.dacss.projectinitai.loaders;
 /**/
 
+import reactor.core.publisher.Flux;
+
 /**
  * <h1>{@link LoadersIface}</h1>
  */
 @FunctionalInterface
 public interface LoadersIface {
-    /**
-     * <h2>{@link #loadUnloadLLM(String, String, byte[])}</h2>
-     */
-    void loadUnloadLLM(String action, String modelPath, byte[] modelData);
+
+    Flux<Object> loadUnloadLLM(LoadUnLoadActions action);
 }

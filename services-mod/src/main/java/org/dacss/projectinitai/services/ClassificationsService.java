@@ -4,9 +4,12 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.classifications.ClassificationsIface;
+import org.dacss.projectinitai.classifications.ClassificationsTypes;
+import org.dacss.projectinitai.classifications.utillities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link ClassificationsService}</h1>
@@ -18,39 +21,33 @@ import org.springframework.stereotype.Service;
 @AnonymousAllowed
 public class ClassificationsService implements ClassificationsIface {
 
-
     private static final Logger log = LoggerFactory.getLogger(ClassificationsService.class);
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RESET = "\u001B[0m";
 
-    /**
-     * <h2>{@link #ClassificationsService()}</h2>
-     */
     public ClassificationsService() {
     }
 
-
-    /**
-     * <h2>{@link ClassificationsIface#classify()}</h2>
-     * classify data into predefined classes.
-     */
     @Override
-    public void classify() {
-
+    public Flux<Object> classify(ClassificationsTypes type) {
+        Flux<Object> flux;
+        try {
+            flux = switch (type) {
+                case DECISION_TREE -> DecisionTreeUtil.classify();
+                case LOGISTIC_REGRESSION -> LogisticRegressionUtil.classify();
+                case NAIVE_BAYES -> NaiveBayesUtil.classify();
+                case NEURAL_NETWORK -> NeuralNetworkUtil.classify();
+                case RANDOM_FOREST -> RandomForestUtil.classify();
+                case SVM -> SVMUtil.classify();
+            };
+        } catch (Exception classificationsServiceExc) {
+            log.error(RED + "Error from ClassificationsService performing classification: {}" + RESET, type, classificationsServiceExc);
+            return Flux.empty();
+        } finally {
+            log.info(GREEN + "ClassificationsService classification completed: {}" + RESET, type);
+        }
+        assert flux != null;
+        return flux;
     }
 }
-
-//    /**
-//     * <h2>{@link #handleClassificationAction(String, String)}</h2>
-//     * @param action The action to be performed.
-//     * @param data The data to be classified.
-//     * @return The result of the action.
-//     */
-//    public Object handleClassificationAction(String action, String data) {
-//        return switch (ClassificationsContexts.valueOf(action.toUpperCase())) {
-//            case LOGISTIC_REGRESSION -> handler.classifyWithLogisticRegression(data);
-//            case DECISION_TREE -> handler.classifyWithDecisionTree(data);
-//            case RANDOM_FOREST -> handler.classifyWithRandomForest(data);
-//            case SVM -> handler.classifyWithSVM(data);
-//            case NAIVE_BAYES -> handler.classifyWithNaiveBayes(data);
-//            case NEURAL_NETWORK -> handler.classifyWithNeuralNetwork(data);
-//        };
-//    }

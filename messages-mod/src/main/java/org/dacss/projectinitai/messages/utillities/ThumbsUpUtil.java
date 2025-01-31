@@ -1,6 +1,7 @@
 package org.dacss.projectinitai.messages.utillities;
 /**/
 
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 /**
@@ -9,11 +10,12 @@ import reactor.core.publisher.Flux;
  * used for positive reinforcement in the data base.
  * 'thumbsup' comes from the frontend clickable thumbs up icon.
  */
+@Component
 public class ThumbsUpUtil {
 
 
-    public static Flux<String> processThumbsUp(Flux<String> messageSets) {
-
+    public static Flux<Object> processThumbsUp(Flux<Object> messageSets) {
+        //todo: save message set to database with positive reinforcement
         return Flux.just("Message set saved as thumbs up: " + messageSets);
     }
 }

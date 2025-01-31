@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <h1>{@link H2Util}</h1>
- * Utility class to handle H2 database operations.
+ * Utility component class to handle H2 database operations.
  */
 @Component
 public class H2Util {
