@@ -12,6 +12,8 @@ import java.time.Duration;
 @Component
 public class DiskStatsUtil {
 
+    public DiskStatsUtil() {
+    }
 
     public static Flux<Object> fetchDiskStats() {
         return Flux.interval(Duration.ofSeconds(1))

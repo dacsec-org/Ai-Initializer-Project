@@ -13,14 +13,14 @@ import java.time.Duration;
  */
 @Component
 public class MemoryStatsUtil {
-    private final MemoryMXBean memoryBean;
+    private static MemoryMXBean memoryBean;
 
     /**
      * <h3>{@link MemoryStatsUtil}</h3>
      * 0-arg constructor to initialize the MemoryMXBean.
      */
     public MemoryStatsUtil() {
-        this.memoryBean = ManagementFactory.getMemoryMXBean();
+        memoryBean = ManagementFactory.getMemoryMXBean();
     }
 
     /**

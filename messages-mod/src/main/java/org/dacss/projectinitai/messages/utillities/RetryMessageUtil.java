@@ -14,6 +14,6 @@ public class RetryMessageUtil {
 
     public static Flux<Object> retryMessageSet(Flux<String> just) {
         //todo: send message set to admin and AI for reprocessing
-        return Flux.just("Message set retried: " + just);
+        return Flux.just(new Object());
     }
 }

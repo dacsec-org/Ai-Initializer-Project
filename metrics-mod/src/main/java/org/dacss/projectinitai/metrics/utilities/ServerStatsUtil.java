@@ -11,9 +11,11 @@ import java.time.Duration;
 @Component
 public class ServerStatsUtil {
 
+    public ServerStatsUtil() {
+    }
+
     /**
      * <h3>{@link #fetchServerStats}</h3>
-     * @return Flux<String> - Server statistics
      */
     public static Flux<Object> fetchServerStats() {
         return Flux.interval(Duration.ofSeconds(1))

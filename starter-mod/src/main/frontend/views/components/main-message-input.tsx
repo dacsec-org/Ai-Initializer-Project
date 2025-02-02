@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MessageInput, type MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
 import { MessagesService } from 'Frontend/generated/endpoints';
+import { MessageAction } from '../../enums/MessageAction';
 
 interface MainMessageInputProps {
   onMessageSent: (userRequest: string) => void;
@@ -18,7 +19,7 @@ const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onEr
     onLoading(true);
     onError('');
 
-    MessagesService.processMessages({})
+    MessagesService.processMessages({ action: MessageAction.REQUEST, data: userRequest })
       .then(() => {
         onMessageSent(userRequest);
         onLoading(false);

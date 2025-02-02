@@ -16,6 +16,8 @@ import java.util.Collections;
 @Component
 public class NetworkStatsUtil {
 
+    public NetworkStatsUtil() {
+    }
 
     public static Flux<Object> fetchNetworkStats() {
         return Flux.interval(Duration.ofSeconds(1))

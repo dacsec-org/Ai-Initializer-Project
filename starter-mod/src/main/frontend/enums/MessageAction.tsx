@@ -1,0 +1,8 @@
+export enum MessageAction {
+  REQUEST = 'REQUEST',
+  RESPONSE = 'RESPONSE',
+  THUMBS_UP = 'THUMBS_UP',
+  THUMBS_DOWN = 'THUMBS_DOWN',
+  RETRY = 'RETRY',
+  TRASH = 'TRASH',
+}

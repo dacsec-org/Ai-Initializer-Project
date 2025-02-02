@@ -18,10 +18,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -61,6 +57,14 @@
                         </goals>
                     </execution>
                 </executions>
+<!--                <configuration>
+                    <parser>
+                        <packages>
+                            <package>org.dacss.projectinitai</package>
+                           <package>org.dacss.projectinitai.services</package>
+                        </packages>
+                    </parser>
+                </configuration>-->
             </plugin>
 
             <plugin>
@@ -123,6 +127,14 @@
                                 <phase>compile</phase>
                             </execution>
                         </executions>
+<!--                        <configuration>
+                            <parser>
+                                <packages>
+                                    <package>org.dacss.projectinitai</package>
+                                   <package>org.dacss.projectinitai.services</package>
+                                </packages>
+                            </parser>
+                        </configuration>-->
                     </plugin>
                 </plugins>
             </build>

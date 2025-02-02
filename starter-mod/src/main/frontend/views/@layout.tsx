@@ -1,7 +1,7 @@
 import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtime.js';
 import { effect, signal } from '@vaadin/hilla-react-signals';
-import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
-import { Suspense, useEffect } from 'react';
+import { AppLayout, DrawerToggle, Icon, ProgressBar, SideNav, SideNavItem } from '@vaadin/react-components';
+import React, { Suspense, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import MainMenubar from './components/main-menubar';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
@@ -72,11 +72,13 @@ const MainLayout: React.FC = () => {
         <MainMenubar />
       </div>
 
-      <Suspense>
-        <Outlet />
+      <Suspense fallback={<ProgressBar indeterminate className="m-0" />}>
+        <section className="view">
+          <Outlet />
+        </section>
       </Suspense>
     </AppLayout>
   );
-};
+}
 
 export default MainLayout;

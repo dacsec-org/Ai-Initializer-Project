@@ -12,6 +12,9 @@ import java.time.Duration;
 @Component
 public class GpuStatsUtil {
 
+    public GpuStatsUtil() {
+    }
+
     public static Flux<Object> fetchGpuStats() {
         return Flux.interval(Duration.ofSeconds(1))
                    .map(tick -> {
