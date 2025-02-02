@@ -11,17 +11,21 @@
 
     <artifactId>loaders-mod</artifactId>
 
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>tornado</groupId>
             <artifactId>tornado-api</artifactId>
-            <version>1.0.9-dev</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -33,21 +37,5 @@
             <artifactId>reactor-core</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.4.2</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <parameters>true</parameters>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

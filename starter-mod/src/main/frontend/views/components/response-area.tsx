@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextArea } from '@vaadin/react-components/TextArea.js';
-import { MessagesService } from 'Frontend/generated/endpoints';
+import { MessagesIface } from 'Frontend/generated/endpoints';
 import { MessageAction } from '../../enums/MessageAction';
 
 interface ResponseAreaProps {
@@ -16,7 +16,7 @@ const ResponseArea: React.FC<ResponseAreaProps> = ({ request, onResponseReceived
     if (request) {
       onLoading(true);
 
-      MessagesService.processMessages({ action: MessageAction.RESPONSE, data: request })
+      MessagesIface.processMessages({ action: MessageAction.RESPONSE, data: request })
         .then((aiResponse) => {
           const value = "Processed message: " + request;
           setResponse(value);

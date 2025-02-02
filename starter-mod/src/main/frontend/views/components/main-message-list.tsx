@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
 import ResponseArea from './response-area';
-import { MessagesService } from 'Frontend/generated/endpoints';
+import { MessagesIface } from 'Frontend/generated/endpoints';
 
 interface MessageSet {
   userMessage: {
@@ -65,7 +65,7 @@ const MainMessageListArea: React.FC = () => {
   );
 
   const handleIconClick = (index: number) => {
-    MessagesService.processMessages({})
+    MessagesIface.processMessages({})
       .then(() => {
         // Handle the action if needed
       });

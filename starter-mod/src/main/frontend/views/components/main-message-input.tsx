@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageInput, type MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
-import { MessagesService } from 'Frontend/generated/endpoints';
+import { MessagesIface } from 'Frontend/generated/endpoints';
 import { MessageAction } from '../../enums/MessageAction';
 
 interface MainMessageInputProps {
@@ -19,7 +19,7 @@ const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onEr
     onLoading(true);
     onError('');
 
-    MessagesService.processMessages({ action: MessageAction.REQUEST, data: userRequest })
+    MessagesIface.processMessages({ action: MessageAction.REQUEST, data: userRequest })
       .then(() => {
         onMessageSent(userRequest);
         onLoading(false);

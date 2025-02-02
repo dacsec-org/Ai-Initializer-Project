@@ -1,29 +1,28 @@
-package org.dacss.projectinitai.tar.utillities;
+package org.dacss.projectinitai.zip;
 
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
- * <h1>{@link TarExtractorUtil}</h1>
- * Utility class to extract a tar file.
+ * <h1>{@link ZipExtractorUtil}</h1>
+ * <p>
+ *     Utility class for extracting files from a zip file.
+ * </p>
  */
 @Component
-public class TarExtractorUtil {
+public class ZipExtractorUtil {
 
-    public static Flux<Object> extractTarFile() {
-        File tarFile = new File("/path/to/tarfile.tar");
+    static String extractZipFile() throws IOException {
+        File zipFile = new File("/path/to/zipfile.zip");
         File destDir = new File("/path/to/destination");
-        try (FileInputStream FIS = new FileInputStream(tarFile);
-             TarArchiveInputStream TAIS = new TarArchiveInputStream(FIS)) {
-            TarArchiveEntry entry;
-            while ((entry = TAIS.getNextEntry()) != null) {
+        try (FileInputStream fis = new FileInputStream(zipFile);
+             ZipInputStream zis = new ZipInputStream(fis)) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
                 File outputFile = new File(destDir, entry.getName());
                 if (entry.isDirectory()) {
                     if (!outputFile.exists() && !outputFile.mkdirs()) {
@@ -37,15 +36,13 @@ public class TarExtractorUtil {
                     try (FileOutputStream fos = new FileOutputStream(outputFile)) {
                         byte[] buffer = new byte[1024];
                         int len;
-                        while ((len = TAIS.read(buffer)) != -1) {
+                        while ((len = zis.read(buffer)) != -1) {
                             fos.write(buffer, 0, len);
                         }
                     }
                 }
             }
-            return Flux.just("Tar file extracted successfully");
-        } catch (IOException extractTarExc) {
-            return Flux.error(extractTarExc);
+            return "Zip file extracted successfully";
         }
     }
 }

@@ -103,7 +103,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public void processInput() {}
     @Override
-    public Flux<Object> processTar(TarActions action) { return null; }
+    public Object processTar(TarActions action) { return null; }
     @Override
     public void reduceDimensions() {}
     @Override

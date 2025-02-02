@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.messages.utillities;
+package org.dacss.projectinitai.messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

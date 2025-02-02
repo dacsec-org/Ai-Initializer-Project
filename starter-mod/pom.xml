@@ -57,14 +57,6 @@
                         </goals>
                     </execution>
                 </executions>
-<!--                <configuration>
-                    <parser>
-                        <packages>
-                            <package>org.dacss.projectinitai</package>
-                           <package>org.dacss.projectinitai.services</package>
-                        </packages>
-                    </parser>
-                </configuration>-->
             </plugin>
 
             <plugin>
@@ -127,14 +119,6 @@
                                 <phase>compile</phase>
                             </execution>
                         </executions>
-<!--                        <configuration>
-                            <parser>
-                                <packages>
-                                    <package>org.dacss.projectinitai</package>
-                                   <package>org.dacss.projectinitai.services</package>
-                                </packages>
-                            </parser>
-                        </configuration>-->
                     </plugin>
                 </plugins>
             </build>
