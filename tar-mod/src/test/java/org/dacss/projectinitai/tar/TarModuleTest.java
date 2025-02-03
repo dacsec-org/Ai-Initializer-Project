@@ -3,6 +3,8 @@ package org.dacss.projectinitai.tar;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +33,6 @@ import static org.testng.Assert.assertTrue;
  */
 public class TarModuleTest {
 
-    private TarIface tarIface;
     private Path sourceDir;
     private Path tarFile;
     private Path destDir;
@@ -52,11 +53,6 @@ public class TarModuleTest {
         Path dummyFile = sourceDir.resolve("dummyFile.txt");
         if (!Files.exists(dummyFile)) {
             Files.createFile(dummyFile);
-        }
-        // Ensure destDir contains a file
-        Path testFile = destDir.resolve("testFile.txt");
-        if (!Files.exists(testFile)) {
-            Files.createFile(testFile);
         }
     }
 
@@ -92,26 +88,48 @@ public class TarModuleTest {
 
     @Test
     public void testCreateTar() {
-        tarIface.processTar(TarActions.COMPRESS);
+        Flux<Object> flux = TarIface.processTarAction(TarActions.COMPRESS);
+
+        StepVerifier.create(flux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Tar file created successfully"))
+                .expectComplete()
+                .verify();
+
         assertTrue(Files.exists(tarFile), "Tar file should exist");
     }
 
     @Test(dependsOnMethods = "testCreateTar")
     public void testExtractTar() {
-        tarIface.processTar(TarActions.EXTRACT);
+        Flux<Object> flux = TarIface.processTarAction(TarActions.EXTRACT);
+
+        StepVerifier.create(flux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Tar file extracted successfully"))
+                .expectComplete()
+                .verify();
+
         assertTrue(Files.exists(destDir), "Destination directory should exist");
     }
 
     @Test(dependsOnMethods = "testExtractTar")
     public void testVerifyExtraction() {
         File destDirFile = destDir.toFile();
-        assertTrue(TarDestroyUtil.verifyExtraction(destDirFile), "Extraction should be verified");
+        assertTrue(TarDestroy.verifyExtraction(destDirFile), "Extraction should be verified");
     }
 
     @Test(dependsOnMethods = "testVerifyExtraction")
     public void testExtractAndDestroyTar() {
-        tarIface.processTar(TarActions.EXTRACT);
-        tarIface.processTar(TarActions.DESTROY);
+        Flux<Object> extractFlux = TarIface.processTarAction(TarActions.EXTRACT);
+        StepVerifier.create(extractFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Tar file extracted successfully"))
+                .expectComplete()
+                .verify();
+
+        Flux<Object> destroyFlux = TarIface.processTarAction(TarActions.DESTROY);
+        StepVerifier.create(destroyFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("All matching files deleted successfully"))
+                .expectComplete()
+                .verify();
+
         assertFalse(Files.exists(tarFile), "Tar file should be destroyed");
     }
 
@@ -119,9 +137,19 @@ public class TarModuleTest {
     public void testDeleteTar() {
         // Ensure the tar file exists before attempting to delete it
         if (!Files.exists(tarFile)) {
-            tarIface.processTar(TarActions.COMPRESS);
+            Flux<Object> compressFlux = TarIface.processTarAction(TarActions.COMPRESS);
+            StepVerifier.create(compressFlux)
+                    .expectNextMatches(message -> message instanceof String && ((String) message).contains("Tar file created successfully"))
+                    .expectComplete()
+                    .verify();
         }
-        tarIface.processTar(TarActions.DESTROY);
+
+        Flux<Object> destroyFlux = TarIface.processTarAction(TarActions.DESTROY);
+        StepVerifier.create(destroyFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("All matching files deleted successfully"))
+                .expectComplete()
+                .verify();
+
         assertFalse(Files.exists(tarFile), "Tar file should be deleted");
     }
 
@@ -137,6 +165,6 @@ public class TarModuleTest {
         }
 
         File destDirFile = destDir.toFile();
-        assertFalse(TarDestroyUtil.verifyExtraction(destDirFile), "Extraction should not be verified");
+        assertFalse(TarDestroy.verifyExtraction(destDirFile), "Extraction should not be verified");
     }
 }

@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.checksums.utillities;
+package org.dacss.projectinitai.checksums;
 
 import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;

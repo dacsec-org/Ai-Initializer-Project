@@ -5,8 +5,8 @@
 //import org.dacss.projectinitai.tar.TarActions;
 //import org.dacss.projectinitai.tar.TarIface;
 //import org.dacss.projectinitai.tar.TarCompressorUtil;
-//import org.dacss.projectinitai.tar.TarDestroyUtil;
-//import org.dacss.projectinitai.tar.TarExtractorUtil;
+//import org.dacss.projectinitai.tar.TarDestroy;
+//import org.dacss.projectinitai.tar.TarExtractor;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.stereotype.Service;
@@ -34,8 +34,8 @@
 //        try {
 //            result = switch (action) {
 //                case COMPRESS -> TarCompressorUtil.createTarFile();
-//                case EXTRACT -> TarExtractorUtil.extractTarFile();
-//                case DESTROY -> TarDestroyUtil.destroyTarFile();
+//                case EXTRACT -> TarExtractor.extractTarFile();
+//                case DESTROY -> TarDestroy.destroyTarFile();
 //            };
 //        } catch (Exception tarExc) {
 //            log.error(RED + "Error handling tar operation: {}" + RESET, action, tarExc);

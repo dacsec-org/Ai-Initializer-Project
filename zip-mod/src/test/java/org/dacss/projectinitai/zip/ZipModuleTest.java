@@ -3,6 +3,8 @@ package org.dacss.projectinitai.zip;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +33,6 @@ import static org.testng.Assert.assertTrue;
  */
 public class ZipModuleTest {
 
-    private ZipIface zipIface;
     private Path sourceDir;
     private Path zipFile;
     private Path destDir;
@@ -52,11 +53,6 @@ public class ZipModuleTest {
         Path dummyFile = sourceDir.resolve("dummyFile.txt");
         if (!Files.exists(dummyFile)) {
             Files.createFile(dummyFile);
-        }
-        // Ensure destDir contains a file
-        Path testFile = destDir.resolve("testFile.txt");
-        if (!Files.exists(testFile)) {
-            Files.createFile(testFile);
         }
     }
 
@@ -92,26 +88,51 @@ public class ZipModuleTest {
 
     @Test
     public void testCreateZip() {
-        zipIface.processZip(ZipActions.COMPRESS);
+        ZipCompressor zipCompressor = new ZipCompressor(sourceDir.toString(), zipFile.toString());
+        Flux<Object> flux = ZipIface.processZipAction(ZipActions.COMPRESS);
+
+        StepVerifier.create(flux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file created successfully"))
+                .expectComplete()
+                .verify();
+
         assertTrue(Files.exists(zipFile), "Zip file should exist");
     }
 
     @Test(dependsOnMethods = "testCreateZip")
     public void testExtractZip() {
-        zipIface.processZip(ZipActions.EXTRACT);
+        ZipExtractor zipExtractor = new ZipExtractor(zipFile.toString());
+        Flux<Object> flux = ZipIface.processZipAction(ZipActions.EXTRACT);
+
+        StepVerifier.create(flux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file extracted successfully"))
+                .expectComplete()
+                .verify();
+
         assertTrue(Files.exists(destDir), "Destination directory should exist");
     }
 
     @Test(dependsOnMethods = "testExtractZip")
     public void testVerifyExtraction() {
         File destDirFile = destDir.toFile();
-        assertTrue(ZipDestroyUtil.verifyExtraction(destDirFile), "Extraction should be verified");
+        assertTrue(ZipExtractor.verifyExtraction(destDirFile), "Extraction should be verified");
     }
 
     @Test(dependsOnMethods = "testVerifyExtraction")
     public void testExtractAndDestroyZip() {
-        zipIface.processZip(ZipActions.EXTRACT);
-        zipIface.processZip(ZipActions.DESTROY);
+        ZipExtractor zipExtractor = new ZipExtractor(zipFile.toString());
+        Flux<Object> extractFlux = ZipIface.processZipAction(ZipActions.EXTRACT);
+        StepVerifier.create(extractFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file extracted successfully"))
+                .expectComplete()
+                .verify();
+
+        Flux<Object> destroyFlux = ZipIface.processZipAction(ZipActions.DESTROY);
+        StepVerifier.create(destroyFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file deleted successfully"))
+                .expectComplete()
+                .verify();
+
         assertFalse(Files.exists(zipFile), "Zip file should be destroyed");
     }
 
@@ -119,9 +140,20 @@ public class ZipModuleTest {
     public void testDeleteZip() {
         // Ensure the zip file exists before attempting to delete it
         if (!Files.exists(zipFile)) {
-            zipIface.processZip(ZipActions.COMPRESS);
+            ZipCompressor zipCompressor = new ZipCompressor(sourceDir.toString(), zipFile.toString());
+            Flux<Object> compressFlux = ZipIface.processZipAction(ZipActions.COMPRESS);
+            StepVerifier.create(compressFlux)
+                    .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file created successfully"))
+                    .expectComplete()
+                    .verify();
         }
-        zipIface.processZip(ZipActions.DESTROY);
+
+        Flux<Object> destroyFlux = ZipIface.processZipAction(ZipActions.DESTROY);
+        StepVerifier.create(destroyFlux)
+                .expectNextMatches(message -> message instanceof String && ((String) message).contains("Zip file deleted successfully"))
+                .expectComplete()
+                .verify();
+
         assertFalse(Files.exists(zipFile), "Zip file should be deleted");
     }
 
@@ -137,6 +169,6 @@ public class ZipModuleTest {
         }
 
         File destDirFile = destDir.toFile();
-        assertFalse(ZipDestroyUtil.verifyExtraction(destDirFile), "Extraction should not be verified");
+        assertFalse(ZipExtractor.verifyExtraction(destDirFile), "Extraction should not be verified");
     }
 }

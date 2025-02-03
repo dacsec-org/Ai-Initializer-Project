@@ -2,13 +2,11 @@ package org.dacss.projectinitai.zip;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link ZipIface}</h1>
- * <p>
- *     Functional interface for handling zip operations.
- * </p>
+ * Functional interface for handling zip operations.
  */
 @FunctionalInterface
 public interface ZipIface {
@@ -18,22 +16,34 @@ public interface ZipIface {
     String GREEN = "\u001B[32m";
     String RESET = "\u001B[0m";
 
-    static Object processZipAction(ZipActions action) {
-        Object result;
+    /**
+     * <h3>{@link ZipActions}</h3>
+     * Provides the available zip actions.
+     *
+     * @param action The zip action to be performed.
+     * @return A {@link Flux} that emits a success message if the zip operation is completed successfully.
+     */
+    static Flux<Object> processZipAction(ZipActions action) {
         try {
-            result = switch (action) {
-                case COMPRESS -> ZipCompressorUtil.createZipFile();
-                case EXTRACT -> ZipExtractorUtil.extractZipFile();
-                case DESTROY -> ZipDestroyUtil.destroyZipFile();
+            return switch (action) {
+                case COMPRESS -> ZipCompressor.createZipFile();
+                case EXTRACT -> ZipExtractor.extractZipFile();
+                case DESTROY -> ZipExtractor.destroyZipFile();
             };
         } catch (Exception zipExc) {
             log.error(RED + "Error handling zip operation: {}" + RESET, action, zipExc);
-            return "Error handling zip operation: " + action;
+            return Flux.error(new RuntimeException("Error handling zip operation: " + action));
         } finally {
             log.info(GREEN + "ZipIface action completed: {}" + RESET, action);
         }
-        return result;
     }
 
-    Object processZip(ZipActions action);
+    /**
+     * <h3>{@link #processZip(ZipActions)}</h3>
+     * Processes a zip action.
+     *
+     * @param action The zip action to be performed.
+     * @return A {@link Flux} that emits a success message if the zip operation is completed successfully.
+     */
+    Flux<Object> processZip(ZipActions action);
 }

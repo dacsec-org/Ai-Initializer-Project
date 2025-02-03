@@ -12,6 +12,7 @@ import org.dacss.projectinitai.clustering.ClusteringIface;
 import org.dacss.projectinitai.databases.DataBaseIface;
 import org.dacss.projectinitai.databases.DataBaseTypes;
 import org.dacss.projectinitai.directories.DirectoriesIface;
+import org.dacss.projectinitai.directories.DirectoryActions;
 import org.dacss.projectinitai.downloaders.DownloadAction;
 import org.dacss.projectinitai.downloaders.DownloadersIface;
 import org.dacss.projectinitai.embedding.EmbeddingIface;
@@ -51,6 +52,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.File;
+import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link AdminHandler}</h1>
@@ -69,7 +71,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public Flux<Object> detectAnomaly(AnomalyTypes type) { return null; }
     @Override
-    public Flux<Object>calculateChecksum(ChecksumActions action, String filePath, String expectedChecksum) { return null; }
+    public Flux<Object>calculateChecksum(ChecksumActions action) { return null; }
     @Override
     public Flux<Object> classify(ClassificationsTypes type) { return null; }
     @Override
@@ -77,7 +79,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public Flux<Object> performDatabaseAction(DataBaseTypes type) { return null; }
     @Override
-    public void processDirFileAction(String action, String path, String fileName) { }
+    public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) { return null; }
     @Override
     public Flux<Object> download(DownloadAction action) { return null; }
     @Override
@@ -103,7 +105,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public void processInput() {}
     @Override
-    public Object processTar(TarActions action) { return null; }
+    public Flux<Object> processTar(TarActions action) { return null; }
     @Override
     public void reduceDimensions() {}
     @Override

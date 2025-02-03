@@ -62,6 +62,22 @@
             <version>3.7.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>hilla-endpoint</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>tar-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>zip-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

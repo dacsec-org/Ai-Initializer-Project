@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Grid, GridColumn, TextField, Notification } from '@vaadin/react-components';
-import { DataBaseService, DownloadersService } from 'Frontend/generated/endpoints';
+import { DataBaseService, DownloadersIface } from 'Frontend/generated/endpoints';
 import { TextFieldValueChangedEvent } from '@vaadin/text-field';
 import { DataTypes } from 'Frontend/enums/DataTypes';
 import { DlAction } from 'Frontend/enums/DlAction';
@@ -69,7 +69,7 @@ const SearchModelsView: React.FC = () => {
 
   const handleDownload = async (modelId: string) => {
     try {
-      await DownloadersService.download(DlAction.DOWNLOAD_LLM_MODEL, "", "", {});
+      await DownloadersIface.download(DlAction.DOWNLOAD_LLM_MODEL, "", "", {});
       Notification.show('Model downloaded successfully' + modelId);
     } catch (error: any) {
       Notification.show('Error downloading model:', error.message);
@@ -78,7 +78,7 @@ const SearchModelsView: React.FC = () => {
 
   const handleRefresh = async () => {
     try {
-      await DownloadersService.download(DlAction.DOWNLOAD_LLM_JSON, "", "", {});
+      await DownloadersIface.download(DlAction.DOWNLOAD_LLM_JSON, "", "", {});
       Notification.show('Downloaded new LLM list to the database successfully');
     } catch (error: any) {
       Notification.show('Error refreshing data:', error.message);
