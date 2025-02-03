@@ -6,7 +6,7 @@ Ai-Initializer-Project is a local, customizable, hardware-accelerated, private, 
 universal AI large-language-model client designed for any Linux/UNIX 
 distribution.
 
-## Installation options
+## Installation options(not yet available, in progress)
 
 1. Clone the repository:
 
@@ -86,32 +86,53 @@ the following improvements over Qwen2:
 - /home/${USER}.project-ai-initializer/
    - models
    - checksums
+   - cache
 - /home/${USER}/
    - TornadoVM
-- /home/${USER}/project-ai-initializer/.cache/
-   - *.cache
 - /opt/
-   - project-ai-initializer
+   - project-ai-initializer/
 - /var/run/project-ai-initializer/
-   - project-ai-initializer.sock
+   - models/
+   - data/
 - /var/log/project-ai-initializer/
-   - *.log
+   - logs/
 
 # Contributing
 
 ## If You Want to Contribute
 
-I use IntelliJ IDEA for development. If you want to contribute to this project, please follow these steps:
+#### Installing TornadoVm 
+To contribute to the project TornadoVM is not a necessary step, but it is 
+recommended if you plan on helping with any gpu related issues.
+run the following commands from your /home/name/ to install TornadoVm:
 
-1. **Modify IntelliJ Settings**: Ensure your IntelliJ settings are 
+``` bash 
+    installers/tornado_installer.sh
+```
+
+1. **Clone the repository**:
+2. **Add an .env with your hugginface api token in "home/pai/.gnupg/pai-token.env"**:
+   `
+   HUGGINGFACE_API_TOKEN=your_token_here
+   `
+3. **Modify IntelliJ Settings**: Ensure your IntelliJ settings are
    configured as shown in the example screenshot ![ToDo Settings](/pumles/png/todo_setup.png).
+4. **Modify Intellij to use the new JVM generated from tornadoVm**:
+   `
+   File -> Project Structure -> Project -> Project SDK -> Add SDK -> Add TornadoVm SDK
+   `/home/your-user-name/TornadoVM/etc/dependencies/TornadoVM-graal-jdk-21/graalvm-community-openjdk-21.0.1+12.1`
+5. **Init the vm anv by running from the root of the project.**:
+   ```
+    source ~/TornadoVM/setvars.sh
+    ```
+   
+6. **Select a Task**: Choose a 'TODO' or 'FIXME' task from the codebase.
 
-2. **Select a Task**: Choose a 'TODO' or 'FIXME' task from the codebase.
+7. **Create a Branch**: Create a new branch from the default branch.
 
-3. **Create a Branch**: Create a new branch from the default branch.
+8. **Refactor**: Make your changes and refactor the code as needed.
 
-4. **Refactor**: Make your changes and refactor the code as needed.
-
-5. **Submit a Pull Request**: Once your changes are complete, submit a pull request for review.
+9. **Submit a Pull Request**: Once your changes are complete, submit a pull
+   request for review.
 
 We appreciate your contributions!

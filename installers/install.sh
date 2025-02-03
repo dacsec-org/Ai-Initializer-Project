@@ -43,6 +43,8 @@ rollback() {
     # Remove token file
     if [ -f /etc/security/project-ai-initializer.token ]; then
         rm -f /etc/security/project-ai-initializer.token
+        #FIXME! move this token to the USERs home directory(search for $USER.pgp)
+        # as of now it resides in the projects .env file
         log "Removed token file: /etc/security/project-ai-initializer.token"
     fi
 
@@ -142,7 +144,7 @@ fi
 # Define the project directory structure
 PROJECT_DIRS=(
   "/etc/project-ai-initializer"
-  "/systemd/project-ai-initializer"
+  "/etc/systemd/project-ai-initializer"
   "/usr/share/applications"
   "/home/${USER}/.project-ai-initializer/models"
   "/home/${USER}/.project-ai-initializer/checksums"
@@ -244,6 +246,7 @@ if ! ./tornado_installer.sh; then
     exit 1
 fi
 
+# Start the BTRFS setup
 # Mount the volume containing the root subvolume to /mnt
 sudo mount '$(df --output=source / | tail -n 1)' /mnt
 

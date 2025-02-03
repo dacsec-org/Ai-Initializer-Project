@@ -22,10 +22,10 @@ echo "TornadoVM has been cloned to $TARGET_DIR"
 BACKEND="opencl"
 if command -v nvidia-smi &> /dev/null; then
   BACKEND="ptx"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+elif command -v spirv-as &> /dev/null; then
   BACKEND="spirv"
 else
-  BACKEND="opencl"
+  echo "SPIR-V drivers not detected. Skipping SPIR-V backend."
 fi
 
 # Run the TornadoVM installer with the detected backend

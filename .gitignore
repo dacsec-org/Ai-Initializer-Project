@@ -2,9 +2,6 @@
 # Compiled class file
 *.class
 
-### Log file
-*.log
-
 ### BlueJ files
 *.ctxt
 
@@ -287,36 +284,51 @@ gradle-app.setting
 secring.*
 
 ### frontend generated
-/src/main/frontend/generated/
+/src/main/frontend/generated/*
 
 ### Vaadin node tasks
 /.vaadin-node-tasks.lock
 
 ### package.json generated files
-/package.json
+!/package.json
 /package-lock.json
+
+### IntelliJ IDEA iml files
+!/ai-initializer-project.iml
+!/types.d.ts
 
 ### The following files are generated/updated by Hilla
 node_modules/
 src/main/frontend/generated/
 vite.generated.ts
 
-### password file
-/environments/.env
+##################################
+### project directories/filea ###
+##################################
 
-### hugging face server return
-/huggingface_server_return.txt
+#################################################################
+### YOU NEED TO ADD YOUR OWN .env FILE WITH YOUR OWN API KEY ###
+### then you can download LLM's from Hugging Face using app. ###
+#################################################################
 
-### example file
-/loaders-mod/src/main/java/org/dacss/projectinitai/loaders/Examples.java
+### any inside the token, models, and cache directories
+home/pai/.gnupg/pai-token/*
+home/pai/.project-ai-initializer/models/*
+home/pai/.project-ai-initializer/cache/*
 
-### model files
-/models/
+### environment files(the actual .env) 'insurance for the above'
+*.env
 
-### environment files
-/environments/
+### any sockets
+*.socket
+*.sock
 
-### IntelliJ IDEA iml files
-!/ai-initializer-project.iml
-!/types.d.ts
-!/vite.generated.ts
+### any inside the logs directory
+var/log/project-ai-initializer/project-ai-initializer/logs/*
+
+### any inside the models, and data directories
+var/run/project-ai-initializer/project-ai-initializer/models/*
+var/run/project-ai-initializer/project-ai-initializer/data/*
+
+### Log file (insure for the above)
+*.log
