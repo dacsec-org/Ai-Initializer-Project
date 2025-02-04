@@ -8,8 +8,8 @@
 //import org.slf4j.LoggerFactory;
 //import org.springframework.stereotype.Service;
 //
-//import static org.dacss.projectinitai.directories.CreateDirFileUtil.createDirectory;
-//import static org.dacss.projectinitai.directories.CreateDirFileUtil.createFile;
+//import static org.dacss.projectinitai.directories.DirFileUtil.createDirectory;
+//import static org.dacss.projectinitai.directories.DirFileUtil.createFile;
 //import static org.dacss.projectinitai.directories.DestroyDirFileUtil.deleteDirectory;
 //import static org.dacss.projectinitai.directories.DestroyDirFileUtil.deleteFile;
 //

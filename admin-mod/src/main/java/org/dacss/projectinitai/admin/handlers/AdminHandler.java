@@ -81,7 +81,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) { return null; }
     @Override
-    public Flux<Object> download(DownloadAction action) { return null; }
+    public Flux<Object> download(String llmName) { return null; }
     @Override
     public Flux<Object> processEmbedding(EmbeddingTypes type) { return null; }
     @Override
