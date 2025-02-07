@@ -2,7 +2,6 @@ package org.dacss.projectinitai.downloaders;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
@@ -23,7 +22,6 @@ import java.util.concurrent.CompletableFuture;
  * It uses asynchronous HTTP requests to fetch the data and writes the response to a file.
  * The class is annotated with {@link Component} to indicate that it is a Spring-managed component.
  */
-@Component
 public class LLMLibraryUtil {
 
     private static final Logger log = LoggerFactory.getLogger(LLMLibraryUtil.class);
@@ -55,7 +53,7 @@ public class LLMLibraryUtil {
      *
      * @return a Flux that emits the JSON response body or an error if the request fails.
      */
-    static Flux<Object> downloadLLMJsonFile() {
+    public static Flux<Object> downloadLLMJsonFile() {
         return Flux.create(sink -> {
             String urlString = "https://huggingface.co/api/models";
             log.info("Downloading JSON from URL: {}", urlString);

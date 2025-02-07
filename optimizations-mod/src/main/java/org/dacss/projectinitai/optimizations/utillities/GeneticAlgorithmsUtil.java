@@ -2,7 +2,6 @@ package org.dacss.projectinitai.optimizations.utillities;
 
 /**
  * <h1>{@link GeneticAlgorithmsUtil}</h1>
- * placeholder
  */
 public class GeneticAlgorithmsUtil {
 

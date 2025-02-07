@@ -2,7 +2,6 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.classifications.ClassificationsIface;
 import org.dacss.projectinitai.classifications.ClassificationsTypes;
 import org.dacss.projectinitai.classifications.utillities.*;
@@ -16,15 +15,11 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for classifying data.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class ClassificationsService implements ClassificationsIface {
 
     private static final Logger log = LoggerFactory.getLogger(ClassificationsService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     public ClassificationsService() {
     }
@@ -42,12 +37,11 @@ public class ClassificationsService implements ClassificationsIface {
                 case SVM -> SVMUtil.classify();
             };
         } catch (Exception classificationsServiceExc) {
-            log.error(RED + "Error from ClassificationsService performing classification: {}" + RESET, type, classificationsServiceExc);
+            log.error("{}: Error handling classification: {}", classificationsServiceExc, type);
             return Flux.empty();
         } finally {
-            log.info(GREEN + "ClassificationsService classification completed: {}" + RESET, type);
+            log.info("{}: Classification operation completed:", type);
         }
-        assert flux != null;
         return flux;
     }
 }

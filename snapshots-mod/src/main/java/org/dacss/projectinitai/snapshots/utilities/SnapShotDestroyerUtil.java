@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.snapshots.utilities;
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.File;
@@ -15,7 +14,6 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotDestroyerUtil}</h1>
  * Utility class that deletes snapshots.
  */
-@Component
 public class SnapShotDestroyerUtil {
 
     public static Flux<Object> deleteSnapshot(String snapshotPath) {

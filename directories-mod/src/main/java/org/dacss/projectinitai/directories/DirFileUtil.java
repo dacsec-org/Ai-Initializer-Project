@@ -6,16 +6,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 /**
  * <h1>{@link DirFileUtil}</h1>
- * Utility class for creating and destroying directories and files.
- * This class provides methods to create and delete directories and files in a non-blocking manner using Reactor.
+ * Utility class for handling directory and file operations.
+ * This class implements the {@link DirectoriesIface} interface and provides methods
+ * for creating and deleting directories and files.
  */
-@Component
 public class DirFileUtil implements DirectoriesIface {
 
     private static final Logger log = LoggerFactory.getLogger(DirFileUtil.class);
@@ -27,6 +26,13 @@ public class DirFileUtil implements DirectoriesIface {
      */
     public DirFileUtil() {}
 
+    /**
+     * <h3>{@link #createDirectory(String)}</h3>
+     * Creates a directory at the specified path.
+     *
+     * @param path the path of the directory to be created
+     * @return a Flux stream representing the creation status
+     */
     public static Flux<Object> createDirectory(String path) {
         return Flux.create(sink -> {
             File dir = new File(path);
@@ -44,6 +50,14 @@ public class DirFileUtil implements DirectoriesIface {
         }).subscribeOn(Schedulers.boundedElastic());
     }
 
+    /**
+     * <h3>{@link #createFile(String, String)}</h3>
+     * Creates a file with the specified name in the given directory.
+     *
+     * @param dirPath the path of the directory
+     * @param fileName the name of the file to be created
+     * @return a Flux stream representing the creation status
+     */
     public static Flux<Object> createFile(String dirPath, String fileName) {
         return Flux.create(sink -> {
             File file = new File(dirPath, fileName);
@@ -68,6 +82,13 @@ public class DirFileUtil implements DirectoriesIface {
         }).subscribeOn(Schedulers.boundedElastic());
     }
 
+    /**
+     * <h3>{@link #deleteDirectory(String)}</h3>
+     * Deletes the directory at the specified path.
+     *
+     * @param path the path of the directory to be deleted
+     * @return a Flux stream representing the deletion status
+     */
     public static Flux<Object> deleteDirectory(String path) {
         return Flux.create(sink -> {
             File dir = new File(path);
@@ -81,6 +102,14 @@ public class DirFileUtil implements DirectoriesIface {
         }).subscribeOn(Schedulers.boundedElastic());
     }
 
+    /**
+     * <h3>{@link #deleteFile(String, String)}</h3>
+     * Deletes the file with the specified name in the given directory.
+     *
+     * @param dirPath the path of the directory
+     * @param fileName the name of the file to be deleted
+     * @return a Flux stream representing the deletion status
+     */
     public static Flux<Object> deleteFile(String dirPath, String fileName) {
         return Flux.create(sink -> {
             File file = new File(dirPath, fileName);
@@ -98,6 +127,12 @@ public class DirFileUtil implements DirectoriesIface {
         }).subscribeOn(Schedulers.boundedElastic());
     }
 
+    /**
+     * <h3>{@link #deleteRecursively(File)}</h3>
+     * Recursively deletes the specified file or directory.
+     *
+     * @param file the file or directory to be deleted
+     */
     private static void deleteRecursively(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
@@ -114,6 +149,15 @@ public class DirFileUtil implements DirectoriesIface {
         }
     }
 
+    /**
+     * <h3>{@link #processDirFile(DirectoryActions, String, String)}</h3>
+     * Processes a directory or file action based on the specified parameters.
+     *
+     * @param action the directory action to be performed
+     * @param path the path of the directory or file
+     * @param fileName the name of the file (can be null if the action is directory-related)
+     * @return a Flux stream representing the action status or result
+     */
     @Override
     public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) {
         return switch (action) {
@@ -124,6 +168,15 @@ public class DirFileUtil implements DirectoriesIface {
         };
     }
 
+    /**
+     * <h3>{@link #getTargetPath(String, String, String)}</h3>
+     * Constructs the target path for a file based on the root directory, LLM name, and file name.
+     *
+     * @param rootDir the root directory
+     * @param llmName the name of the LLM
+     * @param fileName the name of the file
+     * @return the constructed target path
+     */
     public Path getTargetPath(String rootDir, String llmName, String fileName) {
         String subDir;
         if (fileName.endsWith(".json") || fileName.endsWith(".txt")) {

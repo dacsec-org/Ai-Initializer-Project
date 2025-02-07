@@ -7,7 +7,6 @@ package org.dacss.projectinitai.advisers.handlers;
  *     This class is used to handle the adviser actions.
  * </p>
  */
-
 public class AdviserActionHandler {
 
     /**

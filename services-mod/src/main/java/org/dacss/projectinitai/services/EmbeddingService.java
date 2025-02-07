@@ -1,5 +1,4 @@
 package org.dacss.projectinitai.services;
-/**/
 
 import org.dacss.projectinitai.embedding.EmbeddingIface;
 import org.dacss.projectinitai.embedding.EmbeddingTypes;
@@ -7,7 +6,6 @@ import org.dacss.projectinitai.embedding.utillities.*;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,15 +17,11 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for embedding operations.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class EmbeddingService implements EmbeddingIface {
 
     private static final Logger log = LoggerFactory.getLogger(EmbeddingService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     @Override
     public Flux<Object> processEmbedding(EmbeddingTypes type) {
@@ -42,10 +36,10 @@ public class EmbeddingService implements EmbeddingIface {
                 case TRANSFORMER -> TransformerUtil.fetchTransformer();
             };
         } catch (Exception embeddingExc) {
-            log.error(RED + "Error handling operation: {}" + RESET, type, embeddingExc);
+            log.error("{}: Error handling operation: {}", embeddingExc, type);
             return Flux.empty();
         } finally {
-            log.info(GREEN + "Embedding operation completed: {}" + RESET, type);
+            log.info("{}: Embedding operation completed:", type);
         }
         return flux;
     }

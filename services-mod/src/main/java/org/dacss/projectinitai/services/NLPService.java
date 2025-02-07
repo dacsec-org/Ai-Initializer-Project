@@ -2,7 +2,6 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.nlp.NLPIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import static org.dacss.projectinitai.nlp.utillities.TextSummarizationUtil.summa
  * Backend hilla endpoint service for NLP operations.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class NLPService implements NLPIface {
@@ -33,10 +31,6 @@ public class NLPService implements NLPIface {
 
     }
 
-    /**
-     * <h2>{@link #processText()}</h2>
-     * Perform NLP on the data.
-     */
     @Override
     public void processText(String action, String data) {
         try {

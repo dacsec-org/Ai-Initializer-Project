@@ -2,7 +2,11 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.system.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link SystemSettingsService}</h1>
@@ -11,22 +15,42 @@ import org.springframework.stereotype.Service;
 @Service
 @BrowserCallable
 @AnonymousAllowed
-public class SystemSettingsService {
+public class SystemSettingsService implements SystemSettingsIface {
+
+    private static final Logger log = LoggerFactory.getLogger(SystemSettingsService.class);
 
     /**
-     * <h2>{@link #SystemSettingsService()}</h2>
-     * 0-arg constructor.
+     * <h3>{@link #SystemSettingsService()}</h3>
+     * Default 0-arg constructor.
      */
     public SystemSettingsService() {}
 
     /**
-     * <h2>{@link #manageSystemSettings(String, String)}</h2>
-     * Perform system settings management operations.
-     *
-     * @param setting The setting to manage.
-     * @param value   The value to set the setting to.
+     * <h3>{@link #processSettings(SystemSettingsOptions)}</h3>
+     * @param systemSettingsOptions {@link SystemSettingsOptions}
+     * @return Mono<Object>
      */
-    public void manageSystemSettings(String setting, String value) {
-
+    @Override
+    public Mono<Object> processSettings(SystemSettingsOptions systemSettingsOptions) {
+        Mono<Object> mono;
+        try {
+            mono = switch (systemSettingsOptions) {
+                case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
+                case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
+                case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
+                case STORAGE_CAP -> StorageCapSettings.getStorageCapSettings();
+                case LOGGING -> LoggingSettings.getLoggingSettings();
+                case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
+                case THEME -> ThemeSettings.getThemeSettings();
+                case BACKUP -> BackupSettings.getBackupSettings();
+                case RESTORE -> RestoreSettings.getRestoreSettings();
+            };
+        } catch (Exception systemSettingsServiceExc) {
+            log.error("{}: Error from SystemSettingsService processing settings:", systemSettingsOptions, systemSettingsServiceExc);
+            return Mono.empty();
+        } finally {
+            log.info("SystemSettingsService settings processed: {}", systemSettingsOptions);
+        }
+        return mono;
     }
 }

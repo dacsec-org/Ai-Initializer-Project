@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.messages;
-/**/
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 /**
@@ -10,7 +8,6 @@ import reactor.core.publisher.Flux;
  * used for positive reinforcement in the data base.
  * 'thumbsup' comes from the frontend clickable thumbs up icon.
  */
-@Component
 public class ThumbsUpUtil {
 
 

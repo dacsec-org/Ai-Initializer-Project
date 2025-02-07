@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.metrics.utilities;
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
@@ -13,7 +12,6 @@ import java.util.Collections;
  * <h1>{@link NetworkStatsUtil}</h1>
  * Utility class to fetch network statistics.
  */
-@Component
 public class NetworkStatsUtil {
 
     public NetworkStatsUtil() {

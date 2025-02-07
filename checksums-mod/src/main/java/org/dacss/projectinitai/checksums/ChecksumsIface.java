@@ -12,9 +12,6 @@ import org.slf4j.LoggerFactory;
 public interface ChecksumsIface {
 
     Logger log = LoggerFactory.getLogger(ChecksumsIface.class);
-    String RED = "\u001B[31m";
-    String GREEN = "\u001B[32m";
-    String RESET = "\u001B[0m";
 
     static Flux<Object> processChecksumAction(ChecksumActions action) {
         Flux<Object> result;
@@ -25,10 +22,10 @@ public interface ChecksumsIface {
                 case VERIFY_BYTE_ARRAY -> Flux.just("Verify byte array checksum");
             };
         } catch (Exception checksumExc) {
-            log.error(RED + "Error from ChecksumsIface performing action: {}" + RESET, action, checksumExc);
+            log.error("{}: ", "ChecksumsIface action failed" + checksumExc.getMessage());
             return Flux.error(checksumExc);
         } finally {
-            log.info(GREEN + "ChecksumsIface action completed: {}" + RESET, action);
+            log.info("{}: ", "ChecksumsIface action completed");
         }
         return result;
     }

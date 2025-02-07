@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.loaders;
-/**/
-import org.springframework.stereotype.Component;
+
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
 import uk.ac.manchester.tornado.api.exceptions.TornadoExecutionPlanException;
@@ -17,7 +16,6 @@ import java.nio.file.Paths;
  * We dynamically load the model so tornado chooses the best processor, rather than forcing it.
  * </p>
  */
-@Component
 public class LoadKernel {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LoadKernel.class);

@@ -1,15 +1,15 @@
 package org.dacss.projectinitai.models;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.BrowserCallable;
 import java.io.IOException;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link ModelIface}</h1>
  */
 @FunctionalInterface
 public interface ModelIface {
-    /**
-     * <h2>{@link #processModel()}</h2>
-     * Perform model operations.
-     */
-    void processModel(String action, String modelPath1, String modelPath2) throws IOException;
+
+    Flux<Object> processModel(ModelActions actions, String modelPath1, String modelPath2) throws IOException;
 }

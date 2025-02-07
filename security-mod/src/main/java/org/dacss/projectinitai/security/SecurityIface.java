@@ -13,16 +13,12 @@ import reactor.core.publisher.Flux;
  * Interface for handling security actions.
  * Provides methods to process secure actions and retrieve security-related information.
  */
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 @FunctionalInterface
 public interface SecurityIface {
 
     Logger log = LoggerFactory.getLogger(SecurityIface.class);
-    String RED = "\u001B[31m";
-    String GREEN = "\u001B[32m";
-    String RESET = "\u001B[0m";
 
     /**
      * <h3>{@link #processSecureAction(SecurityActions)}</h3>
@@ -46,10 +42,10 @@ public interface SecurityIface {
                 case PROJECT_SECURITY, CYBER_SECURITY -> null;
             };
         } catch (Exception securityServiceExc) {
-            log.error(RED + "Error from SecurityService performing action: {}" + RESET, action, securityServiceExc);
+            log.error("{}: {}", securityServiceExc.getClass().getSimpleName(), securityServiceExc.getMessage());
             return Flux.empty();
         } finally {
-            log.info(GREEN + "SecurityService action completed: {}" + RESET, action);
+            log.info("{}: Secure action completed", action);
         }
         assert result != null;
         return result;

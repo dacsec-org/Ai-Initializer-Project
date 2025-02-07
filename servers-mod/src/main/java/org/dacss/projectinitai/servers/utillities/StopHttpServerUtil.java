@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.servers.utillities;
-/**/
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,13 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link StopHttpServerUtil}</h1>
  * Utility class for stopping the HTTP server.
  */
-@Component
 public final class StopHttpServerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(StopHttpServerUtil.class);

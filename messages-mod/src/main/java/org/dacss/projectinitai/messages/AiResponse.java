@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.messages;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;
 
@@ -9,7 +7,6 @@ import reactor.core.publisher.Sinks;
  * <h1>{@link AiResponse}</h1>
  * AiResponse is a class that represents the AI response object.
  */
-@Component
 public class AiResponse {
 
     private static Sinks.Many<Object> aiResponseSink = Sinks.many().unicast().onBackpressureBuffer();
@@ -22,7 +19,6 @@ public class AiResponse {
      * @param from
      * @param aiResponseFlux
      */
-    @Autowired
     AiResponse(String from, Flux<Object> aiResponseFlux) {
         this.from = from;
         this.aiResponseFlux = aiResponseFlux;

@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.checksums;
 
-import org.springframework.stereotype.Component;
 import uk.ac.manchester.tornado.api.*;
 import uk.ac.manchester.tornado.api.annotations.Parallel;
 import uk.ac.manchester.tornado.api.enums.DataTransferMode;
@@ -18,7 +17,6 @@ import java.nio.ByteOrder;
  * FIPS PUB 180-4 Secure Hash Standard (SHS).
  * We use the raw algorithm for maximum performance.
  */
-@Component
 public class ChecksumGeneratorUtil {
 
     /**

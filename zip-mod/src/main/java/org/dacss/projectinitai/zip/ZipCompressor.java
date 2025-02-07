@@ -2,7 +2,6 @@ package org.dacss.projectinitai.zip;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
@@ -15,13 +14,9 @@ import java.util.zip.ZipOutputStream;
  * <h1>{@link ZipCompressor}</h1>
  * This class is responsible for compressing directories into zip files.
  */
-@Component
 public class ZipCompressor {
 
     private static final Logger log = LoggerFactory.getLogger(ZipCompressor.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     private static File sourceDir;
     private static File zipFile;
@@ -49,12 +44,12 @@ public class ZipCompressor {
                  ZipOutputStream zos = new ZipOutputStream(fos)) {
                 addFilesToZip(zos, sourceDir, "");
                 String successMessage = "Zip file created successfully";
-                log.info("{}{}{}", GREEN, successMessage, RESET);
+                log.info("{}: {}", successMessage, zipFile.getAbsolutePath());
                 sink.next(successMessage);
                 sink.complete();
             } catch (IOException e) {
                 String errorMessage = "Error creating zip file: " + e.getMessage();
-                log.error("{}{}{}", RED, errorMessage, RESET, e);
+                log.error("{}: {}", errorMessage, zipFile.getAbsolutePath());
                 sink.error(e);
             }
         }).subscribeOn(Schedulers.boundedElastic());

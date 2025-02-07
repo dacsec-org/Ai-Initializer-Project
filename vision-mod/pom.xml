@@ -10,5 +10,11 @@
     </parent>
 
     <artifactId>vision-mod</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>hilla-endpoint</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

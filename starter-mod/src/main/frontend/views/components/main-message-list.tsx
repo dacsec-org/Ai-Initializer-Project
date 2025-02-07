@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MessageList } from '@vaadin/react-components/MessageList.js';
-import ResponseArea from './response-area';
+import ResponseArea from '../chat/response-area';
+// @ts-ignore
 import { MessagesIface } from 'Frontend/generated/endpoints';
 
 interface MessageSet {

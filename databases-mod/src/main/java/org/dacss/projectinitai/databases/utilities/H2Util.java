@@ -3,8 +3,7 @@ package org.dacss.projectinitai.databases.utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dacss.projectinitai.databases.LLMDetails;
 import org.dacss.projectinitai.databases.LLMDetailsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import reactor.core.publisher.Flux;
 
 import java.io.File;
@@ -15,7 +14,6 @@ import java.util.List;
  * <h1>{@link H2Util}</h1>
  * Utility component class to handle H2 database operations.
  */
-@Component
 public class H2Util {
 
     private LLMDetailsRepository llmDetailsRepository;

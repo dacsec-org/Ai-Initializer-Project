@@ -10,6 +10,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="classifications-mod" />
         <module name="reductions-mod" />
+        <module name="system-settings-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
         <module name="servers-mod" />
@@ -81,6 +82,7 @@
       <module name="snapshots-mod" options="-parameters" />
       <module name="speech-mod" options="-parameters" />
       <module name="starter-mod" options="-parameters" />
+      <module name="system-settings-mod" options="-parameters" />
       <module name="tar-mod" options="-parameters" />
       <module name="vision-mod" options="-parameters" />
       <module name="zip-mod" options="-parameters" />

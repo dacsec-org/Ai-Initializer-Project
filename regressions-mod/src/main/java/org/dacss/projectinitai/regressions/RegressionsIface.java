@@ -1,8 +1,13 @@
 package org.dacss.projectinitai.regressions;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.BrowserCallable;
+
 /**
  * <h1>{@link RegressionsIface}</h1>
  */
+@BrowserCallable
+@AnonymousAllowed
 @FunctionalInterface
 public interface RegressionsIface {
     /**

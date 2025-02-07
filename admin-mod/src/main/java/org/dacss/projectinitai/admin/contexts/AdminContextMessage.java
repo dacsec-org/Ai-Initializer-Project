@@ -36,16 +36,6 @@ public record AdminContextMessage(String detailedContextMessage) {
                         """);
     }
 
-
-//                                    "DirectoryManager": "Managing directories.",
-//                                "LLMDownloader": "Downloading LLM models.",
-    //                                "ChecksumHandler": "Handling checksums.",
-//                                    "RAGEnhancer": "Enhancing LLMs with RAG functionality.",
-//                                "SecurityManager": "Enforcing security best practices.",
-//                                "BackendServerManager": "Managing backend servers.",
-//                                "SnapshotManager": "Creating and managing snapshots.",
-
-
     private static final StringBuilder context = new StringBuilder();
     private static String lastUserRequest;
     private static String lastAIResponse;

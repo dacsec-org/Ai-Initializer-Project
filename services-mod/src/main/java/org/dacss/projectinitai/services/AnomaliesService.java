@@ -18,15 +18,11 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for detecting anomalies.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class AnomaliesService implements AnomaliesIface {
 
     private static final Logger log = LoggerFactory.getLogger(AnomaliesService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     public AnomaliesService() {
     }
@@ -42,10 +38,10 @@ public class AnomaliesService implements AnomaliesIface {
                 case ANOMALY_REPORTING -> ReportUtil.reportAnomaly();
             };
         } catch (Exception anomaliesServiceExc) {
-            log.error(RED + "Error from AnomaliesService detecting anomaly: {}" + RESET, type, anomaliesServiceExc);
+            log.error("{}: Error from AnomaliesService performing anomaly detection:", type, anomaliesServiceExc);
             return Flux.empty();
         } finally {
-            log.info(GREEN + "AnomaliesService anomaly detection completed: {}" + RESET, type);
+            log.info("{}: AnomaliesService anomaly detection completed:", type);
         }
         return flux;
     }

@@ -2,7 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
+
 import org.dacss.projectinitai.advisers.AdviseAction;
 import org.dacss.projectinitai.advisers.AdvisersIface;
 import org.dacss.projectinitai.advisers.utilities.*;
@@ -16,15 +16,11 @@ import reactor.core.publisher.Flux;
  * Service class for the Advisers module.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class AdvisersService implements AdvisersIface {
 
     private static final Logger log = LoggerFactory.getLogger(AdvisersService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     public AdvisersService() {
     }
@@ -41,10 +37,10 @@ public class AdvisersService implements AdvisersIface {
                 case VALIDATE_OUTPUT -> ValidateOutUtil.validateOutput();
             };
         } catch (Exception advisersServiceExc) {
-            log.error(RED + "Error from AdvisersService performing action: {}" + RESET, action, advisersServiceExc);
+            log.error("{}: Error from AdvisersService performing action: {}", advisersServiceExc, action);
             return Flux.empty();
         } finally {
-            log.info(GREEN + "AdvisersService action completed: {}" + RESET, action);
+            log.info("{}: AdvisersService action completed:", action);
         }
         return flux;
     }

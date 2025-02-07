@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.snapshots.utilities;
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotListerUtil}</h1>
  * Utility class that lists snapshots and directories.
  */
-@Component
 public class SnapShotListerUtil {
 
     public static Flux<Object> listSnapshots(String directory) {

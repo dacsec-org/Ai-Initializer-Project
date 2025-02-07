@@ -2,7 +2,6 @@ package org.dacss.projectinitai.zip;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
@@ -14,7 +13,6 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-@Component
 public class ZipExtractor implements ZipIface {
 
     private static final Logger log = LoggerFactory.getLogger(ZipExtractor.class);

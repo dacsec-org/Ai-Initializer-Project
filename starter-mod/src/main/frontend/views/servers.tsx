@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog, Notification } from '@vaadin/react-components';
+// @ts-ignore
 import { ServersService } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {

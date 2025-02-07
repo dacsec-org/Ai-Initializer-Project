@@ -2,7 +2,6 @@ package org.dacss.projectinitai.admin.handlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link ContextsHandler}</h1>

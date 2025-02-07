@@ -2,7 +2,6 @@ package org.dacss.projectinitai.advisers.utilities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link AdviserUtil}</h1>
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Component;
  *     This utility class provides common methods for adviser tasks.
  * </p>
  */
-@Component
 public class AdviserUtil {
     //todo: 86 this class after implementing the new utility class
 

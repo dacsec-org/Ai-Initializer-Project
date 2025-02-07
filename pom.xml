@@ -7,11 +7,49 @@
     <name>ai-initializer-project</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <modules>
+        <module>admin-mod</module>
+        <module>advisers-mod</module>
+        <module>anomalies-mod</module>
+        <module>checksums-mod</module>
+        <module>classifications-mod</module>
+        <module>clustering-mod</module>
+        <module>databases-mod</module>
+        <module>directories-mod</module>
+        <module>downloaders-mod</module>
+        <module>embedding-mod</module>
+        <module>generative-mod</module>
+        <module>krr-mod</module>
+        <module>loaders-mod</module>
+        <module>messages-mod</module>
+        <module>metrics-mod</module>
+        <module>models-mod</module>
+        <module>nlp-mod</module>
+        <module>optimizations-mod</module>
+        <module>predictive-mod</module>
+        <module>recommendations-mod</module>
+        <module>recognitions-mod</module>
+        <module>reductions-mod</module>
+        <module>regressions-mod</module>
+        <module>reinforcement-mod</module>
+        <module>robotics-mod</module>
+        <module>security-mod</module>
+        <module>sequence-mod</module>
+        <module>servers-mod</module>
+        <module>snapshots-mod</module>
+        <module>speech-mod</module>
+        <module>starter-mod</module>
+        <module>tar-mod</module>
+        <module>vision-mod</module>
+        <module>services-mod</module>
+        <module>zip-mod</module>
+        <module>system-settings-mod</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.2</version>
         <relativePath/>
     </parent>
 
@@ -21,11 +59,12 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <apring-boot.version>3.4.0</apring-boot.version>
+        <apring.boot.version>3.4.2</apring.boot.version>
         <vaadin.version>24.6.4</vaadin.version>
         <spring-ai.version>1.0.0-M5</spring-ai.version>
         <tornado.version>1.0.9-dev</tornado.version>
         <testng.version>7.10.2</testng.version>
+        <slf4j.version>2.0.16</slf4j.version>
     </properties>
 
     <repositories>
@@ -70,13 +109,13 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.4.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-dependencies</artifactId>-->
+<!--                <version>3.4.0</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-bom</artifactId>
@@ -103,6 +142,12 @@
                 <version>${testng.version}</version>
                 <scope>test</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -112,43 +157,5 @@
             <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>admin-mod</module>
-        <module>advisers-mod</module>
-        <module>anomalies-mod</module>
-        <module>checksums-mod</module>
-        <module>classifications-mod</module>
-        <module>clustering-mod</module>
-        <module>databases-mod</module>
-        <module>directories-mod</module>
-        <module>downloaders-mod</module>
-        <module>embedding-mod</module>
-        <module>generative-mod</module>
-        <module>krr-mod</module>
-        <module>loaders-mod</module>
-        <module>messages-mod</module>
-        <module>metrics-mod</module>
-        <module>models-mod</module>
-        <module>nlp-mod</module>
-        <module>optimizations-mod</module>
-        <module>predictive-mod</module>
-        <module>recommendations-mod</module>
-        <module>recognitions-mod</module>
-        <module>reductions-mod</module>
-        <module>regressions-mod</module>
-        <module>reinforcement-mod</module>
-        <module>robotics-mod</module>
-        <module>security-mod</module>
-        <module>sequence-mod</module>
-        <module>servers-mod</module>
-        <module>snapshots-mod</module>
-        <module>speech-mod</module>
-        <module>starter-mod</module>
-        <module>tar-mod</module>
-        <module>vision-mod</module>
-        <module>services-mod</module>
-        <module>zip-mod</module>
-    </modules>
 
 </project>

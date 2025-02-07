@@ -2,7 +2,6 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-//import com.vaadin.hilla.Endpoint;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,7 +30,6 @@ import org.springframework.stereotype.Service;
  * authentication.
  */
 @Service
-//@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class HelloWorldService {

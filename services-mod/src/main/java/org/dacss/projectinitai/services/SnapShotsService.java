@@ -20,9 +20,6 @@ import reactor.core.publisher.Flux;
 public class SnapShotsService implements SnapShotsIface {
 
     private static final Logger log = LoggerFactory.getLogger(SnapShotsService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
 
     private static final String source = "/home/$USER/.ai-initializer-project/models/.snapshots/";
     private static final String destination = "/home/$USER/.ai-initializer-project/models/.snapshots/";
@@ -42,10 +39,10 @@ public class SnapShotsService implements SnapShotsIface {
                 case EXECUTE_COMMAND -> SnapShotCommandRunnerUtil.executeCommand(source, destination);
             };
         } catch (Exception snapshotsServiceExc) {
-            log.error(RED + "Error from SnapShotsService performing action: {}" + RESET, action, snapshotsServiceExc);
+            log.error("{}: {}", snapshotsServiceExc.getClass().getSimpleName(), snapshotsServiceExc.getMessage());
             return Flux.empty();
         } finally {
-            log.info(GREEN + "SnapShotsService action completed: {}" + RESET, action);
+            log.info("{}: {}", action, "Snapshot operation completed.");
         }
         assert flux != null;
         return flux;

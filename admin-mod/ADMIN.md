@@ -104,8 +104,8 @@ The admin management system is designed to provide an easy-to-use interface for 
   - `DirFileService(directories-mod)`
   - `DownloaderService(downloaders-mod)`
   - `ModelLoadUnloadService(loaders-mod)`
-  - `MetricsService(metrics-mod)`
-  - `ModelsService(models-mod)`
+  - `Metrics(metrics-mod)`
+  - `Models(models-mod)`
   - `ProcessorsService(processors-mod)`
   - `RAGService(rags-mod)`
   - `SecurityService(security-mod)`
@@ -139,8 +139,8 @@ The admin management system is designed to provide an easy-to-use interface for 
   - `DownloaderService`
   - `ContextsService`
   - `ModelLoadUnloadService`
-  - `MetricsService`
-  - `ModelsService`
+  - `Metrics`
+  - `Models`
   - `ProcessorsService`
   - `RAGService`
   - `SecurityService`

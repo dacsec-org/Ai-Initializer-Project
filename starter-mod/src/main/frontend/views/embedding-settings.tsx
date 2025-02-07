@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Dialog, Details, VerticalLayout, Notification } from '@vaadin/react-components';
+// @ts-ignore
 import { EmbeddingService } from 'Frontend/generated/endpoints';
 import { useNavigate } from 'react-router';
 

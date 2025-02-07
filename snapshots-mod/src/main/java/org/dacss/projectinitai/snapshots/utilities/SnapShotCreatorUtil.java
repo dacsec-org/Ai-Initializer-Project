@@ -2,7 +2,6 @@ package org.dacss.projectinitai.snapshots.utilities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.stream.Stream;
  * <h1>{@link SnapShotCreatorUtil}</h1>
  * Utility class to create a snapshot.
  */
-@Component
 public class SnapShotCreatorUtil {
 
     private static final Logger log = LoggerFactory.getLogger(SnapShotCreatorUtil.class);

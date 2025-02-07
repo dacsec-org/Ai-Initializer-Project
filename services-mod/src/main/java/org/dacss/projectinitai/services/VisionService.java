@@ -2,7 +2,6 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
 import org.dacss.projectinitai.vision.VisionIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
  * Backend hilla endpoint service for computer vision operations.
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class VisionService implements VisionIface {

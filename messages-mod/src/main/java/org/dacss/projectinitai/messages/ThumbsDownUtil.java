@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.messages;
-/**/
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 /**
@@ -10,7 +8,6 @@ import reactor.core.publisher.Flux;
  * used for negative reinforcement in the data base.
  * 'thumbsdown' comes from the frontend clickable thumbs down icon.
  */
-@Component
 public class ThumbsDownUtil {
 
     public static Flux<Object> processThumbsDown(Flux<Object> messageSets) {

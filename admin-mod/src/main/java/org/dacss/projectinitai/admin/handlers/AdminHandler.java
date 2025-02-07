@@ -25,6 +25,7 @@ import org.dacss.projectinitai.messages.MessageAction;
 import org.dacss.projectinitai.messages.MessagesIface;
 import org.dacss.projectinitai.metrics.MetricsIface;
 import org.dacss.projectinitai.metrics.MetricsTypes;
+import org.dacss.projectinitai.models.ModelActions;
 import org.dacss.projectinitai.models.ModelIface;
 import org.dacss.projectinitai.nlp.NLPIface;
 import org.dacss.projectinitai.optimizations.OptimizationsIface;
@@ -35,10 +36,9 @@ import org.dacss.projectinitai.sequence.SequenceIface;
 import org.dacss.projectinitai.servers.ServersIface;
 import org.dacss.projectinitai.snapshots.SnapShotsActions;
 import org.dacss.projectinitai.snapshots.SnapShotsIface;
-import org.dacss.projectinitai.tar.TarActions;
-import org.dacss.projectinitai.tar.TarIface;
+//import org.dacss.projectinitai.tar.TarActions;
+//import org.dacss.projectinitai.tar.TarIface;
 import org.dacss.projectinitai.vision.VisionIface;
-
 import org.dacss.projectinitai.speech.SpeechIface;
 import org.dacss.projectinitai.predictive.PredictiveIface;
 import org.dacss.projectinitai.recommendations.RecommendationsIface;
@@ -46,13 +46,8 @@ import org.dacss.projectinitai.recognitions.RecognitionsIface;
 import org.dacss.projectinitai.regressions.RegressionsIface;
 import org.dacss.projectinitai.reinforcement.ReinforcementIface;
 import org.dacss.projectinitai.robotics.RoboticsIface;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import reactor.core.publisher.Flux;
-
-import java.io.File;
-import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link AdminHandler}</h1>
@@ -63,7 +58,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
         OptimizationsIface, PredictiveIface, RecognitionsIface,
         RecommendationsIface, ReductionsIface, RegressionsIface,
         ReinforcementIface, RoboticsIface, SecurityIface, SequenceIface,
-        ServersIface, SnapShotsIface, SpeechIface, TarIface, VisionIface {
+        ServersIface, SnapShotsIface, SpeechIface, /*TarIface,*/ VisionIface {
 
 
     @Override
@@ -81,13 +76,13 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) { return null; }
     @Override
-    public Flux<Object> download(String llmName) { return null; }
+    public Flux<Object> download(DownloadAction action, String llmName) { return null; }
     @Override
     public Flux<Object> processEmbedding(EmbeddingTypes type) { return null; }
     @Override
     public void processKRR() { }
     @Override
-    public void processModel(String action, String modelPath1, String modelPath2) { }
+    public Flux<Object> processModel(ModelActions actions, String modelPath1, String modelPath2) { return null; }
     @Override
     public Flux<Object> processMessages(MessageAction action) { return null; }
     @Override
@@ -104,8 +99,8 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     public Flux<Object> manageSnapshots(SnapShotsActions action) { return null; }
     @Override
     public void processInput() {}
-    @Override
-    public Flux<Object> processTar(TarActions action) { return null; }
+//    @Override
+//    public Flux<Object> processTar(TarActions action) { return null; }
     @Override
     public void reduceDimensions() {}
     @Override

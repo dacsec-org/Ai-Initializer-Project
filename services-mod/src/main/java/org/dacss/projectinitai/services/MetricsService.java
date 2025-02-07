@@ -2,7 +2,7 @@ package org.dacss.projectinitai.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
+
 import org.dacss.projectinitai.metrics.MetricsIface;
 import org.dacss.projectinitai.metrics.MetricsTypes;
 import org.dacss.projectinitai.metrics.utilities.*;
@@ -15,51 +15,32 @@ import reactor.core.publisher.Flux;
  * <h1>{@link MetricsService}</h1>
  */
 @Service
-@Endpoint
 @BrowserCallable
 @AnonymousAllowed
 public class MetricsService implements MetricsIface {
 
     private static final Logger log = LoggerFactory.getLogger(MetricsService.class);
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String RESET = "\u001B[0m";
+
+    public MetricsService() {}
 
     @Override
     public Flux<Object> measure(MetricsTypes type) {
         Flux<Object> flux;
         try {
             flux = switch (type) {
+                case DISK -> DiskStatsUtil.fetchDiskStats();
+                case MEMORY -> MemoryStatsUtil.fetchMemoryStats();
                 case GPU -> GpuStatsUtil.fetchGpuStats();
-                case ACCURACY -> null;
-                case PRECISION -> null;
-                case RECALL -> null;
-                case F1_SCORE -> null;
-                case ROC_AUC -> null;
-                case LOG_LOSS -> null;
-                case MEAN_SQUARED_ERROR -> null;
-                case MEAN_ABSOLUTE_ERROR -> null;
-                case R2_SCORE -> null;
-                case CONFUSION_MATRIX -> null;
-                case PRECISION_AT_K -> null;
-                case RECALL_AT_K -> null;
-                case MEAN_RECIPROCAL_RANK -> null;
-                case AVERAGE_PRECISION -> null;
-                case HITS_AT_K -> null;
-                case BLEU_SCORE -> null;
-                case ROUGE_SCORE -> null;
-                case PERPLEXITY -> null;
-                case CROSS_ENTROPY -> null;
-                case TOKEN_ACCURACY -> null;
+                case NETWORK -> NetworkStatsUtil.fetchNetworkStats();
+                case SERVER -> ServerStatsUtil.fetchServerStats();
                 case CPU -> CpuStatsUtil.fetchCpuStats();
             };
         } catch (Exception metricsExc) {
-            log.error(RED + "Error handling operation: {}" + RESET, type, metricsExc);
+            log.error("{}: {}", type, metricsExc.getMessage());
             return Flux.empty();
         } finally {
-            log.info(GREEN + "Metrics operation completed: {}" + RESET, type);
+            log.info("{}: Metrics fetched successfully", type);
         }
-        assert flux != null;
         return flux;
     }
 }

@@ -1,6 +1,5 @@
 package org.dacss.projectinitai.security;
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -17,7 +16,6 @@ import java.util.Properties;
  *     For now, we read an env file to get the token from the '.env' file. We will pass this off to PAM later.
  * </p>
  */
-@Component
 public class SecurityApiTokenUtil {
 
     private static final String API_TOKEN_KEY = "API_TOKEN";

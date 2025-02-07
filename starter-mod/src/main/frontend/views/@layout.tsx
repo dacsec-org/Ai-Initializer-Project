@@ -6,17 +6,35 @@ import { Outlet, useLocation, useNavigate } from 'react-router';
 import MainMenubar from './components/main-menubar';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 
-export const config: ViewConfig = {
-  menu: { order: 1, icon: 'line-awesome/svg/home-solid.svg' , title: '' } };
+// export const config: ViewConfig = { menu: { order: 1, icon: 'line-awesome/svg/home-solid.svg' , title: '' } };
+// const documentTitleSignal = signal('');
+// effect(() => {
+//   document.title = documentTitleSignal.value;
+// });
+// // Publish for Vaadin to use
+// (window as any).Vaadin.documentTitleSignal = documentTitleSignal;
 
-const documentTitleSignal = signal('');
+const initializeConfigAndTitleSignal = () => {
+  // Configuration for the view
+  const config: ViewConfig = { menu: { order: 1, icon: 'line-awesome/svg/home-solid.svg', title: '' } };
 
-effect(() => {
-  document.title = documentTitleSignal.value;
-});
+  // Signal for document title
+  const documentTitleSignal = signal('');
+  effect(() => {
+    document.title = documentTitleSignal.value;
+  });
 
-// Publish for Vaadin to use
-(window as any).Vaadin.documentTitleSignal = documentTitleSignal;
+  // Publish for Vaadin to use
+  (window as any).Vaadin.documentTitleSignal = documentTitleSignal;
+
+  {/**
+   * Return the configuration and the signal for document title to the router(routes.tsx) to use.
+   */}
+  return { config, documentTitleSignal };
+};
+
+// Call the function to initialize
+export const { config, documentTitleSignal } = initializeConfigAndTitleSignal();
 
 const MainLayout: React.FC = () => {
   const currentTitle = useViewConfig()?.title;

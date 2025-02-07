@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.servers.utillities;
-/**/
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,14 +10,12 @@ import java.net.UnixDomainSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link StartUnixSocketServerUtil}</h1>
  * Server that listens on a Unix Domain Socket.
  * This is the default local server for the application.
  */
-@Component
 public final class StartUnixSocketServerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(StartUnixSocketServerUtil.class);

@@ -1,5 +1,5 @@
 package org.dacss.projectinitai.servers.utillities;
-/**/
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,13 +11,11 @@ import java.net.URL;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import org.springframework.stereotype.Component;
 
 /**
  * <h1>{@link PingServerUtil}</h1>
  * Utility class for pinging the local servers to check if they are up.
  */
-@Component
 public final class PingServerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(PingServerUtil.class);

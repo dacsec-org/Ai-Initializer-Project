@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.messages;
-/**/
 
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 /**
@@ -9,7 +7,6 @@ import reactor.core.publisher.Flux;
  * Utility class to retry a a users request via the retry clickable icon.
  * this will prompt the Admin to reprocess the user request, as well as the AI to reprocess the user request.
  */
-@Component
 public class RetryMessageUtil {
 
     public static Flux<Object> retryMessageSet(Flux<String> just) {
