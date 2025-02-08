@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
  * </p>
  */
 @FunctionalInterface
-public interface MessagesIface<T> {
+public interface MessagesIface {
 
     Flux<Object> processMessages(MessageAction action);
 }

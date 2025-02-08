@@ -34,3 +34,5 @@ This file defines the RetryMessageUtil class, which is a utility class to retry 
 
 ### src/main/java/org/dacss/projectinitai/messages/utilities/AiResponseUtil.java
 This file defines the AiResponseUtil class, which is a utility class to handle AI response messages from an LLM reactively.
+
+![Messages Sequence Diagram](pumles/messages.png)

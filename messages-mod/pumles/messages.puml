@@ -1,0 +1,24 @@
+@startuml
+
+actor User
+participant "MainMessageInput" as MMI
+participant "ChatClient" as CC
+participant "MessagesService" as MS
+participant "UserRequest" as UR
+participant "UnixSocketServer" as USS
+participant "AiResponse" as AR
+participant "ResponseArea" as RA
+
+User -> MMI: Submit message
+MMI -> CC: getMessages(MessageAction.REQUEST)
+CC -> MS: processMessages(MessageAction.REQUEST)
+MS -> UR: sendUserRequestToLLM(Flux.just(new Object()))
+UR -> USS: handleUserRequest(Flux.just(new Object()))
+USS -> UR: sendMessageToLLM(Flux.just(message))
+USS -> AR: receiveAiResponseFromLLM(Flux.just(response))
+AR -> MS: receiveAiResponseFromLLM(Flux.just(new Object()))
+MS -> CC: return Flux<Object>
+CC -> RA: getMessages(MessageAction.RESPONSE)
+RA -> User: Display AI response
+
+@enduml

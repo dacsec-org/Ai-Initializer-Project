@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextArea } from '@vaadin/react-components/TextArea.js';
 import { ChatClient } from './ChatClient';
 import { MessageAction } from '../../enums/MessageAction';
+import { Subscription } from 'rxjs';
 
 interface ResponseAreaProps {
   request: string;
@@ -11,20 +12,23 @@ interface ResponseAreaProps {
 
 const ResponseArea: React.FC<ResponseAreaProps> = ({ request, onResponseReceived, onLoading }) => {
   const [response, setResponse] = useState('');
+  let subscription: Subscription;
 
   useEffect(() => {
     if (request) {
       onLoading(true);
-
-      ChatClient.getMessages(MessageAction.RESPONSE)
-        .then((aiResponse) => {
+      subscription = ChatClient.getMessages(MessageAction.RESPONSE).subscribe({
+        next: (aiResponse) => {
           setResponse(aiResponse);
           onResponseReceived(aiResponse);
-        })
-        .catch(() => {
           onLoading(false);
-        });
+        },
+        error: () => {
+          onLoading(false);
+        }
+      });
     }
+    return () => subscription?.unsubscribe();
   }, [request]);
 
   return (

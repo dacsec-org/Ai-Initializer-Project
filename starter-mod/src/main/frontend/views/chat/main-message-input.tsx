@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MessageInput, type MessageInputSubmitEvent } from '@vaadin/react-components/MessageInput.js';
 import { ChatClient } from './ChatClient';
 import { MessageAction } from '../../enums/MessageAction';
+import { lastValueFrom } from 'rxjs';
 
 interface MainMessageInputProps {
   onMessageSent: (userRequest: string) => void;
@@ -20,7 +21,7 @@ const MainMessageInput: React.FC<MainMessageInputProps> = ({ onMessageSent, onEr
     onError('');
 
     try {
-      await ChatClient.getMessages(MessageAction.REQUEST);
+      await lastValueFrom(ChatClient.getMessages(MessageAction.REQUEST));
       onMessageSent(request);
     } catch {
       onError('Failed to send message');

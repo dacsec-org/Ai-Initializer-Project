@@ -20,4 +20,13 @@ public class AiResponse {
     public static Flux<Object> receiveAiResponseFromLLM(Flux<Object> message) {
         return message.doOnNext(aiResponseSink::tryEmitNext).thenMany(aiResponseSink.asFlux());
     }
+
+    /**
+     * <h3>{@link #getResponseStream()}</h3>
+     *
+     * @return Flux<Object>
+     */
+    public static Flux<Object> getResponseStream() {
+        return aiResponseSink.asFlux();
+    }
 }
