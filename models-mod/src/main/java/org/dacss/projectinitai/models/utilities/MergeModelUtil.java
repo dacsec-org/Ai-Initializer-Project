@@ -20,6 +20,7 @@ public class MergeModelUtil {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static Flux<Object> mergeModels(String modelPath1, String modelPath2) throws IOException {
+        //todo: add validation for model paths
         JsonNode model1 = objectMapper.readTree(new File(modelPath1));
         JsonNode model2 = objectMapper.readTree(new File(modelPath2));
         JsonNode mergedModel = mergeJsonNodes(model1, model2);

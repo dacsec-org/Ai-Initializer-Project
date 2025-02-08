@@ -10,6 +10,7 @@ import java.io.File;
 public class DestroyModelUtil {
 
     public static Flux<Object> destroyModel(String modelPath) {
+        //todo: add check for modelPath to be a valid path
         File modelFile = new File(modelPath);
         if (modelFile.exists()) {
             boolean deleted = modelFile.delete();

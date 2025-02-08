@@ -7,6 +7,7 @@ import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link ModelIface}</h1>
+ * Functional interface for processing models.
  */
 @FunctionalInterface
 public interface ModelIface {
