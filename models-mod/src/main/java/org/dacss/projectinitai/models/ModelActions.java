@@ -7,6 +7,7 @@ public enum ModelActions {
     CLONE,
     CREATE,
     DESTROY,
+    LIST,
     MERGE,
     SETTINGS,
     TRAIN

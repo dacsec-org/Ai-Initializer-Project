@@ -5,18 +5,22 @@ import { ChatClient } from './ChatClient';
 import { MessageAction } from '../../enums/MessageAction';
 const ResponseArea = ({ request, onResponseReceived, onLoading }) => {
     const [response, setResponse] = useState('');
+    let subscription;
     useEffect(() => {
         if (request) {
             onLoading(true);
-            ChatClient.getMessages(MessageAction.RESPONSE)
-                .then((aiResponse) => {
-                setResponse(aiResponse);
-                onResponseReceived(aiResponse);
-            })
-                .catch(() => {
-                onLoading(false);
+            subscription = ChatClient.getMessages(MessageAction.RESPONSE).subscribe({
+                next: (aiResponse) => {
+                    setResponse(aiResponse);
+                    onResponseReceived(aiResponse);
+                    onLoading(false);
+                },
+                error: () => {
+                    onLoading(false);
+                }
             });
         }
+        return () => subscription?.unsubscribe();
     }, [request]);
     return (_jsx(TextArea, { label: "AI Response", value: response, readonly: true, style: { width: '100%' } }));
 };

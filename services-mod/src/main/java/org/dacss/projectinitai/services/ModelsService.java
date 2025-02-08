@@ -1,12 +1,11 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.models.ModelActions;
 import org.dacss.projectinitai.models.ModelIface;
-import org.dacss.projectinitai.models.utilities.CloneModelUtil;
-import org.dacss.projectinitai.models.utilities.CreateNewModelUtil;
-import org.dacss.projectinitai.models.utilities.DestroyModelUtil;
+import org.dacss.projectinitai.models.utilities.*;
+
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.BrowserCallable;
 import org.dacss.projectinitai.models.utilities.MergeModelUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +36,16 @@ public class ModelsService implements ModelIface {
                 case CREATE -> CreateNewModelUtil.createNewModel();
                 case CLONE -> CloneModelUtil.cloneModel(modelPath1);
                 case DESTROY -> DestroyModelUtil.destroyModel(modelPath1);
+                case LIST -> ListModelsUtil.listModels();
                 case MERGE -> MergeModelUtil.mergeModels(modelPath1, modelPath2);
                 case SETTINGS -> null;
                 case TRAIN -> null;
             };
         } catch (IOException modelsServiceExc) {
-            log.error("Error processing model", modelsServiceExc);
+            log.error("{}: Error processing model: {}", action,  modelsServiceExc.getMessage());
             throw modelsServiceExc;
         } finally {
-            log.info("{}: {}", action, MessageFormat.format("Model {0} {1}", modelPath1, modelPath2));
+            log.info("{}: {} {}", action, modelPath1, modelPath2);
         }
         assert flux != null;
         return flux;

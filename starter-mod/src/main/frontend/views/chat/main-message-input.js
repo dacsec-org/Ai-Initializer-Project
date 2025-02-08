@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { MessageInput } from '@vaadin/react-components/MessageInput.js';
 import { ChatClient } from './ChatClient';
 import { MessageAction } from '../../enums/MessageAction';
+import { lastValueFrom } from 'rxjs';
 const MainMessageInput = ({ onMessageSent, onError, onLoading }) => {
     const [userRequest, setUserRequest] = useState('');
     const handleSubmit = async (event) => {
@@ -12,7 +13,7 @@ const MainMessageInput = ({ onMessageSent, onError, onLoading }) => {
         onLoading(true);
         onError('');
         try {
-            await ChatClient.getMessages(MessageAction.REQUEST);
+            await lastValueFrom(ChatClient.getMessages(MessageAction.REQUEST));
             onMessageSent(request);
         }
         catch {

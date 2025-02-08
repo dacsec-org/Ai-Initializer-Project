@@ -1,10 +1,10 @@
+import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
 import client_1 from '../connect-client.default';
-/**
- * <h1>{@link ChatClient}</h1>
- */
 export class ChatClient {
-    static async getMessages(action, init) {
-        return client_1.call('org.dacss.projectinitai.services.ChatService', 'processMessages', { action }, init);
+    static getMessages(action) {
+        return from(client_1.call('org.dacss.projectinitai.services.ChatService', 'processMessages', { action }))
+            .pipe(map(response => response));
     }
 }
 //# sourceMappingURL=ChatClient.js.map
