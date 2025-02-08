@@ -3,10 +3,10 @@ package org.dacss.projectinitai.messages;
 import reactor.core.publisher.Flux;
 
 /**
- * <h1>{@link TrashMessageSetUtil}</h1>
- * Utility class to destroy a message set(1 request + 1 response) from the  database.
+ * <h1>{@link TrashMessageSet}</h1>
+ * class to destroy a message set(1 request + 1 response) from the  database.
  */
-public class TrashMessageSetUtil {
+public class TrashMessageSet {
 
 
     public static Flux<Object> destroyMessageSet(Flux<Object> messageSets) {

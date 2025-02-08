@@ -10,7 +10,8 @@ import org.dacss.projectinitai.classifications.ClassificationsIface;
 import org.dacss.projectinitai.classifications.ClassificationsTypes;
 import org.dacss.projectinitai.clustering.ClusteringIface;
 import org.dacss.projectinitai.databases.DataBaseIface;
-import org.dacss.projectinitai.databases.DataBaseTypes;
+import org.dacss.projectinitai.databases.DBTypes;
+import org.dacss.projectinitai.databases.DBActions;
 import org.dacss.projectinitai.directories.DirectoriesIface;
 import org.dacss.projectinitai.directories.DirectoryActions;
 import org.dacss.projectinitai.downloaders.DownloadAction;
@@ -33,6 +34,8 @@ import org.dacss.projectinitai.reductions.ReductionsIface;
 import org.dacss.projectinitai.security.SecurityActions;
 import org.dacss.projectinitai.security.SecurityIface;
 import org.dacss.projectinitai.sequence.SequenceIface;
+import org.dacss.projectinitai.servers.ServerActions;
+import org.dacss.projectinitai.servers.ServerTypes;
 import org.dacss.projectinitai.servers.ServersIface;
 import org.dacss.projectinitai.snapshots.SnapShotsActions;
 import org.dacss.projectinitai.snapshots.SnapShotsIface;
@@ -48,6 +51,7 @@ import org.dacss.projectinitai.reinforcement.ReinforcementIface;
 import org.dacss.projectinitai.robotics.RoboticsIface;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link AdminHandler}</h1>
@@ -72,7 +76,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public void performClustering() {}
     @Override
-    public Flux<Object> performDatabaseAction(DataBaseTypes type) { return null; }
+    public Flux<Object> performDatabaseAction(DBTypes type, DBActions action, Object data) { return null; }
     @Override
     public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) { return null; }
     @Override
@@ -94,7 +98,7 @@ public class AdminHandler implements AdvisersIface, AnomaliesIface, ChecksumsIfa
     @Override
     public Flux<Object> secure(SecurityActions action) { return null; }
     @Override
-    public void manageServer(String operation) {}
+    public Flux<Object> manageServer(ServerActions action, ServerTypes type) { return null; }
     @Override
     public Flux<Object> manageSnapshots(SnapShotsActions action) { return null; }
     @Override

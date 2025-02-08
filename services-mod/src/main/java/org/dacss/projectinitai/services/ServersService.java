@@ -1,16 +1,17 @@
 package org.dacss.projectinitai.services;
 
+import org.dacss.projectinitai.servers.ServerActions;
+import org.dacss.projectinitai.servers.ServerTypes;
+import org.dacss.projectinitai.servers.ServersIface;
+import org.dacss.projectinitai.servers.utillities.RestartServersUtil;
+import org.dacss.projectinitai.servers.utillities.UnixSocketServer;
+
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import org.dacss.projectinitai.servers.ServersIface;
-import org.dacss.projectinitai.servers.utillities.*;
-import org.dacss.projectinitai.loaders.LoadKernel;
-import org.dacss.projectinitai.loaders.UnLoadKernel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.text.MessageFormat;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link ServersService}</h1>
@@ -22,44 +23,35 @@ import java.text.MessageFormat;
 public class ServersService implements ServersIface {
 
     private static final Logger log = LoggerFactory.getLogger(ServersService.class);
-//    private final LoadKernel loadKernel;
-//    private final UnLoadKernel unLoadKernel;
 
     /**
-     * <h2>{@link #ServersService()}</h2>
-     * 0-arg constructor to instantiate the {@link LoadKernel} and {@link UnLoadKernel}.
+     * <h3>{@link #ServersService()}</h3>
      */
     public ServersService() {
-//        this.loadKernel = new LoadKernel();
-//        this.unLoadKernel = new UnLoadKernel();
+
     }
 
     /**
-     * <h2>{@link #manageServer(String)}</h2>
+     * <h3>{@link #manageServer(ServerActions, ServerTypes)}</h3>
      * Perform server management operations.
      *
-     * @param operation The operation to perform on the servers.
+     * @param action The action to perform on the servers.
+     * @param type The type of server to manage.
      */
     @Override
-    public void manageServer(String operation) {
-        switch (operation) {
-            case "start":
-                StartUnixSocketServerUtil.startServer();
-                break;
-            case "stop":
-                StopUnixServerUtil.stopServer();
-                break;
-            case "restart":
-                RestartServersUtil.restartServer();
-                break;
-            case "ping":
-                PingServerUtil.pingServers();
-                break;
-            case "stop-http":
-                StopHttpServerUtil.stopServer();
-                break;
-            default:
-                log.error("Invalid operation: {}", operation);
+    public Flux<Object> manageServer(ServerActions action, ServerTypes type) {
+        try {
+            return switch (action) {
+                case START -> UnixSocketServer.startServer();
+                case STOP -> UnixSocketServer.stopServer();
+                case RESTART -> RestartServersUtil.restartServer();
+                case PING -> UnixSocketServer.pingServer();
+            };
+        } catch (Exception serversServiceExc) {
+            log.error("{}:", serversServiceExc.getMessage(), serversServiceExc);
+            return Flux.error(serversServiceExc);
+        } finally {
+            log.info("{}: {}", action, type);
         }
     }
 }

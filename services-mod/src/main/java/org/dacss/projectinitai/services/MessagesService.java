@@ -28,10 +28,10 @@ public class MessagesService implements MessagesIface {
             flux = switch (action) {
                 case REQUEST -> UserRequest.sendUserRequestToLLM(Flux.just(new Object()));
                 case RESPONSE -> AiResponse.receiveAiResponseFromLLM(Flux.just(new Object()));
-                case THUMBS_UP -> ThumbsUpUtil.processThumbsUp(Flux.just(new Object()));
-                case THUMBS_DOWN -> ThumbsDownUtil.processThumbsDown(Flux.just(new Object()));
-                case RETRY -> RetryMessageUtil.retryMessageSet(Flux.just(new Object().toString())); //info-> this is a temp hack for now.
-                case TRASH -> TrashMessageSetUtil.destroyMessageSet(Flux.just(new Object()));
+                case THUMBS_UP -> ThumbsUp.processThumbsUp(Flux.just(new Object()));
+                case THUMBS_DOWN -> ThumbsDown.processThumbsDown(Flux.just(new Object()));
+                case RETRY -> RetryMessage.retryMessageSet(Flux.just(new Object().toString())); //info-> this is a temp hack for now.
+                case TRASH -> TrashMessageSet.destroyMessageSet(Flux.just(new Object()));
             };
         } catch (Exception messagesServiceExc) {
             log.error("{}: Error from MessagesService performing action:", action, messagesServiceExc);

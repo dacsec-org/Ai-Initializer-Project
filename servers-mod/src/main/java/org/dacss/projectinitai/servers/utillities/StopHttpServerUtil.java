@@ -11,7 +11,7 @@ import java.net.URL;
 
 /**
  * <h1>{@link StopHttpServerUtil}</h1>
- * Utility class for stopping the HTTP server.
+ * Utility class for stopping the HTTP(frontend) server.
  */
 public final class StopHttpServerUtil {
 

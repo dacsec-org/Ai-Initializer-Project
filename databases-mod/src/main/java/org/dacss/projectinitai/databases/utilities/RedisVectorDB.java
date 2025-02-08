@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.databases.utilities;
 
-public class RedisVectorUtil {
+public class RedisVectorDB {
     public reactor.core.publisher.Flux<Object> handleRedisVector() {
         return null;
     }

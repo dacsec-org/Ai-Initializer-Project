@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.databases.utilities;
 
-public class PostgreSQLVectorUtil {
+public class PostgreSQLVectorDB {
     public reactor.core.publisher.Flux<Object> handlePostgreSQLVector() {
         return null;
     }

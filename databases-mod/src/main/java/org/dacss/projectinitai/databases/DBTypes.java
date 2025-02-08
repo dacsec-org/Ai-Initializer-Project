@@ -1,10 +1,10 @@
 package org.dacss.projectinitai.databases;
 
 /**
- * <h1>{@link DataBaseTypes}</h1>
- * Enum for different types of vector databases.
+ * <h1>{@link DBTypes}</h1>
+ * Enum for different types of databases.
  */
-public enum DataBaseTypes {
+public enum DBTypes {
     FAISS,
     MILVUS,
     PINECONE,

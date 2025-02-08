@@ -51,14 +51,14 @@
 //
 //    @Test
 //    public void testStartUnixSocketServer() {
-//        StartUnixSocketServerUtil.startServer();
+//        UnixSocketServer.startServer();
 //        assertTrue(Files.exists(socketPath), "Unix socket should be created");
 //        System.out.println(STR."Test 'startServer()' passed: \{socketPath}");
 //    }
 //
 //    @Test(dependsOnMethods = "testStartUnixSocketServer")
 //    public void testPingUnixSocketServer() {
-//        StartUnixSocketServerUtil.pingServer();
+//        UnixSocketServer.pingServer();
 //        System.out.println(STR."Test 'pingServer()' passed: \{socketPath}");
 //    }
 //

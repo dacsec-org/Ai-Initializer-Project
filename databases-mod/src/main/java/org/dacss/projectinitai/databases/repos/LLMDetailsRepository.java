@@ -1,5 +1,6 @@
-package org.dacss.projectinitai.databases;
+package org.dacss.projectinitai.databases.repos;
 
+import org.dacss.projectinitai.databases.LLMDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

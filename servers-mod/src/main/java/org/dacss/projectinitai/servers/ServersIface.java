@@ -2,17 +2,14 @@ package org.dacss.projectinitai.servers;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link ServersIface}</h1>
  */
-@BrowserCallable
-@AnonymousAllowed
 @FunctionalInterface
 public interface ServersIface {
-    /**
-     * <h2>{@link #manageServer()}</h2>
-     * Perform server management operations.
-     */
-    void manageServer(String operation);
+
+    Flux<Object> manageServer(ServerActions action, ServerTypes type);
 }

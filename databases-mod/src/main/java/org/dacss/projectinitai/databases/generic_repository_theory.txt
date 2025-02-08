@@ -1,0 +1,93 @@
+# Generic Repository Theory
+# id like to implement something like this, even more generic, this will
+# keep codebase smaller, and easier to maintain, and also easier to add new
+# repositories. similar to a spring starter.
+# also would like to do the same for databases.
+
+package org.dacss.projectinitai.databases.repos;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface GenericRepository<T, ID> {
+    T save(T entity);
+    Optional<T> findById(ID id);
+    List<T> findAll();
+    void deleteById(ID id);
+}
+
+package org.dacss.projectinitai.databases.repos;
+
+import org.dacss.projectinitai.databases.LLMDetails;
+import org.dacss.projectinitai.databases.DataBaseTypes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+public class RepositoryFactory {
+
+# this can not be of type LLMDetails because it will be used for other entities
+# so we need a generic entity factory as well
+    @Autowired
+    private JpaRepository<LLMDetails, String> jpaRepository;
+
+    @Autowired
+    private RedisTemplate<String, LLMDetails> redisTemplate;
+
+    public GenericRepository<LLMDetails, String> getRepository(DataBaseTypes type) {
+        switch (type) {
+            case H_2:
+                return new GenericRepository<LLMDetails, String>() {
+                    @Override
+                    public LLMDetails save(LLMDetails entity) {
+                        return jpaRepository.save(entity);
+                    }
+
+                    @Override
+                    public Optional<LLMDetails> findById(String id) {
+                        return jpaRepository.findById(id);
+                    }
+
+                    @Override
+                    public List<LLMDetails> findAll() {
+                        return jpaRepository.findAll();
+                    }
+
+                    @Override
+                    public void deleteById(String id) {
+                        jpaRepository.deleteById(id);
+                    }
+                };
+            case REDIS_VECTOR:
+                return new GenericRepository<LLMDetails, String>() {
+                    private static final String KEY = "LLMDetails";
+
+                    @Override
+                    public LLMDetails save(LLMDetails entity) {
+                        redisTemplate.opsForHash().put(KEY, entity.getId(), entity);
+                        return entity;
+                    }
+
+                    @Override
+                    public Optional<LLMDetails> findById(String id) {
+                        return Optional.ofNullable((LLMDetails) redisTemplate.opsForHash().get(KEY, id));
+                    }
+
+                    @Override
+                    public List<LLMDetails> findAll() {
+                        return redisTemplate.opsForHash().values(KEY);
+                    }
+
+                    @Override
+                    public void deleteById(String id) {
+                        redisTemplate.opsForHash().delete(KEY, id);
+                    }
+                };
+            default:
+                throw new IllegalArgumentException("Unknown repository type: " + type);
+        }
+    }
+}
+

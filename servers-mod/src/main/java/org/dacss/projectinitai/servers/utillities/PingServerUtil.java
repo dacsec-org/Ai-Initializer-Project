@@ -33,7 +33,7 @@ public final class PingServerUtil {
     public static void pingServers() {
         Runnable pingTask = () -> {
             pingHttpServer();
-            StartUnixSocketServerUtil.pingServer();
+            UnixSocketServer.pingServer();
         };
 
         scheduler.scheduleAtFixedRate(pingTask, 0, 5, TimeUnit.SECONDS);

@@ -10,22 +10,9 @@ import reactor.core.publisher.Sinks;
 public class AiResponse {
 
     private static Sinks.Many<Object> aiResponseSink = Sinks.many().unicast().onBackpressureBuffer();
-    private String from;
-    private Flux<Object> aiResponseFlux;
 
     /**
-     * <h2>{@link #AiResponse(String, Flux)}</h2>
-     *
-     * @param from
-     * @param aiResponseFlux
-     */
-    AiResponse(String from, Flux<Object> aiResponseFlux) {
-        this.from = from;
-        this.aiResponseFlux = aiResponseFlux;
-    }
-
-    /**
-     * <h2>{@link #receiveAiResponseFromLLM(Flux)}</h2>
+     * <h3>{@link #receiveAiResponseFromLLM(Flux)}</h3>
      *
      * @param message
      * @return Flux<Object>
@@ -33,12 +20,4 @@ public class AiResponse {
     public static Flux<Object> receiveAiResponseFromLLM(Flux<Object> message) {
         return message.doOnNext(aiResponseSink::tryEmitNext).thenMany(aiResponseSink.asFlux());
     }
-
-    public String getFrom() {return "AI";}
-
-    public void setFrom(String from) {this.from = from;}
-
-    public Flux<Object> getAiResponseFlux() {return aiResponseFlux;}
-
-    public void setAiResponseFlux(Flux<Object> aiResponseFlux) {this.aiResponseFlux = aiResponseFlux;}
 }

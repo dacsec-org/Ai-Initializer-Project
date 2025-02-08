@@ -1,10 +1,10 @@
 package org.dacss.projectinitai.messages;
 
 /**
- * <h1>{@link ChatsListUtil}</h1>
- * Utility class to return a list of chats.
+ * <h1>{@link ChatsList}</h1>
+ * class to return a list of chats.
  */
-public class ChatsListUtil {
+public class ChatsList {
 
     public static void getChatsList() {
         // return null;
