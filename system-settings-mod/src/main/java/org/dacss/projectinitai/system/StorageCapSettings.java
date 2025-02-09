@@ -5,36 +5,43 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 /**
  * <h1>{@link StorageCapSettings}</h1>
- * Queries, and caps the storage capacity of the framework.
+ * This class provides methods to query and cap the storage capacity of the framework.
  */
 public class StorageCapSettings {
-    /*FIXME: Not annotated method overrides method annotated with @NotNull96,104
-           Not annotated parameter overrides @NotNull parameter96,104*/
 
+    /**
+     * Project target directories to calculate storage usage.
+     */
     private static final List<String> PROJECT_DIRS = Arrays.asList(
-        "/etc/project-ai-initializer",
-        "/etc/systemd/project-ai-initializer",
-        "/usr/share/applications",
-        "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/models",
-        "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/checksums",
-        "/home/" + System.getProperty("user.name") + "/TornadoVM",
-        "/home/" + System.getProperty("user.name") + "/project-ai-initializer.cache",
-        "/opt/project-ai-initializer",
-        "/var/run/project-ai-initializer",
-        "/var/log/project-ai-initializer",
-        "/etc/security"
+            "/etc/project-ai-initializer",
+            "/etc/systemd/project-ai-initializer",
+            "/usr/share/applications",
+            "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/models",
+            "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/checksums",
+            "/home/" + System.getProperty("user.name") + "/TornadoVM",
+            "/home/" + System.getProperty("user.name") + "/project-ai-initializer.cache",
+            "/opt/project-ai-initializer",
+            "/var/run/project-ai-initializer",
+            "/var/log/project-ai-initializer",
+            "/etc/security"
     );
 
+    /**
+     * Project target files to calculate storage usage.
+     */
     private static final List<String> PROJECT_FILES = Arrays.asList(
-        "/etc/project-ai-initializer/project-ai-initializer.conf",
-        "/systemd/project-ai-initializer/project-ai-initializer.service",
-        "/usr/share/applications/project-ai-initializer.desktop",
-        "/var/run/project-ai-initializer/project-ai-initializer.sock",
-        "/var/log/project-ai-initializer/project-ai-initializer.log"
+            "/etc/project-ai-initializer/project-ai-initializer.conf",
+            "/systemd/project-ai-initializer/project-ai-initializer.service",
+            "/usr/share/applications/project-ai-initializer.desktop",
+            "/var/run/project-ai-initializer/project-ai-initializer.sock",
+            "/var/log/project-ai-initializer/project-ai-initializer.log"
     );
 
     /**
@@ -45,83 +52,94 @@ public class StorageCapSettings {
 
     /**
      * <h3>{@link #getStorageCapSettings()}</h3>
-     * Returns the current storage cap settings.
+     * Retrieves the current storage cap settings.
      *
-     * @return A Mono containing the current storage cap settings.
+     * @return A {@link Mono} containing a string representation of the total and used storage.
      */
     public static Mono<Object> getStorageCapSettings() {
-        long totalStorage = getTotalStorage();
-        long usedStorage = getUsedStorage();
-        return Mono.just("Total Storage: " + totalStorage + " bytes, Used Storage: " + usedStorage + " bytes");
+        return Mono.zip(getTotalStorage(), getUsedStorage())
+                .map(tuple ->
+                        "Total Storage: " + tuple.getT1() + " bytes, Used Storage: " + tuple.getT2() + " bytes");
     }
 
     /**
      * <h3>{@link #getTotalStorage()}</h3>
-     * Returns the total storage available on the system.
+     * Retrieves the total storage available on the system.
      *
-     * @return The total storage available on the system.
+     * @return A {@link Mono} containing the total storage in bytes.
      */
-    public static long getTotalStorage() {
-        FileStore fileStore;
-        try {
-            fileStore = Files.getFileStore(Paths.get("/"));
-            return fileStore.getTotalSpace();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to get total storage", e);
-        }
+    public static Mono<Long> getTotalStorage() {
+        return Mono.fromCallable(() -> {
+            try {
+                FileStore fileStore = Files.getFileStore(Paths.get("/"));
+                return fileStore.getTotalSpace();
+            } catch (IOException getTotalStorageExc) {
+                return 0L;
+            }
+        }).subscribeOn(Schedulers.boundedElastic());
     }
 
     /**
      * <h3>{@link #getUsedStorage()}</h3>
-     * Returns the total storage used by the application and its directories.
+     * Retrieves the total storage used by the application and its directories.
      *
-     * @return The total storage used by the application and its directories.
+     * @return A {@link Mono} containing the total used storage in bytes.
      */
-    public static long getUsedStorage() {
-        long totalSize = 0;
-        for (String dir : PROJECT_DIRS) {
-            totalSize += getDirectorySize(Paths.get(dir));
-        }
-        for (String file : PROJECT_FILES) {
-            totalSize += getFileSize(Paths.get(file));
-        }
-        return totalSize;
+    public static Mono<Long> getUsedStorage() {
+        return Flux.fromIterable(PROJECT_DIRS)
+                .flatMap(dir -> getDirectorySize(Paths.get(dir)))
+                .concatWith(Flux.fromIterable(PROJECT_FILES)
+                        .flatMap(file -> getFileSize(Paths.get(file))))
+                .reduce(Long::sum);
     }
 
-
-    private static long getDirectorySize(Path path) {
-        if (path == null) {
-            throw new IllegalArgumentException("Path cannot be null");
-        }
-        final long[] size = {0};
-        try {
-            Files.walkFileTree(path, new SimpleFileVisitor<>() {
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    if (file == null || attrs == null) {
+    /**
+     * <h3>{@link #getDirectorySize(Path)}</h3>
+     * Calculates the size of a directory.
+     *
+     * @param path The path to the directory.
+     * @return A {@link Mono} containing the size of the directory in bytes.
+     */
+    private static Mono<Long> getDirectorySize(@NotNull Path path) {
+        return Mono.<Long>create(sink -> {
+            final long[] size = {0};
+            try {
+                Files.walkFileTree(path, new SimpleFileVisitor<>() {
+                    public @NotNull FileVisitResult visitFile(Path file, @NotNull BasicFileAttributes attrs) {
+                        if (file != null) {
+                            size[0] += attrs.size();
+                        }
                         return FileVisitResult.CONTINUE;
                     }
-                    size[0] += attrs.size();
-                    return FileVisitResult.CONTINUE;
-                }
 
-                public FileVisitResult visitFileFailed(Path file, IOException exc) {
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to get directory size for " + path, e);
-        }
-        return size[0];
+                    public @NotNull FileVisitResult visitFileFailed(Path file, @NotNull IOException exc) {
+                        return FileVisitResult.CONTINUE;
+                    }
+                });
+                sink.success(size[0]);
+            } catch (IOException getDirectorySizeExc) {
+                sink.success(0L);
+            }
+        }).subscribeOn(Schedulers.boundedElastic());
     }
 
-    private static long getFileSize(Path path) {
+    /**
+     * <h3>{@link #getFileSize(Path)}</h3>
+     * Calculates the size of a file.
+     *
+     * @param path The path to the file.
+     * @return A {@link Mono} containing the size of the file in bytes.
+     */
+    private static Mono<Long> getFileSize(Path path) {
         if (path == null) {
-            throw new IllegalArgumentException("Path cannot be null");
+            return Mono.empty();
         }
-        try {
-            return Files.size(path);
-        } catch (IOException e) {
-            return 0;
-        }
+        return Mono.fromCallable(() -> {
+            try {
+                return Files.size(path);
+            } catch (IOException getFileSizeExc) {
+                return 0L;
+            }
+        }).subscribeOn(Schedulers.boundedElastic());
     }
 }
