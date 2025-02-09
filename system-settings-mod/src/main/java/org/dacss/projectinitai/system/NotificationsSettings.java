@@ -1,12 +1,15 @@
 package org.dacss.projectinitai.system;
 
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link NotificationsSettings}</h1>
  * Queries, and sets the notifications pop-ups setting levels of the framework.
  */
 public class NotificationsSettings {
+    /**
+     * Default notification level.
+     */
     private static String notificationLevel = "INFO"; // Default notification level
 
     /**
@@ -19,10 +22,10 @@ public class NotificationsSettings {
      * <h3>{@link #getNotificationsSettings()}</h3>
      * Returns the current notifications settings.
      *
-     * @return A Mono containing the current notifications settings.
+     * @return A Flux containing the current notifications settings.
      */
-    public static Mono<Object> getNotificationsSettings() {
-        return Mono.just("Notification Level: " + notificationLevel);
+    public static Flux<Object> getNotificationsSettings() {
+        return Flux.just("Notification Level: " + notificationLevel);
     }
 
     /**
@@ -45,4 +48,3 @@ public class NotificationsSettings {
         notificationLevel = level;
     }
 }
-/**/

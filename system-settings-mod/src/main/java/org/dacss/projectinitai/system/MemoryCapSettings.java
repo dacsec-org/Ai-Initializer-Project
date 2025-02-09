@@ -2,7 +2,7 @@ package org.dacss.projectinitai.system;
 
 import java.lang.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link MemoryCapSettings}</h1>
@@ -22,10 +22,10 @@ public class MemoryCapSettings {
      * <h3>{@link #getMemoryCapSettings()}</h3>
      * Returns the current memory cap settings.
      *
-     * @return A Mono containing the current memory cap settings.
+     * @return A Flux containing the current memory cap settings.
      */
-    public static Mono<Object> getMemoryCapSettings() {
-        return Mono.just(memoryCap);
+    public static Flux<Object> getMemoryCapSettings() {
+        return Flux.just(memoryCap);
     }
 
     /**
@@ -52,4 +52,3 @@ public class MemoryCapSettings {
         return osBean.getTotalMemorySize();
     }
 }
-/**/

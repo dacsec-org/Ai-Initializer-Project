@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.services;
 
+import java.nio.file.Paths;
 import org.dacss.projectinitai.system.*;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -7,6 +8,7 @@ import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -28,14 +30,12 @@ public class SystemSettingsService implements SystemSettingsIface {
 
     /**
      * <h3>{@link #processSettings(SystemSettingsOptions)}</h3>
-     * @param systemSettingsOptions {@link SystemSettingsOptions}
-     * @return Mono<Object>
      */
     @Override
-    public Mono<Object> processSettings(SystemSettingsOptions systemSettingsOptions) {
-        Mono<Object> mono;
+    public Flux<Object> processSettings(SystemSettingsOptions options) {
+        Flux<Object> flux;
         try {
-            mono = switch (systemSettingsOptions) {
+            flux = switch (options) {
                 case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
                 case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
                 case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
@@ -45,13 +45,15 @@ public class SystemSettingsService implements SystemSettingsIface {
                 case THEME -> ThemeSettings.getThemeSettings();
                 case BACKUP -> BackupSettings.getBackupSettings();
                 case RESTORE -> RestoreSettings.getRestoreSettings();
+                case EXPORT -> ExportImportSettings.exportSettings(Flux.empty(), Paths.get("/path/to/export/file"));
+                case IMPORT -> ExportImportSettings.importSettings(Paths.get("/path/to/import/file"));
             };
         } catch (Exception systemSettingsServiceExc) {
-            log.error("{}: Error from SystemSettingsService processing settings:", systemSettingsOptions, systemSettingsServiceExc);
-            return Mono.empty();
+            log.error("{}: Error from SystemSettingsService processing settings:", options, systemSettingsServiceExc);
+            return Flux.empty();
         } finally {
-            log.info("SystemSettingsService settings processed: {}", systemSettingsOptions);
+            log.info("SystemSettingsService settings processed: {}", options);
         }
-        return mono;
+        return flux;
     }
 }

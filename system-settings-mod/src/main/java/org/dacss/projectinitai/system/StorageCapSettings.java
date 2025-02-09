@@ -17,7 +17,7 @@ import reactor.core.scheduler.Schedulers;
 public class StorageCapSettings {
 
     /**
-     * Project target directories to calculate storage usage.
+     * {@link List} of project directories to calculate storage usage.
      */
     private static final List<String> PROJECT_DIRS = Arrays.asList(
             "/etc/project-ai-initializer",
@@ -32,9 +32,8 @@ public class StorageCapSettings {
             "/var/log/project-ai-initializer",
             "/etc/security"
     );
-
     /**
-     * Project target files to calculate storage usage.
+     * {@link List} of project files to calculate storage usage.
      */
     private static final List<String> PROJECT_FILES = Arrays.asList(
             "/etc/project-ai-initializer/project-ai-initializer.conf",
@@ -54,10 +53,10 @@ public class StorageCapSettings {
      * <h3>{@link #getStorageCapSettings()}</h3>
      * Retrieves the current storage cap settings.
      *
-     * @return A {@link Mono} containing a string representation of the total and used storage.
+     * @return A {@link Flux} containing a string representation of the total and used storage.
      */
-    public static Mono<Object> getStorageCapSettings() {
-        return Mono.zip(getTotalStorage(), getUsedStorage())
+    public static Flux<Object> getStorageCapSettings() {
+        return Flux.zip(getTotalStorage(), getUsedStorage())
                 .map(tuple ->
                         "Total Storage: " + tuple.getT1() + " bytes, Used Storage: " + tuple.getT2() + " bytes");
     }
@@ -66,9 +65,9 @@ public class StorageCapSettings {
      * <h3>{@link #getTotalStorage()}</h3>
      * Retrieves the total storage available on the system.
      *
-     * @return A {@link Mono} containing the total storage in bytes.
+     * @return A {@link Flux} containing the total storage in bytes.
      */
-    public static Mono<Long> getTotalStorage() {
+    public static Flux<Long> getTotalStorage() {
         return Mono.fromCallable(() -> {
             try {
                 FileStore fileStore = Files.getFileStore(Paths.get("/"));
@@ -76,21 +75,22 @@ public class StorageCapSettings {
             } catch (IOException getTotalStorageExc) {
                 return 0L;
             }
-        }).subscribeOn(Schedulers.boundedElastic());
+        }).flux().subscribeOn(Schedulers.boundedElastic());
     }
 
     /**
      * <h3>{@link #getUsedStorage()}</h3>
      * Retrieves the total storage used by the application and its directories.
      *
-     * @return A {@link Mono} containing the total used storage in bytes.
+     * @return A {@link Flux} containing the total used storage in bytes.
      */
-    public static Mono<Long> getUsedStorage() {
+    public static Flux<Long> getUsedStorage() {
         return Flux.fromIterable(PROJECT_DIRS)
                 .flatMap(dir -> getDirectorySize(Paths.get(dir)))
                 .concatWith(Flux.fromIterable(PROJECT_FILES)
                         .flatMap(file -> getFileSize(Paths.get(file))))
-                .reduce(Long::sum);
+                .reduce(Long::sum)
+                .flux();
     }
 
     /**
@@ -98,9 +98,9 @@ public class StorageCapSettings {
      * Calculates the size of a directory.
      *
      * @param path The path to the directory.
-     * @return A {@link Mono} containing the size of the directory in bytes.
+     * @return A {@link Flux} containing the size of the directory in bytes.
      */
-    private static Mono<Long> getDirectorySize(@NotNull Path path) {
+    private static Flux<Long> getDirectorySize(@NotNull Path path) {
         return Mono.<Long>create(sink -> {
             final long[] size = {0};
             try {
@@ -120,7 +120,7 @@ public class StorageCapSettings {
             } catch (IOException getDirectorySizeExc) {
                 sink.success(0L);
             }
-        }).subscribeOn(Schedulers.boundedElastic());
+        }).flux().subscribeOn(Schedulers.boundedElastic());
     }
 
     /**
@@ -128,11 +128,11 @@ public class StorageCapSettings {
      * Calculates the size of a file.
      *
      * @param path The path to the file.
-     * @return A {@link Mono} containing the size of the file in bytes.
+     * @return A {@link Flux} containing the size of the file in bytes.
      */
-    private static Mono<Long> getFileSize(Path path) {
+    private static Flux<Long> getFileSize(Path path) {
         if (path == null) {
-            return Mono.empty();
+            return Flux.empty();
         }
         return Mono.fromCallable(() -> {
             try {
@@ -140,6 +140,6 @@ public class StorageCapSettings {
             } catch (IOException getFileSizeExc) {
                 return 0L;
             }
-        }).subscribeOn(Schedulers.boundedElastic());
+        }).flux().subscribeOn(Schedulers.boundedElastic());
     }
 }

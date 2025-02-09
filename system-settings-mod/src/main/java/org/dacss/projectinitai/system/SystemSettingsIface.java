@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.system;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -9,5 +10,5 @@ import reactor.core.publisher.Mono;
 @FunctionalInterface
 public interface SystemSettingsIface {
 
-    Mono<Object> processSettings(SystemSettingsOptions systemSettingsOptions);
+    Flux<Object> processSettings(SystemSettingsOptions options);
 }

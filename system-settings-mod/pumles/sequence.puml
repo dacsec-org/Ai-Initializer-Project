@@ -1,0 +1,54 @@
+@startuml
+
+actor User
+
+participant "SystemSettingsService" as SSS
+participant "CpuCapSettings" as CCS
+participant "GpuCapSettings" as GCS
+participant "MemoryCapSettings" as MCS
+participant "StorageCapSettings" as SCS
+participant "LoggingSettings" as LS
+participant "NotificationsSettings" as NS
+participant "ThemeSettings" as TS
+participant "BackupSettings" as BS
+participant "RestoreSettings" as RS
+participant "ExportImportSettings" as EIS
+
+User -> SSS: processSettings(SystemSettingsOptions options)
+alt options == CPU_CAP
+    SSS -> CCS: getCpuCapSettings()
+    CCS --> SSS: Flux<Object>
+else options == GPU_CAP
+    SSS -> GCS: getGpuCapSettings()
+    GCS --> SSS: Flux<Object>
+else options == MEMORY_CAP
+    SSS -> MCS: getMemoryCapSettings()
+    MCS --> SSS: Flux<Object>
+else options == STORAGE_CAP
+    SSS -> SCS: getStorageCapSettings()
+    SCS --> SSS: Flux<Object>
+else options == LOGGING
+    SSS -> LS: getLoggingSettings()
+    LS --> SSS: Flux<Object>
+else options == NOTIFICATIONS
+    SSS -> NS: getNotificationsSettings()
+    NS --> SSS: Flux<Object>
+else options == THEME
+    SSS -> TS: getThemeSettings()
+    TS --> SSS: Flux<Object>
+else options == BACKUP
+    SSS -> BS: getBackupSettings()
+    BS --> SSS: Flux<Object>
+else options == RESTORE
+    SSS -> RS: getRestoreSettings()
+    RS --> SSS: Flux<Object>
+else options == EXPORT
+    SSS -> EIS: exportSettings(Flux.empty(), Paths.get("/path/to/export/file"))
+    EIS --> SSS: Flux<Object>
+else options == IMPORT
+    SSS -> EIS: importSettings(Paths.get("/path/to/import/file"))
+    EIS --> SSS: Flux<Object>
+end
+SSS --> User: Flux<Object>
+
+@enduml

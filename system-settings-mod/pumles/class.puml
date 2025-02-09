@@ -1,0 +1,152 @@
+@startuml
+
+package org.dacss.projectinitai.system {
+    class BackupSettings {
+        - static SystemSettingsRepository repository
+        + BackupSettings(SystemSettingsRepository repository)
+        + Flux<Object> backupSettings(Flux<SystemSettingsEntity> settings)
+        + static Flux<Object> getBackupSettings()
+    }
+
+    class CpuCapSettings {
+        - static int cpuCap
+        - static boolean virtualThreadingEnabled
+        + CpuCapSettings()
+        + static Flux<Object> getCpuCapSettings()
+        + static void setCpuCap(int cap)
+        + static void enableVirtualThreading(boolean enable)
+        + static int getLocalCpuCores()
+    }
+
+    class ExportImportSettings {
+        - static Path SETTINGS_FILE_PATH
+        - static ObjectMapper objectMapper
+        + static Flux<Object> exportSettings(Flux<SystemSettingsEntity> settings, Path filePath)
+        + static Flux<Object> importSettings(Path filePath)
+        + Flux<Object> writeSettingsToFile(Flux<SystemSettingsEntity> settings)
+        + Flux<Object> readSettingsFromFile()
+    }
+
+    class GpuCapSettings {
+        + static Flux<Object> getGpuCapSettings()
+    }
+
+    class HistoryEntity {
+        - Long id
+        - String key
+        - String oldValue
+        - String newValue
+        - LocalDateTime timestamp
+        + Long getId()
+        + void setId(Long id)
+        + String getKey()
+        + void setKey(String key)
+        + String getOldValue()
+        + void setOldValue(String oldValue)
+        + String getNewValue()
+        + void setNewValue(String newValue)
+        + LocalDateTime getTimestamp()
+        + void setTimestamp(LocalDateTime timestamp)
+    }
+
+    class LoggingSettings {
+        - static Path DEFAULT_LOG_DIRECTORY
+        - static String logLevel
+        + LoggingSettings()
+        + static Flux<Object> getLoggingSettings()
+        + static String getLogLevel()
+        + static void setLogLevel(String level)
+    }
+
+    class MemoryCapSettings {
+        - static OperatingSystemMXBean osBean
+        - static long memoryCap
+        + MemoryCapSettings()
+        + static Flux<Object> getMemoryCapSettings()
+        + static void setMemoryCapPercentage(int percentage)
+        + static long getTotalMemory()
+    }
+
+    class NotificationsSettings {
+        - static String notificationLevel
+        + NotificationsSettings()
+        + static Flux<Object> getNotificationsSettings()
+        + static String getNotificationLevel()
+        + static void setNotificationLevel(String level)
+    }
+
+    class RestoreSettings {
+        - static SystemSettingsRepository repository
+        + RestoreSettings(SystemSettingsRepository repository)
+        + Flux<Object> restoreSettings(Flux<SystemSettingsEntity> settings)
+        + static Flux<Object> getRestoreSettings()
+    }
+
+    class StorageCapSettings {
+        - static List<String> PROJECT_DIRS
+        - static List<String> PROJECT_FILES
+        + StorageCapSettings()
+        + static Flux<Object> getStorageCapSettings()
+        + static Flux<Long> getTotalStorage()
+        + static Flux<Long> getUsedStorage()
+        + static Flux<Long> getDirectorySize(Path path)
+        + static Flux<Long> getFileSize(Path path)
+    }
+
+    class SystemSettingsEntity {
+        - Long id
+        - String key
+        - String value
+        - String userId
+        - int version
+        - String category
+        - String group
+        + Long getId()
+        + void setId(Long id)
+        + String getKey()
+        + void setKey(String key)
+        + String getValue()
+        + void setValue(String value)
+        + String getUserId()
+        + void setUserId(String userId)
+        + int getVersion()
+        + void setVersion(int version)
+        + String getCategory()
+        + void setCategory(String category)
+        + String getGroup()
+        + void setGroup(String group)
+    }
+
+    interface SystemSettingsIface {
+        + Flux<Object> processSettings(SystemSettingsOptions options)
+    }
+
+    enum SystemSettingsOptions {
+        CPU_CAP, GPU_CAP, MEMORY_CAP, STORAGE_CAP, LOGGING, NOTIFICATIONS, THEME, BACKUP, RESTORE, IMPORT, EXPORT
+    }
+
+    interface SystemSettingsRepository {
+        + Mono<SystemSettingsEntity> findByKey(String key)
+        + Flux<SystemSettingsEntity> findByValue(String value)
+        + Flux<SystemSettingsEntity> findByCategory(String category)
+        + Flux<SystemSettingsEntity> findByGroup(String group)
+        + Flux<SystemSettingsEntity> findByUserId(String userId)
+    }
+
+    class ThemeSettings {
+        + static Flux<Object> getThemeSettings()
+    }
+}
+
+package org.dacss.projectinitai.services {
+    class SystemSettingsService {
+        + SystemSettingsService()
+        + Flux<Object> processSettings(SystemSettingsOptions options)
+    }
+}
+
+SystemSettingsService ..|> SystemSettingsIface
+BackupSettings --> SystemSettingsRepository
+RestoreSettings --> SystemSettingsRepository
+
+@enduml

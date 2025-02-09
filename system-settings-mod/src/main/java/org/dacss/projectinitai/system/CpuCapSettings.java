@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.system;
 
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link CpuCapSettings}</h1>
@@ -23,8 +23,8 @@ public class CpuCapSettings {
      *
      * @return
      */
-    public static Mono<Object> getCpuCapSettings() {
-        return Mono.just(virtualThreadingEnabled ? cpuCap * 2 : cpuCap);
+    public static Flux<Object> getCpuCapSettings() {
+        return Flux.just(virtualThreadingEnabled ? cpuCap * 2 : cpuCap);
     }
 
     /**
@@ -57,4 +57,3 @@ public class CpuCapSettings {
         return Runtime.getRuntime().availableProcessors();
     }
 }
-/**/

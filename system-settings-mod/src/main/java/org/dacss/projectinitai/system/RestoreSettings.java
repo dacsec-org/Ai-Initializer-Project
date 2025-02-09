@@ -1,15 +1,33 @@
 package org.dacss.projectinitai.system;
 
-import reactor.core.publisher.Mono;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link RestoreSettings}</h1>
- * queries, and sets the restore settings of the framework
+ * This class provides methods to restore system settings.
  */
+@Service
 public class RestoreSettings {
 
-    public static Mono<Object> getRestoreSettings() {
-        //todo: implement
-        return Mono.empty();
+    /**
+     * {@link SystemSettingsRepository} instance.
+     */
+    private static SystemSettingsRepository repository;
+
+    @Autowired
+    public RestoreSettings(SystemSettingsRepository repository) {
+        RestoreSettings.repository = repository;
+    }
+
+    public Flux<Object> restoreSettings(Flux<SystemSettingsEntity> settings) {
+        return repository.deleteAll()
+                .thenMany(repository.saveAll(settings))
+                .thenMany(Flux.empty());
+    }
+
+    public static Flux<Object> getRestoreSettings() {
+        return repository.findAll().cast(Object.class);
     }
 }
