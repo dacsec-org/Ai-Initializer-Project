@@ -3,6 +3,8 @@ import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Notification, Select } from '@vaadin/react-components';
 import { SystemSettings } from 'Frontend/views/settings/SystemSettings';
 import { SystemSettingsOptions } from 'Frontend/enums/SystemSettingsOptions';
+import { from } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export const config: ViewConfig = {
   menu: { order: 15, icon: 'line-awesome/svg/cog-solid.svg' },
@@ -12,22 +14,26 @@ export const config: ViewConfig = {
 const SystemSettingsView: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<SystemSettingsOptions | undefined>(undefined);
 
-  const handleOptionChange = (e: CustomEvent) => {
-    setSelectedOption(e.detail.value as SystemSettingsOptions);
+  const handleOptionChange = (handleChange: CustomEvent) => {
+    setSelectedOption(handleChange.detail.value as SystemSettingsOptions);
   };
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = () => {
     if (selectedOption === undefined) {
       Notification.show('Please select an option');
       return;
     }
 
-    try {
-      const serverResponse = await SystemSettings.processSettings(selectedOption);
-      Notification.show(serverResponse);
-    } catch (error) {
-      Notification.show('Error processing settings');
-    }
+    from(SystemSettings.processSettings(selectedOption))
+      .pipe(
+        catchError((error) => {
+          Notification.show('Error processing settings');
+          throw error;
+        })
+      )
+      .subscribe((serverResponse) => {
+        Notification.show(serverResponse);
+      });
   };
 
   return (

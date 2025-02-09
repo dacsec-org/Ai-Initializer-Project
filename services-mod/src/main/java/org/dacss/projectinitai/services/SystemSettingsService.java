@@ -36,17 +36,17 @@ public class SystemSettingsService implements SystemSettingsIface {
         Flux<Object> flux;
         try {
             flux = switch (options) {
-                case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
-                case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
-                case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
-                case STORAGE_CAP -> StorageCapSettings.getStorageCapSettings();
-                case LOGGING -> LoggingSettings.getLoggingSettings();
-                case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
-                case THEME -> ThemeSettings.getThemeSettings();
                 case BACKUP -> BackupSettings.getBackupSettings();
-                case RESTORE -> RestoreSettings.getRestoreSettings();
+                case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
                 case EXPORT -> ExportImportSettings.exportSettings(Flux.empty(), Paths.get("/path/to/export/file"));
+                case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
                 case IMPORT -> ExportImportSettings.importSettings(Paths.get("/path/to/import/file"));
+                case LOGGING -> LoggingSettings.getLoggingSettings();
+                case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
+                case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
+                case RESTORE -> RestoreSettings.getRestoreSettings();
+                case STORAGE_CAP -> StorageCapSettings.getStorageCapSettings();
+                case THEME -> ThemeSettings.getThemeSettings();
             };
         } catch (Exception systemSettingsServiceExc) {
             log.error("{}: Error from SystemSettingsService processing settings:", options, systemSettingsServiceExc);
