@@ -1,8 +1,8 @@
 package org.dacss.projectinitai.services;
 
-import java.nio.file.Paths;
 import org.dacss.projectinitai.system.*;
 
+import java.nio.file.Paths;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class SystemSettingsService implements SystemSettingsIface {
                 case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
                 case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
                 case RESTORE -> RestoreSettings.getRestoreSettings();
-                case STORAGE_CAP -> StorageCapSettings.getStorageCapSettings();
+                case STORAGE_CAP -> StorageCapSettings.getResults();
                 case THEME -> ThemeSettings.getThemeSettings();
             };
         } catch (Exception systemSettingsServiceExc) {

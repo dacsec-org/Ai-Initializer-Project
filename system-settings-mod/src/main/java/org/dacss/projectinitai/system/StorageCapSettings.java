@@ -1,145 +1,112 @@
 package org.dacss.projectinitai.system;
 
 import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Arrays;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 /**
  * <h1>{@link StorageCapSettings}</h1>
- * This class provides methods to query and cap the storage capacity of the framework.
+ * This class provides methods to retrieve various disk space metrics such as total disk size,
+ * allocated disk space, default total space allocated, and minimum space allocation.
+ * The results are returned as reactive streams using Project Reactor.
  */
 public class StorageCapSettings {
 
-    /**
-     * {@link List} of project directories to calculate storage usage.
-     */
-    private static final List<String> PROJECT_DIRS = Arrays.asList(
-            "/etc/project-ai-initializer",
-            "/etc/systemd/project-ai-initializer",
-            "/usr/share/applications",
-            "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/models",
-            "/home/" + System.getProperty("user.name") + "/.project-ai-initializer/checksums",
-            "/home/" + System.getProperty("user.name") + "/TornadoVM",
-            "/home/" + System.getProperty("user.name") + "/project-ai-initializer.cache",
-            "/opt/project-ai-initializer",
-            "/var/run/project-ai-initializer",
-            "/var/log/project-ai-initializer",
-            "/etc/security"
-    );
-    /**
-     * {@link List} of project files to calculate storage usage.
-     */
-    private static final List<String> PROJECT_FILES = Arrays.asList(
-            "/etc/project-ai-initializer/project-ai-initializer.conf",
-            "/systemd/project-ai-initializer/project-ai-initializer.service",
-            "/usr/share/applications/project-ai-initializer.desktop",
-            "/var/run/project-ai-initializer/project-ai-initializer.sock",
-            "/var/log/project-ai-initializer/project-ai-initializer.log"
-    );
+    private static final long RESERVED_SPACE = 100L * 1024 * 1024 * 1024; // 100GB in bytes
+    private static final List<String> PATHS = List.of("/", "/home");
 
     /**
-     * <h3>{@link #StorageCapSettings()}</h3>
-     * Private constructor to prevent instantiation.
+     * Default 0-arg constructor.
      */
-    private StorageCapSettings() {}
+    public StorageCapSettings() {}
 
     /**
-     * <h3>{@link #getStorageCapSettings()}</h3>
-     * Retrieves the current storage cap settings.
+     * <h3>{@link #getTotalDiskSize()}</h3>
+     * Retrieves the total disk size for the specified paths.
      *
-     * @return A {@link Flux} containing a string representation of the total and used storage.
+     * @return a {@link Flux} emitting the total disk size in bytes for each path
      */
-    public static Flux<Object> getStorageCapSettings() {
-        return Flux.zip(getTotalStorage(), getUsedStorage())
-                .map(tuple ->
-                        "Total Storage: " + tuple.getT1() + " bytes, Used Storage: " + tuple.getT2() + " bytes");
-    }
-
-    /**
-     * <h3>{@link #getTotalStorage()}</h3>
-     * Retrieves the total storage available on the system.
-     *
-     * @return A {@link Flux} containing the total storage in bytes.
-     */
-    public static Flux<Long> getTotalStorage() {
-        return Mono.fromCallable(() -> {
-            try {
-                FileStore fileStore = Files.getFileStore(Paths.get("/"));
-                return fileStore.getTotalSpace();
-            } catch (IOException getTotalStorageExc) {
-                return 0L;
-            }
-        }).flux().subscribeOn(Schedulers.boundedElastic());
-    }
-
-    /**
-     * <h3>{@link #getUsedStorage()}</h3>
-     * Retrieves the total storage used by the application and its directories.
-     *
-     * @return A {@link Flux} containing the total used storage in bytes.
-     */
-    public static Flux<Long> getUsedStorage() {
-        return Flux.fromIterable(PROJECT_DIRS)
-                .flatMap(dir -> getDirectorySize(Paths.get(dir)))
-                .concatWith(Flux.fromIterable(PROJECT_FILES)
-                        .flatMap(file -> getFileSize(Paths.get(file))))
-                .reduce(Long::sum)
-                .flux();
-    }
-
-    /**
-     * <h3>{@link #getDirectorySize(Path)}</h3>
-     * Calculates the size of a directory.
-     *
-     * @param path The path to the directory.
-     * @return A {@link Flux} containing the size of the directory in bytes.
-     */
-    private static Flux<Long> getDirectorySize(@NotNull Path path) {
-        return Mono.<Long>create(sink -> {
-            final long[] size = {0};
-            try {
-                Files.walkFileTree(path, new SimpleFileVisitor<>() {
-                    public @NotNull FileVisitResult visitFile(Path file, @NotNull BasicFileAttributes attrs) {
-                        if (file != null) {
-                            size[0] += attrs.size();
-                        }
-                        return FileVisitResult.CONTINUE;
+    public static Flux<Long> getTotalDiskSize() {
+        return Flux.fromIterable(PATHS)
+                .flatMap(path -> Mono.fromCallable(() -> {
+                    try {
+                        FileStore fileStore = Files.getFileStore(Paths.get(path));
+                        return fileStore.getTotalSpace();
+                    } catch (IOException e) {
+                        return 0L;
                     }
-
-                    public @NotNull FileVisitResult visitFileFailed(Path file, @NotNull IOException exc) {
-                        return FileVisitResult.CONTINUE;
-                    }
-                });
-                sink.success(size[0]);
-            } catch (IOException getDirectorySizeExc) {
-                sink.success(0L);
-            }
-        }).flux().subscribeOn(Schedulers.boundedElastic());
+                }).subscribeOn(Schedulers.boundedElastic()));
     }
 
     /**
-     * <h3>{@link #getFileSize(Path)}</h3>
-     * Calculates the size of a file.
+     * <h3>{@link #getAllocatedDiskSpace()}</h3>
+     * Retrieves the allocated disk space for the specified paths.
      *
-     * @param path The path to the file.
-     * @return A {@link Flux} containing the size of the file in bytes.
+     * @return a {@link Flux} emitting the allocated disk space in bytes for each path
      */
-    private static Flux<Long> getFileSize(Path path) {
-        if (path == null) {
-            return Flux.empty();
-        }
-        return Mono.fromCallable(() -> {
-            try {
-                return Files.size(path);
-            } catch (IOException getFileSizeExc) {
-                return 0L;
-            }
-        }).flux().subscribeOn(Schedulers.boundedElastic());
+    public static Flux<Long> getAllocatedDiskSpace() {
+        return Flux.fromIterable(PATHS)
+                .flatMap(path -> Mono.fromCallable(() -> {
+                    try {
+                        FileStore fileStore = Files.getFileStore(Paths.get(path));
+                        return fileStore.getTotalSpace() - fileStore.getUnallocatedSpace();
+                    } catch (IOException e) {
+                        return 0L;
+                    }
+                }).subscribeOn(Schedulers.boundedElastic()));
+    }
+
+    /**
+     * <h3>{@link #getDefaultTotalSpaceAllocated()}</h3>
+     * Retrieves the default total space allocated for the specified paths.
+     * The default total space allocated is calculated as the minimum of the unallocated space
+     * and the maximum allowed space (total space minus reserved space).
+     *
+     * @return a {@link Flux} emitting the default total space allocated in bytes for each path
+     */
+    public static Flux<Long> getDefaultTotalSpaceAllocated() {
+        return Flux.fromIterable(PATHS)
+                .flatMap(path -> Mono.fromCallable(() -> {
+                    try {
+                        FileStore fileStore = Files.getFileStore(Paths.get(path));
+                        long totalSpace = fileStore.getTotalSpace();
+                        long unallocatedSpace = fileStore.getUnallocatedSpace();
+                        long maxAllowed = totalSpace - RESERVED_SPACE;
+                        return Math.min(unallocatedSpace, maxAllowed);
+                    } catch (IOException e) {
+                        return 0L;
+                    }
+                }).subscribeOn(Schedulers.boundedElastic()));
+    }
+
+    /**
+     * <h3>{@link #getMinimumSpaceAllocation()}</h3>
+     * Retrieves the minimum space allocation.
+     *
+     * @return a {@link Mono} emitting the minimum space allocation in bytes
+     */
+    public static Mono<Long> getMinimumSpaceAllocation() {
+        return Mono.just(20L * 1024 * 1024 * 1024); // 20GB in bytes
+    }
+
+    /**
+     * <h3>{@link #getResults()}</h3>
+     * Retrieves all disk space metrics (total disk size, allocated disk space, default total space allocated,
+     * and minimum space allocation) as a concatenated stream.
+     *
+     * @return a {@link Flux} emitting all disk space metrics as objects
+     */
+    public static Flux<Object> getResults() {
+        return Flux.concat(
+                getTotalDiskSize().map(size -> size),
+                getAllocatedDiskSpace().map(size -> size),
+                getDefaultTotalSpaceAllocated().map(size -> size),
+                getMinimumSpaceAllocation().map(size -> size)
+        );
     }
 }

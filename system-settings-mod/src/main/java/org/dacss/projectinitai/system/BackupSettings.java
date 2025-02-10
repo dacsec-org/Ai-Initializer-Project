@@ -6,7 +6,7 @@ import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link BackupSettings}</h1>
- * This class provides methods to backup and restore system settings.
+ * service class provides methods to back up and restore system settings.
  */
 @Service
 public class BackupSettings {
@@ -21,8 +21,8 @@ public class BackupSettings {
         BackupSettings.repository = repository;
     }
 
-    public Flux<Object> backupSettings(Flux<SystemSettingsEntity> settings) {
-        return repository.saveAll(settings).thenMany(Flux.empty());
+    public Flux<Object> backupSettings(Flux<Object> settings) {
+        return repository.saveAll(settings.cast(SystemSettingsEntity.class)).cast(Object.class);
     }
 
     public static Flux<Object> getBackupSettings() {

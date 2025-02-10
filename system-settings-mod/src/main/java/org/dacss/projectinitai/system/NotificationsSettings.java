@@ -10,7 +10,7 @@ public class NotificationsSettings {
     /**
      * Default notification level.
      */
-    private static String notificationLevel = "INFO"; // Default notification level
+    private static String notificationLevel = "INFO";
 
     /**
      * <h3>{@link #NotificationsSettings()}</h3>
