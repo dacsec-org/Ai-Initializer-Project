@@ -5,17 +5,21 @@ import reactor.core.publisher.Flux;
 /**
  * <h1>{@link CpuCapSettings}</h1>
  * This class is used to get CPU stats, and set a cap on the CPU usage for the framework.
- * Defaults to the number of cores on the machine.
+ * For now defaults to the number of cores on the machine.
  */
 public class CpuCapSettings {
-    private static int cpuCap = Runtime.getRuntime().availableProcessors();
+    private static int cpuCap;
     private static boolean virtualThreadingEnabled = false;
+
+    static {
+        updateCpuCap();
+    }
 
     /**
      * <h3>{@link #CpuCapSettings()}</h3>
      * Default 0-arg constructor.
      */
-    public CpuCapSettings() {}
+    private CpuCapSettings() {}
 
     /**
      * <h3>{@link #getCpuCapSettings()}</h3>
@@ -24,7 +28,7 @@ public class CpuCapSettings {
      * @return
      */
     public static Flux<Object> getCpuCapSettings() {
-        return Flux.just(virtualThreadingEnabled ? cpuCap * 2 : cpuCap);
+        return Flux.just(cpuCap);
     }
 
     /**
@@ -45,6 +49,7 @@ public class CpuCapSettings {
      */
     public static void enableVirtualThreading(boolean enable) {
         virtualThreadingEnabled = enable;
+        updateCpuCap();
     }
 
     /**
@@ -55,5 +60,13 @@ public class CpuCapSettings {
      */
     public static int getLocalCpuCores() {
         return Runtime.getRuntime().availableProcessors();
+    }
+
+    /**
+     * <h3>{@link #updateCpuCap()}</h3>
+     * Updates the CPU cap based on the current settings.
+     */
+    private static void updateCpuCap() {
+        cpuCap = getLocalCpuCores();
     }
 }
