@@ -52,6 +52,17 @@ public class LoggingSettings {
      * @param level The logging level to set.
      */
     public static void setLogLevel(String level) {
-        logLevel = level;
+        switch (level.toUpperCase()) {
+            case "TRACE":
+            case "DEBUG":
+            case "INFO":
+            case "WARN":
+            case "ERROR":
+            case "FATAL":
+                logLevel = level.toUpperCase();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid log level: " + level);
+        }
     }
 }

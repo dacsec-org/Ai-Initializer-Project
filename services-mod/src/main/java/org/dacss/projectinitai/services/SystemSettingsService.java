@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * <h1>{@link SystemSettingsService}</h1>
@@ -36,7 +35,7 @@ public class SystemSettingsService implements SystemSettingsIface {
         Flux<Object> flux;
         try {
             flux = switch (options) {
-                case BACKUP -> BackupSettings.getBackupSettings();
+                case BACKUP -> BackupRestore.getBackupSettings();
                 case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
                 case EXPORT -> ExportImportSettings.exportSettings(Flux.empty(), Paths.get("/path/to/export/file"));
                 case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
@@ -44,7 +43,7 @@ public class SystemSettingsService implements SystemSettingsIface {
                 case LOGGING -> LoggingSettings.getLoggingSettings();
                 case MEMORY_CAP -> MemoryCapSettings.getMemoryStats();
                 case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
-                case RESTORE -> RestoreSettings.getRestoreSettings();
+                case RESTORE -> BackupRestore.getRestoreSettings();
                 case STORAGE_CAP -> StorageCapSettings.getResults();
                 case THEME -> ThemeSettings.getThemeSettings();
             };

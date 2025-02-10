@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
  * Enum for system settings options.
  * Options:
  * <ul>
- *     <li>{@link #BACKUP}={@link BackupSettings}</li>
+ *     <li>{@link #BACKUP}={@link BackupRestore}</li>
  *     <li>{@link #CPU_CAP}={@link CpuCapSettings}</li>
  *     <li>{@link #EXPORT}={@link ExportImportSettings#exportSettings(Flux, Path)}</li>
  *     <li>{@link #GPU_CAP}={@link GpuCapSettings}</li>
