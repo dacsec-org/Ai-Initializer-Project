@@ -13,10 +13,9 @@ public class NotificationsSettings {
     private static String notificationLevel = "INFO";
 
     /**
-     * <h3>{@link #NotificationsSettings()}</h3>
-     * Private constructor to prevent instantiation.
+     * Default 0-arg constructor.
      */
-    private NotificationsSettings() {}
+    public NotificationsSettings() {}
 
     /**
      * <h3>{@link #getNotificationsSettings()}</h3>
@@ -45,6 +44,15 @@ public class NotificationsSettings {
      * @param level The notification level to set.
      */
     public static void setNotificationLevel(String level) {
-        notificationLevel = level;
+        switch (level.toUpperCase()) {
+            case "DEBUG":
+            case "INFO":
+            case "WARNING":
+            case "ERROR":
+                notificationLevel = level;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid notification level: " + level);
+        }
     }
 }
