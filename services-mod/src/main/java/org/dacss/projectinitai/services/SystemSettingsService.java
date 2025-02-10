@@ -42,7 +42,7 @@ public class SystemSettingsService implements SystemSettingsIface {
                 case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
                 case IMPORT -> ExportImportSettings.importSettings(Paths.get("/path/to/import/file"));
                 case LOGGING -> LoggingSettings.getLoggingSettings();
-                case MEMORY_CAP -> MemoryCapSettings.getMemoryCapSettings();
+                case MEMORY_CAP -> MemoryCapSettings.getMemoryStats();
                 case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
                 case RESTORE -> RestoreSettings.getRestoreSettings();
                 case STORAGE_CAP -> StorageCapSettings.getResults();
