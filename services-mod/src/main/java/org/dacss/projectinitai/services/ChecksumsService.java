@@ -2,10 +2,6 @@
 ///**/
 //import org.dacss.projectinitai.checksums.ChecksumActions;
 //import org.dacss.projectinitai.checksums.ChecksumsIface;
-///**/
-//import com.vaadin.flow.server.auth.AnonymousAllowed;
-//import com.vaadin.hilla.BrowserCallable;
-//import com.vaadin.hilla.Endpoint;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.stereotype.Service;
@@ -22,9 +18,10 @@
 // * Hilla back-end service class for the Checksums module.
 // */
 //@Service
-//@Endpoint
-//@BrowserCallable
-//@AnonymousAllowed
+//
+//import org.dacss.projectinitai.annotations.Bridge;
+//
+//@Bridge("checksums-service")
 //public class ChecksumsService implements ChecksumsIface {
 //
 //    private static final Logger log = LoggerFactory.getLogger(ChecksumsService.class);

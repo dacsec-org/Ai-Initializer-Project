@@ -6,5 +6,6 @@ package org.dacss.projectinitai.servers;
  */
 public enum ServerTypes {
     UNIX_SOCKET,
-    HTTP
+    HTTP,
+    WB_SOCKET
 }

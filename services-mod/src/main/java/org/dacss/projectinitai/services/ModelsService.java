@@ -1,11 +1,10 @@
 package org.dacss.projectinitai.services;
 
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.models.ModelActions;
 import org.dacss.projectinitai.models.ModelIface;
 import org.dacss.projectinitai.models.utilities.*;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,7 @@ import java.text.MessageFormat;
  * Backend hilla endpoint service for model operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("models-service")
 public class ModelsService implements ModelIface {
 
     private static final Logger log = LoggerFactory.getLogger(ModelsService.class);

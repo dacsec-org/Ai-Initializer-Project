@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.snapshots.SnapShotsActions;
 import org.dacss.projectinitai.snapshots.SnapShotsIface;
 import org.dacss.projectinitai.snapshots.utilities.*;
@@ -15,8 +14,7 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for snapshot operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("snapshots")
 public class SnapShotsService implements SnapShotsIface {
 
     private static final Logger log = LoggerFactory.getLogger(SnapShotsService.class);
@@ -31,12 +29,12 @@ public class SnapShotsService implements SnapShotsIface {
         Flux<Object> flux;
         try {
             flux = switch (action) {
+                case COPY -> SnapShotClonerUtil.copySnapshot(source, destination);
                 case CREATE -> SnapShotCreatorUtil.createSnapshot(source, destination);
+                case DELETE -> SnapShotDestroyerUtil.deleteSnapshot(source);
+                case EXECUTE_COMMAND -> SnapShotCommandRunnerUtil.executeCommand(source, destination);
                 case LIST -> SnapShotListerUtil.listSnapshots(source);
                 case LIST_DIRECTORIES -> SnapShotListerUtil.listSnapshotDirectories(source);
-                case DELETE -> SnapShotDestroyerUtil.deleteSnapshot(source);
-                case COPY -> SnapShotClonerUtil.copySnapshot(source, destination);
-                case EXECUTE_COMMAND -> SnapShotCommandRunnerUtil.executeCommand(source, destination);
             };
         } catch (Exception snapshotsServiceExc) {
             log.error("{}: {}", snapshotsServiceExc.getClass().getSimpleName(), snapshotsServiceExc.getMessage());

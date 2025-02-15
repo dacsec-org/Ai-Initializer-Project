@@ -1,13 +1,12 @@
 package org.dacss.projectinitai.services;
 
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.servers.ServerActions;
 import org.dacss.projectinitai.servers.ServerTypes;
 import org.dacss.projectinitai.servers.ServersIface;
 import org.dacss.projectinitai.servers.utillities.RestartServersUtil;
-import org.dacss.projectinitai.servers.utillities.UnixSocketServer;
+import org.dacss.projectinitai.servers.UnixSocketServer;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,7 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for server operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("servers")
 public class ServersService implements ServersIface {
 
     private static final Logger log = LoggerFactory.getLogger(ServersService.class);

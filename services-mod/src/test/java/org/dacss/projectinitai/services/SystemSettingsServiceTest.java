@@ -28,7 +28,7 @@
 //    public void testProcessSettingsCpuCap() {
 //        Flux<Object> result = systemSettingsService.processSettings(SystemSettingsOptions.CPU_CAP);
 //        StepVerifier.create(result)
-//                .expectNextMatches(obj -> obj instanceof CpuCapSettings)
+//                .expectNextMatches(obj -> obj instanceof CpuCap)
 //                .verifyComplete();
 //    }
 //
@@ -44,7 +44,7 @@
 //    public void testProcessSettingsGpuCap() {
 //        Flux<Object> result = systemSettingsService.processSettings(SystemSettingsOptions.GPU_CAP);
 //        StepVerifier.create(result)
-//                .expectNextMatches(obj -> obj instanceof GpuCapSettings)
+//                .expectNextMatches(obj -> obj instanceof GpuCap)
 //                .verifyComplete();
 //    }
 //
@@ -68,7 +68,7 @@
 //    public void testProcessSettingsMemoryCap() {
 //        Flux<Object> result = systemSettingsService.processSettings(SystemSettingsOptions.MEMORY_CAP);
 //        StepVerifier.create(result)
-//                .expectNextMatches(obj -> obj instanceof MemoryCapSettings)
+//                .expectNextMatches(obj -> obj instanceof MemoryCap)
 //                .verifyComplete();
 //    }
 //
@@ -76,7 +76,7 @@
 //    public void testProcessSettingsNotifications() {
 //        Flux<Object> result = systemSettingsService.processSettings(SystemSettingsOptions.NOTIFICATIONS);
 //        StepVerifier.create(result)
-//                .expectNextMatches(obj -> obj instanceof NotificationsSettings)
+//                .expectNextMatches(obj -> obj instanceof Notifications)
 //                .verifyComplete();
 //    }
 //
@@ -92,7 +92,7 @@
 //    public void testProcessSettingsStorageCap() {
 //        Flux<Object> result = systemSettingsService.processSettings(SystemSettingsOptions.STORAGE_CAP);
 //        StepVerifier.create(result)
-//                .expectNextMatches(obj -> obj instanceof StorageCapSettings)
+//                .expectNextMatches(obj -> obj instanceof StorageCap)
 //                .verifyComplete();
 //    }
 //

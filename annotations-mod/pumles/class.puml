@@ -1,0 +1,76 @@
+@startuml
+legend top left
+  |= Color |= Description |
+  |<back:LightBlue>LightBlue|Generated Controller|
+endlegend
+
+package "Frontend" {
+  class ChatClientView {
+    - request: string
+    - messageSets: MessageSet[]
+    - loading: boolean
+    - response: string
+    - subscription: Subscription
+    + handleMessageSent(userRequest: string): void
+    + handleResponseReceived(aiResponse: string): void
+    + renderMessageOptions(index: number): React.ReactNode
+    + handleIconClick(index: number, action: MessageAction): void
+  }
+
+  class MessageBridge {
+    + MessageBridge(action: MessageAction): Observable<any>
+  }
+}
+
+package "Backend" {
+  class MessagesService {
+    - log: Logger
+    + processMessages(action: MessageAction): Flux<Object>
+  }
+
+  class UserRequest {
+    + sendUserRequestToLLM(flux: Flux<Object>): Flux<Object>
+    + getRequestStream(): Flux<Object>
+  }
+
+  class AiResponse {
+    + receiveAiResponseFromLLM(flux: Flux<Object>): Flux<Object>
+    + getResponseStream(): Flux<Object>
+  }
+
+  class MessageAction {
+    <<enumeration>>
+    REQUEST
+    RESPONSE
+    THUMBS_UP
+    THUMBS_DOWN
+    RETRY
+    TRASH
+  }
+
+  class MessagesServiceApiHandler #LightBlue {
+    - bridgeRegistry: BridgeRegistry
+    + processMessages(action: MessageAction): Flux<Object>
+  }
+
+  class BridgeRegistry {
+    - bridgeMap: Map<String, Object>
+    + getService(bridgeName: String): Object
+  }
+
+  class BridgeAnnotationProcessor {
+    + process(annotations: Set<? extends TypeElement>, roundEnv: RoundEnvironment): boolean
+  }
+}
+
+ChatClientView --> MessageBridge
+MessageBridge --> MessagesServiceApiHandler
+MessagesServiceApiHandler --> BridgeRegistry
+MessagesServiceApiHandler --> MessagesService
+MessagesService --> UserRequest
+MessagesService --> AiResponse
+BridgeAnnotationProcessor --> MessagesService
+BridgeAnnotationProcessor --> BridgeRegistry
+BridgeRegistry --> MessagesService
+MessagesService --> MessageAction : processMessages
+@enduml

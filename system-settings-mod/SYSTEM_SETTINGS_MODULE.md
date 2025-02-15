@@ -4,16 +4,13 @@ This module provides various system settings functionalities for the Project Ini
 
 ## Files
 
-### `BackupSettings.java`
+### `BackupRestore.java`
 This class provides methods to backup and restore system settings.
 
-### `CpuCapSettings.java`
+### `CpuCap.java`
 This class is used to get CPU stats and set a cap on the CPU usage for the framework. It defaults to the number of cores on the machine.
 
-### `ExportImportSettings.java`
-This class provides methods to export and import system settings.
-
-### `GpuCapSettings.java`
+### `GpuCap.java`
 This class is used to get GPU stats and set a total percentage cap for the framework to avoid starving the system.
 
 ### `HistoryEntity.java`
@@ -22,14 +19,11 @@ An entity class that represents a history of changes to system settings.
 ### `LoggingSettings.java`
 This class provides the functionality to get and set the logging settings.
 
-### `MemoryCapSettings.java`
+### `MemoryCap.java`
 This class is used to get memory stats and set a cap on the memory usage for the framework.
 
-### `NotificationsSettings.java`
+### `Notifications.java`
 This class queries and sets the notifications pop-ups setting levels of the framework.
-
-### `RestoreSettings.java`
-This class provides methods to restore system settings.
 
 ### `StorageCapSettings.java`
 This class provides methods to query and cap the storage capacity of the framework.

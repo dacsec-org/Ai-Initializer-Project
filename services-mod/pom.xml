@@ -64,10 +64,6 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>hilla-endpoint</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>krr-mod</artifactId>
             <version>${project.parent.version}</version>
@@ -175,6 +171,12 @@
         <dependency>
             <groupId>org.dacss.projectinitai</groupId>
             <artifactId>system-settings-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dacss.projectinitai</groupId>
+            <artifactId>annotations-mod</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

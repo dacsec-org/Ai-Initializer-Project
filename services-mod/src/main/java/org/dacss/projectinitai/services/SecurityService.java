@@ -1,7 +1,6 @@
 //package org.dacss.projectinitai.services;
 //
-//import com.vaadin.flow.server.auth.AnonymousAllowed;
-//import com.vaadin.hilla.Endpoint;
+
 //import org.dacss.projectinitai.security.SecurityActions;
 //import org.dacss.projectinitai.security.SecurityIface;
 //import org.dacss.projectinitai.security.SecurityApiTokenUtil;
@@ -16,9 +15,10 @@
 // * Backend hilla endpoint service for security operations.
 // */
 //@Service
-//@Endpoint
-//@BrowserCallable
-//@AnonymousAllowed
+//
+//import org.dacss.projectinitai.annotations.Bridge;
+//
+//@Bridge(service = "security-service")
 //public class SecurityService implements SecurityIface {
 //
 //    private static final Logger log = LoggerFactory.getLogger(SecurityService.class);

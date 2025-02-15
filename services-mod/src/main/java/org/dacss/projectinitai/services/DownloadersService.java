@@ -1,10 +1,9 @@
 package org.dacss.projectinitai.services;
 
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.downloaders.*;
 import org.dacss.projectinitai.security.SecurityApiTokenUtil;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,7 @@ import reactor.core.publisher.Flux;
  * <h1>{@link DownloadersService}</h1>
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("downloaders-service")
 public class DownloadersService implements DownloadersIface {
 
     private static final Logger log = LoggerFactory.getLogger(DownloadersService.class);

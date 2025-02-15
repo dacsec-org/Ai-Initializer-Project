@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.optimizations.OptimizationsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,7 @@ import static org.dacss.projectinitai.optimizations.utillities.LinearProgramingU
  * Backend hilla endpoint service for optimization operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("optimizations-service")
 public class OptimizationsService implements OptimizationsIface {
 
     private static final Logger log = LoggerFactory.getLogger(OptimizationsService.class);

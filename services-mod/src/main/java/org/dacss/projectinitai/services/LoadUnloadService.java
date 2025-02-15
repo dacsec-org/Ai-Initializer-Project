@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.loaders.LoadKernel;
 import org.dacss.projectinitai.loaders.LoadUnLoadActions;
 import org.dacss.projectinitai.loaders.LoadersIface;
@@ -18,8 +17,7 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for loading and unloading models.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("LoadUnloadService")
 public class LoadUnloadService implements LoadersIface {
 
     private static final Logger log = LoggerFactory.getLogger(LoadUnloadService.class);

@@ -1,7 +1,5 @@
 //package org.dacss.projectinitai.services;
 //
-//import com.vaadin.flow.server.auth.AnonymousAllowed;
-//import com.vaadin.hilla.BrowserCallable;
 //import org.dacss.projectinitai.tar.TarActions;
 //import org.dacss.projectinitai.tar.TarIface;
 //import org.dacss.projectinitai.tar.TarCompressorUtil;
@@ -16,9 +14,10 @@
 // * Service class for tar operations.
 // */
 //@Service
-////@Endpoint
-//@BrowserCallable
-//@AnonymousAllowed
+//
+//import org.dacss.projectinitai.annotations.Bridge;
+//
+//@Bridge(service = "tar-service")
 //public class TarService implements TarIface {
 //
 //    private static final Logger log = LoggerFactory.getLogger(TarService.class);

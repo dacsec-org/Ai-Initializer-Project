@@ -1,0 +1,27 @@
+@startuml
+actor User
+participant ChatClientView
+participant MessageBridge
+participant MessagesServiceApiHandler #LightBlue
+participant MessagesService
+participant UserRequest
+participant AiResponse
+participant BridgeAnnotationProcessor
+participant BridgeRegistry
+
+User -> ChatClientView: Type message and press Enter
+ChatClientView -> MessageBridge: MessageBridge(MessageAction.REQUEST)
+MessageBridge -> MessagesServiceApiHandler: HTTP POST /messages-service/processMessages
+MessagesServiceApiHandler -> BridgeRegistry: bridgeRegistry.getService("messages-service")
+MessagesServiceApiHandler -> MessagesService: processMessages(MessageAction.REQUEST)
+MessagesService -> UserRequest: sendUserRequestToLLM(Flux.just(new Object()))
+UserRequest -> MessagesService: Response
+MessagesService -> MessagesServiceApiHandler: Flux<Object>
+MessagesServiceApiHandler -> MessageBridge: AI response
+MessageBridge -> ChatClientView: AI response
+ChatClientView -> User: Display AI response
+
+== Annotation Processing ==
+BridgeAnnotationProcessor -> MessagesService: Scan for @Bridge
+BridgeAnnotationProcessor -> BridgeRegistry: Register MessagesService
+@enduml

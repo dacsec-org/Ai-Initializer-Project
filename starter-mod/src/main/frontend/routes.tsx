@@ -1,49 +1,79 @@
-import { RouterConfigurationBuilder } from '@vaadin/hilla-file-router/runtime.js';
-// @ts-ignore
-import Flow from 'Frontend/generated/flow/Flow';
-import MainLayout, { config as mainLayoutConfig } from './views/@layout';
-import ChatClientView from './views/chat/chat-client';
-import CloneModelView from './views/models/clone-model';
-import ContentGalleryView from './views/gallery/content-gallery';
-import DirFileView from './views/dir/directories-files';
-import EmbeddingSettingsView from './views/embedding-settings';
-import LoadUnloadView from './views/load/load-unload';
-import DestroyModelView from './views/models/model-destroy';
-import MetricsView from './views/metric/metrics';
-import MergeModelView from './views/models/model-merge';
-import ModelSettingsView from './views/models/model-settings';
-import SearchModelsView from './views/search/search-models';
-import ManageServersView from './views/servers';
-import SnapshotsView from './views/snaps/snapshots';
-import SystemSettingsView from './views/settings/system-settings';
-import HelloWorldView from './views/hello/hello-world';
+import { createBrowserRouter } from 'react-router-dom';
+import ChatClientView from './pages/chat-client';
+import CloneModelView from './pages/clone-model';
+import ContentGalleryView from './pages/content-gallery';
+import DirFileView from './pages/directories-files';
+import EmbeddingSettingsView from './pages/embedding-settings';
+import Grid from './pages/grid';
+import HelloWorldView from './pages/hello-world';
+import DestroyModelView from './pages/model-destroy';
+import MergeModelView from './pages/model-merge';
+import ModelSettingsView from './pages/model-settings';
+import SearchModelsView from './pages/search-models';
+import ManageServersView from './pages/servers';
+import SnapshotsView from './pages/snapshots';
+import SystemSettingsView from './pages/system-settings';
 
-export const { router, routes } = new RouterConfigurationBuilder()
-  .withReactRoutes([
-    {
-      path: '',
-      element: <MainLayout />,
-      handle: { title: mainLayoutConfig.title },
-    },
-    { path: '/chat-client', element: <ChatClientView />, handle: { title: 'Chat' } },
-    { path: '/clone-model', element: <CloneModelView />, handle: { title: 'Clone' } },
-    { path: '/content-gallery', element: <ContentGalleryView items={[]} />, handle: { title: 'Content Gallery' } },
-    { path: '/directories-files', element: <DirFileView />, handle: { title: 'Directories ~ Files' } },
-    { path: '/embedding-settings', element: <EmbeddingSettingsView />, handle: { title: 'Embedding' } },
-    { path: '/load-unload', element: <LoadUnloadView />, handle: { title: 'Load ~ Unload' } },
-    { path: '/hello-world', element: <HelloWorldView />, handle: { title: 'Hello World' } },
-    { path: '/metrics', element: <MetricsView />, handle: { title: 'Metrics' } },
-    { path: '/model-destroy', element: <DestroyModelView />, handle: { title: 'Delete ~ Model' } },
-    { path: '/model-merge', element: <MergeModelView />, handle: { title: 'Merge Model' } },
-    { path: '/model-settings', element: <ModelSettingsView />, handle: { title: 'Model Settings' } },
-    { path: '/search-models', element: <SearchModelsView searchQuery={''} onModelsFetched={function(models: any[]): void {
+export const router = createBrowserRouter([
+  {
+    path: '/chat-client',
+
+    element: <ChatClientView />,
+  },
+  {
+    path: '/clone-model',
+    element: <CloneModelView />,
+  },
+  {
+    path: '/content-gallery',
+    element: <ContentGalleryView items={[]} />,
+  },
+  {
+    path: '/directories-files',
+    element: <DirFileView />
+  },
+  {
+    path: '/embed-settings',
+    element: <EmbeddingSettingsView />
+  },
+  {
+    path: '/grid',
+    element: <Grid columns={0} gap={''} />
+  },
+  {
+    path: '/hello-world',
+    element: <HelloWorldView />,
+  },
+  {
+    path: '/model-destroy',
+    element: <DestroyModelView />,
+  },
+  {
+    path: '/model-merge',
+    element: <MergeModelView />,
+  },
+  {
+    path: '/model-settings',
+    element: <ModelSettingsView />,
+  },
+  {
+    path: '/search-models',
+    element: <SearchModelsView searchQuery={''} onModelsFetched={function(): void {
         throw new Error('Function not implemented.');
-    } } onLoading={function(loading: boolean): void {
+    } } onLoading={function(): void {
         throw new Error('Function not implemented.');
-    } } />, handle: { title: 'Search Models' } },
-    { path: '/servers', element: <ManageServersView />, handle: { title: 'Servers' } },
-    { path: '/snapshots', element: <SnapshotsView />, handle: { title: 'Snapshots' } },
-    { path: '/system-settings', element: <SystemSettingsView />, handle: { title: 'System Settings' } },
-  ])
-  .withFallback(Flow)
-  .build();
+    } } />,
+  },
+  {
+    path: '/servers',
+    element: <ManageServersView />,
+  },
+  {
+    path: '/snapshots',
+    element: <SnapshotsView />,
+  },
+  {
+    path: '/system-settings',
+    element: <SystemSettingsView />
+  }
+]);

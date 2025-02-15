@@ -1,19 +1,18 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.clustering.ClusteringIface;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
  * <h1>{@link ClusteringService}</h1>
- * Backend hilla endpoint service for clustering data.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("clustering-service")
 public class ClusteringService implements ClusteringIface {
 
 

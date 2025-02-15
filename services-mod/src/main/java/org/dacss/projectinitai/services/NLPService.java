@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.nlp.NLPIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +17,7 @@ import static org.dacss.projectinitai.nlp.utillities.TextSummarizationUtil.summa
  * Backend hilla endpoint service for NLP operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("nlp-service")
 public class NLPService implements NLPIface {
 
     private static final Logger log = LoggerFactory.getLogger(NLPService.class);

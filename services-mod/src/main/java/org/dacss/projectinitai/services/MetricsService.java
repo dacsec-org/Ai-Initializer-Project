@@ -1,8 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
-
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.metrics.MetricsIface;
 import org.dacss.projectinitai.metrics.MetricsTypes;
 import org.dacss.projectinitai.metrics.utilities.*;
@@ -15,8 +13,7 @@ import reactor.core.publisher.Flux;
  * <h1>{@link MetricsService}</h1>
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("metrics-service")
 public class MetricsService implements MetricsIface {
 
     private static final Logger log = LoggerFactory.getLogger(MetricsService.class);

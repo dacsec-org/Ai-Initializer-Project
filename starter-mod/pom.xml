@@ -34,11 +34,6 @@
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!--    vaadin deps    -->
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.parttio</groupId>
             <artifactId>line-awesome</artifactId>
@@ -63,60 +58,6 @@
                     <wait>600</wait>
                     <maxAttempts>100</maxAttempts>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-maven-plugin</artifactId>
-                <version>${vaadin.version}</version>
-<!--                <configuration>-->
-<!--                    <runNpmInstall>true</runNpmInstall>-->
-<!--                    <parser>-->
-<!--                        <packages>org.dacss.projectinitai</packages>-->
-<!--                        <packages>org.dacss.projectinitai.admin</packages>-->
-<!--                        <packages>org.dacss.projectinitai.advisers</packages>-->
-<!--                        <packages>org.dacss.projectinitai.anomalies</packages>-->
-<!--                        <packages>org.dacss.projectinitai.checksums</packages>-->
-<!--                        <packages>org.dacss.projectinitai.classifications</packages>-->
-<!--                        <packages>org.dacss.projectinitai.clustering</packages>-->
-<!--                        <packages>org.dacss.projectinitai.databases</packages>-->
-<!--                        <packages>org.dacss.projectinitai.directories</packages>-->
-<!--                        <packages>org.dacss.projectinitai.downloaders</packages>-->
-<!--                        <packages>org.dacss.projectinitai.embedding</packages>-->
-<!--                        <packages>org.dacss.projectinitai.generative</packages>-->
-<!--                        <packages>org.dacss.projectinitai.krr</packages>-->
-<!--                        <packages>org.dacss.projectinitai.loaders</packages>-->
-<!--                        <packages>org.dacss.projectinitai.messages</packages>-->
-<!--                        <packages>org.dacss.projectinitai.metrics</packages>-->
-<!--                        <packages>org.dacss.projectinitai.models</packages>-->
-<!--                        <packages>org.dacss.projectinitai.nlp</packages>-->
-<!--                        <packages>org.dacss.projectinitai.optimizations</packages>-->
-<!--                        <packages>org.dacss.projectinitai.predictive</packages>-->
-<!--                        <packages>org.dacss.projectinitai.recommendations</packages>-->
-<!--                        <packages>org.dacss.projectinitai.recognitions</packages>-->
-<!--                        <packages>org.dacss.projectinitai.reductions</packages>-->
-<!--                        <packages>org.dacss.projectinitai.regressions</packages>-->
-<!--                        <packages>org.dacss.projectinitai.reinforcement</packages>-->
-<!--                        <packages>org.dacss.projectinitai.robotics</packages>-->
-<!--                        <packages>org.dacss.projectinitai.security</packages>-->
-<!--                        <packages>org.dacss.projectinitai.sequence</packages>-->
-<!--                        <packages>org.dacss.projectinitai.servers</packages>-->
-<!--                        <packages>org.dacss.projectinitai.snapshots</packages>-->
-<!--                        <packages>org.dacss.projectinitai.speech</packages>-->
-<!--&lt;!&ndash;                        <packages>org.dacss.projectinitai.starter</packages>&ndash;&gt;-->
-<!--                        <packages>org.dacss.projectinitai.tar</packages>-->
-<!--                        <packages>org.dacss.projectinitai.vision</packages>-->
-<!--                        <packages>org.dacss.projectinitai.services</packages>-->
-<!--                        <packages>org.dacss.projectinitai.zip</packages>-->
-<!--                    </parser>-->
-<!--                </configuration>-->
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-frontend</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -154,34 +95,10 @@
             <dependencies>
                 <!-- Exclude development dependencies from production -->
                 <dependency>
-                    <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-core</artifactId>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>com.vaadin</groupId>
-                            <artifactId>vaadin-dev</artifactId>
-                        </exclusion>
-                    </exclusions>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
                 </dependency>
             </dependencies>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.vaadin</groupId>
-                        <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>${vaadin.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>build-frontend</goal>
-                                </goals>
-<!--                                <phase>compile</phase>-->
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 

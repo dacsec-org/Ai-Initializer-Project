@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.classifications.ClassificationsIface;
 import org.dacss.projectinitai.classifications.ClassificationsTypes;
 import org.dacss.projectinitai.classifications.utillities.*;
@@ -15,8 +14,7 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for classifying data.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("classifications-service")
 public class ClassificationsService implements ClassificationsIface {
 
     private static final Logger log = LoggerFactory.getLogger(ClassificationsService.class);

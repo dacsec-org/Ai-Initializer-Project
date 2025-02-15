@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.recognitions.RecognitionsIface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Service;
  * Backend hilla endpoint service for recognition operations.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("recognitions-service")
 public class RecognitionsService implements RecognitionsIface {
 
 

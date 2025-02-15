@@ -1,7 +1,7 @@
 @startuml
 
 actor User
-
+'todo: fix to display new functionality, with new *.png as well`
 participant "SystemSettingsService" as SSS
 participant "CpuCapSettings" as CCS
 participant "GpuCapSettings" as GCS

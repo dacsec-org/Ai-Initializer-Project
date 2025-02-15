@@ -1,7 +1,6 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.databases.DBActions;
 import org.dacss.projectinitai.databases.DataBaseIface;
 import org.dacss.projectinitai.databases.DBTypes;
@@ -16,8 +15,7 @@ import reactor.core.publisher.Flux;
  * Hilla endpoint service for switching database functionality.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("database-service")
 public class DataBaseService implements DataBaseIface {
 
     private static final Logger log = LoggerFactory.getLogger(DataBaseService.class);

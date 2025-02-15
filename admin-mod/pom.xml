@@ -168,10 +168,6 @@
             <artifactId>generative-mod</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>hilla-endpoint</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

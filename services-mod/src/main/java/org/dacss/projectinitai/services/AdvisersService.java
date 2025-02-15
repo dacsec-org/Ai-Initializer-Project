@@ -1,11 +1,9 @@
 package org.dacss.projectinitai.services;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
-
 import org.dacss.projectinitai.advisers.AdviseAction;
 import org.dacss.projectinitai.advisers.AdvisersIface;
 import org.dacss.projectinitai.advisers.utilities.*;
+import org.dacss.projectinitai.annotations.Bridge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,8 +14,7 @@ import reactor.core.publisher.Flux;
  * Service class for the Advisers module.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("AdvisersService")
 public class AdvisersService implements AdvisersIface {
 
     private static final Logger log = LoggerFactory.getLogger(AdvisersService.class);

@@ -1,10 +1,8 @@
 package org.dacss.projectinitai.services;
 
+import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.system.*;
 
-import java.nio.file.Paths;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,11 +10,10 @@ import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link SystemSettingsService}</h1>
- * Backend hilla endpoint service for system settings operations.
+ * Handles the processing of system settings.
  */
 @Service
-@BrowserCallable
-@AnonymousAllowed
+@Bridge("SystemSettingsService")
 public class SystemSettingsService implements SystemSettingsIface {
 
     private static final Logger log = LoggerFactory.getLogger(SystemSettingsService.class);
@@ -36,15 +33,13 @@ public class SystemSettingsService implements SystemSettingsIface {
         try {
             flux = switch (options) {
                 case BACKUP -> BackupRestore.getBackupSettings();
-                case CPU_CAP -> CpuCapSettings.getCpuCapSettings();
-                case EXPORT -> ExportImportSettings.exportSettings(Flux.empty(), Paths.get("/path/to/export/file"));
-                case GPU_CAP -> GpuCapSettings.getGpuCapSettings();
-                case IMPORT -> ExportImportSettings.importSettings(Paths.get("/path/to/import/file"));
+                case CPU_CAP -> CpuCap.getCpuCapSettings();
+                case GPU_CAP -> GpuCap.getGpuCapSettings();
                 case LOGGING -> LoggingSettings.getLoggingSettings();
-                case MEMORY_CAP -> MemoryCapSettings.getMemoryStats();
-                case NOTIFICATIONS -> NotificationsSettings.getNotificationsSettings();
+                case MEMORY_CAP -> MemoryCap.getMemoryStats();
+                case NOTIFICATIONS -> Notifications.getNotificationsSettings();
                 case RESTORE -> BackupRestore.getRestoreSettings();
-                case STORAGE_CAP -> StorageCapSettings.getResults();
+                case STORAGE_CAP -> StorageCap.getResults();
                 case THEME -> ThemeSettings.getThemeSettings();
             };
         } catch (Exception systemSettingsServiceExc) {

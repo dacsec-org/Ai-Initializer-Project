@@ -1,7 +1,5 @@
 package org.dacss.projectinitai.models;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import java.io.IOException;
 import reactor.core.publisher.Flux;
 

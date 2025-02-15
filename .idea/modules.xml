@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/recognitions-mod/recognitions-mod.iml" filepath="$PROJECT_DIR$/recognitions-mod/recognitions-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommendations-mod/recommendations-mod.iml" filepath="$PROJECT_DIR$/recommendations-mod/recommendations-mod.iml" />
+    </modules>
+  </component>
+</project>

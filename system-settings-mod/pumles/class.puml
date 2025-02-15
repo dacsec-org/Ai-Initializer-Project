@@ -1,14 +1,14 @@
 @startuml
 
 package org.dacss.projectinitai.system {
-    class BackupSettings {
+    class BackupRestore {
         - static SystemSettingsRepository repository
         + BackupSettings(SystemSettingsRepository repository)
         + Flux<Object> backupSettings(Flux<SystemSettingsEntity> settings)
         + static Flux<Object> getBackupSettings()
     }
 
-    class CpuCapSettings {
+    class CpuCap {
         - static int cpuCap
         - static boolean virtualThreadingEnabled
         + CpuCapSettings()
@@ -27,7 +27,7 @@ package org.dacss.projectinitai.system {
         + Flux<Object> readSettingsFromFile()
     }
 
-    class GpuCapSettings {
+    class GpuCap {
         + static Flux<Object> getGpuCapSettings()
     }
 
@@ -58,7 +58,7 @@ package org.dacss.projectinitai.system {
         + static void setLogLevel(String level)
     }
 
-    class MemoryCapSettings {
+    class MemoryCap {
         - static OperatingSystemMXBean osBean
         - static long memoryCap
         + MemoryCapSettings()
@@ -67,7 +67,7 @@ package org.dacss.projectinitai.system {
         + static long getTotalMemory()
     }
 
-    class NotificationsSettings {
+    class Notifications {
         - static String notificationLevel
         + NotificationsSettings()
         + static Flux<Object> getNotificationsSettings()
@@ -75,14 +75,7 @@ package org.dacss.projectinitai.system {
         + static void setNotificationLevel(String level)
     }
 
-    class RestoreSettings {
-        - static SystemSettingsRepository repository
-        + RestoreSettings(SystemSettingsRepository repository)
-        + Flux<Object> restoreSettings(Flux<SystemSettingsEntity> settings)
-        + static Flux<Object> getRestoreSettings()
-    }
-
-    class StorageCapSettings {
+    class StorageCap {
         - static List<String> PROJECT_DIRS
         - static List<String> PROJECT_FILES
         + StorageCapSettings()

@@ -17,6 +17,8 @@ public interface ChecksumsIface {
         Flux<Object> result;
         try {
             result = switch (action) {
+                case SHA256 -> null;
+                case SHA512 -> null;
                 case VERIFY -> Flux.just("Verify checksum");
                 case GENERATE -> Flux.just("Generate checksum");
                 case VERIFY_BYTE_ARRAY -> Flux.just("Verify byte array checksum");
