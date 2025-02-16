@@ -2,5 +2,19 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/annotations-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/checksums-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/databases-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/downloaders-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/loaders-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/messages-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/metrics-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/models-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/services-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/snapshots-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/starter-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/system-settings-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tar-mod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/zip-mod" vcs="Git" />
   </component>
 </project>
