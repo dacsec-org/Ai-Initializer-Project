@@ -1,19 +1,19 @@
-package org.dacss.projectinitai.annotations;
+package org.dacss.projectinitai.annotations.moks;
 
 import reactor.core.publisher.Flux;
 
 /**
- * Stub implementation of OptionThree class
+ * Stub implementation of MokOptionThree class
  */
-public class OptionThree {
+public class MokOptionThree {
 
     /**
-     * Stubbed method for OptionThree
+     * Stubbed method for MokOptionThree
      *
      * @return a simple Flux emitting a sample object
      */
     public static Flux<Object> optionThreeMethod() {
         // Stub: Returns a Flux emitting a single sample value
-        return Flux.just("OptionThree - Sample Data");
+        return Flux.just("MokOptionThree - Sample Data");
     }
 }

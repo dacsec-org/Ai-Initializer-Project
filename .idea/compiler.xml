@@ -8,45 +8,47 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="classifications-mod" />
-        <module name="reductions-mod" />
         <module name="system-settings-mod" />
         <module name="starter-mod" />
         <module name="snapshots-mod" />
         <module name="servers-mod" />
-        <module name="regressions-mod" />
-        <module name="generative-mod" />
         <module name="loaders-mod" />
-        <module name="speech-mod" />
         <module name="downloaders-mod" />
-        <module name="predictive-mod" />
         <module name="messages-mod" />
         <module name="annotations-mod" />
         <module name="metrics-mod" />
-        <module name="vision-mod" />
         <module name="checksums-mod" />
-        <module name="recognitions-mod" />
-        <module name="advisers-mod" />
-        <module name="anomalies-mod" />
-        <module name="nlp-mod" />
-        <module name="sequence-mod" />
         <module name="databases-mod" />
         <module name="models-mod" />
         <module name="security-mod" />
         <module name="tar-mod" />
         <module name="zip-mod" />
-        <module name="recommendations-mod" />
-        <module name="clustering-mod" />
         <module name="directories-mod" />
-        <module name="robotics-mod" />
-        <module name="embedding-mod" />
         <module name="services-mod" />
-        <module name="admin-mod" />
-        <module name="krr-mod" />
-        <module name="optimizations-mod" />
-        <module name="reinforcement-mod" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin-mod" target="21" />
+      <module name="advisers-mod" target="21" />
+      <module name="anomalies-mod" target="21" />
+      <module name="classifications-mod" target="21" />
+      <module name="clustering-mod" target="21" />
+      <module name="embedding-mod" target="21" />
+      <module name="generative-mod" target="21" />
+      <module name="krr-mod" target="21" />
+      <module name="nlp-mod" target="21" />
+      <module name="optimizations-mod" target="21" />
+      <module name="predictive-mod" target="21" />
+      <module name="recognitions-mod" target="21" />
+      <module name="recommendations-mod" target="21" />
+      <module name="reductions-mod" target="21" />
+      <module name="regressions-mod" target="21" />
+      <module name="reinforcement-mod" target="21" />
+      <module name="robotics-mod" target="21" />
+      <module name="sequence-mod" target="21" />
+      <module name="speech-mod" target="21" />
+      <module name="vision-mod" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
