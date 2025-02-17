@@ -10,21 +10,29 @@
         <outputRelativeToContentRoot value="true" />
         <module name="system-settings-mod" />
         <module name="starter-mod" />
+        <module name="databases-mod" />
         <module name="snapshots-mod" />
         <module name="servers-mod" />
         <module name="loaders-mod" />
-        <module name="downloaders-mod" />
-        <module name="messages-mod" />
-        <module name="annotations-mod" />
-        <module name="metrics-mod" />
-        <module name="checksums-mod" />
-        <module name="databases-mod" />
         <module name="models-mod" />
+        <module name="downloaders-mod" />
         <module name="security-mod" />
         <module name="tar-mod" />
+        <module name="messages-mod" />
+        <module name="metrics-mod" />
         <module name="zip-mod" />
+        <module name="checksums-mod" />
         <module name="directories-mod" />
         <module name="services-mod" />
+      </profile>
+      <profile name="Annotation profile for ai-initializer-project" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0/bridge-annotation-processor-1.0.jar" />
+        </processorPath>
+        <module name="annotations-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
