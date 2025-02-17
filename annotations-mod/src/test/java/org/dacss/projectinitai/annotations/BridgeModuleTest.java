@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.annotations;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 import org.dacss.projectinitai.annotations.BridgeRegistry;
 import org.dacss.projectinitai.annotations.moks.MokBridgeService;
@@ -18,12 +19,21 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>{@link BridgeModuleTest}</h1>
+ * The BridgeModuleTest class contains unit tests for testing the functionality
+ * of the BridgeRegistry and MokBridgeService components in the application.
+ * It leverages Spring's ApplicationContext and JUnit for initializing, retrieving,
+ * and validating the behavior of registered services.
+ * <p>
+ * Methods under test:
+ * <ul>
+ *     <li>{@link #testBridgeRegistryServiceRetrieval()}</li>
+ *     <li>{@link #testMokBridgeService(MokOptions, String)}</li>
+ *     <li>{@link #testGeneratedClass()}</li>
+ * </ul>
+ */
 public class BridgeModuleTest {
-    /*fixme! Reading generated class...
-        Unable to read generated class file.
-        Check if the file is generated at: target/generated-sources/annotations/org/dacss/projectinitai/annotations/BridgeModuleTest.java
-        java.nio.file.NoSuchFileException: target/generated-sources/annotations/org/dacss/projectinitai/annotations/BridgeModuleTest.java
-    */
 
     private BridgeRegistry bridgeRegistry;
 
@@ -70,30 +80,26 @@ public class BridgeModuleTest {
         return dataProvider;
     }
 
-    /**
-     * Test to retrieve and verify the content of the generated class.
-     */
     @Test
-    public void testGeneratedClass() {
-        System.out.println("Reading generated class...");
+    public void testGeneratedClass() throws Exception {
+        // Define the expected file path for the generated controller
+        Path generatedControllerPath = Paths.get(
+                "target/generated-sources/annotations/MokBridgeServiceController.java"
+        );
 
-        // Dynamically determine the generated class path
-        String baseGeneratedPath = "target/generated-sources/annotations"; // Adjust this for Gradle or specific setups
-        String generatedClassPath = baseGeneratedPath + "/org/dacss/projectinitai/annotations/BridgeModuleTest.java";
+        // Check if the file exists
+        Assert.assertTrue(Files.exists(generatedControllerPath), "Generated controller file is missing.");
 
-        try {
-            // Read the file content as a String
-            String generatedClassContent = new String(Files.readAllBytes(Paths.get(generatedClassPath)));
-            System.out.println("Generated Class Content:\n" + generatedClassContent);
-
-            // Assert the file content is not empty
-            Assert.assertNotNull(generatedClassContent, "Generated class content should not be null.");
-            Assert.assertFalse(generatedClassContent.isEmpty(), "Generated class content should not be empty.");
-        } catch (IOException e) {
-            System.err.println("Unable to read generated class file. Check if the file is generated at: " + generatedClassPath);
-            e.printStackTrace();
-            Assert.fail("Failed to locate or read the generated class file.");
-        }
+        // Optionally, validate the content of the file for expected annotations
+        String generatedFileContent = Files.readString(generatedControllerPath);
+        Assert.assertTrue(
+                generatedFileContent.contains("@RestController"),
+                "Generated file does not contain @RestController annotation."
+        );
+        Assert.assertTrue(
+                generatedFileContent.contains("public class MokBridgeServiceController"),
+                "Generated file does not contain expected class definition."
+        );
     }
 
     @Test(dataProvider = "mokOptionsProvider")
