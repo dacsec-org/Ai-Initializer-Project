@@ -16,7 +16,7 @@
 //
 //    @BeforeMethod
 //    public void setUp() throws IOException {
-//        zipFile = Paths.get("../home/pai/.project-ai-initializer/models/Qwen_Qwen2.5-0.5B-Instruct.zip");
+//        zipFile = Paths.get("resources/test.zip");
 //        // Ensure the zip file exists
 //        if (!Files.exists(zipFile)) {
 //            throw new IOException("Zip file does not exist: " + zipFile);
