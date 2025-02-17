@@ -1,23 +1,44 @@
 import axios, { AxiosInstance, Method } from "axios";
-import { Observable, from } from "rxjs";
+import { Observable, from, Subject } from "rxjs";
+import { RSocketClient, JsonSerializer, IdentitySerializer } from "rsocket-core";
+import RSocketWebSocketClient from "rsocket-websocket-client";
+
+/**
+ * Create an RSocket client to interact with the backend.
+ */
+const rSocketClient = new RSocketClient({
+  serializers: {
+    data: JsonSerializer, // Serialize data as JSON
+    metadata: IdentitySerializer, // Serialize metadata as plain text
+  },
+  setup: {
+    keepAlive: 60000, // Keep-alive interval in milliseconds
+    lifetime: 180000, // Lifetime of the connection
+    dataMimeType: "application/json", // Data mime type for JSON
+    metadataMimeType: "message/x.rsocket.routing.v0", // Metadata for routing RSocket requests
+  },
+  transport: new RSocketWebSocketClient({
+    url: "ws://localhost:7000", // RSocket server WebSocket URL
+  }),
+});
 
 /**
  * Create a connection client for a dynamic service-method-action structure.
  *
  * @param config Configuration object containing the API prefix.
- * @returns An object with a `call` method to interact with the backend.
+ * @returns An object with `call` and `rsocketCall` methods to interact with the backend.
  */
 export function createConnectionClient(config: { prefix: string }) {
   const instance: AxiosInstance = axios.create({
     baseURL: config.prefix,
-    withCredentials: true, // Support for cookies if necessary
+    withCredentials: true, // Support for cookies if needed
     headers: {
       "Content-Type": "application/json",
     },
   });
 
   /**
-   * Call the backend service endpoint dynamically in a reactive way.
+   * Call the backend service endpoint dynamically via HTTP.
    *
    * @param service Name of the backend service (e.g., MessageBridge).
    * @param method The method on the service to invoke (e.g., processMessages).
@@ -44,8 +65,52 @@ export function createConnectionClient(config: { prefix: string }) {
     return from(request.then((response) => response.data));
   }
 
-  // Return a client object that exposes the reactive `call` method.
-  return { call };
+  /**
+   * Call the backend service using RSocket. Supports request-response and request-stream interactions.
+   *
+   * @param route The RSocket route (e.g., "user.request").
+   * @param data The payload to send to the RSocket route.
+   * @param isStream Whether the call expects a stream of responses (true) or a single response (false).
+   * @returns An RxJS Observable that emits the response(s) from the RSocket server.
+   */
+  function rsocketCall<T = any>(
+    route: string,
+    data: any,
+    isStream: boolean = false
+  ): Observable<T> {
+    const subject = new Subject<T>();
+
+    // Establish connection and send request
+    rSocketClient.connect().subscribe({
+      onComplete: (rsocket) => {
+        const metadata = String.fromCharCode(route.length) + route; // Encode RSocket route in metadata
+
+        if (isStream) {
+          // Handle a request-stream interaction
+          rsocket.requestStream({ data, metadata }).subscribe({
+            onNext: (payload) => subject.next(payload.data),
+            onComplete: () => subject.complete(),
+            onError: (error) => subject.error(error),
+          });
+        } else {
+          // Handle a request-response interaction
+          rsocket.requestResponse({ data, metadata }).subscribe({
+            onComplete: (payload) => {
+              subject.next(payload.data);
+              subject.complete();
+            },
+            onError: (error) => subject.error(error),
+          });
+        }
+      },
+      onError: (error) => subject.error(error),
+    });
+
+    return subject.asObservable();
+  }
+
+  // Return a client object that exposes both `call` and `rsocketCall` methods.
+  return { call, rsocketCall };
 }
 
 /**

@@ -1,132 +1,30 @@
-.chat-client {
+.chat-client-view {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-
-  /* Styles for the message list */
+  height: 100%;
   .message-list {
-    flex: 1; // Allows it to grow and fill space
-    overflow-y: auto; // Scrollable content for messages
-    padding: 1rem;
-    background-color: #f5f5f5;
-
-    .message-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-
-      &.user-message {
-        justify-content: flex-end;
-        text-align: right;
-      }
-
-      &.ai-message {
-        justify-content: flex-start;
-        text-align: left;
-      }
-
-      .message-content {
-        max-width: 70%;
-        padding: 0.8rem 1rem;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        position: relative;
-
-        &.user-message-content {
-          background-color: #d1e7ff;
-          color: #0056b3;
-        }
-
-        &.ai-message-content {
-          background-color: #e9ecef;
-          color: #495057;
-        }
-
-        .message-time {
-          font-size: 0.7rem;
-          color: #999;
-          margin-top: 0.3rem;
-        }
-      }
-    }
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
   }
-
-  /* Input area for sending/receiving messages */
-  footer {
+  .message-set {
     display: flex;
-    padding: 1rem;
-    background-color: #ffffff;
-    border-top: 1px solid #ddd;
-
-    input[type='text'] {
-      flex: 1;
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      font-size: 0.9rem;
-
-      &:focus {
-        border-color: #007bff;
-        outline: none;
-      }
-    }
+    flex-direction: column;
+    margin-bottom: 10px;
   }
-
-  /* Loading indicator styling */
-  .loading {
-    text-align: center;
-    font-style: italic;
-    color: #666;
-    padding: 1rem;
+  .bubble {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    word-wrap: break-word;
   }
-
-  /* Styles for message options (thumbs up, retry, etc.) */
-  .message-options {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-
-    span {
-      font-size: 1.2rem;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.1);
-        transition: transform 0.2s ease;
-      }
-
-      &[aria-label='thumbs up'] {
-        color: #28a745;
-      }
-
-      &[aria-label='thumbs down'] {
-        color: #dc3545;
-      }
-
-      &[aria-label='trash'] {
-        color: #6c757d;
-      }
-
-      &[aria-label='retry'] {
-        color: #ffc107;
-      }
-    }
+  .user-message {
+    align-self: flex-end;
+    background-color: #19222d;
   }
-
-  /* Input area for AI response display */
-  .input-area {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    margin: 1rem;
-    color: #495057;
-
-    &.readonly {
-      opacity: 0.8;
-    }
+  .ai-message {
+    align-self: flex-start;
+    background-color: #1f2936;
   }
 }

@@ -1,8 +1,5 @@
 package org.dacss.projectinitai.security;
 
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Endpoint;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +10,6 @@ import reactor.core.publisher.Flux;
  * Interface for handling security actions.
  * Provides methods to process secure actions and retrieve security-related information.
  */
-@BrowserCallable
-@AnonymousAllowed
 @FunctionalInterface
 public interface SecurityIface {
 
@@ -42,7 +37,7 @@ public interface SecurityIface {
                 case PROJECT_SECURITY, CYBER_SECURITY -> null;
             };
         } catch (Exception securityServiceExc) {
-            log.error("{}: {}", securityServiceExc.getClass().getSimpleName(), securityServiceExc.getMessage());
+            log.error("{}: Secure action failed", action, securityServiceExc);
             return Flux.empty();
         } finally {
             log.info("{}: Secure action completed", action);

@@ -3,15 +3,17 @@
 @import url('project-init-ai/pages/chat-client.scss');
 
 html {
-  --font-size: 1rem;
+  --font-size-xxs: 0.6875rem;
   --font-size-xxxl: 1.75rem;
+  --size-xxs: 1.25rem;
+  --size-xxxl: 3.5rem;
+  --font-size: 1rem;
   --font-size-xxl: 1.375rem;
   --font-size-xl: 1.125rem;
   --font-size-l: 1rem;
   --font-size-m: 0.875rem;
   --font-size-s: 0.8125rem;
   --font-size-xs: 0.75rem;
-  --font-size-xxs: 0.6875rem;
   --border-radius-s: calc(var(-size-m) / 6);
   --border-radius-m: calc(var(-size-m) / 2);
   --border-radius-l: var(-size-m);

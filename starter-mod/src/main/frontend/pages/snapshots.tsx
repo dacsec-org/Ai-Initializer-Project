@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Dialog, Notification } from '@vaadin/react-components';
-import { Snapshots } from 'Frontend/bridges/Snapshots';
-import { SnapShotsActions } from 'Frontend/enums/SnapShotsActions';
+import { NotificationService } from '../components/notifications';
+import { SnapshotsBridge } from '../bridges/snap-shots-bridge';
+import { SnapShotsActions } from '../enums/SnapShotsActions';
 import { from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import Button from '../components/button';
+import Dialog from '../components/dialog';
 
 export const config: ViewConfig = {
   menu: { order: 14, icon: 'line-awesome/svg/camera-solid.svg' },
@@ -28,15 +30,18 @@ const SnapshotsView: React.FC = () => {
   };
 
   const handleSnapshotAction = (action: SnapShotsActions, successMessage: string) => {
-    from(Snapshots.getSnapshots(action))
+    from(SnapshotsBridge(action))
       .pipe(
         catchError((error) => {
-          Notification.show('Error performing snapshot action');
+          NotificationService.show('Error performing snapshot action');
           throw error;
         })
       )
       .subscribe((response) => {
-        Notification.show(successMessage + response);
+        NotificationService.show(successMessage);
+        if (action === SnapShotsActions.LIST) {
+          setSnapshots(response);
+        }
       });
   };
 
@@ -66,8 +71,12 @@ const SnapshotsView: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Dialog opened={dialogOpened}
-              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+      <Dialog
+        isOpen={dialogOpened}
+        message={dialogMessage}
+        onClose={handleDialogClose}
+        onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+      >
         <div>
           <p>{dialogMessage}</p>
           <div className="flex gap-s">

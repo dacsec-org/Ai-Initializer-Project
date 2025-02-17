@@ -7,8 +7,6 @@ const SERVICE = "messages-service";
 
 /**
  * <h1>{@link MessageBridge}</h1>
- * @param action
- * @constructor
  */
 export const MessageBridge
   = (action: MessageAction): Observable<any> => {

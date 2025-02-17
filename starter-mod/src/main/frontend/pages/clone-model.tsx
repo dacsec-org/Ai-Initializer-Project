@@ -3,13 +3,8 @@ import { NotificationService as Notification } from '../components/notifications
 import Button from '../components/button';
 import { ModelsBridge } from '../bridges/models-bridge';
 import { ModelActions } from '../enums/ModelActions';
-import { ModelsService } from '../bridges/endpoints';
 import Dialog from '../components/dialog';
 import InputArea from '../components/input-area';
-// export const config: ViewConfig = {
-//   menu: { order: 2, icon: 'line-awesome/svg/clone-solid.svg' },
-//   title: 'Clone',
-// };
 
 const CloneModelView: React.FC = () => {
   const [sourcePath, setSourcePath] = useState('');
@@ -27,15 +22,21 @@ const CloneModelView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const handleClone = async () => {
-    const response = ModelActions.CLONE;
-
-    Notification.show("Cloning successful: " + response);
-    setDialogOpened(false);
+  const handleClone = () => {
+    ModelsBridge(ModelActions.CLONE).subscribe({
+      next: (response) => {
+        Notification.show("Cloning successful: " + response);
+        setDialogOpened(false);
+      },
+      error: (error) => {
+        Notification.show("Error cloning model: " + error);
+        setDialogOpened(false);
+      }
+    });
   };
 
-  const handleInputChange = (e: TextFieldValueChangedEvent) => {
-    setSourcePath(e.detail.value);
+  const handleInputChange = (e: any) => {
+    setSourcePath(e.target.value);
   };
 
   return (
@@ -50,11 +51,11 @@ const CloneModelView: React.FC = () => {
           onClick={() => openDialog('Are you sure you want to clone this model?', handleClone)}
           style={{ backgroundColor: 'blue' }}>Clone Model</Button>
       </section>
-      <Dialog opened={dialogOpened}
-              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
-              isOpen={false} message={''} onClose={function(): void {
-        throw new Error('Function not implemented.');
-      }}>
+      <Dialog
+        isOpen={dialogOpened}
+        message={dialogMessage}
+        onClose={handleDialogClose}
+      >
         <div>
           <p>{dialogMessage}</p>
           <div className="flex gap-s">

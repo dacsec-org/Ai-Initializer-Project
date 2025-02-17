@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-// import { Button, Notification, Dialog } from '@vaadin/react-components';
-import { DirFileService } from 'Frontend/generated/endpoints';
-import CustomTextFields from '../components/custom-textfields';
-
-export const config: ViewConfig = {
-  menu: { order: 4, icon: 'line-awesome/svg/folder-open-solid.svg' }, title: 'Directories ~ Files' };
+import { NotificationService as Notification } from '../components/notifications';
+import { DirectoriesFilesBridge } from '../bridges/DirectoriesFiles';
+import { DirectoryActions } from '../enums/DirectoryActions';
+import InputArea from '../components/input-area';
+import Button from '../components/button';
+import Dialog from '../components/dialog';
 
 const DirFileView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
   const [dialogAction, setDialogAction] = useState<() => void>(() => {});
+  const [path, setPath] = useState('');
+  const [fileName, setFileName] = useState('');
 
   const openDialog = (message: string, action: () => void) => {
     setDialogMessage(message);
@@ -22,49 +23,61 @@ const DirFileView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const createDirectory = async () => {
-    const response = await DirFileService.processDirFileAction('create_directory', '', '');
-    Notification.show("Directory created successfully: " + response);
-    setDialogOpened(false);
-  };
-
-  const createFile = async () => {
-    const response = await DirFileService.processDirFileAction('create_file', '', '');
-    Notification.show("File created successfully: " + response);
-    setDialogOpened(false);
-  };
-
-  const deleteDirectory = async () => {
-    const response = await DirFileService.processDirFileAction('delete_directory', '', '');
-    Notification.show("Directory deleted successfully: " + response);
-    setDialogOpened(false);
-  };
-
-  const deleteFile = async () => {
-    const response = await DirFileService.processDirFileAction('delete_file', '', '');
-    Notification.show("File deleted successfully: " + response);
-    setDialogOpened(false);
+  const handleAction = (action: DirectoryActions, successMessage: string) => {
+    DirectoriesFilesBridge(action, path, fileName).subscribe({
+      next: (response) => {
+        Notification.show(successMessage + ": " + response);
+        setDialogOpened(false);
+      },
+      error: (error) => {
+        Notification.show("Error performing action: " + error);
+        setDialogOpened(false);
+      }
+    });
   };
 
   return (
     <>
       <section className="flex p-m gap-m items-end">
-        <CustomTextFields renderTextField={3} />
-        <CustomTextFields renderTextField={4} />
+        <InputArea
+          label="Path"
+          placeholder="path/to/directory"
+          onChange={(value) => setPath(value as string)}
+          className="small"
+        />
+        <InputArea
+          label="File Name"
+          placeholder="path/to/file..."
+          onChange={(value) => setFileName(value as string)}
+          className="small"
+        />
         <Button
-          onClick={() => openDialog('Are you sure you want to create a directory?', createDirectory)}
-          style={{ backgroundColor: 'green' }}>Create Directory</Button>
+          onClick={() => openDialog('Are you sure you want to create a directory?', () => handleAction(DirectoryActions.CREATE_DIRECTORY, 'Directory created successfully'))}
+          style={{ backgroundColor: 'green' }}>
+          <i className="las la-folder-plus"></i>
+        </Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to create a file?', createFile)}
-          style={{ backgroundColor: 'blue' }}>Create File</Button>
+          onClick={() => openDialog('Are you sure you want to create a file?', () => handleAction(DirectoryActions.CREATE_FILE, 'File created successfully'))}
+          style={{ backgroundColor: 'blue' }}>
+          <i className="las la-file-alt"></i>
+        </Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to delete the directory?', deleteDirectory)}
-          style={{ backgroundColor: 'red' }}>Delete Directory</Button>
+          onClick={() => openDialog('Are you sure you want to delete the directory?', () => handleAction(DirectoryActions.DELETE_DIRECTORY, 'Directory deleted successfully'))}
+          style={{ backgroundColor: 'red' }}>
+          <i className="las la-folder-minus"></i>
+        </Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to delete the file?', deleteFile)}
-          style={{ backgroundColor: 'orange' }}>Delete File</Button>
+          onClick={() => openDialog('Are you sure you want to delete the file?', () => handleAction(DirectoryActions.DELETE_FILE, 'File deleted successfully'))}
+          style={{ backgroundColor: 'orange' }}>
+          <i className="las la-file-excel"></i>
+        </Button>
       </section>
-      <Dialog opened={dialogOpened} onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+      <Dialog
+        isOpen={dialogOpened}
+        message={dialogMessage}
+        onClose={handleDialogClose}
+        onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+      >
         <div>
           <p>{dialogMessage}</p>
           <div className="flex gap-s">
@@ -84,4 +97,7 @@ const DirFileView: React.FC = () => {
   );
 };
 
+/**
+ * <h1>{@link DirFileView}</h1>
+ */
 export default DirFileView;

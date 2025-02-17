@@ -21,6 +21,8 @@
     "react-resizable": "^3.0.5",
     "react-router-dom": "^7.1.5",
     "react-select": "^5.10.0",
+    "rsocket-core": "^0.0.29-alpha.0",
+    "rsocket-websocket-client": "^0.0.29-alpha.0",
     "vite": "^6.1.0"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/react-resizable": "^3.0.8",
+    "@types/rsocket-websocket-client": "^0.0.7",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.20.1",
     "eslint-plugin-react-hooks": "^5.1.0",

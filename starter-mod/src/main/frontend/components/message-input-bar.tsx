@@ -9,31 +9,19 @@ interface MessageInputBarProps {
     className?: string; // Optional additional CSS classes
 }
 
-/**
- * <h1>{@link MessageInputBar}</h1>
- * is a React functional component that provides a text input bar for composing
- * and sending messages. It includes an input field and a send button, enabling users
- * to input and submit messages.
- *
- * @typedef {Object} MessageInputBarProps
- * @property {Function} onSend - A callback function that is triggered when the send button is clicked.
- *                               Receives the current input message as an argument.
- * @property {string} [placeholder='Enter your message...'] - Placeholder text displayed in the input field.
- * @property {string} [className] - Optional CSS class name to style the component.
- */
 const MessageInputBar: React.FC<MessageInputBarProps> = ({ onSend, placeholder = 'Enter your message...', className }) => {
     const [message, setMessage] = useState<string>(''); // State to manage the current message
 
     const handleInputChange = (newValue: string | number) => {
-        setMessage(String(newValue)); // Convert numbers to string
+        setMessage(String(newValue)); // Convert numbers to strings
     };
 
     const handleSend = () => {
         if (message.trim()) {
             if (onSend) {
-                onSend(message); // Trigger `onSend` callback
+                onSend(message); // Trigger the `onSend` callback with the user's message
             }
-            setMessage(''); // Clear the input
+            setMessage(''); // Clear the input field
         }
     };
 

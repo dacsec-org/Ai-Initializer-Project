@@ -30,7 +30,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0/bridge-annotation-processor-1.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0-SNAPSHOT/bridge-annotation-processor-1.0-SNAPSHOT.jar" />
+          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0-SNAPSHOT/bridge-annotation-processor-1.0-SNAPSHOT.jar" />
         </processorPath>
         <module name="annotations-mod" />
       </profile>
@@ -63,7 +64,7 @@
       <module name="admin-mod" options="-parameters" />
       <module name="advisers-mod" options="-parameters" />
       <module name="ai-initializer-project" options="" />
-      <module name="annotations-mod" options="-parameters" />
+      <module name="annotations-mod" options="-parameters --enable-preview" />
       <module name="anomalies-mod" options="-parameters" />
       <module name="checksums-mod" options="-parameters" />
       <module name="classifications-mod" options="-parameters" />

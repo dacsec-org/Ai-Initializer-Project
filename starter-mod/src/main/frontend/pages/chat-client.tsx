@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { MessageAction } from '../enums/MessageAction';
-import { MessageBridge } from '../bridges/message-bridge';
 import { Subscription } from 'rxjs';
-import InputArea from '../components/input-area';
+import InputArea from '../components/input-area'; // Handles AI responses in a text field
+import MessageInputBar from '../components/message-input-bar'; // Input bar for user messages
+import client from '../bridges/ConnectionFactory'; // Import RSocket client
+import './ChatClientView.scss'; // Include necessary styling
 
 interface MessageSet {
   userMessage: {
@@ -12,56 +14,64 @@ interface MessageSet {
     userColorIndex: number;
     options: React.ReactNode;
   };
-  aiMessage: {
+  aiMessage?: {
     text: string;
     time: string;
     userName: string;
     userColorIndex: number;
     options: React.ReactNode;
-  };
+  } | null;
 }
 
 function MessageList(props: {
-  items: FlatArray<{
+  items: {
     text: string;
     time: string;
     userName: string;
     userColorIndex: number;
-    options: React.ReactNode
-  }[][], 1>[]
+    options: React.ReactNode;
+  }[]
 }) {
   return null;
 }
 
 const ChatClientView: React.FC = () => {
-  const [request, setRequest] = useState<string>('');
   const [messageSets, setMessageSets] = useState<MessageSet[]>([]);
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState('');
   let subscription: Subscription;
 
-  const handleMessageSent = (userRequest: string) => {
-    setRequest(userRequest);
-    subscription = MessageBridge(MessageAction.REQUEST).subscribe({
-      next: (aiResponse) => {
-        console.log('Received AI response:', aiResponse);
-        handleResponseReceived(aiResponse);
-      },
-      error: (error) => {
-        console.error('Failed to send message', error);
-      }
-    });
-  };
-
-  const handleResponseReceived = (aiResponse: string) => {
-    const userMessage = {
-      text: request,
+  const handleSendMessage = (userMessage: string) => {
+    const userMessageData = {
+      text: userMessage,
       time: new Date().toLocaleTimeString(),
       userName: 'User',
       userColorIndex: 1,
       options: renderMessageOptions(messageSets.length),
     };
 
+    // Add user message to the message set
+    setMessageSets((prevMessageSets) => [
+      ...prevMessageSets,
+      { userMessage: userMessageData, aiMessage: null }, // AI will fill later
+    ]);
+
+    // Send request to RSocket for AI response
+    setLoading(true);
+    client
+      .rsocketCall('user.request', { text: userMessage }) // Example RSocket route
+      .subscribe({
+        next: (aiResponse) => {
+          handleReceiveResponse(aiResponse, userMessageData);
+          setLoading(false);
+        },
+        error: (error) => {
+          console.error('RSocket error:', error);
+          setLoading(false);
+        },
+      });
+  };
+
+  const handleReceiveResponse = (aiResponse: any, userMessageData: any) => {
     const aiMessage = {
       text: aiResponse,
       time: new Date().toLocaleTimeString(),
@@ -70,7 +80,7 @@ const ChatClientView: React.FC = () => {
       options: renderMessageOptions(messageSets.length),
     };
 
-    const messageSet: MessageSet = { userMessage, aiMessage };
+    const messageSet: MessageSet = { userMessage: userMessageData, aiMessage };
 
     setMessageSets((prevMessageSets) => [...prevMessageSets, messageSet]);
   };
@@ -88,44 +98,19 @@ const ChatClientView: React.FC = () => {
     // Handle the action if needed
   };
 
-  useEffect(() => {
-    if (request) {
-      setLoading(true);
-      subscription = MessageBridge(MessageAction.RESPONSE).subscribe({
-        next: (aiResponse) => {
-          setResponse(aiResponse);
-          handleResponseReceived(aiResponse);
-          setLoading(false);
-        },
-        error: () => {
-          setLoading(false);
-        }
-      });
-    }
-    return () => subscription?.unsubscribe();
-  }, [request]);
-
+  // @ts-ignore
   return (
     <div>
-      <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat()} />
+      <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat().filter(Boolean)} />
       <InputArea
         label="AI Response"
-        value={response}
+        value={messageSets.length > 0 ? messageSets[messageSets.length - 1].aiMessage?.text : ''}
         readonly
         style={{ width: '100%' }}
       />
       {loading && <div>Loading...</div>}
       <footer>
-        <input
-          type="text"
-          placeholder="Type your message..."
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleMessageSent((e.target as HTMLInputElement).value);
-              (e.target as HTMLInputElement).value = '';
-            }
-          }}
-        />
+        <MessageInputBar onSend={handleSendMessage} placeholder="Type your message..." />
       </footer>
     </div>
   );

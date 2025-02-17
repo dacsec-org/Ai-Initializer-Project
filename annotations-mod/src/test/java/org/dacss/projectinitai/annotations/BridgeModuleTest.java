@@ -45,7 +45,7 @@ public class BridgeModuleTest {
         System.out.println("Setting up ApplicationContext and initializing BridgeRegistry...");
         ApplicationContext context = new AnnotationConfigApplicationContext(MokBridgeService.class);
         bridgeRegistry = new BridgeRegistry(context);
-        System.out.println("BridgeRegistry initialized with the following services: " + Arrays.toString(context.getBeanDefinitionNames()));
+        System.out.println(STR."BridgeRegistry initialized with the following services: \{Arrays.toString(context.getBeanDefinitionNames())}");
     }
 
     /**
@@ -55,7 +55,7 @@ public class BridgeModuleTest {
     public void testBridgeRegistryServiceRetrieval() {
         System.out.println("Testing BridgeRegistry service retrieval...");
         Object service = bridgeRegistry.getService("mok-bridge-service");
-        System.out.println("Retrieved service: " + service);
+        System.out.println(STR."Retrieved service: \{service}");
 
         // Ensure the service retrieved is not null and is an instance of MokBridgeService
         Assert.assertNotNull(service, "The service retrieved should not be null.");
@@ -75,7 +75,7 @@ public class BridgeModuleTest {
                 {MokOptions.OPTION_3, "MokOptionThree - Sample Data"}
         };
         for (Object[] data : dataProvider) {
-            System.out.println("Option: " + data[0] + ", Expected Output: " + data[1]);
+            System.out.println(STR."Option: \{data[0]}, Expected Output: \{data[1]}");
         }
         return dataProvider;
     }
@@ -104,17 +104,17 @@ public class BridgeModuleTest {
 
     @Test(dataProvider = "mokOptionsProvider")
     public void testMokBridgeService(MokOptions option, String expectedOutput) {
-        System.out.println("Testing MokBridgeService with option: " + option);
+        System.out.println(STR."Testing MokBridgeService with option: \{option}");
 
         MokBridgeService service = (MokBridgeService) bridgeRegistry.getService("mok-bridge-service");
-        System.out.println("Using service: " + service);
+        System.out.println(STR."Using service: \{service}");
 
         // Call the method and collect the data from the Flux output
         List<Object> result = new ArrayList<>();
-        service.processTestOptions(option).doOnNext(value -> System.out.println("Generated value: " + value)).toIterable().forEach(result::add);
+        service.processTestOptions(option).doOnNext(value -> System.out.println(STR."Generated value: \{value}")).toIterable().forEach(result::add);
 
         // Print the collected result
-        System.out.println("Collected result: " + result);
+        System.out.println(STR."Collected result: \{result}");
 
         // Assert that the emitted value matches the expected output
         Assert.assertEquals(result.size(), 1, "Flux should emit exactly one item.");
