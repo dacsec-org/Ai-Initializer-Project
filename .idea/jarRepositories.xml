@@ -2,29 +2,39 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
-      <option name="id" value="central" />
-      <option name="name" value="central" />
-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+      <option name="id" value="metrics-mod" />
+      <option name="name" value="metrics-mod" />
+      <option name="url" value="https://github.com/dacss-net/metrics-mod" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="spring-snapshots" />
-      <option name="name" value="spring-snapshots" />
-      <option name="url" value="https://repo.spring.io/snapshot" />
+      <option name="id" value="models-mod" />
+      <option name="name" value="models-mod" />
+      <option name="url" value="https://github.com/dacss-net/models-mod" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="vaadin-prereleases" />
-      <option name="name" value="vaadin-prereleases" />
-      <option name="url" value="https://maven.vaadin.com/vaadin-prereleases" />
+      <option name="id" value="security-mod" />
+      <option name="name" value="security-mod" />
+      <option name="url" value="https://github.com/dacss-net/security-mod" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="central" />
-      <option name="name" value="Central Repository" />
-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+      <option name="id" value="starter-mod" />
+      <option name="name" value="starter-mod" />
+      <option name="url" value="https://github.com/dacss-net/starter-mod" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="spring-milestones" />
-      <option name="name" value="Spring Milestones" />
-      <option name="url" value="https://repo.spring.io/milestone" />
+      <option name="id" value="loaders-mod" />
+      <option name="name" value="loaders-mod" />
+      <option name="url" value="https://github.com/dacss-net/loaders-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="services-mod" />
+      <option name="name" value="services-mod" />
+      <option name="url" value="https://github.com/dacss-net/services-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="servers-mod" />
+      <option name="name" value="servers-mod" />
+      <option name="url" value="https://github.com/dacss-net/servers-mod" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="spring-releases" />
@@ -32,9 +42,44 @@
       <option name="url" value="https://repo.spring.io/release" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="tar-mod" />
+      <option name="name" value="tar-mod" />
+      <option name="url" value="https://github.com/dacss-net/tar-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="checksums-mod" />
+      <option name="name" value="checksums-mod" />
+      <option name="url" value="https://github.com/dacss-net/checksums-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="zip-mod" />
+      <option name="name" value="zip-mod" />
+      <option name="url" value="https://github.com/dacss-net/zip-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="vaadin-prerelease" />
+      <option name="name" value="vaadin-prerelease" />
+      <option name="url" value="https://maven.vaadin.com/vaadin-prereleases" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
-      <option name="name" value="Maven Central repository" />
-      <option name="url" value="https://repo1.maven.org/maven2" />
+      <option name="name" value="central" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="directories-mod" />
+      <option name="name" value="directories-mod" />
+      <option name="url" value="https://github.com/dacss-net/directories-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="vaadin-prereleases" />
+      <option name="name" value="vaadin-prereleases" />
+      <option name="url" value="https://maven.vaadin.com/vaadin-prereleases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="annotations-mod" />
+      <option name="name" value="annotations-mod" />
+      <option name="url" value="https://github.com/dacss-net/annotations-mod" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="spring-snapshots" />
@@ -47,19 +92,49 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-snapshots" />
+      <option name="name" value="spring-snapshots" />
+      <option name="url" value="https://repo.spring.io/snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="system-settings-mod" />
+      <option name="name" value="system-settings-mod" />
+      <option name="url" value="https://github.com/dacss-net/system-settings-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="databases-mod" />
+      <option name="name" value="databases-mod" />
+      <option name="url" value="https://github.com/dacss-net/databases-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="universityOfManchester-graal" />
       <option name="name" value="universityOfManchester-graal" />
       <option name="url" value="https://raw.githubusercontent.com/beehive-lab/tornado/maven-tornadovm" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="spring-milestones" />
-      <option name="name" value="spring-milestones" />
+      <option name="name" value="Spring Milestones" />
       <option name="url" value="https://repo.spring.io/milestone" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="vaadin-prerelease" />
-      <option name="name" value="vaadin-prerelease" />
-      <option name="url" value="https://maven.vaadin.com/vaadin-prereleases" />
+      <option name="id" value="messages-mod" />
+      <option name="name" value="messages-mod" />
+      <option name="url" value="https://github.com/dacss-net/messages-mod" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-milestones" />
+      <option name="name" value="spring-milestones" />
+      <option name="url" value="https://repo.spring.io/milestone" />
     </remote-repository>
   </component>
 </project>

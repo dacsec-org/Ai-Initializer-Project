@@ -1,4 +1,4 @@
-# `MODELS.md`
+## `MODELS.md`
 
 ## Purpose
 
