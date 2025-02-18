@@ -6,9 +6,9 @@ import { DownloadAction } from '../enums/DownloadAction';
 const SERVICE = "downloaders-service";
 
 /**
- * <h1>{@link BridgeModelAction}</h1>
+ * <h1>{@link SearchModelsBridge}</h1>
  */
-export const BridgeModelAction
+export const SearchModelsBridge
   = (action: DownloadAction): Observable<any> => {
   return from(
     client.call(

@@ -35,16 +35,16 @@ const borderedCellStyle: React.CSSProperties = {
 };
 
 const SearchModelsView: React.FC<SearchModelsViewProps> = ({
-                                                               searchQuery,
-                                                               onModelsFetched,
-                                                               onLoading,
-                                                           }) => {
+    searchQuery,
+    onModelsFetched,
+    onLoading,
+}) => {
     const [models, setModels] = useState<ModelData[]>([]);
 
     const fetchAndSetModels = async () => {
         onLoading(true);
         try {
-            const response = await firstValueFrom(SearchModelsBridge.getModels(DownloadAction.SEARCH));
+            const response = await firstValueFrom(SearchModelsBridge(DownloadAction.SEARCH));
             setModels(response);
             onModelsFetched(response);
             notify("Models fetched successfully", "success");
@@ -60,9 +60,9 @@ const SearchModelsView: React.FC<SearchModelsViewProps> = ({
         NotificationService.show(message, type);
     };
 
-    const handleDownload = async (id: string) => {
+    const handleDownload = async (modelId: string) => {
         try {
-            await firstValueFrom(SearchModelsBridge.getModels(DownloadAction.DOWNLOAD_LLM_MODEL));
+            await firstValueFrom(SearchModelsBridge(DownloadAction.DOWNLOAD_LLM_MODEL));
             notify("Model downloaded successfully", "success");
         } catch (error) {
             console.error("Error downloading model:", error);
@@ -72,7 +72,7 @@ const SearchModelsView: React.FC<SearchModelsViewProps> = ({
 
     useEffect(() => {
         if (searchQuery) {
-            fetchAndSetModels();
+            fetchAndSetModels().then(r => r);
         }
     }, [searchQuery, onLoading, onModelsFetched]);
 
@@ -94,5 +94,7 @@ const SearchModelsView: React.FC<SearchModelsViewProps> = ({
         </Grid>
     );
 };
-
+/**
+ * <h1>{@link SearchModelsView}</h1>
+ */
 export default SearchModelsView;

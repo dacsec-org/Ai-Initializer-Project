@@ -5,7 +5,7 @@ package org.dacss.projectinitai.servers;
  * types of servers used in the framework
  */
 public enum ServerTypes {
-    UNIX_SOCKET,
+    USOCKET,
     HTTP,
-    WB_SOCKET
+    RSOCKET
 }

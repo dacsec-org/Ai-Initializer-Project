@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Notification, TextField } from '@vaadin/react-components';
-import { Models } from 'Frontend/bridges/Models';
-import { ModelActions } from 'Frontend/enums/ModelActions';
-
-export const config: ViewConfig = {
-  menu: { order: 10, icon: 'line-awesome/svg/robot-solid.svg' },
-  title: 'Model Settings',
-};
+import Button from '../components/button';
+import { ModelsBridge } from '../bridges/models-bridge';
+import { ModelActions } from '../enums/ModelActions';
+import { firstValueFrom } from 'rxjs';
+import { NotificationService } from '../components/notifications';
+import InputArea from '../components/input-area';
 
 const ModelSettingsView: React.FC = () => {
   const [name, setName] = useState('');
@@ -17,14 +14,19 @@ const ModelSettingsView: React.FC = () => {
   };
 
   const handleButtonClick = async () => {
-    const serverResponse = await Models.getModels(ModelActions.SETTINGS, name, '');
-    Notification.show(serverResponse);
+    try {
+      const response = await firstValueFrom(ModelsBridge(ModelActions.SETTINGS));
+      NotificationService.show(response);
+    } catch (error) {
+      console.error('Error processing model settings:', error);
+      NotificationService.show('Error processing model settings. Please try again.', 'error');
+    }
   };
 
   return (
     <>
       <section className="flex p-m gap-m items-end">
-        <TextField
+        <InputArea
           label="Your name"
           value={name}
           onValueChanged={(e) => handleInputChange(e as any)}
@@ -36,5 +38,7 @@ const ModelSettingsView: React.FC = () => {
     </>
   );
 };
-
+/**
+ * <h1>{@link ModelSettingsView}</h1>
+ */
 export default ModelSettingsView;

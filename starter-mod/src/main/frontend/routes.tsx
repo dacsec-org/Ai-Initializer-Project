@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ChatClientView from './pages/chat-client';
 import CloneModelView from './pages/clone-model';
-import ContentGalleryView from './pages/content-gallery';
+// import ContentGalleryView from './pages/content-gallery';
 import DirFileView from './pages/directories-files';
-import EmbeddingSettingsView from './pages/embedding-settings';
+// import EmbeddingSettingsView from './pages/embedding-settings';
 import Grid from './pages/grid';
 import HelloWorldView from './pages/hello-world';
 import DestroyModelView from './pages/model-destroy';
@@ -24,18 +24,18 @@ export const router = createBrowserRouter([
     path: '/clone-model',
     element: <CloneModelView />,
   },
-  {
-    path: '/content-gallery',
-    element: <ContentGalleryView items={[]} />,
-  },
+  // {
+  //   path: '/content-gallery',
+  //   element: <ContentGalleryView items={[]} />,
+  // },
   {
     path: '/directories-files',
     element: <DirFileView />
   },
-  {
-    path: '/embed-settings',
-    element: <EmbeddingSettingsView />
-  },
+  // {
+  //   path: '/embed-settings',
+  //   element: <EmbeddingSettingsView />
+  // },
   {
     path: '/grid',
     element: <Grid columns={0} gap={''} />

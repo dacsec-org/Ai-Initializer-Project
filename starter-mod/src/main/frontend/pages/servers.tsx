@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-// import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-// import { Button, Dialog, Notification } from '@vaadin/react-components';
-// @ts-ignore
-import { ServersService } from 'Frontend/generated/endpoints';
-
-export const config: ViewConfig = {
-  menu: { order: 13, icon: 'line-awesome/svg/server-solid.svg' , title: 'Servers' }};
+import { NotificationService } from '../components/notifications';
+import Button from '../components/button';
+import Dialog from '../components/dialog';
+import { ServersBridge } from '../bridges/servers-bridge';
+import { ServerActions } from '../enums/ServerActions';
+import { ServerTypes } from '../enums/ServerTypes';
 
 const ManageServersView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);
@@ -22,36 +21,36 @@ const ManageServersView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const startServer = async () => {
-    const result = await ServersService.manageServer('start');
-    Notification.show("Started server" + result);
-  };
-
-  const stopServer = async () => {
-    const result = await ServersService.manageServer('stop');
-    Notification.show("Server stopped" + result);
-  };
-
-  const restartServer = async () => {
-    const result = await ServersService.manageServer('restart');
-    Notification.show("Restarted server" + result);
+  const handleServerAction = async (action: ServerActions) => {
+    const result = await ServersBridge(ServerTypes.USOCKET, action).toPromise();
+    NotificationService.show(`${ServerActions[action]} server: ${result}`);
   };
 
   return (
     <>
       <section className="flex p-m gap-m items-end">
         <Button
-          onClick={() => openDialog('Are you sure you want to start the server?', startServer)}
-          style={{ backgroundColor: 'green' }}>Start Server</Button>
+          onClick={() => openDialog('Are you sure you want to start the server?', () => handleServerAction(ServerActions.START))}
+          style={{ backgroundColor: 'green' }}>
+          Start Server
+        </Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to stop the server?', stopServer)}
-          style={{ backgroundColor: 'red' }}>Stop Server</Button>
+          onClick={() => openDialog('Are you sure you want to stop the server?', () => handleServerAction(ServerActions.STOP))}
+          style={{ backgroundColor: 'red' }}>
+          Stop Server
+        </Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to restart the server?', restartServer)}
-          style={{ backgroundColor: 'blue' }}>Restart Server</Button>
+          onClick={() => openDialog('Are you sure you want to restart the server?', () => handleServerAction(ServerActions.RESTART))}
+          style={{ backgroundColor: 'blue' }}>
+          Restart Server
+        </Button>
       </section>
-      <Dialog opened={dialogOpened}
-              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+      <Dialog
+        isOpen={dialogOpened}
+        message={dialogMessage}
+        onClose={handleDialogClose}
+        onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+      >
         <div>
           <p>{dialogMessage}</p>
           <div className="flex gap-s">

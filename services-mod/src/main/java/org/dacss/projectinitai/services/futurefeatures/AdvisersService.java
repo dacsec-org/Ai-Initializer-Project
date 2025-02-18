@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.services;
+package org.dacss.projectinitai.services.futurefeatures;
 
 import org.dacss.projectinitai.advisers.AdviseAction;
 import org.dacss.projectinitai.advisers.AdvisersIface;

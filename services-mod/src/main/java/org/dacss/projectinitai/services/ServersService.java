@@ -17,7 +17,7 @@ import reactor.core.publisher.Flux;
  * Backend hilla endpoint service for server operations.
  */
 @Service
-@Bridge("servers")
+@Bridge("servers-service")
 public class ServersService implements ServersIface {
 
     private static final Logger log = LoggerFactory.getLogger(ServersService.class);

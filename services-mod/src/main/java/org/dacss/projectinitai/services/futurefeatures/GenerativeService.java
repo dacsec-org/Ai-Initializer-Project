@@ -1,4 +1,4 @@
-package org.dacss.projectinitai.services;
+package org.dacss.projectinitai.services.futurefeatures;
 
 import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.generative.GenerativeIface;

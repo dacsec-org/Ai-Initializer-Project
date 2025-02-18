@@ -49,16 +49,14 @@ const ChatClientView: React.FC = () => {
       options: renderMessageOptions(messageSets.length),
     };
 
-    // Add user message to the message set
     setMessageSets((prevMessageSets) => [
       ...prevMessageSets,
-      { userMessage: userMessageData, aiMessage: null }, // AI will fill later
+      { userMessage: userMessageData, aiMessage: null },
     ]);
 
-    // Send request to RSocket for AI response
     setLoading(true);
     client
-      .rsocketCall('user.request', { text: userMessage }) // Example RSocket route
+      .rsocketCall('user.request', { text: userMessage })
       .subscribe({
         next: (aiResponse) => {
           handleReceiveResponse(aiResponse, userMessageData);
@@ -98,10 +96,9 @@ const ChatClientView: React.FC = () => {
     // Handle the action if needed
   };
 
-  // @ts-ignore
   return (
     <div>
-      <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat().filter(Boolean)} />
+      <MessageList items={messageSets.map(set => [set.userMessage, set.aiMessage]).flat().filter((item): item is NonNullable<typeof item> => item != null)} />
       <InputArea
         label="AI Response"
         value={messageSets.length > 0 ? messageSets[messageSets.length - 1].aiMessage?.text : ''}
@@ -116,4 +113,7 @@ const ChatClientView: React.FC = () => {
   );
 };
 
+/**
+ * <h1>{@link ChatClientView}</h1>
+ */
 export default ChatClientView;

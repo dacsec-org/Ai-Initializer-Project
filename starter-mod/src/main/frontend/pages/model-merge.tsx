@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import {
-  Button,
-  Dialog,
-  Notification,
-  TextField
-} from '@vaadin/react-components';
-import { Models } from 'Frontend/bridges/Models';
-import { TextFieldValueChangedEvent } from '@vaadin/text-field';
-import { ModelActions } from 'Frontend/enums/ModelActions';
-
-export const config: ViewConfig = {
-  menu: { order: 9, icon: 'line-awesome/svg/arrows-alt-h-solid.svg' },
-  title: 'Merge Model' };
+import Button from '../components/button';
+import Dialog from '../components/dialog';
+import { NotificationService } from '../components/notifications';
+import InputArea from '../components/input-area';
+import { ModelsBridge } from '../bridges/models-bridge';
+import { ModelActions } from '../enums/ModelActions';
+import { firstValueFrom } from 'rxjs';
 
 const MergeModelView: React.FC = () => {
   const [modelPath1, setModelPath1] = useState('');
@@ -20,9 +13,15 @@ const MergeModelView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);
 
   const handleMerge = async () => {
-    const response = await Models.getModels(ModelActions.MERGE, modelPath1, modelPath2);
-    Notification.show("Merged models: " + response);
-    setDialogOpened(false);
+    try {
+      const response = await firstValueFrom(ModelsBridge(ModelActions.MERGE));
+      NotificationService.show("Merged models: " + response);
+    } catch (error) {
+      console.error('Error merging models:', error);
+      NotificationService.show('Error merging models. Please try again.', 'error');
+    } finally {
+      setDialogOpened(false);
+    }
   };
 
   const openDialog = () => {
@@ -33,32 +32,34 @@ const MergeModelView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const handleInputChange1 = (e: TextFieldValueChangedEvent) => {
-    setModelPath1(e.detail.value);
+  const handleInputChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setModelPath1(e.target.value);
   };
 
-  const handleInputChange2 = (e: TextFieldValueChangedEvent) => {
-    setModelPath2(e.detail.value);
+  const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setModelPath2(e.target.value);
   };
 
   return (
     <>
       <section className="flex p-m gap-m items-end">
-        <TextField
+        <InputArea
           label="Model Path 1"
           value={modelPath1}
-          onValueChanged={handleInputChange1}
         />
-        <TextField
+        <InputArea
           label="Model Path 2"
           value={modelPath2}
-          onValueChanged={handleInputChange2}
         />
         <Button onClick={openDialog}>
           Merge Models
         </Button>
       </section>
-      <Dialog opened={dialogOpened} onOpenedChanged={(e) => setDialogOpened(e.detail.value)}>
+      <Dialog opened={dialogOpened}
+              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+              isOpen={false} message={''} onClose={function(): void {
+        throw new Error('Function not implemented.');
+      }}>
         <div>
           <p>Are you sure you want to merge these models?</p>
           <div className="flex gap-s">
