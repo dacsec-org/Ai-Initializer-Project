@@ -1,7 +1,7 @@
 {
   "name": "project-init-ai",
   "version": "1.0.0",
-  "description": "project ini ai frontend",
+  "description": "project init ai frontend",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-resizable": "^3.0.5",
-    "react-router-dom": "^7.1.5",
+    "react-router-dom": "^7.2.0",
     "react-select": "^5.10.0",
     "rsocket-core": "^0.0.29-alpha.0",
     "rsocket-websocket-client": "^0.0.29-alpha.0",
@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "@types/react-resizable": "^3.0.8",
     "@types/rsocket-websocket-client": "^0.0.7",
     "@vitejs/plugin-react": "^4.3.4",
@@ -38,6 +38,6 @@
     "globals": "^15.15.0",
     "sass": "^1.85.0",
     "typescript": "~5.7.3",
-    "typescript-eslint": "^8.24.0"
+    "typescript-eslint": "^8.24.1"
   }
 }

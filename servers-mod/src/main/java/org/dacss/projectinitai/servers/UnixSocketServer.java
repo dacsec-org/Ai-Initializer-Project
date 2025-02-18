@@ -1,7 +1,7 @@
 package org.dacss.projectinitai.servers;
 
-import org.dacss.projectinitai.messages.AiResponse;
-import org.dacss.projectinitai.messages.UserRequest;
+import org.dacss.projectinitai.messages.AiResponseController;
+import org.dacss.projectinitai.messages.UserRequestController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -174,8 +174,8 @@ public final class UnixSocketServer {
      * @return A {@link Flux} of {@link Object} that represents the AI response.
      */
     public static Flux<Object> handleUserRequest(Flux<Object> userRequestFlux) {
-        return UserRequest.sendUserRequestToLLM(userRequestFlux)
+        return UserRequestController.sendUserRequestToLLM(userRequestFlux)
                 .flatMap(message -> sendMessageToLLM(Flux.just(message)))
-                .flatMap(response -> AiResponse.receiveAiResponseFromLLM(Flux.just(response)));
+                .flatMap(response -> AiResponseController.receiveAiResponseFromLLM(Flux.just(response)));
     }
 }

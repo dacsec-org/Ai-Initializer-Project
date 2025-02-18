@@ -33,8 +33,8 @@
 //    @BeforeMethod
 //    public void setUp() {
 //        // Initialize user request and AI response
-//        userRequest = UserRequest.sendUserRequestToLLM(Flux.just(new Object()));
-//        aiResponse = AiResponse.receiveAiResponseFromLLM(Flux.just(new Object()));
+//        userRequest = UserRequestController.sendUserRequestToLLM(Flux.just(new Object()));
+//        aiResponse = AiResponseController.receiveAiResponseFromLLM(Flux.just(new Object()));
 //        messageSets = Flux.merge(userRequest, aiResponse);
 //    }
 //

@@ -1,3 +1,4 @@
+/*tsconfig*/
 {
   "compilerOptions": {
     "allowJs": false,
@@ -9,7 +10,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "frontend/*": ["starter-mod/src/main/frontend/*"]
+    }
   },
   "include": [
     "src"

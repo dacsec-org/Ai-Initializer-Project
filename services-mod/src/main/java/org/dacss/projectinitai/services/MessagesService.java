@@ -24,8 +24,8 @@ public class MessagesService implements MessagesIface {
         Flux<Object> flux;
         try {
             flux = switch (action) {
-                case REQUEST -> UserRequest.sendUserRequestToLLM(Flux.just(new Object()));
-                case RESPONSE -> AiResponse.receiveAiResponseFromLLM(Flux.just(new Object()));
+                case REQUEST -> UserRequestController.sendUserRequestToLLM(Flux.just(new Object()));
+                case RESPONSE -> AiResponseController.receiveAiResponseFromLLM(Flux.just(new Object()));
                 case THUMBS_UP -> ThumbsUp.processThumbsUp(Flux.just(new Object()));
                 case THUMBS_DOWN -> ThumbsDown.processThumbsDown(Flux.just(new Object()));
                 case RETRY -> RetryMessage.retryMessageSet(Flux.just(new Object().toString())); //info-> this is a temp hack for now.

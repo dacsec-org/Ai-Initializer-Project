@@ -31,6 +31,6 @@ public class WebController {
      */
     @GetMapping(value = {"/", "/{path:^(?!api).*}/**"}) // Matches all React routes except API endpoints
     public Mono<ClassPathResource> serveFrontend(@PathVariable String path) {
-        return Mono.just(new ClassPathResource("../starter-mod/src/main/frontend/index.html"));
+        return Mono.just(new ClassPathResource("starter-mod/src/main/frontend/index.html"));
     }
 }
