@@ -196,13 +196,12 @@ public class BridgeAnnotationProcessor extends AbstractProcessor {
 
         return String.format(
                 """
-                            @GetMapping("/%s")
-                            public %s %s(%s) {
-                                %s
-                                return service.%s(%s);
-                            }
-                        
-                        """,
+                        @GetMapping("/%s")
+                        public %s %s(%s) {
+                            %s
+                            return service.%s(%s);
+                        }
+                    """,
                 path,                       // Endpoint path
                 returnType.toString(),      // Return type
                 methodName,                 // Controller method name
