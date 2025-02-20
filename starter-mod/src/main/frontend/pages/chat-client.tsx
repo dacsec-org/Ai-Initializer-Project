@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import InputArea from '../components/input-area'; // Handles AI responses in a text field
 import MessageInputBar from '../components/message-input-bar'; // Input bar for user messages
 import client from '../bridges/connection-factory'; // Import RSocket client
-import './ChatClientView.scss'; // Include necessary styling
 
 interface MessageSet {
   userMessage: {
@@ -32,6 +31,10 @@ function MessageList(props: {
     options: React.ReactNode;
   }[]
 }) {
+  useEffect(() => {
+    console.log('MessageList rendered with items:', props.items);
+  }, [props.items]);
+
   return null;
 }
 
@@ -55,7 +58,7 @@ const ChatClientView: React.FC = () => {
     ]);
 
     setLoading(true);
-    client
+    subscription = client
       .rsocketCall('user.request', { text: userMessage })
       .subscribe({
         next: (aiResponse) => {
@@ -93,7 +96,7 @@ const ChatClientView: React.FC = () => {
   );
 
   const handleIconClick = (index: number, action: MessageActions) => {
-    // Handle the action if needed
+    console.log(`Icon clicked at index ${index} with action ${action}`);
   };
 
   return (

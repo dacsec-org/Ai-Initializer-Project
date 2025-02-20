@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); // Default for 3 columns
-  gap: 1rem;
+  gap: var(--space-m);
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr); // 2 columns for smaller screens
@@ -13,9 +13,9 @@
 }
 
 .grid-column {
-  background-color: var(--primary-background, #ffffff); // Optional: Default background support
-  color: var(--primary-text, #000000); // Optional: Dynamic text color support
-  border-radius: 4px;
+  background-color: var(--primary-background, var(--shade-5pct)); // Optional: Default background support
+  color: var(--primary-text, var(--primary-text-color)); // Optional: Dynamic text color support
+  border-radius: var(--border-radius-s);
 }
 
 .grid-row {

@@ -5,7 +5,7 @@ import CloneModelView from './pages/clone-model';
 import DirFileView from './pages/directories-files';
 // import EmbeddingSettingsView from './pages/embedding-settings';
 import Grid from './pages/grid';
-import HelloWorldView from './pages/hello-world';
+// import HelloWorldView from './pages/hello-world';
 import DestroyModelView from './pages/model-destroy';
 import MergeModelView from './pages/model-merge';
 import ModelSettingsView from './pages/model-settings';
@@ -40,10 +40,10 @@ export const router = createBrowserRouter([
     path: '/grid',
     element: <Grid columns={0} gap={''} />
   },
-  {
-    path: '/hello-world',
-    element: <HelloWorldView />,
-  },
+  // {
+  //   path: '/hello-world',
+  //   element: <HelloWorldView />,
+  // },
   {
     path: '/model-destroy',
     element: <DestroyModelView />,

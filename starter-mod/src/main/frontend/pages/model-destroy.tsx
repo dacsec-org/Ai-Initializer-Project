@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Button from '../components/button';
 import Dialog from '../components/dialog';
 import { NotificationService } from '../components/notifications';
-import InputArea from '../components/input-area';
+import InputArea, { TextFieldValueChangedEvent } from '../components/input-area';
 import { ModelsBridge } from '../bridges/models-bridge';
 import { ModelActions } from '../enums/model-actions';
 import { firstValueFrom } from 'rxjs';
 
 const DestroyModelView: React.FC = () => {
-  const [modelPath, setModelPath] = useState('');
+  const [modelPath, setModelPath] = useState<string>('');
   const [dialogOpened, setDialogOpened] = useState(false);
 
   const handleDelete = async () => {
@@ -31,8 +31,8 @@ const DestroyModelView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setModelPath(e.target.value);
+  const handleInputChange = (e: TextFieldValueChangedEvent) => {
+    setModelPath(e.target.value.toString());
   };
 
   return (
@@ -41,20 +41,21 @@ const DestroyModelView: React.FC = () => {
         <InputArea
           label="Model Path"
           value={modelPath}
-          // onValueChanged={handleInputChange}
+          onValueChanged={handleInputChange}
         />
         <Button onClick={openDialog}>
           Delete Model
         </Button>
       </section>
-      <Dialog opened={dialogOpened}
-              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
-              isOpen={false} message={''} onClose={function(): void {
-        throw new Error('Function not implemented.');
-      }}>
+      <Dialog
+        opened={dialogOpened}
+        onOpenedChanged={(e) => setDialogOpened(e.target.value ?? false)}
+        isOpen={false}
+        message={''}
+        onClose={closeDialog}
+      >
         <div>
-          <p>Are you sure you want to delete this model?
-            Any work associated with this model will be deleted as well!</p>
+          <p>Are you sure you want to delete this model? Any work associated with this model will be deleted as well!</p>
           <div className="flex gap-s">
             <Button theme="primary" onClick={handleDelete}>
               Yes
@@ -69,4 +70,7 @@ const DestroyModelView: React.FC = () => {
   );
 };
 
+/**
+ * <h1>{@link DestroyModelView}</h1>
+ */
 export default DestroyModelView;

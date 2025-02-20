@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  transition: transform $animation-duration $ease-in-out;
+  transition: transform var(--animation-duration) var(--ease-in-out);
 
   &.side-nav-left {
     @include side-nav(left); // Use the mixin for left side navigation
@@ -26,20 +26,20 @@
 
   .side-nav-list {
     list-style: none;
-    padding: 20px;
+    padding: var(--space-l);
     margin: 0;
 
     .side-nav-item {
-      margin: 10px 0;
+      margin: var(--space-s) 0;
 
       a {
         text-decoration: none;
-        color: #333;
-        font-size: 16px;
+        color: var(--primary-text-color);
+        font-size: var(--font-size-m);
 
         &:hover {
           text-decoration: underline;
-          color: #007bff;
+          color: var(--primary-color);
         }
       }
     }

@@ -4,7 +4,7 @@ import CloneModelView from './clone-model';
 // import ContentGalleryView from './content-gallery';
 import DirFileView from './directories-files';
 import GridView from './grid';
-import HelloWorldView from './hello-world';
+// import HelloWorldView from './hello-world';
 import MetricsView from './metrics';
 import DestroyModelView from './model-destroy';
 import MergeModelView from './model-merge';
@@ -20,7 +20,7 @@ export {
   // ContentGalleryView,
   DirFileView,
   GridView,
-  HelloWorldView,
+  // HelloWorldView,
   MetricsView,
   DestroyModelView,
   MergeModelView,

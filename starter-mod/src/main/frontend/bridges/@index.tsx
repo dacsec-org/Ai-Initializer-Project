@@ -2,7 +2,7 @@
 import { ChecksumsBridge } from './checksums-bridge';
 import { ContentGalleryBridge } from './content-gallery-bridge';
 import { DirectoriesFilesBridge} from 'frontend/bridges/directories-files';
-import { HelloWorldBridge } from './hello-world-bridge';
+// import { HelloWorldBridge } from './hello-world-bridge';
 import { LoadUnloadBridge } from './load-unload-bridge';
 import { MessageBridge } from './message-bridge';
 import { MetricsBridge } from './metrics-bridge';
@@ -16,7 +16,7 @@ export {
   ChecksumsBridge,
   ContentGalleryBridge,
   DirectoriesFilesBridge,
-  HelloWorldBridge,
+  // HelloWorldBridge,
   LoadUnloadBridge,
   MessageBridge,
   MetricsBridge,

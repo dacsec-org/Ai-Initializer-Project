@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Button from '../components/button';
 import Dialog from '../components/dialog';
 import { NotificationService } from '../components/notifications';
-import InputArea from '../components/input-area';
+import InputArea, { TextFieldValueChangedEvent } from '../components/input-area';
 import { ModelsBridge } from '../bridges/models-bridge';
 import { ModelActions } from '../enums/model-actions';
 import { firstValueFrom } from 'rxjs';
 
 const MergeModelView: React.FC = () => {
-  const [modelPath1, setModelPath1] = useState('');
-  const [modelPath2, setModelPath2] = useState('');
+  const [modelPath1, setModelPath1] = useState<string>('');
+  const [modelPath2, setModelPath2] = useState<string>('');
   const [dialogOpened, setDialogOpened] = useState(false);
 
   const handleMerge = async () => {
@@ -32,12 +32,12 @@ const MergeModelView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const handleInputChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setModelPath1(e.target.value);
+  const handleInputChange1 = (e: TextFieldValueChangedEvent) => {
+    setModelPath1(e.target.value.toString());
   };
 
-  const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setModelPath2(e.target.value);
+  const handleInputChange2 = (e: TextFieldValueChangedEvent) => {
+    setModelPath2(e.target.value.toString());
   };
 
   return (
@@ -46,20 +46,23 @@ const MergeModelView: React.FC = () => {
         <InputArea
           label="Model Path 1"
           value={modelPath1}
+          onValueChanged={handleInputChange1}
         />
         <InputArea
           label="Model Path 2"
           value={modelPath2}
+          onValueChanged={handleInputChange2}
         />
         <Button onClick={openDialog}>
           Merge Models
         </Button>
       </section>
-      <Dialog opened={dialogOpened}
-              onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
-              isOpen={false} message={''} onClose={function(): void {
-        throw new Error('Function not implemented.');
-      }}>
+      <Dialog
+        isOpen={dialogOpened}
+        message={''}
+        onClose={closeDialog}
+        onOpenedChanged={(e) => setDialogOpened(e.target.value ?? false)}
+      >
         <div>
           <p>Are you sure you want to merge these models?</p>
           <div className="flex gap-s">
@@ -76,4 +79,7 @@ const MergeModelView: React.FC = () => {
   );
 };
 
+/**
+ * <h1>{@link MergeModelView}</h1>
+ */
 export default MergeModelView;

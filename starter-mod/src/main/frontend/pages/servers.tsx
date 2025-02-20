@@ -5,6 +5,7 @@ import Dialog from '../components/dialog';
 import { ServersBridge } from '../bridges/servers-bridge';
 import { ServerActions } from '../enums/server-actions';
 import { ServerTypes } from '../enums/server-types';
+import { firstValueFrom } from 'rxjs';
 
 const ManageServersView: React.FC = () => {
   const [dialogOpened, setDialogOpened] = useState(false);
@@ -22,7 +23,7 @@ const ManageServersView: React.FC = () => {
   };
 
   const handleServerAction = async (action: ServerActions) => {
-    const result = await ServersBridge(ServerTypes.USOCKET, action).toPromise();
+    const result = await firstValueFrom(ServersBridge(ServerTypes.USOCKET, action));
     NotificationService.show(`${ServerActions[action]} server: ${result}`);
   };
 
@@ -49,7 +50,7 @@ const ManageServersView: React.FC = () => {
         isOpen={dialogOpened}
         message={dialogMessage}
         onClose={handleDialogClose}
-        onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+        onOpenedChanged={(e) => setDialogOpened(e.target.value ?? false)}
       >
         <div>
           <p>{dialogMessage}</p>
@@ -70,4 +71,7 @@ const ManageServersView: React.FC = () => {
   );
 };
 
+/**
+ * <h1>{@link ManageServersView}</h1>
+ */
 export default ManageServersView;

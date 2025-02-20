@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent } from 'react';
 import './InputArea.scss';
 
-class TextFieldValueChangedEvent {
-  detail: any;
+export interface TextFieldValueChangedEvent {
+  target: { value: string | number };
 }
 
 interface InputAreaProps {
@@ -54,7 +54,7 @@ const InputArea: React.FC<InputAreaProps> = ({
 
     // Trigger onValueChanged event if provided
     if (onValueChanged) {
-      onValueChanged({ detail: newValue });
+      onValueChanged({ target: { value: newValue } });
     }
   };
 
@@ -76,4 +76,7 @@ const InputArea: React.FC<InputAreaProps> = ({
   );
 };
 
+/**
+ * <h1>{@link InputArea}</h1>
+ */
 export default InputArea;

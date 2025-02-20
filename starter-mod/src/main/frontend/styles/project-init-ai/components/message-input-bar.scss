@@ -1,35 +1,35 @@
 .message-input-bar {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  background-color: #f1f1f1;
-  border-top: 1px solid #ccc;
+  padding: var(--space-s);
+  background-color: var(--shade-5pct);
+  border-top: 1px solid var(--shade-20pct);
 
   .message-input {
     flex: 1;
-    margin-right: 0.5rem;
+    margin-right: var(--space-s);
 
     .input-field {
       width: 100%;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      padding: var(--space-s);
+      font-size: var(--font-size-m);
+      border-radius: var(--border-radius-s);
+      border: 1px solid var(--shade-20pct);
     }
   }
 
   .send-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--font-size-m);
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius-s);
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: var(--primary-color-50pct);
     }
   }
 }

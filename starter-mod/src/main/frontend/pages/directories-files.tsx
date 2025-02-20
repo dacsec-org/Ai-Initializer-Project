@@ -76,7 +76,7 @@ const DirFileView: React.FC = () => {
         isOpen={dialogOpened}
         message={dialogMessage}
         onClose={handleDialogClose}
-        onOpenedChanged={(e) => setDialogOpened(e.detail.value)}
+        onOpenedChanged={(e) => setDialogOpened(e.target.value ?? false)}
       >
         <div>
           <p>{dialogMessage}</p>

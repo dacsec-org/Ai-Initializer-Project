@@ -1,6 +1,14 @@
 @import url('main-layout.scss');
-@import url('project-init-ai/pages/grid.scss');
 @import url('project-init-ai/pages/chat-client.scss');
+@import url('project-init-ai/pages/content-gallery.scss');
+@import url('project-init-ai/pages/grid.scss');
+@import url('project-init-ai/pages/model-destroy.scss');
+@import url('project-init-ai/pages/model-merge.scss');
+@import url('project-init-ai/pages/model-settings.scss');
+@import url('project-init-ai/pages/search-models.scss');
+@import url('project-init-ai/pages/servers.scss');
+@import url('project-init-ai/pages/snapshots.scss');
+@import url('project-init-ai/pages/system-settings.scss');
 
 html {
   --font-size-xxs: 0.6875rem;
@@ -58,7 +66,7 @@ html {
 
 }
 
-[theme~="light"] {
+[theme~="orange"] {
   --primary-color-50pct: rgba(235, 89, 5, 0.5);
   --primary-color-10pct: rgba(235, 89, 5, 0.1);
   --error-color-50pct: rgba(231, 24, 24, 0.5);
@@ -85,5 +93,3 @@ html {
   --shade-90pct: rgba(33, 33, 33, 0.9);
 
 }
-
-
