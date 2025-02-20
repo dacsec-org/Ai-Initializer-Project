@@ -1,6 +1,6 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import client from "./ConnectionFactory";
+import client from "./connection-factory";
 import { MetricsTypes } from '../enums/MetricsTypes';
 
 const SERVICE = "metrics-service"; // Name from @Bridge annotation

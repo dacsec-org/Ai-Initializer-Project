@@ -1,8 +1,9 @@
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import client  from './ConnectionFactory';
+import client  from './connection-factory';
 
-export class ContentGallery {
+export class ContentGalleryBridge {
+  //todo: implement enums for actions, here as well as the backend
   static getGallery(): Observable<any> {
     return from(
       client.call('ContentGalleryService', 'getGallery', {})

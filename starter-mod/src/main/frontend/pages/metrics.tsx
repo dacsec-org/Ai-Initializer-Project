@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import client from "../bridges/ConnectionFactory";
+import client from "../bridges/connection-factory";
 import GpuGauge from '../components/gpu-gauge';
 import CpuGauge from '../components/cpu-gauge';
 import MemoryGauge from '../components/memory-gauge';

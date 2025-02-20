@@ -3,6 +3,7 @@ export { default as Button } from './button';
 export { default as ConfirmationDialog } from './confirmation-dialog';
 export { default as CpuGauge } from './cpu-gauge';
 export { default as DiskGauge } from './disk-gauge';
+export { default as Dialog } from './dialog';
 export { default as Dropdown } from './dropdown';
 export { default as Footer } from './footer';
 export { default as GpuGauge } from './gpu-gauge';

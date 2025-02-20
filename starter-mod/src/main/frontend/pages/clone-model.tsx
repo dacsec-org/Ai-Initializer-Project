@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { NotificationService as Notification } from '../components/notifications';
-import Button from '../components/button';
+import { Button, Dialog, InputArea } from '../components';
 import { ModelsBridge } from '../bridges/models-bridge';
 import { ModelActions } from '../enums/ModelActions';
-import Dialog from '../components/dialog';
-import InputArea from '../components/input-area';
 
 const CloneModelView: React.FC = () => {
   const [sourcePath, setSourcePath] = useState('');

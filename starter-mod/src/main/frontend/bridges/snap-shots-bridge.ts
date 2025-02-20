@@ -1,6 +1,6 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import client from "./ConnectionFactory";
+import client from "./connection-factory";
 import { SnapShotsActions } from '../enums/SnapShotsActions';
 
 const SERVICE = "snapshots-service"; // Name from @Bridge annotation

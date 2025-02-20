@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NotificationService as Notification } from '../components/notifications';
-import { DirectoriesFilesBridge } from '../bridges/DirectoriesFiles';
+import { DirectoriesFilesBridge } from '../bridges/directories-files';
 import { DirectoryActions } from '../enums/DirectoryActions';
 import InputArea from '../components/input-area';
 import Button from '../components/button';

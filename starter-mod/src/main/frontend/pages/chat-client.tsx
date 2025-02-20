@@ -3,7 +3,7 @@ import { MessageAction } from '../enums/MessageAction';
 import { Subscription } from 'rxjs';
 import InputArea from '../components/input-area'; // Handles AI responses in a text field
 import MessageInputBar from '../components/message-input-bar'; // Input bar for user messages
-import client from '../bridges/ConnectionFactory'; // Import RSocket client
+import client from '../bridges/connection-factory'; // Import RSocket client
 import './ChatClientView.scss'; // Include necessary styling
 
 interface MessageSet {
