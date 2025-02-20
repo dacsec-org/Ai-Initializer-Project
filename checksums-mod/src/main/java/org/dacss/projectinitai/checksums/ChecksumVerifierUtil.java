@@ -53,5 +53,4 @@ public class ChecksumVerifierUtil {
         }
         return sb.toString().equals(expectedChecksum);
     }
-
 }

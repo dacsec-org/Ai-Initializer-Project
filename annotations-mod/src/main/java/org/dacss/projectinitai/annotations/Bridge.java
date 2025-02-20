@@ -8,11 +8,6 @@ import java.lang.annotation.Target;
 /**
  * <h1>{@link Bridge}</h1>
  * Annotation to map a front-end TypeScript 'bridge' class to a back-end service.
- * <p>
- * This annotation is used to register the service in the {@link BridgeRegistry}
- * and to generate the necessary mappings (like controller requests) automatically
- * using the {@link BridgeAnnotationProcessor}.
- * </p>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { RadialGauge } from '@progress/kendo-react-gauges';
-import { Metrics } from '../../bridges/metrics-bridge';
-import { MetricsTypes } from '../../enums/MetricsTypes';
+import { MetricsBridge } from '../bridges/metrics-bridge';
+import { MetricsTypes } from '../enums/MetricsTypes';
+import { Subscription } from 'rxjs';
 
-interface DiskGaugeProps {
+interface GpuGaugeProps {
   value?: number;
 }
 
-interface MetricData {
-  value: number;
-}
-
-const DiskGauge: React.FC<DiskGaugeProps> = ({ value: propValue }) => {
+const GpuGauge: React.FC<GpuGaugeProps> = ({ value: propValue }) => {
   const [value, setValue] = useState(0);
-
-  const fetchData = async () => {
-    const data = await Metrics.getMetrics(MetricsTypes.DISK) as unknown as MetricData;
-    setValue(data.value);
-  };
+  let subscription: Subscription;
 
   useEffect(() => {
-    fetchData().then(r => console.log(r));
-    const intervalId = setInterval(() => fetchData(), 1000);
-    return () => clearInterval(intervalId);
+    subscription = MetricsBridge(MetricsTypes.GPU).subscribe(data => {
+      setValue(data.value);
+    });
+    return () => subscription.unsubscribe();
   }, []);
 
   const gaugeOptions = {
@@ -45,4 +39,8 @@ const DiskGauge: React.FC<DiskGaugeProps> = ({ value: propValue }) => {
   return <RadialGauge {...gaugeOptions} />;
 };
 
-export default DiskGauge;
+/**
+ * <h1>{@link GpuGauge}</h1>
+ * gauge to display GPU usage
+ */
+export default GpuGauge;

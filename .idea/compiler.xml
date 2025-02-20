@@ -24,15 +24,6 @@
         <module name="checksums-mod" />
         <module name="directories-mod" />
       </profile>
-      <profile name="Annotation profile for ai-initializer-project" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0-SNAPSHOT/bridge-annotation-processor-1.0-SNAPSHOT.jar" />
-        </processorPath>
-        <module name="annotations-mod" />
-      </profile>
       <profile name="Annotation profile for services-mod" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -54,6 +45,15 @@
           <entry name="$MAVEN_REPOSITORY$/repository/io/micrometer/micrometer-commons/1.14.3/micrometer-commons-1.14.3.jar" />
         </processorPath>
         <module name="services-mod" />
+      </profile>
+      <profile name="Annotation profile for ai-initializer-project" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/repository/org/dacss/projectinitai/bridge-annotation-processor/1.0-SNAPSHOT/bridge-annotation-processor-1.0-SNAPSHOT.jar" />
+        </processorPath>
+        <module name="annotations-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

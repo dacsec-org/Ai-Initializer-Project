@@ -1,21 +1,36 @@
-/*tsconfig*/
+/*tsconfig, define properties, and explicit mapping to 'services-mod' which
+  houses all the '@Bridge' annotated services*/
 {
+  "_version": "9.1",
+//  "_version": "1.0",
   "compilerOptions": {
-    "allowJs": false,
-    "checkJs": false,
-    "target": "esnext",
-    "module": "esnext",
+    "sourceMap": true,
     "jsx": "react-jsx",
+    "inlineSources": true,
+    "module": "esNext",
+    "target": "es2020",
+    "moduleResolution": "bundler",
     "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "baseUrl": "src/main/frontend",
     "paths": {
-      "frontend/*": ["starter-mod/src/main/frontend/*"]
+      "frontend/*": ["*"]
     }
   },
   "include": [
-    "src"
+    "src/main/frontend/**/*",
+    "../services-mod/src/main/java/org/dacss/projectinitai/services/**/*",
+    "types.d.ts"
+  ],
+  "exclude": [
+    "src/main/frontend/generated/jar-resources/**"
   ]
 }

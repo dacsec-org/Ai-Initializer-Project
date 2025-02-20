@@ -21,4 +21,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({ isOpen, message
     );
 };
 
+/**
+ * <h1>{@link ConfirmationDialog}</h1>
+ */
 export default ConfirmationDialog;

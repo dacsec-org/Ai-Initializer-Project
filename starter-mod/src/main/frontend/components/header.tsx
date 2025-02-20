@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { JSX } from 'react';
 import './Header.scss';
 import HorizontalContainer from './horizontal-container';
 
@@ -20,7 +20,6 @@ interface HeaderProps {
  * @returns {JSX.Element} The rendered Header component.
  */
 const Header: React.FC<HeaderProps> = ({ title = 'Header', className, children }: { title?: string; className?: string; children?: React.ReactNode; }): JSX.Element => {
-    const [isVisible, setIsVisible] = useState(false);
     const headerClassName = `header ${className || ''}`; // Combine base and custom classes
 
     return (

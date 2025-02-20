@@ -6,9 +6,9 @@ import { MetricsTypes } from '../enums/MetricsTypes';
 const SERVICE = "metrics-service"; // Name from @Bridge annotation
 
 /**
- * <h1>{@link MetricsActionBridge}</h1>
+ * <h1>{@link MetricsBridge}</h1>
  */
-export const MetricsActionBridge = (action: MetricsTypes): Observable<any> => {
+export const MetricsBridge = (action: MetricsTypes): Observable<any> => {
   return from(
     client.call(
       SERVICE,

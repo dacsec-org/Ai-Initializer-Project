@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { RadialGauge } from '@progress/kendo-react-gauges';
-import { Metrics } from '../../bridges/metrics-bridge';
-import { MetricsTypes } from '../../enums/MetricsTypes';
+import { MetricsBridge } from '../bridges/metrics-bridge';
+import { MetricsTypes } from '../enums/MetricsTypes';
+import { Subscription } from 'rxjs';
 
-interface CpuGaugeProps {
+interface NetworkGaugeProps {
   value?: number;
 }
 
-interface MetricData {
-  value: number;
-}
-
-const CpuGauge: React.FC<CpuGaugeProps> = ({ value: propValue }) => {
+const NetworkGauge: React.FC<NetworkGaugeProps> = ({ value: propValue }) => {
   const [value, setValue] = useState(0);
-
-  const fetchData = async () => {
-    const data = await Metrics.getMetrics(MetricsTypes.CPU) as unknown as MetricData;
-    setValue(data.value);
-  };
+  let subscription: Subscription;
 
   useEffect(() => {
-    fetchData().then(r => console.log(r));
-    const intervalId = setInterval(() => fetchData(), 1000);
-    return () => clearInterval(intervalId);
+    subscription = MetricsBridge(MetricsTypes.NETWORK).subscribe(data => {
+      setValue(data.value);
+    });
+    return () => subscription.unsubscribe();
   }, []);
 
   const gaugeOptions = {
@@ -45,4 +39,8 @@ const CpuGauge: React.FC<CpuGaugeProps> = ({ value: propValue }) => {
   return <RadialGauge {...gaugeOptions} />;
 };
 
-export default CpuGauge;
+/**
+ * <h1>{@link NetworkGauge}</h1>
+ * gauge to display network usage, we may get rid of this component
+ */
+export default NetworkGauge;

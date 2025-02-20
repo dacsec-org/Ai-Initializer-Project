@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import client from "../../bridges/ConnectionFactory";
-import GpuGauge from './gpu-gauge';
-import CpuGauge from './cpu-gauge';
-import MemoryGauge from './memory-gauge';
-import DiskGauge from './disk-gauge';
-import NetworkGauge from './network-gauge';
+import client from "../bridges/ConnectionFactory";
+import GpuGauge from '../components/gpu-gauge';
+import CpuGauge from '../components/cpu-gauge';
+import MemoryGauge from '../components/memory-gauge';
+import DiskGauge from '../components/disk-gauge';
+import NetworkGauge from '../components/network-gauge';
 
 // export const config: ViewConfig = {
 //   menu: { order: 7, icon: 'line-awesome/svg/chart-line-solid.svg', title: 'Metrics' },
