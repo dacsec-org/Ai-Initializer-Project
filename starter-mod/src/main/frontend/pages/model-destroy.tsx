@@ -4,7 +4,7 @@ import Dialog from '../components/dialog';
 import { NotificationService } from '../components/notifications';
 import InputArea from '../components/input-area';
 import { ModelsBridge } from '../bridges/models-bridge';
-import { ModelActions } from '../enums/ModelActions';
+import { ModelActions } from '../enums/model-actions';
 import { firstValueFrom } from 'rxjs';
 
 const DestroyModelView: React.FC = () => {

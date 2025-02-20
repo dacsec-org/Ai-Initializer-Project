@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { RadialGauge } from '@progress/kendo-react-gauges';
 import { MetricsBridge } from '../bridges/metrics-bridge';
-import { MetricsTypes } from '../enums/MetricsTypes';
+import { MetricsTypes } from '../enums/metrics-types';
 import { Subscription } from 'rxjs';
 
 interface CpuGaugeProps {

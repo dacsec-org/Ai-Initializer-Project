@@ -1,7 +1,7 @@
 /**
- * <h1>{@link MessageAction}</h1>
+ * <h1>{@link MessageActions}</h1>
  */
-export enum MessageAction {
+export enum MessageActions {
   REQUEST,
   RESPONSE,
   THUMBS_UP,

@@ -57,7 +57,7 @@ To use the `@Bridge` annotation, follow these steps:
         // Service implementation
 
         @Override
-        public Flux<Object> processMessages(MessageAction action) {
+        public Flux<Object> processMessages(MessageActions action) {
             Flux<Object> flux;
             try {
                 flux = switch (action) {
@@ -87,17 +87,17 @@ To use the `@Bridge` annotation, follow these steps:
    //(1)
     import client from "./ConnectionFactory";
    //(matching action enum. in bolth the front and back end)
-    import { MessageAction } from "../enums/MessageAction";
+    import { MessageActions } from "../enums/MessageActions";
 
    //matches the @Bridge("messages-service") in the back end
     const SERVICE = "messages-service";
 
     /**
      * <h1>{@link MessageBridge}</h1>
-     * @param action MessageAction
+     * @param action MessageActions
      * @constructor MessageBridge
      */
-    export const MessageBridge = (action: MessageAction): Observable<any> => {
+    export const MessageBridge = (action: MessageActions): Observable<any> => {
         return from(
             client.call(
    //client.call is a method that makes a post request to the server
@@ -124,7 +124,7 @@ To use the `@Bridge` annotation, follow these steps:
         }
 
         @PostMapping("/processMessages")
-        public Flux<Object> processMessages(@RequestBody MessageAction action) {
+        public Flux<Object> processMessages(@RequestBody MessageActions action) {
             MessagesService service = (MessagesService) bridgeRegistry.getService("messages-service");
             return service.processMessages(action);
         }

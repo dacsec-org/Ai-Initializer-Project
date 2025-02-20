@@ -1,7 +1,7 @@
 /**
- * <h1>{@link DownloadAction}</h1>
+ * <h1>{@link DownloadActions}</h1>
  */
-export enum DownloadAction {
+export enum DownloadActions {
   API_TOKEN,
   DOWNLOAD_LLM_JSON,
   DOWNLOAD_LLM_MODEL,

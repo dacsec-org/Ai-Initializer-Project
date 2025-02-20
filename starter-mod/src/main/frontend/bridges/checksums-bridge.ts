@@ -1,7 +1,7 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import client from "./connection-factory";
-import { ChecksumActions } from '../enums/ChecksumActions';
+import { ChecksumActions } from '../enums/checksum-actions';
 
 const SERVICE = "checksums-service";
 

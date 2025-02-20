@@ -1,8 +1,8 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import client from "./connection-factory";
-import { ServerTypes } from "../enums/ServerTypes";
-import { ServerActions } from "../enums/ServerActions";
+import { ServerTypes } from "../enums/server-types";
+import { ServerActions } from "../enums/server-actions";
 
 const SERVICE = "servers-service";
 

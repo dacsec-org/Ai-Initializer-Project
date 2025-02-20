@@ -1,7 +1,7 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import client from "./connection-factory";
-import { DownloadAction } from '../enums/DownloadAction';
+import { DownloadActions } from '../enums/download-actions';
 
 const SERVICE = "downloaders-service";
 
@@ -9,7 +9,7 @@ const SERVICE = "downloaders-service";
  * <h1>{@link SearchModelsBridge}</h1>
  */
 export const SearchModelsBridge
-  = (action: DownloadAction): Observable<any> => {
+  = (action: DownloadActions): Observable<any> => {
   return from(
     client.call(
       SERVICE,

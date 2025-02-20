@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/button";
 import { SearchModelsBridge } from "../bridges/search-models-bridge";
-import { DownloadAction } from "../enums/DownloadAction";
+import { DownloadActions } from "../enums/download-actions";
 import { NotificationService } from "../components/notifications";
 import Grid from "./grid";
 import { firstValueFrom } from "rxjs";
@@ -44,7 +44,7 @@ const SearchModelsView: React.FC<SearchModelsViewProps> = ({
     const fetchAndSetModels = async () => {
         onLoading(true);
         try {
-            const response = await firstValueFrom(SearchModelsBridge(DownloadAction.SEARCH));
+            const response = await firstValueFrom(SearchModelsBridge(DownloadActions.SEARCH));
             setModels(response);
             onModelsFetched(response);
             notify("Models fetched successfully", "success");
@@ -62,7 +62,7 @@ const SearchModelsView: React.FC<SearchModelsViewProps> = ({
 
     const handleDownload = async (modelId: string) => {
         try {
-            await firstValueFrom(SearchModelsBridge(DownloadAction.DOWNLOAD_LLM_MODEL));
+            await firstValueFrom(SearchModelsBridge(DownloadActions.DOWNLOAD_LLM_MODEL));
             notify("Model downloaded successfully", "success");
         } catch (error) {
             console.error("Error downloading model:", error);

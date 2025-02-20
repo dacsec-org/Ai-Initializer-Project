@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { NotificationService } from '../components/notifications';
 import { SnapshotsBridge } from '../bridges/snap-shots-bridge';
-import { SnapShotsActions } from '../enums/SnapShotsActions';
+import { SnapshotsActions } from '../enums/snapshots-actions';
 import { from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import Button from '../components/button';
@@ -29,7 +29,7 @@ const SnapshotsView: React.FC = () => {
     setDialogOpened(false);
   };
 
-  const handleSnapshotAction = (action: SnapShotsActions, successMessage: string) => {
+  const handleSnapshotAction = (action: SnapshotsActions, successMessage: string) => {
     from(SnapshotsBridge(action))
       .pipe(
         catchError((error) => {
@@ -39,7 +39,7 @@ const SnapshotsView: React.FC = () => {
       )
       .subscribe((response) => {
         NotificationService.show(successMessage);
-        if (action === SnapShotsActions.LIST) {
+        if (action === SnapshotsActions.LIST) {
           setSnapshots(response);
         }
       });
@@ -49,16 +49,16 @@ const SnapshotsView: React.FC = () => {
     <>
       <section className="flex p-m gap-m items-end">
         <Button
-          onClick={() => openDialog('Are you sure you want to create a snapshot?', () => handleSnapshotAction(SnapShotsActions.CREATE, 'Snapshot created successfully'))}
+          onClick={() => openDialog('Are you sure you want to create a snapshot?', () => handleSnapshotAction(SnapshotsActions.CREATE, 'Snapshot created successfully'))}
           style={{ backgroundColor: 'green' }}>Create Snapshot</Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to list snapshots?', () => handleSnapshotAction(SnapShotsActions.LIST, 'Snapshots listed successfully'))}
+          onClick={() => openDialog('Are you sure you want to list snapshots?', () => handleSnapshotAction(SnapshotsActions.LIST, 'Snapshots listed successfully'))}
           style={{ backgroundColor: 'blue' }}>List Snapshots</Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to update the snapshot?', () => handleSnapshotAction(SnapShotsActions.COPY, 'Snapshot copied successfully'))}
+          onClick={() => openDialog('Are you sure you want to update the snapshot?', () => handleSnapshotAction(SnapshotsActions.COPY, 'Snapshot copied successfully'))}
           style={{ backgroundColor: 'yellow' }}>Update Snapshot</Button>
         <Button
-          onClick={() => openDialog('Are you sure you want to delete the snapshot?', () => handleSnapshotAction(SnapShotsActions.DELETE, 'Snapshot deleted successfully'))}
+          onClick={() => openDialog('Are you sure you want to delete the snapshot?', () => handleSnapshotAction(SnapshotsActions.DELETE, 'Snapshot deleted successfully'))}
           style={{ backgroundColor: 'red' }}>Delete Snapshot</Button>
       </section>
       <ul>
@@ -66,7 +66,7 @@ const SnapshotsView: React.FC = () => {
           <li key={snapshot}>
             {snapshot}
             <Button
-              onClick={() => openDialog('Are you sure you want to delete this snapshot?', () => handleSnapshotAction(SnapShotsActions.DELETE, 'Snapshot deleted successfully'))}
+              onClick={() => openDialog('Are you sure you want to delete this snapshot?', () => handleSnapshotAction(SnapshotsActions.DELETE, 'Snapshot deleted successfully'))}
               style={{ backgroundColor: 'red' }}>Delete</Button>
           </li>
         ))}

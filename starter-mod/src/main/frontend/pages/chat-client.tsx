@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MessageAction } from '../enums/MessageAction';
+import { MessageActions } from '../enums/message-actions';
 import { Subscription } from 'rxjs';
 import InputArea from '../components/input-area'; // Handles AI responses in a text field
 import MessageInputBar from '../components/message-input-bar'; // Input bar for user messages
@@ -85,14 +85,14 @@ const ChatClientView: React.FC = () => {
 
   const renderMessageOptions = (index: number) => (
     <div className="message-options">
-      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick(index, MessageAction.THUMBS_UP)}>👍</span>
-      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick(index, MessageAction.THUMBS_DOWN)}>👎</span>
-      <span role="img" aria-label="trash" onClick={() => handleIconClick(index, MessageAction.TRASH)}>🗑️</span>
-      <span role="img" aria-label="retry" onClick={() => handleIconClick(index, MessageAction.RETRY)}>🔄</span>
+      <span role="img" aria-label="thumbs up" onClick={() => handleIconClick(index, MessageActions.THUMBS_UP)}>👍</span>
+      <span role="img" aria-label="thumbs down" onClick={() => handleIconClick(index, MessageActions.THUMBS_DOWN)}>👎</span>
+      <span role="img" aria-label="trash" onClick={() => handleIconClick(index, MessageActions.TRASH)}>🗑️</span>
+      <span role="img" aria-label="retry" onClick={() => handleIconClick(index, MessageActions.RETRY)}>🔄</span>
     </div>
   );
 
-  const handleIconClick = (index: number, action: MessageAction) => {
+  const handleIconClick = (index: number, action: MessageActions) => {
     // Handle the action if needed
   };
 

@@ -1,4 +1,4 @@
-import { DownloadAction } from '../enums/DownloadAction';
+import { DownloadActions } from '../enums/download-actions';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import client from './connection-factory';
@@ -10,7 +10,7 @@ const SERVICE = "downloaders-service";
  * @param action
  * @constructor
  */
-export const LoadUnloadBridge = (action: DownloadAction): Observable<any> => {
+export const LoadUnloadBridge = (action: DownloadActions): Observable<any> => {
   return from(
     client.call(SERVICE, "download", { action })
   ).pipe(map(response => response));

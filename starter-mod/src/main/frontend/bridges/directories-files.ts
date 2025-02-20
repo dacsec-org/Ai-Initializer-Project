@@ -1,7 +1,7 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import client from "./connection-factory";
-import { DirectoryActions } from "../enums/DirectoryActions";
+import { DirectoryActions } from "../enums/directory-actions";
 
 const SERVICE = "dir-file-service";
 

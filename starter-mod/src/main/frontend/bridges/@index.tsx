@@ -1,4 +1,4 @@
-{/* index for the 'bridges' */}
+{/* index for the 'bridges' directory */}
 import { ChecksumsBridge } from './checksums-bridge';
 import { ContentGalleryBridge } from './content-gallery-bridge';
 import { DirectoriesFilesBridge} from 'frontend/bridges/directories-files';

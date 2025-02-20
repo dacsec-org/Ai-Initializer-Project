@@ -1,6 +1,6 @@
 import { from, Observable } from 'rxjs';
 import client from "./connection-factory";
-import { SystemSettingsOptions } from '../enums/SystemSettingsOptions';
+import { SystemSettingsOptions } from '../enums/system-settings-options';
 import { map } from 'rxjs/operators';
 
 const SERVICE = "system-settings-service";

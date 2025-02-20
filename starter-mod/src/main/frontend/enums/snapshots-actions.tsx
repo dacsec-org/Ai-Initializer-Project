@@ -1,7 +1,7 @@
 /**
- * <h1>{@link SnapShotsActions}</h1>
+ * <h1>{@link SnapshotsActions}</h1>
  */
-export enum SnapShotsActions {
+export enum SnapshotsActions {
   COPY,
   CREATE,
   DELETE,

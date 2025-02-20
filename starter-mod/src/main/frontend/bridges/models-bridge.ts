@@ -1,7 +1,7 @@
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import client from './connection-factory';
-import { ModelActions } from '../enums/ModelActions';
+import { ModelActions } from '../enums/model-actions';
 
 const SERVICE = 'models-service'; // Name from @Bridge annotation
 

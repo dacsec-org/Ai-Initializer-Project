@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HelloWorldService } from '../bridges';
+import { HelloWorldService } from '../bridges/@index';
 import { NotificationService } from '../components/notifications';
 import Button from '../components/button';
 import InputArea from '../components/input-area';

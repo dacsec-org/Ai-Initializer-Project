@@ -1,7 +1,7 @@
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import client from "./connection-factory";
-import { MessageAction } from "../enums/MessageAction";
+import { MessageActions } from "../enums/message-actions";
 
 const SERVICE = "messages-service";
 
@@ -9,7 +9,7 @@ const SERVICE = "messages-service";
  * <h1>{@link MessageBridge}</h1>
  */
 export const MessageBridge
-  = (action: MessageAction): Observable<any> => {
+  = (action: MessageActions): Observable<any> => {
   return from(
     client.call(
       SERVICE,

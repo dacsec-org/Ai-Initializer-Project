@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Header, Footer, SideNavigation, VerticalContainer, Button } from '../components';
+import { Header, Footer, SideNavigation, VerticalContainer, Button } from '../components/@index';
 import { router } from '../routes';
 
 export default function MainLayout() {
