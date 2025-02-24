@@ -1,0 +1,4 @@
+#system-settings-mod/application.yaml
+spring:
+  application:
+    name: system-settings-mod

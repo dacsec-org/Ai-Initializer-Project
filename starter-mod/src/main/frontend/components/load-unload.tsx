@@ -3,7 +3,7 @@
 // import { LoadUnloadService } from 'Frontend/bridges/LoadUnload';
 // // import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 //
-// export const config: ViewConfig = {
+// export const configs: ViewConfig = {
 //   menu: { order: 5, icon: 'line-awesome/svg/upload-solid.svg' },
 //   title: 'Load ~ Unload',
 // };

@@ -10,5 +10,6 @@ public enum MessageAction {
     THUMBS_UP,
     THUMBS_DOWN,
     RETRY,
-    TRASH
+    TRASH,
+    SESSION_END
 }

@@ -2,7 +2,7 @@
 // // import { VerticalLayout, HorizontalLayout } from '@vaadin/react-components';
 // // import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 //
-// export const config: ViewConfig = {
+// export const configs: ViewConfig = {
 //   menu: { order: 3, icon: 'line-awesome/svg/images-solid.svg' }, title: 'Gallery' };
 //
 // interface MediaItem {

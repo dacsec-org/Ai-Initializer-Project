@@ -2,6 +2,9 @@ package org.dacss.projectinitai.services;
 
 import org.dacss.projectinitai.annotations.Bridge;
 import org.dacss.projectinitai.messages.*;
+import org.dacss.projectinitai.messages.controllers.AiResponseController;
+import org.dacss.projectinitai.messages.controllers.UserRequestController;
+import org.dacss.projectinitai.messages.functions.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,7 @@ public class MessagesService implements MessagesIface {
                 case THUMBS_DOWN -> ThumbsDown.processThumbsDown(Flux.just(new Object()));
                 case RETRY -> RetryMessage.retryMessageSet(Flux.just(new Object().toString())); //info-> this is a temp hack for now.
                 case TRASH -> TrashMessageSet.destroyMessageSet(Flux.just(new Object()));
+                case SESSION_END -> PublishSessionEnd.publishSessionEnd();
             };
         } catch (Exception messagesServiceExc) {
             log.error("{}: Error from MessagesService performing action:", action, messagesServiceExc);

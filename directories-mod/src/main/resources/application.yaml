@@ -1,0 +1,6 @@
+#directories-mod/application.yaml
+spring:
+  application:
+    name: directories-mod
+
+

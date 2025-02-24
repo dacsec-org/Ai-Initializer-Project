@@ -1,0 +1,4 @@
+#annotations-mod/application.yaml
+spring:
+  application:
+    name: annotations-mod

@@ -1,6 +1,6 @@
 package org.dacss.projectinitai.system;
 
-import org.dacss.projectinitai.system.LoggingSettings;
+import org.dacss.projectinitai.system.options.LoggingSettings;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

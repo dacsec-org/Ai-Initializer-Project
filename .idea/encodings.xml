@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/annotations-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/checksums-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/checksums-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configs-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configs-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contexts-mod/src/main/java" charset="UTF-8" />
@@ -13,14 +14,16 @@
     <file url="file://$PROJECT_DIR$/databases-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/directories-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/directories-mod/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/downloaders-mod/anomalies-mod/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/downloaders-mod/anomalies-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/discovery-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/downloaders-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/downloaders-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/feign-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/admin-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/admin-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/advisers-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/advisers-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/future_features/anomalies-mod/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/future_features/anomalies-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/classifications-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/classifications-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/clustering-mod/src/main/java" charset="UTF-8" />
@@ -55,6 +58,7 @@
     <file url="file://$PROJECT_DIR$/future_features/speech-mod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/vision-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future_features/vision-mod/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-mod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/generative/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/generative/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/loaders-mod/src/main/java" charset="UTF-8" />

@@ -1,0 +1,4 @@
+#loaders-mod/application.yaml
+spring:
+  application:
+    name: loaders-mod

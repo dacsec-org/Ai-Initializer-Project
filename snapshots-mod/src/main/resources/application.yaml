@@ -1,0 +1,4 @@
+#snapshots-mod/application.yaml
+spring:
+  application:
+    name: snapshots-mod

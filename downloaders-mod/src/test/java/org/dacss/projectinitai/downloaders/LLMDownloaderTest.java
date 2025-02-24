@@ -46,7 +46,7 @@
 //                "Downloaded: .gitattributes",
 //                "Downloaded: LICENSE",
 //                "Downloaded: README.md",
-//                "Downloaded: config.json",
+//                "Downloaded: configs.json",
 //                "Downloaded: generation_config.json",
 //                "Downloaded: merges.txt",
 //                "Downloaded: model.safetensors",

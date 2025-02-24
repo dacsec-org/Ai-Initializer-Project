@@ -39,7 +39,7 @@ public class LLMDownloader {
                 new FileDownloadInfo(".gitattributes", baseUrl + ".gitattributes?download=true"),
                 new FileDownloadInfo("LICENSE", baseUrl + "LICENSE?download=true"),
                 new FileDownloadInfo("README.md", baseUrl + "README.md?download=true"),
-                new FileDownloadInfo("config.json", baseUrl + "config.json?download=true"),
+                new FileDownloadInfo("configs.json", baseUrl + "configs.json?download=true"),
                 new FileDownloadInfo("generation_config.json", baseUrl + "generation_config.json?download=true"),
                 new FileDownloadInfo("merges.txt", baseUrl + "merges.txt?download=true"),
                 new FileDownloadInfo("model.safetensors", baseUrl + "model.safetensors?download=true"),

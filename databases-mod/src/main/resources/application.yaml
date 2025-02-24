@@ -1,0 +1,5 @@
+#databases-mod/application.yaml
+spring:
+  application:
+    name: databases-mod
+

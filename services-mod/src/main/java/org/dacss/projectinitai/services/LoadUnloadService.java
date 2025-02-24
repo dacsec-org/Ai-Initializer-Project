@@ -1,7 +1,7 @@
 package org.dacss.projectinitai.services;
 
 import org.dacss.projectinitai.annotations.Bridge;
-import org.dacss.projectinitai.loaders.LoadKernel;
+import org.dacss.projectinitai.loaders.LoadLLMKernelAPI;
 import org.dacss.projectinitai.loaders.LoadUnLoadActions;
 import org.dacss.projectinitai.loaders.LoadersIface;
 import org.dacss.projectinitai.loaders.UnLoadKernel;
@@ -30,7 +30,7 @@ public class LoadUnloadService implements LoadersIface {
         switch (action) {
             case LOAD_KERNEL:
                 String modelPath = null;
-                new LoadKernel().loadModelKernel(modelPath);
+                new LoadLLMKernelAPI().loadModelKernel(modelPath);
                 break;
             case UNLOAD_KERNEL:
                 byte[] modelData = new byte[0];

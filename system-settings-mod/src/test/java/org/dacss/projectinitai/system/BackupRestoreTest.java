@@ -1,9 +1,7 @@
 package org.dacss.projectinitai.system;
 
 import java.util.Objects;
-import org.dacss.projectinitai.system.BackupRestore;
-import org.dacss.projectinitai.system.SystemSettingsEntity;
-import org.dacss.projectinitai.system.SystemSettingsRepository;
+import org.dacss.projectinitai.system.options.BackupRestore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

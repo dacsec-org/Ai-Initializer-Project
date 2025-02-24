@@ -1,0 +1,4 @@
+#security-mod/application.yaml
+spring:
+  application:
+    name: security-mod

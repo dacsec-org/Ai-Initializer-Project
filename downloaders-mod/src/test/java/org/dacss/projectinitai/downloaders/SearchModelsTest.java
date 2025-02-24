@@ -21,7 +21,7 @@
 //    @Test
 //    public void testSearchModels() {
 //        String query = "qwen";
-//        Flux<Object> flux = searchModels.download(action, query);
+//        Flux<Object> flux = SearchModels.searchModels(action, query);
 //
 //        StepVerifier.create(flux.collectList())
 //                .expectNextMatches(models -> {

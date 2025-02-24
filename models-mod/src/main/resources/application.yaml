@@ -1,0 +1,4 @@
+#models-mod/application.yaml
+spring:
+  application:
+    name: models-mod

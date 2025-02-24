@@ -1,0 +1,24 @@
+#starter-mod/application.yaml
+spring:
+  application:
+    name: projectinitai
+  rsocket:
+    server:
+      port: 7000
+      mapping-path: /rsocket
+  webflux:
+    base-path: /api
+server:
+  port: 30320
+  address: http://localhost/${server.port}
+  error:
+    whitelabel:
+      enabled: false
+logging:
+    level:
+        org.springframework.web: DEBUG
+    pattern:
+        console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file:
+        name: logs/app.log
+

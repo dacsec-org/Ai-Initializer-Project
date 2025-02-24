@@ -6,7 +6,7 @@ import MemoryGauge from '../components/memory-gauge';
 import DiskGauge from '../components/disk-gauge';
 import NetworkGauge from '../components/network-gauge';
 
-// export const config: ViewConfig = {
+// export const configs: ViewConfig = {
 //   menu: { order: 7, icon: 'line-awesome/svg/chart-line-solid.svg', title: 'Metrics' },
 // };
 

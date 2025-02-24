@@ -1,0 +1,4 @@
+#zip-mod/application.yaml
+spring:
+  application:
+    name: zip-mod

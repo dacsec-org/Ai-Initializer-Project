@@ -11,7 +11,6 @@ import reactor.core.publisher.Flux;
 
 /**
  * <h1>{@link SnapShotsService}</h1>
- * Backend hilla endpoint service for snapshot operations.
  */
 @Service
 @Bridge("snapshots")

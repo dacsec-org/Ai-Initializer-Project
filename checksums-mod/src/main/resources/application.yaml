@@ -1,0 +1,4 @@
+#checksums-mod/application.yaml
+spring:
+  application:
+    name: checksums-mod

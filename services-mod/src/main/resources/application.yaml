@@ -1,0 +1,4 @@
+#services-mod/application.yaml
+spring:
+  application:
+    name: services-mod

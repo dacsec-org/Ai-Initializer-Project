@@ -5,7 +5,20 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/config-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/feign-mod/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/config-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/feign-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-mod/pom.xml" />
+        <option value="$PROJECT_DIR$/servers-mod/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="graalvm-ce-21" project-jdk-type="JavaSDK" />

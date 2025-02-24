@@ -1,0 +1,8 @@
+#messages-mod/application.yaml
+spring:
+  application:
+    name: messages-mod
+  rsocket:
+    server:
+      port: 7000    # default port
+      transport: tcp    # tcp, websocket

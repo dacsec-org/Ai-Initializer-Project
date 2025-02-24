@@ -26,12 +26,12 @@
 //
 //    private LoadUnloadService loadUnloadService;
 //    private LoadUnloadHandler loadUnloadHandler;
-//    private LoadKernel loadKernel;
+//    private LoadLLMKernelAPI loadKernel;
 //    private UnLoadKernel unLoadKernel;
 //
 //    @BeforeMethod
 //    public void setUp() {
-//        loadKernel = new LoadKernel();
+//        loadKernel = new LoadLLMKernelAPI();
 //        unLoadKernel = new UnLoadKernel();
 //        loadUnloadHandler = new LoadUnloadHandler(loadKernel, unLoadKernel);
 //        loadUnloadService = new LoadUnloadService(loadUnloadHandler);
@@ -59,7 +59,7 @@
 //
 //    @Test
 //    public void testLoadModelKernel() throws Exception {
-//        Method loadModelKernelMethod = LoadKernel.class.getDeclaredMethod("loadModelKernel", String.class);
+//        Method loadModelKernelMethod = LoadLLMKernelAPI.class.getDeclaredMethod("loadModelKernel", String.class);
 //        loadModelKernelMethod.setAccessible(true);
 //        byte[] modelData = (byte[]) loadModelKernelMethod.invoke(loadKernel, "path/to/model");
 //        assertNotNull(modelData, "Model data should not be null");
@@ -68,7 +68,7 @@
 //
 //    @Test(dependsOnMethods = "testLoadModelKernel")
 //    public void testUnloadModelKernel() throws Exception {
-//        Method loadModelKernelMethod = LoadKernel.class.getDeclaredMethod("loadModelKernel", String.class);
+//        Method loadModelKernelMethod = LoadLLMKernelAPI.class.getDeclaredMethod("loadModelKernel", String.class);
 //        loadModelKernelMethod.setAccessible(true);
 //        byte[] modelData = (byte[]) loadModelKernelMethod.invoke(loadKernel, "path/to/model");
 //

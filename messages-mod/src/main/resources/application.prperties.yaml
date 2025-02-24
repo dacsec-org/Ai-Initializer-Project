@@ -1,7 +1,0 @@
-### messages properties ###
-##########################
-spring:
-  rsocket:
-    server:
-      port: 7000 # Port for RSocket communication
-      transport: tcp # Use TCP for communication

@@ -12,7 +12,7 @@ public enum DownloadAction {
     API_TOKEN,
 
     /**
-     * Action to download LLM JSON configuration files.
+     * Action to download LLM list JSON.
      */
     DOWNLOAD_LLM_JSON,
 
