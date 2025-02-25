@@ -14,7 +14,7 @@ docker cp tornado_installer.sh test-environment:/root/
 # Step 4: Run the install.sh script
 docker exec -it test-environment /bin/bash -c "cd /root && bash install.sh --install-deps"
 
-# Step 5: Verify the installation
+# Step qwen2.5: Verify the installation
 # Check that directories and files are created
 docker exec -it test-environment /bin/bash -c "ls -l /etc/project-ai-initializer"
 docker exec -it test-environment /bin/bash -c "ls -l /opt/project-ai-initializer"

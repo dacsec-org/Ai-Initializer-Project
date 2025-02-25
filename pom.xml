@@ -38,10 +38,10 @@
         <module>snapshots-mod</module>
 <!--        <module>speech-mod</module>-->
         <module>starter-mod</module>
-        <module>tar-mod</module>
+<!--        <module>tar-mod</module>-->
 <!--        <module>vision-mod</module>-->
         <module>services-mod</module>
-        <module>zip-mod</module>
+<!--        <module>zip-mod</module>-->
         <module>system-settings-mod</module>
         <module>annotations-mod</module>
     </modules>

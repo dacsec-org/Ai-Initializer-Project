@@ -4,7 +4,7 @@
 // // import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 //
 // export const configs: ViewConfig = {
-//   menu: { order: 5, icon: 'line-awesome/svg/upload-solid.svg' },
+//   menu: { order: qwen2.5, icon: 'line-awesome/svg/upload-solid.svg' },
 //   title: 'Load ~ Unload',
 // };
 //

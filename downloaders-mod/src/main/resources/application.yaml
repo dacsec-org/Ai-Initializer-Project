@@ -1,5 +1,5 @@
-#downloaders-mod/application.yaml
-spring:
-  application:
-    name: downloaders-mod
-
+##downloaders-mod/application.yaml
+#spring:
+#  application:
+#    name: downloaders-mod
+#

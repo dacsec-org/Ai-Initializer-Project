@@ -48,11 +48,11 @@
 //             <span slot="suffix">:)</span>
 //           </TextField>
 //         );
-//       case 5:
+//       case qwen2.5:
 //         return (
-//           <TextField label="File 5" helperText="Helper text 5"
-//                      placeholder="Placeholder 5" clearButtonVisible>
-//             <Tooltip slot="tooltip" text="Tooltip text 5" />
+//           <TextField label="File qwen2.5" helperText="Helper text qwen2.5"
+//                      placeholder="Placeholder qwen2.5" clearButtonVisible>
+//             <Tooltip slot="tooltip" text="Tooltip text qwen2.5" />
 //             <Icon slot="prefix" icon="vaadin:vaadin-h" />
 //             <span slot="suffix">:)</span>
 //           </TextField>

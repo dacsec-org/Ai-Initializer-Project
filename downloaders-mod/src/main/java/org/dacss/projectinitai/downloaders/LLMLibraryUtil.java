@@ -18,9 +18,6 @@ import java.util.concurrent.CompletableFuture;
 /**
  * <h1>{@link LLMLibraryUtil}</h1>
  * Utility class for downloading LLM JSON file.
- * This class provides a method to download the top 999 models from the LLM library.
- * It uses asynchronous HTTP requests to fetch the data and writes the response to a file.
- * The class is annotated with {@link Component} to indicate that it is a Spring-managed component.
  */
 public class LLMLibraryUtil {
 
@@ -37,20 +34,6 @@ public class LLMLibraryUtil {
     /**
      * <h3>{@link #downloadLLMJsonFile()}</h3>
      * Downloads the LLM JSON file from the specified URL.
-     * This method creates a Flux that performs an asynchronous HTTP GET request to download the JSON data.
-     * The response is written to a file named "llm.json".
-     * If the HTTP request is successful, the response body is emitted to the Flux.
-     * If the request fails, an error is emitted to the Flux.
-     *
-     * <pre>{@code
-     * Flux<Object> flux = LLMLibraryUtil.downloadLLMJsonFile();
-     * flux.subscribe(
-     *     data -> System.out.println("Received data: " + data),
-     *     error -> System.err.println("Error: " + error),
-     *     () -> System.out.println("Download complete")
-     * );
-     * }</pre>
-     *
      * @return a Flux that emits the JSON response body or an error if the request fails.
      */
     public static Flux<Object> downloadLLMJsonFile() {

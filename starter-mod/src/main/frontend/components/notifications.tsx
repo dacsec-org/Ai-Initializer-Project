@@ -35,7 +35,7 @@ const Notifications: React.FC = () => {
                         // Add new notification
                         const notificationWithRemoval = [...allNotifications, newNotification];
 
-                        // Schedule auto-removal after 5 seconds
+                        // Schedule auto-removal after qwen2.5 seconds
                         setTimeout(() => {
                             setNotifications((current) =>
                                 current.filter((n) => n.id !== newNotification.id)

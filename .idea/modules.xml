@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/admin-mod/admin-mod.iml" filepath="$PROJECT_DIR$/admin-mod/admin-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/advisers-mod/advisers-mod.iml" filepath="$PROJECT_DIR$/advisers-mod/advisers-mod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/annotations-mod.iml" filepath="$PROJECT_DIR$/annotations-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/anomalies-mod/anomalies-mod.iml" filepath="$PROJECT_DIR$/anomalies-mod/anomalies-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/checksums-mod/checksums-mod.iml" filepath="$PROJECT_DIR$/checksums-mod/checksums-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/classifications-mod/classifications-mod.iml" filepath="$PROJECT_DIR$/classifications-mod/classifications-mod.iml" />
@@ -32,9 +31,7 @@
       <module fileurl="file://$PROJECT_DIR$/services-mod/services-mod.iml" filepath="$PROJECT_DIR$/services-mod/services-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/snapshots-mod/snapshots-mod.iml" filepath="$PROJECT_DIR$/snapshots-mod/snapshots-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/speech-mod/speech-mod.iml" filepath="$PROJECT_DIR$/speech-mod/speech-mod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tar-mod/tar-mod.iml" filepath="$PROJECT_DIR$/tar-mod/tar-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/vision-mod/vision-mod.iml" filepath="$PROJECT_DIR$/vision-mod/vision-mod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zip-mod.iml" filepath="$PROJECT_DIR$/zip-mod.iml" />
     </modules>
   </component>
 </project>

@@ -11,11 +11,9 @@ import reactor.core.scheduler.Schedulers;
 
 /**
  * <h1>{@link DirFileUtil}</h1>
- * Utility class for handling directory and file operations.
- * This class implements the {@link DirectoriesIface} interface and provides methods
- * for creating and deleting directories and files.
+ * Handles directory and file operations.
  */
-public class DirFileUtil implements DirectoriesIface {
+public class DirFileUtil {
 
     private static final Logger log = LoggerFactory.getLogger(DirFileUtil.class);
     private static final String USER_HOME = System.getProperty("user.home");
@@ -147,25 +145,6 @@ public class DirFileUtil implements DirectoriesIface {
         } else {
             log.info("Deleted successfully: {}", file.getPath());
         }
-    }
-
-    /**
-     * <h3>{@link #processDirFile(DirectoryActions, String, String)}</h3>
-     * Processes a directory or file action based on the specified parameters.
-     *
-     * @param action the directory action to be performed
-     * @param path the path of the directory or file
-     * @param fileName the name of the file (can be null if the action is directory-related)
-     * @return a Flux stream representing the action status or result
-     */
-    @Override
-    public Flux<Object> processDirFile(DirectoryActions action, String path, String fileName) {
-        return switch (action) {
-            case CREATE_DIRECTORY -> createDirectory(path);
-            case CREATE_FILE -> createFile(path, fileName);
-            case DELETE_DIRECTORY -> deleteDirectory(path);
-            case DELETE_FILE -> deleteFile(path, fileName);
-        };
     }
 
     /**

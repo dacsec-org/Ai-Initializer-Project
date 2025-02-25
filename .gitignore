@@ -297,13 +297,13 @@ secring.*
 !/ai-initializer-project.iml
 !/types.d.ts
 
-### The following files are generated/updated by Hilla
+### The following files were generated/updated by Hilla which is gone but we keep the files
 node_modules/
 src/main/frontend/generated/
 vite.generated.ts
 
 ##################################
-### project directories/filea ###
+### project directories/files ###
 ##################################
 
 #################################################################
@@ -332,3 +332,9 @@ var/run/project-ai-initializer/project-ai-initializer/data/*
 
 ### Log file (insure for the above)
 *.log
+
+### any inside the resources directory
+src/main/resources/*
+
+## the llm explicitly(generated from the downloaders test)
+/downloaders-mod/src/main/resources/qwen2.5/

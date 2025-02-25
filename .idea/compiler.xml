@@ -16,11 +16,9 @@
         <module name="models-mod" />
         <module name="downloaders-mod" />
         <module name="security-mod" />
-        <module name="tar-mod" />
         <module name="messages-mod" />
         <module name="annotations-mod" />
         <module name="metrics-mod" />
-        <module name="zip-mod" />
         <module name="checksums-mod" />
         <module name="directories-mod" />
         <module name="services-mod" />
@@ -51,7 +49,9 @@
       <module name="sequence-mod" target="21" />
       <module name="servers-mod" target="21" />
       <module name="speech-mod" target="21" />
+      <module name="tar-mod" target="21" />
       <module name="vision-mod" target="21" />
+      <module name="zip-mod" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

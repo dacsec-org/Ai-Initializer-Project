@@ -28,7 +28,7 @@ public class SearchModels {
     public SearchModels() {
     }
 
-    public static Flux<Object> searchModels(DownloadAction action, String query) {
+    public static Flux<JsonNode> searchModels(DownloadAction action, String query) {
         if (action != DownloadAction.SEARCH) {
             return Flux.error(new UnsupportedOperationException("Unsupported action: " + action));
         }
@@ -53,7 +53,9 @@ public class SearchModels {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     JsonNode models = objectMapper.readTree(responseBody);
-                    sink.next(models);
+                    for (JsonNode model : models) {
+                        sink.next(model);
+                    }
                     sink.complete();
                 } catch (IOException e) {
                     sink.error(new IOException("Failed to parse models: " + e.getMessage(), e));
