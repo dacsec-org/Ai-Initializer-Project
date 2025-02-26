@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/clustering-mod/clustering-mod.iml" filepath="$PROJECT_DIR$/clustering-mod/clustering-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/databases-mod/databases-mod.iml" filepath="$PROJECT_DIR$/databases-mod/databases-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/directories-mod/directories-mod.iml" filepath="$PROJECT_DIR$/directories-mod/directories-mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/downloaders-mod/downloaders-mod.iml" filepath="$PROJECT_DIR$/downloaders-mod/downloaders-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/embedding-mod/embedding-mod.iml" filepath="$PROJECT_DIR$/embedding-mod/embedding-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/generative-mod.iml" filepath="$PROJECT_DIR$/generative-mod.iml" />
       <module fileurl="file://$PROJECT_DIR$/krr-mod/krr-mod.iml" filepath="$PROJECT_DIR$/krr-mod/krr-mod.iml" />

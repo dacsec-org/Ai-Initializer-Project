@@ -44,6 +44,8 @@
 <!--        <module>zip-mod</module>-->
         <module>system-settings-mod</module>
         <module>annotations-mod</module>
+        <module>tokenizer-mod</module>
+        <module>ucc-mod</module>
     </modules>
 
     <parent>

@@ -1,5 +1,7 @@
 package org.dacss.projectinitai.messages.controllers;
 
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
@@ -12,7 +14,18 @@ import reactor.core.publisher.Sinks;
 @Controller
 public class UserRequestController {
 
+    private static ChatClient chatClient;
     private static Sinks.Many<Object> userRequestSink = Sinks.many().unicast().onBackpressureBuffer();
+
+    /**
+     * <h3>{@link #UserRequestController(ChatClient)}</h3>
+     * Constructor for UserRequestController taking in a ChatClient.
+     * @param chatClient ChatClient
+     */
+    @Autowired
+    public UserRequestController(ChatClient chatClient) {
+        UserRequestController.chatClient = chatClient;
+    }
 
     /**
      * <h3>{@link #sendUserRequestToLLM(Flux)}</h3>
@@ -25,6 +38,7 @@ public class UserRequestController {
         return message
                 .doOnNext(userRequestSink::tryEmitNext)
                 .thenMany(userRequestSink.asFlux())
+                .flatMap(msg -> chatClient.prompt(msg.toString()).stream().content().map(Object.class::cast)) // Ensure type compatibility
                 .onErrorResume(e -> {
                     // Log the error and provide a fallback response
                     System.err.println("Error in sendUserRequestToLLM: " + e.getMessage());
@@ -37,7 +51,7 @@ public class UserRequestController {
      *
      * @return Flux<Object>
      */
-    public static Flux<Object> getRequestStream() {
+    public Flux<Object> getRequestStream() {
         return userRequestSink.asFlux();
     }
 }

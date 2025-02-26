@@ -1,5 +1,6 @@
 package org.dacss.projectinitai.messages.controllers;
 
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
@@ -37,7 +38,7 @@ public class AiResponseController {
      *
      * @return Flux<Object>
      */
-    public static Flux<Object> getResponseStream() {
+    public Flux<Object> getResponseStream() {
         return aiResponseSink.asFlux();
     }
 }

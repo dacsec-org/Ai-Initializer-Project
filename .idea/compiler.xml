@@ -13,6 +13,7 @@
         <module name="databases-mod" />
         <module name="snapshots-mod" />
         <module name="loaders-mod" />
+        <module name="tokenizer-mod" />
         <module name="models-mod" />
         <module name="downloaders-mod" />
         <module name="security-mod" />
@@ -20,6 +21,7 @@
         <module name="annotations-mod" />
         <module name="metrics-mod" />
         <module name="checksums-mod" />
+        <module name="ucc-mod" />
         <module name="directories-mod" />
         <module name="services-mod" />
       </profile>
@@ -96,6 +98,8 @@
       <module name="starter-mod" options="-parameters" />
       <module name="system-settings-mod" options="-parameters" />
       <module name="tar-mod" options="-parameters" />
+      <module name="tokenizer-mod" options="-parameters" />
+      <module name="ucc-mod" options="-parameters" />
       <module name="vision-mod" options="-parameters" />
       <module name="zip-mod" options="-parameters" />
     </option>
