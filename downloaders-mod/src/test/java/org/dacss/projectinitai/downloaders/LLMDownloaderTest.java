@@ -34,7 +34,7 @@ public class LLMDownloaderTest {
     }
 
     @Test
-    public void testFileExistsInDirectory() {
+    public void testDownloadLLM() {
         String testFileUrl = baseUrl + "LICENSE?download=true";
         HttpClient client = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.ALWAYS).build();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(testFileUrl)).GET().build();

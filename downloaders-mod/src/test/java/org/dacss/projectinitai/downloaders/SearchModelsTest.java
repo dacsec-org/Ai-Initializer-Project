@@ -27,6 +27,7 @@ public class SearchModelsTest {
     /**
      * the following list was intended to throw an exception, but it was not thrown,
      * as all the names do return models!! including "fakeModel", "unknownName", "notFound"....
+     * I'll have to come up with better fake names to create an edge case to fail.
      */
     @Test
     public void testSearchModels() {
@@ -40,7 +41,7 @@ public class SearchModelsTest {
                         int count = models.size();
                         if (count == 0 && (query.equals("fakeModel") || query.equals("unknownName") || query.equals("notFound"))) {
                             System.out.println("@" + query + ": 0");
-                            return true; // Expecting no results for fake/unknown/notFound queries
+                            return true; // Originally expecting no results for fake/unknown/notFound queries
                         }
                         if (count == 0) {
                             return false;

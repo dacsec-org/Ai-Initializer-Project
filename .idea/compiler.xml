@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="system-settings-mod" />
+        <module name="starter-mod" />
+        <module name="databases-mod" />
+        <module name="snapshots-mod" />
+        <module name="loaders-mod" />
+        <module name="tokenizer-mod" />
+        <module name="downloaders-mod" />
+        <module name="security-mod" />
+        <module name="annotations-mod" />
+        <module name="messages-mod" />
+        <module name="metrics-mod" />
+        <module name="checksums-mod" />
+        <module name="ucc-mod" />
+        <module name="directories-mod" />
+        <module name="services-mod" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="annotations-mod" options="-parameters" />
+      <module name="checksums-mod" options="-parameters" />
+      <module name="databases-mod" options="-parameters" />
+      <module name="directories-mod" options="-parameters" />
+      <module name="downloaders-mod" options="-parameters" />
+      <module name="loaders-mod" options="-parameters" />
+      <module name="messages-mod" options="-parameters" />
+      <module name="metrics-mod" options="-parameters" />
+      <module name="security-mod" options="-parameters" />
+      <module name="services-mod" options="-parameters" />
+      <module name="snapshots-mod" options="-parameters" />
+      <module name="starter-mod" options="-parameters" />
+      <module name="system-settings-mod" options="-parameters" />
+      <module name="tokenizer-mod" options="-parameters" />
+      <module name="ucc-mod" options="-parameters" />
+    </option>
+  </component>
+</project>
