@@ -1,50 +1,82 @@
-# this readme is out-dated
-## `DOWNLOADERS.md`
+# Downloaders Module
 
 ## Module for Handling Downloads
 
-### `HuggingFaceDownloaderService`
+### `DownloadersService`
 
-Backend service for downloading models from the Hugging Face model hub.
+Backend service for handling various download actions related to Large Language Models (LLMs).
 
 **Module Dependencies:**
 - `directories-mod` (`DirFileHandler`)
 - `security-mod` (`CredentialService`)
 
 **Methods:**
-- `getApiToken()`: Returns the API token.
-- `downloadModel(String modelId)`: Downloads a model by its ID. Returns `true` if the model was downloaded successfully.
+- `download(DownloadAction action, String llmName)`: Handles different download actions based on the provided `DownloadAction` enum and LLM name. Returns a `Flux<Object>`.
 
-### `LLMLinkScraper`
+### `DownloadAction`
 
-Utility class for scraping links of Language Model Libraries (LLMs).
+Enum representing various download actions for LLMs.
+
+**Actions:**
+- `API_TOKEN`: Action to download an API token.
+- `DOWNLOAD_LLM_JSON`: Action to download LLM list JSON.
+- `DOWNLOAD_LLM_MODEL`: Action to download the LLM model files.
+- `SEARCH`: Action to query Hugging Face for LLMs.
+
+### `DownloadersIface`
+
+Functional interface for download actions.
 
 **Methods:**
-- `scrapeLLMLinks(String url)`: Scrapes LLM links from the given URL. Returns a list of `LLMS` objects.
-- `scrapeName(String input)`: Extracts the name from the input string.
-- `scrapeDescription(String input)`: Extracts the description from the input string.
-- `scrapeType(String input)`: Extracts the type from the input string.
-- `scrapeAvailableSizes(String input)`: Extracts the available sizes from the input string.
-- `scrapePulls(String input)`: Extracts the number of pulls from the input string.
-- `scrapeTags(String input)`: Extracts the tags from the input string.
-- `scrapeUpdated(String input)`: Extracts the updated date from the input string.
+- `download(DownloadAction action, String llmName)`: Abstract method to be implemented for handling download actions.
 
-### `LLMS`
+### `FileDownloadInfo`
 
-Represents a Language Model Library.
+Class representing information about a file to be downloaded.
 
 **Fields:**
-- `name`: The name of the LLM.
-- `description`: The description of the LLM.
-- `type`: The type of the LLM.
-- `sizes`: The sizes of the LLM.
-- `pulls`: The number of pulls of the LLM.
-- `tags`: The tags associated with the LLM.
-- `updated`: The last updated date of the LLM.
-- `isInstalled`: Indicates if the LLM is installed.
-- `dateInstalled`: The date the LLM was installed.
-- `availableSizes`: The available sizes of the LLM.
+- `fileName`: The name of the file.
+- `fileUrl`: The URL from which the file can be downloaded.
 
 **Methods:**
 - Getters and setters for all fields.
-- `setDateInstalled()`: Sets the installation date to the current date.
+
+### `LLMDownloader`
+
+Class for downloading LLM model files.
+
+**Methods:**
+- `downloadLLM(DownloadAction action, String llmName)`: Downloads LLM model files based on the provided action and LLM name. Returns a `Flux<Object>`.
+
+### `LLMLibraryUtil`
+
+Utility class for downloading LLM JSON files.
+
+**Methods:**
+- `downloadLLMJsonFile()`: Downloads the LLM JSON file from a specified URL. Returns a `Flux<Object>`.
+
+### `ModelInfo`
+
+Class representing the information of a model.
+
+**Fields:**
+- `id`: The unique identifier of the model.
+- `modelId`: The model ID.
+- `likes`: The number of likes.
+- `trendingScore`: The trending score.
+- `isPrivate`: Indicates if the model is private.
+- `downloads`: The number of downloads.
+- `tags`: The tags associated with the model.
+- `pipelineTag`: The pipeline tag.
+- `libraryName`: The library name.
+- `createdAt`: The creation date.
+
+**Methods:**
+- Getters and setters for all fields.
+
+### `SearchModels`
+
+Class for searching models on Hugging Face.
+
+**Methods:**
+- `searchModels(DownloadAction action, String query)`: Searches for models based on the provided action and query. Returns a `Flux<JsonNode>`.

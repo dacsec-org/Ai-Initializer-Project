@@ -35,22 +35,4 @@ public class ChecksumVerifierUtil {
         }
         return sb.toString().equals(expectedChecksum);
     }
-
-    /**
-     * Verifies the checksum of a byte array.
-     * @param data the byte array
-     * @param expectedChecksum the expected checksum
-     * @return true if the checksum is correct, false otherwise
-     * @throws NoSuchAlgorithmException if the algorithm is not available
-     */
-    public static boolean verifyByteArrayChecksum(byte[] data, String expectedChecksum) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update(data);
-        byte[] bytes = digest.digest();
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString().equals(expectedChecksum);
-    }
 }
