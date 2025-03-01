@@ -10,14 +10,12 @@
     <modules>
 
         <module>checksums-mod</module>
-
         <module>databases-mod</module>
         <module>directories-mod</module>
         <module>downloaders-mod</module>
         <module>loaders-mod</module>
         <module>messages-mod</module>
         <module>metrics-mod</module>
-        <module>models-mod</module>
         <module>security-mod</module>
         <module>snapshots-mod</module>
         <module>starter-mod</module>
@@ -25,7 +23,7 @@
         <module>system-settings-mod</module>
         <module>annotations-mod</module>
         <module>tokenizer-mod</module>
-        <module>ucc-mod</module>
+        <module>clients-mod</module>
     </modules>
 
     <parent>

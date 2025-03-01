@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="clients-mod" />
         <module name="system-settings-mod" />
         <module name="starter-mod" />
         <module name="databases-mod" />
@@ -18,16 +19,19 @@
         <module name="messages-mod" />
         <module name="metrics-mod" />
         <module name="checksums-mod" />
-        <module name="ucc-mod" />
         <module name="directories-mod" />
         <module name="services-mod" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ucc-mod" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="annotations-mod" options="-parameters" />
       <module name="checksums-mod" options="-parameters" />
+      <module name="clients-mod" options="-parameters" />
       <module name="databases-mod" options="-parameters" />
       <module name="directories-mod" options="-parameters" />
       <module name="downloaders-mod" options="-parameters" />
