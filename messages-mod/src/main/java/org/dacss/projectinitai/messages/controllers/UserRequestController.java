@@ -15,7 +15,7 @@ public class UserRequestController {
 
     @Autowired
     public UserRequestController(UniversalLLMClientIface llmClient) {
-        this.llmClient = llmClient;
+        UserRequestController.llmClient = llmClient;
     }
 
     @MessageMapping("user.request")

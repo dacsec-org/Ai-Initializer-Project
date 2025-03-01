@@ -2,7 +2,6 @@ package org.dacss.projectinitai.messages.controllers;
 
 import org.dacss.projectinitai.clients.UniversalLLMClientIface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
